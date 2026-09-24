@@ -126,7 +126,6 @@ const tileFrag = /* glsl */`
   uniform float mediaZoom;
   uniform float labelIdle;
   uniform float blurOpacity;
-  uniform float lineGrey;
   varying vec2 vUv;
   varying vec2 vCell;
   varying float vHover;
@@ -142,10 +141,6 @@ const tileFrag = /* glsl */`
     vec2 l = atlas(vUv); l.y = 1.0 - l.y;
     vec4 lab = texture2D(labelMap, l);
     col = mix(col, lab.rgb, lab.a * mix(labelIdle, 1.0, vHover));
-    // cell border: half a screen pixel on each tile's edge, so neighbours meet in one steady 1px line
-    vec2 e = min(vUv, 1.0 - vUv) / fwidth(vUv);
-    float line = 1.0 - smoothstep(0.0, 0.75, min(e.x, e.y));
-    col = mix(col, vec3(lineGrey), line);
     gl_FragColor = vec4(col * opacity, 1.0);
   }`;
 const lensVert = /* glsl */`
@@ -156,6 +151,9 @@ const lensFrag = /* glsl */`
   uniform vec2 distortion;
   uniform float vignetteOffset;
   uniform float vignetteDarkness;
+  uniform vec2 gridOffset;   // world offset of the tile plane
+  uniform vec2 visible;      // world size of the view at the tile plane
+  uniform float lineAlpha;   // follows the grid's opacity
   varying vec2 vUv;
   vec2 lens(vec2 uv) {
     vec2 m = 2.0 * (uv - 0.5);
@@ -164,7 +162,15 @@ const lensFrag = /* glsl */`
   void main() {
     vec2 d = lens(vUv);
     vec3 c = vec3(0.0);
-    if (d.x >= 0.0 && d.x <= 1.0 && d.y >= 0.0 && d.y <= 1.0) c = texture2D(tDiffuse, d).rgb;
+    if (d.x >= 0.0 && d.x <= 1.0 && d.y >= 0.0 && d.y <= 1.0) {
+      c = texture2D(tDiffuse, d).rgb;
+      // tile borders, computed per screen pixel after the lens rather than resampled from the
+      // scene, so a moving grid never makes a thin line shimmer
+      vec2 w = (d - 0.5) * visible - gridOffset + 0.5;
+      vec2 dist = abs(fract(w + 0.5) - 0.5) / fwidth(w);
+      float line = 1.0 - clamp(min(dist.x, dist.y) - 0.1, 0.0, 1.0);
+      c = mix(c, vec3(0.3), line * lineAlpha);
+    }
     float dist = distance(vUv, vec2(0.5));
     c *= smoothstep(0.8, vignetteOffset * 0.799, (vignetteDarkness + vignetteOffset) * dist);
     gl_FragColor = vec4(c, 1.0);
@@ -211,7 +217,7 @@ export class WorkGrid {
     this.target = new THREE.WebGLRenderTarget(1, 1, { samples: 4 });
     this.lens = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
       vertexShader: lensVert, fragmentShader: lensFrag, depthTest: false,
-      uniforms: { tDiffuse: { value: this.target.texture }, distortion: { value: new THREE.Vector2() }, vignetteOffset: { value: 0.6 }, vignetteDarkness: { value: 0.6 } },
+      uniforms: { tDiffuse: { value: this.target.texture }, distortion: { value: new THREE.Vector2() }, vignetteOffset: { value: 0.6 }, vignetteDarkness: { value: 0.6 }, gridOffset: { value: new THREE.Vector2() }, visible: { value: new THREE.Vector2(1, 1) }, lineAlpha: { value: 0 } },
     }));
     this.lensScene = new THREE.Scene(); this.lensScene.add(this.lens); this.lensCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
     this.clock = new THREE.Timer();
@@ -226,7 +232,7 @@ export class WorkGrid {
       vertexShader: tileVert, fragmentShader: tileFrag,
       uniforms: {
         mediaMap: { value: this.atlas.media }, labelMap: { value: this.atlas.labels }, cells: { value: this.atlas.cols },
-        opacity: { value: 1 }, mediaZoom: { value: MEDIA_ZOOM }, labelIdle: { value: LABEL_IDLE }, blurOpacity: { value: BLUR_OPACITY }, lineGrey: { value: 0.3 },
+        opacity: { value: 1 }, mediaZoom: { value: MEDIA_ZOOM }, labelIdle: { value: LABEL_IDLE }, blurOpacity: { value: BLUR_OPACITY },
       },
     });
     this.setProjects(this.all);
@@ -458,6 +464,10 @@ export class WorkGrid {
       this.hoverAttr.needsUpdate = true;
     }
     this.canvas.style.cursor = this.pressed && this.dragging ? 'grabbing' : this.hovered >= 0 && this.active ? 'pointer' : '';
+    const lu = this.lens.material.uniforms; const vh = this.visibleHeight(this.camera.position.z);
+    lu.visible.value.set(vh * this.camera.aspect, vh);
+    lu.gridOffset.value.set(this.offset.x + this.ambient.x, this.offset.y + this.ambient.y);
+    lu.lineAlpha.value = this.material ? this.material.uniforms.opacity.value : 0;
     this.renderer.setRenderTarget(this.target);
     this.renderer.render(this.scene, this.camera);
     this.renderer.setRenderTarget(null);
