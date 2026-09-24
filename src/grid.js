@@ -126,6 +126,7 @@ const tileFrag = /* glsl */`
   uniform float mediaZoom;
   uniform float labelIdle;
   uniform float blurOpacity;
+  uniform float lineGrey;
   varying vec2 vUv;
   varying vec2 vCell;
   varying float vHover;
@@ -141,6 +142,10 @@ const tileFrag = /* glsl */`
     vec2 l = atlas(vUv); l.y = 1.0 - l.y;
     vec4 lab = texture2D(labelMap, l);
     col = mix(col, lab.rgb, lab.a * mix(labelIdle, 1.0, vHover));
+    // cell border: half a screen pixel on each tile's edge, so neighbours meet in one steady 1px line
+    vec2 e = min(vUv, 1.0 - vUv) / fwidth(vUv);
+    float line = 1.0 - smoothstep(0.0, 0.75, min(e.x, e.y));
+    col = mix(col, vec3(lineGrey), line);
     gl_FragColor = vec4(col * opacity, 1.0);
   }`;
 const lensVert = /* glsl */`
@@ -201,8 +206,7 @@ export class WorkGrid {
     container.appendChild(this.canvas);
     this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(FOV, 1, 0.01, 100); this.camera.position.z = CAM_Z + 1.2;
-    // the grey behind the .002 gaps is what draws the hairlines between tiles
-    const bg = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.MeshBasicMaterial({ color: 0x888888 }));
+    const bg = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.MeshBasicMaterial({ color: 0x000000 }));
     bg.position.z = -0.01; this.bgMat = bg.material; this.scene.add(bg);
     this.target = new THREE.WebGLRenderTarget(1, 1, { samples: 4 });
     this.lens = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.ShaderMaterial({
@@ -222,7 +226,7 @@ export class WorkGrid {
       vertexShader: tileVert, fragmentShader: tileFrag,
       uniforms: {
         mediaMap: { value: this.atlas.media }, labelMap: { value: this.atlas.labels }, cells: { value: this.atlas.cols },
-        opacity: { value: 1 }, mediaZoom: { value: MEDIA_ZOOM }, labelIdle: { value: LABEL_IDLE }, blurOpacity: { value: BLUR_OPACITY },
+        opacity: { value: 1 }, mediaZoom: { value: MEDIA_ZOOM }, labelIdle: { value: LABEL_IDLE }, blurOpacity: { value: BLUR_OPACITY }, lineGrey: { value: 0.3 },
       },
     });
     this.setProjects(this.all);
@@ -233,7 +237,7 @@ export class WorkGrid {
     this.list = list.length ? list : this.all.slice(0, 1);
     if (this.mesh) { this.scene.remove(this.mesh); this.mesh.geometry.dispose(); }
     const count = GRID * GRID; const slots = spiral(GRID);
-    const geo = new THREE.PlaneGeometry(0.998, 0.998);
+    const geo = new THREE.PlaneGeometry(1, 1);
     const origin = new Float32Array(count * 2), hover = new Float32Array(count), blur = new Float32Array(count * 3);
     this.tiles = [];
     for (let i = 0; i < count; i++) {
@@ -454,8 +458,6 @@ export class WorkGrid {
       this.hoverAttr.needsUpdate = true;
     }
     this.canvas.style.cursor = this.pressed && this.dragging ? 'grabbing' : this.hovered >= 0 && this.active ? 'pointer' : '';
-    // hairlines fade with the tiles, so an intro or a dimmed grid never shows a bare lattice
-    if (this.material) this.bgMat.color.setScalar(0x88 / 255 * this.material.uniforms.opacity.value);
     this.renderer.setRenderTarget(this.target);
     this.renderer.render(this.scene, this.camera);
     this.renderer.setRenderTarget(null);
