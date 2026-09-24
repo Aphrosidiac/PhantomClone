@@ -15,7 +15,6 @@ const CELL = 683;             // atlas cell size in px (the reference's label ce
 const LABEL_IDLE = 0.8;       // label opacity when not hovered
 const BLUR_OPACITY = 0.7;     // hovered tile background strength
 
-const ease = (t) => 1 - Math.pow(1 - t, 3);
 
 // ---------------------------------------------------------------- atlas (Canvas2D, runtime)
 function roundRect(ctx, x, y, w, h, r) {
@@ -455,6 +454,8 @@ export class WorkGrid {
       this.hoverAttr.needsUpdate = true;
     }
     this.canvas.style.cursor = this.pressed && this.dragging ? 'grabbing' : this.hovered >= 0 && this.active ? 'pointer' : '';
+    // hairlines fade with the tiles, so an intro or a dimmed grid never shows a bare lattice
+    if (this.material) this.bgMat.color.setScalar(0x88 / 255 * this.material.uniforms.opacity.value);
     this.renderer.setRenderTarget(this.target);
     this.renderer.render(this.scene, this.camera);
     this.renderer.setRenderTarget(null);

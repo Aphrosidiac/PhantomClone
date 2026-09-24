@@ -89,7 +89,7 @@ const INCLUDED = [
 export function about(tab = 'studio') {
   const pick = (s) => bySlug(s);
   const studio = `
-    <section class="a-row a-hero"><p class="mono">Studio</p><div class="content"><h1 class="sub-title">Custom websites, designed and built end to end</h1></div></section>
+    <section class="a-row a-hero"><p class="mono" aria-hidden="true">Studio</p><div class="content"><span class="tag mono">Studio</span><h1 class="sub-title">Custom websites, designed and built end to end</h1></div></section>
     <div class="strip">${['lewix-ai', 'ff-stanzza', 'meridian', 'big-brain-furniture'].map((s) => `<img src="${tileUrl(pick(s))}" alt="" loading="lazy">`).join('')}</div>
     <section class="a-row a-block"><p class="mono">About</p><div class="content"><p class="statement reveal">${split('FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. Every site is made by the same person who scopes it, so nothing gets lost between the promise and the build.')}</p></div></section>
     <section class="a-row a-block" style="padding-bottom:70px"><p class="mono">Zones</p><div class="content"><p class="statement reveal">${split('Never limited by size or shape, the work falls into three zones — and each one gets its own way of working.')}</p></div></section>
@@ -115,7 +115,7 @@ export function about(tab = 'studio') {
       <p class="note body-copy">You talk to the person who builds it. No account manager, no hand-off to a junior, no brief lost in translation.</p>
     </div>`;
   const approach = `
-    <section class="a-row a-hero"><p class="mono">Approach</p><div class="content"><h1 class="sub-title">Smallest scope, strongest result</h1></div></section>
+    <section class="a-row a-hero"><p class="mono" aria-hidden="true">Approach</p><div class="content"><span class="tag mono">Approach</span><h1 class="sub-title">Smallest scope, strongest result</h1></div></section>
     <section class="a-row a-block" style="padding-bottom:60px"><p class="mono">Process</p><div class="content"><p class="statement reveal">${split('Nine steps from the first WhatsApp message to launch. Nothing starts without a written proposal, and nothing ships without being checked on real devices.')}</p></div></section>
     <ol class="steps" style="list-style:none;padding:0">${STEPS.map(([h, t], i) => `<li><span class="n mono">${String(i + 1).padStart(2, '0')}</span><h3>${esc(h)}</h3><p>${esc(t)}</p></li>`).join('')}</ol>
     <section class="a-row a-block" style="margin-top:120px"><p class="mono">Included</p><div class="content"><ul class="incl">${INCLUDED.map((t) => `<li>${esc(t)}</li>`).join('')}</ul><a class="btn-pill" href="/pricing" data-link>See pricing</a></div></section>`;

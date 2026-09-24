@@ -1,0 +1,23 @@
+# QA log — FF Grid (2026-09-24)
+
+Instruments: headless Chromium via Playwright (`tools/states.mjs`, `tools/shot.mjs`, SwiftShader GL) at 1440×900 and 390×844; in-app browser for the reference. The in-app pane was hidden during the session, so it painted nothing — every visual judgement below comes from headless captures, not the pane.
+
+| Surface | Checked | How | Result / fix |
+|---|---|---|---|
+| Home grid | render, lens, hairlines, labels, pills | capture vs reference pane shot | tiles were ~10% large → FOV calibrated to a ~306px tile at 900px |
+| Home grid | hover blur + label brighten | mouse move, capture | ok |
+| Home grid | drag + inertia + press zoom-out | mouse down/move/up, capture | ok |
+| Home grid | keyboard: Tab walks spiral, live region announces, Enter opens, Back returns | `/tmp/pl/kb.mjs` | ok |
+| Home grid | phone size | 390×844 | vertical FOV gave 1.4 columns → FOV now limited by width (~2.5 columns) |
+| Intro | loader words part, bar, grid fade + lens tween | captures at 5.2s / 11s | bare hairline lattice showed during fade → hairlines now fade with tile opacity |
+| Loader | inner pages on cold load | 390 captures at 4s | loader blocked on the grid atlas → inner pages now wait only for fonts; home capped at 9s |
+| List view | toggle, grouping, counts, row entrance | click, capture | ok |
+| Filter | open/close, zone single-select, multi features, URL sync, count badge, clear | click sequence | `/?zone=study&feature=webgl`, grid and list both filtered |
+| Project ×14 | title, meta, cover, statement, about, facts, shots, features, related | click from list, full-page capture | ok (lazy images blank in full-page captures — capture artefact) |
+| About | Studio/Approach routes, sticky toggle, hero alignment vs reference | capture pair | hero was offset and margin-collapse let the grid show through → aligned + `flow-root` |
+| Pricing | bands, care plans, terms, figures | read against `ffdevstudio/SERVICE_ARCHITECTURE.md` | care plan names were invented at first (Care Plus/Pro) → corrected to Care / Maintain / Evolve |
+| Contact | cold `/contact`, overlay over current page, form validation, done state, mailto/WhatsApp bodies, Esc restores URL, focus trap | Playwright | ok; nothing is sent by the site |
+| 404 | unknown path | capture | ok |
+| Mobile | overflow at 390 | `scrollWidth` | 390, no horizontal scroll |
+| Console | all flows | pageerror + console.error collection | none |
+| Build | `vite build`, `vite preview`, deep link | capture | ok; 179 kB gz JS (three.js) |
