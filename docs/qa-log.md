@@ -21,3 +21,8 @@ Instruments: headless Chromium via Playwright (`tools/states.mjs`, `tools/shot.m
 | Mobile | overflow at 390 | `scrollWidth` | 390, no horizontal scroll |
 | Console | all flows | pageerror + console.error collection | none |
 | Build | `vite build`, `vite preview`, deep link | capture | ok; 179 kB gz JS (three.js) |
+| Grid borders | flicker while moving (reported by Fakhrul) | GPU probes in real Chrome (docs/VERIFICATION.md) | sub-pixel gaps → AA line in lens pass (still 40–77 swing) → pixel-snapped line: 0 % swing, 2,725/2,725 crossings exactly 1 px |
+| Picture edges | bright rim flickering (reported) | fringe probe, gutter toggled in one session | 24 px atlas gutter + 1 px coverage ramp: fringe 18.8 → 2.2 |
+| Tile labels | low-res text (reported) | sharpness probe, same frame | 2× label atlas + 1.5× scene target: acutance 2.94 → 3.88, crisp edges 13.5 → 23.6 per 1000 px |
+
+Lesson recorded: the first border "fix" was declared done from a still screenshot. A still cannot show flicker; the probes now exist so motion defects are measured, not judged.

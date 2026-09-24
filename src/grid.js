@@ -217,7 +217,6 @@ export class WorkGrid {
     this.renderer.setClearColor(0x000000, 1);
     // colours pass through as sRGB bytes end to end, like the reference's `linear` canvas
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
-    this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     this.canvas = this.renderer.domElement; this.canvas.className = 'grid-canvas';
     this.canvas.tabIndex = 0;
     this.canvas.setAttribute('role', 'application');
@@ -241,11 +240,13 @@ export class WorkGrid {
     // phones get a smaller atlas: tiles are ~40% the size on screen
     const cap = this.renderer.capabilities.maxTextureSize; const phone = innerWidth < 700;
     const q = new URLSearchParams(location.search); // ?ls= / ?ss= override quality, for A/B probes
+    const t0 = performance.now();
     this.atlas = await buildAtlas(this.all, this.tileUrl, {
       mediaMax: Math.min(cap, phone ? 2048 : 4096),
       labelMax: Math.min(cap, phone ? 4096 : 8192),
       labelScale: +(q.get('ls') || 2),
     });
+    this.timings = { atlasMs: Math.round(performance.now() - t0) };
     this.material = new THREE.ShaderMaterial({
       vertexShader: tileVert, fragmentShader: tileFrag,
       uniforms: {
@@ -437,6 +438,10 @@ export class WorkGrid {
 
   resize() {
     const w = this.container.clientWidth || innerWidth, h = this.container.clientHeight || innerHeight;
+    // pixel budget ~8.3M (a 4K frame) for both the canvas and the scene target — beyond that a
+    // very large retina window would allocate hundreds of MB of multisampled GPU memory
+    const BUDGET = 8.3e6;
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2, Math.sqrt(BUDGET / (w * h))));
     this.renderer.setSize(w, h, false);
     // one scene unit ≈ .291 of the height on desktop (a ~306px tile at 900px, as measured); portrait screens are
     // limited by width instead so a phone still shows ~2.5 columns
@@ -446,8 +451,9 @@ export class WorkGrid {
     // the lens pass enlarges the centre by 1/.88; render the scene larger than the screen so that
     // pass shrinks instead of enlarging, which would otherwise soften every label and picture
     const q = new URLSearchParams(location.search);
-    const ss = +(q.get('ss') || (w < 700 ? 1.15 : 1.5));
     const pr = this.renderer.getPixelRatio();
+    const budget = Math.sqrt(BUDGET / (w * pr * h * pr));
+    const ss = Math.max(1, Math.min(+(q.get('ss') || (w < 700 ? 1.15 : 1.5)), budget));
     const max = this.renderer.capabilities.maxTextureSize;
     this.target.setSize(Math.min(max, Math.round(w * pr * ss)), Math.min(max, Math.round(h * pr * ss)));
     this.updateLens();

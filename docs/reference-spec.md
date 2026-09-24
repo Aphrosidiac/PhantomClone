@@ -1,7 +1,7 @@
 # Reference spec — phantom.land (snapshot 2026-09-24)
 
 Markers: `[measured]` extracted from the page/bundle · `[observed]` seen, not measured · `[inferred]` reasoned.
-Sources on disk: `docs/reference/2026-09-24/{html,js,css,assets/workgrid,blueprint.json,shots}`.
+Sources on disk (local only, git-ignored — the reference's own files are not published): `docs/reference/2026-09-24/{html,js,css,assets/workgrid,blueprint.json,shots}`.
 
 ## 1. Snapshot
 Next.js App Router + Prismic, React-Three-Fiber canvas persistent across routes `[measured]` (chunk names, `prismic.io` preconnects). Captured at 1440×900 and 390×844, headless Chromium (SwiftShader) and the in-app browser. Cookie banner declined.

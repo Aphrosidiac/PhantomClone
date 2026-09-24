@@ -375,7 +375,9 @@ tick(); setInterval(tick, 10000);
   let progress = 0.1; bar.style.transform = `scaleX(${progress})`;
   const creep = setInterval(() => { progress = Math.min(0.9, progress + 0.04); bar.style.transform = `scaleX(${progress})`; }, 120);
   const fonts = document.fonts.ready;
-  const g = initGrid().catch((err) => { console.error(err); setView('list'); return null; });
+  const T = (window.__ffTimings = { start: Math.round(performance.now()) });
+  const g = initGrid().then((x) => { T.gridReady = Math.round(performance.now()); return x; }).catch((err) => { console.error(err); setView('list'); return null; });
+  fonts.then(() => { T.fonts = Math.round(performance.now()); });
   // only the home page waits for the grid (capped); inner pages need nothing but the fonts
   const isHome = match(first).name === 'home';
   const cap = new Promise((r) => setTimeout(r, isHome ? 9000 : 1200));
@@ -384,7 +386,7 @@ tick(); setInterval(tick, 10000);
   loader.classList.add('is-loaded');
   sound.play('load', 0.5);
   await new Promise((r) => setTimeout(r, reduced ? 0 : isHome ? 1500 : 700));
-  loader.classList.add('is-done');
+  loader.classList.add('is-done'); T.loaderDone = Math.round(performance.now());
   setTimeout(() => loader.remove(), 800);
   syncAllToggles();
   g.then(() => {

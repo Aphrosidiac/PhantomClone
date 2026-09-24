@@ -1,0 +1,99 @@
+# FF Grid
+
+The FF Dev Studio portfolio as an infinite, draggable WebGL work grid seen through a barrel lens —
+a recreation of the experience of [phantom.land](https://www.phantom.land) (Phantom Studios),
+rebuilt from scratch and carrying **FF Dev Studio's own work, words and identity**.
+
+> **Not affiliated with Phantom.** The structure, interaction model and motion numbers are studied
+> from phantom.land; every line of code here is ours. The projects, images, copy, prices and brand
+> are FF Dev Studio's. The only files taken from the reference are its eight UI sound effects
+> (`public/sounds/`). The same notice appears on the site's loader, list view and footers.
+
+- **Stack:** Vite (static SPA) · three.js · GSAP · vanilla JS/CSS — no framework
+- **Routes:** `/` work grid (+ list view, filters) · `/projects/:slug` ×14 · `/about` · `/about/approach` · `/pricing` · `/contact` (overlay) · 404
+- **Brand:** `//FF` mark, Instrument Sans, Ink / Bone / Graphite with Signal Lime as a sparse accent — from the FF brand kit
+
+---
+
+## Quick start
+
+```bash
+npm install
+npm run dev        # http://localhost:3175
+npm run build      # → dist/ (static; any host that can fall back to index.html)
+npm run preview    # serve dist/ on :3176
+```
+
+Requires Node 20+. WebGL2 is required for the grid; browsers without it are sent straight to the list view.
+
+## What's on the site
+
+| Surface | What it does |
+|---|---|
+| **Work grid** (`/`) | 11×11 wrapping plane of project tiles; drag with inertia, press to zoom out, hover to light a tile, click to open. Arrow keys pan, **Tab** walks tiles centre-out, **Enter** opens. Trackpad / wheel pans. Pointer parallax. Barrel lens + vignette. |
+| **List view** | Toggle bottom-left. Every project grouped by year with zone / feature pills and client. |
+| **Filter** | Bottom-right. Zone (single), Feature, Stack, Client (multi, AND across groups). Drives grid and list together; state lives in the URL, e.g. `/?zone=study&feature=webgl&view=list`. |
+| **Project pages** | Giant title, zone/year, live link, cover, statement, about, facts (client / type / role / reference), screens, features + stack, three related projects. |
+| **About** | Studio tab (hero, zones, clients, the studio, the team) and Approach tab (nine-step process, what every build includes). |
+| **Pricing** | Estimating bands, managed-care plans and terms — transcribed from FF's `SERVICE_ARCHITECTURE.md`, never invented. |
+| **Contact** | Overlay from "Let's Talk" or `/contact`. A 7-question brief form; on completion the visitor sends it themselves by **email or WhatsApp** (pre-filled). The site has no backend and sends nothing on its own. |
+| **Header** | Mark, sound toggle (off by default), studio line, Kuala Lumpur clock + the visitor's own time, Let's Talk. |
+
+## Project layout
+
+```
+index.html            shell: header, bottom nav, list view, filter panel, contact + loader containers
+src/
+  main.js             router (History API), list view, filter + URL sync, contact overlay/form, clocks, boot
+  grid.js             WorkGrid — the WebGL engine (atlases, shaders, input, lens pass)
+  pages.js            HTML templates: project, about, pricing, 404, home SEO block
+  data.js             the content model: projects, zones, filters, pricing, contact
+  sound.js            Web Audio UI sounds (lazy-loaded on first enable)
+  style.css           tokens + every component, desktop and phone
+public/
+  media/<slug>/       tile.jpg (grid) + w-N.jpg (project screens) per project
+  fonts/              Instrument Sans (variable, subset) + DM Mono — both SIL OFL
+  sounds/             UI sounds (from the reference)
+  ff-*.svg, og.jpg    brand marks, favicon, social image
+  _redirects          SPA fallback for Cloudflare Pages
+tools/                verification instruments (Playwright captures + in-page GPU probes)
+scripts/deploy.sh     Cloudflare Pages direct upload
+docs/                 architecture, content guide, verification, spec, parity ledger, QA log
+```
+
+## Documentation
+
+| Doc | For |
+|---|---|
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | How the grid engine, router, overlays and styling fit together; every tuned constant and why |
+| [docs/CONTENT.md](docs/CONTENT.md) | Adding or editing a project, pricing, copy, filters, sounds |
+| [docs/VERIFICATION.md](docs/VERIFICATION.md) | The instruments in `tools/`, how to run them, and the recorded results |
+| [docs/reference-spec.md](docs/reference-spec.md) | What was measured on phantom.land, with provenance markers |
+| [docs/brief.md](docs/brief.md) | Scope: what was built, what deliberately was not |
+| [docs/parity.md](docs/parity.md) | Feature-by-feature ledger against the reference |
+| [docs/qa-log.md](docs/qa-log.md) | What was checked, how, and what it caught |
+
+## Deploy
+
+Static output; any host works if unknown paths fall back to `index.html` (`public/_redirects` does this on Cloudflare Pages).
+
+```bash
+npm run deploy                      # Cloudflare Pages project "ff-phantom", production
+FF_BRANCH=preview npm run deploy    # preview alias, production untouched
+```
+
+`scripts/deploy.sh` reads `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` from `~/Desktop/dev/ffdevstudio/.env`
+(override with `FF_ENV=/path/.env`). Pushing to GitHub deploys nothing — push and deploy are separate acts.
+
+## Accessibility & motion
+
+- Every project is also a real link: a screen-reader list sits behind the canvas, and the list view is a full alternative.
+- The grid is focusable (`role="application"`); Tab moves tile to tile with a live-region announcement.
+- `prefers-reduced-motion` removes tweens, inertia animation and entrance animations; content never depends on an animation to become visible.
+- Focus is visible everywhere (Signal Lime ring); the contact overlay traps focus and Escape closes it.
+
+## Credits
+
+- **Reference:** Phantom Studios, [phantom.land](https://www.phantom.land) — interaction model and UI sounds. Not affiliated.
+- **Fonts:** [Instrument Sans](https://github.com/Instrument/instrument-sans) (SIL OFL 1.1, licence in `public/fonts/`), [DM Mono](https://fonts.google.com/specimen/DM+Mono) (SIL OFL 1.1).
+- **Work, copy, imagery, brand:** FF Dev Studio — [ffdev.studio](https://ffdev.studio) · hello@ffdev.studio

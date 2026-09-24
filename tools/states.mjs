@@ -7,13 +7,13 @@ const b = await launch();
 const errors = [];
 async function page(w, h) {
   const ctx = await b.newContext({ viewport: { width: w, height: h }, isMobile: w < 600, hasTouch: w < 600 });
-  const p = await ctx.newPage();
+  const p = await ctx.newPage(); p.setDefaultTimeout(180000);
   p.on('pageerror', (e) => errors.push(`${w}: ${e.message}`));
   p.on('console', (m) => { if (m.type() === 'error') errors.push(`${w}: ${m.text()}`); });
   return p;
 }
 const p = await page(1440, 900);
-await p.goto(base + '/'); await sleep(6500);
+await p.goto(base + '/', { waitUntil: 'domcontentloaded', timeout: 90000 }); await sleep(15000);
 await p.screenshot({ path: `${out}/home.png` });
 await p.mouse.move(900, 450); await sleep(1500); await p.screenshot({ path: `${out}/home-hover.png` });
 await p.mouse.down(); await p.mouse.move(700, 350, { steps: 12 }); await sleep(300); await p.screenshot({ path: `${out}/home-drag.png` }); await p.mouse.up(); await sleep(1500);
@@ -44,16 +44,17 @@ await p.fill('#f-name', 'Aisyah Rahman'); await p.fill('#f-email', 'aisyah@examp
 await p.click('.opt:has-text("Landing page")'); await p.click('.c-submit'); await sleep(800); await p.screenshot({ path: `${out}/form-done.png` });
 console.log('mail href', await p.getAttribute('.c-done .row a', 'href'));
 await p.keyboard.press('Escape'); await sleep(800); console.log('after esc', p.url(), await p.evaluate(() => document.querySelector('#contact').hidden));
-await p.goto(base + '/nope'); await sleep(3500); await p.screenshot({ path: `${out}/404.png` });
-await p.goto(base + '/contact'); await sleep(4000); await p.screenshot({ path: `${out}/contact-cold.png` });
+await p.goto(base + '/nope', { waitUntil: 'domcontentloaded' }); await sleep(3500); await p.screenshot({ path: `${out}/404.png` });
+await p.goto(base + '/contact', { waitUntil: 'domcontentloaded' }); await sleep(4000); await p.screenshot({ path: `${out}/contact-cold.png` });
+await p.close(); // a still-open desktop page keeps rendering and starves the phone one
 const m = await page(390, 844);
-await m.goto(base + '/'); await sleep(6500); await m.screenshot({ path: `${out}/m-home.png` });
+await m.goto(base + '/', { waitUntil: 'domcontentloaded', timeout: 90000 }); await sleep(15000); await m.screenshot({ path: `${out}/m-home.png` });
 await m.click('[data-view="list"]'); await sleep(1200); await m.screenshot({ path: `${out}/m-list.png` });
 await m.click('[data-view="grid"]'); await sleep(600); await m.click('#filterbtn'); await sleep(1200); await m.screenshot({ path: `${out}/m-filter.png` });
-await m.goto(base + '/projects/sunlight-supplies'); await sleep(4000); await m.screenshot({ path: `${out}/m-project.png` });
-await m.goto(base + '/about'); await sleep(4000); await m.screenshot({ path: `${out}/m-about.png` });
-await m.goto(base + '/pricing'); await sleep(4000); await m.screenshot({ path: `${out}/m-pricing.png` });
+await m.goto(base + '/projects/sunlight-supplies', { waitUntil: 'domcontentloaded' }); await sleep(4000); await m.screenshot({ path: `${out}/m-project.png` });
+await m.goto(base + '/about', { waitUntil: 'domcontentloaded' }); await sleep(4000); await m.screenshot({ path: `${out}/m-about.png` });
+await m.goto(base + '/pricing', { waitUntil: 'domcontentloaded' }); await sleep(4000); await m.screenshot({ path: `${out}/m-pricing.png` });
 console.log('overflow', await m.evaluate(() => document.documentElement.scrollWidth));
-await m.goto(base + '/contact'); await sleep(4000); await m.screenshot({ path: `${out}/m-contact.png` });
+await m.goto(base + '/contact', { waitUntil: 'domcontentloaded' }); await sleep(4000); await m.screenshot({ path: `${out}/m-contact.png` });
 console.log('ERRORS', errors.filter((e) => !/GPU stall|GL Driver/.test(e)));
 await b.close();

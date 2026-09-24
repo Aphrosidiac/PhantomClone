@@ -11,7 +11,7 @@
 - **URL:** https://www.phantom.land (snapshot 2026-09-24, desktop 1440×900 + 390×844)
 - **What we want:** the experience — infinite WebGL work grid with lens distortion, list view, filter panel, pill nav, header, loader, project pages, about, careers-style page, contact overlay, sound
 - **Access:** public surface only (no login exists)
-- **Assets pulled to:** `docs/reference/2026-09-24/` (html, js, css, workgrid atlases, blueprint.json, shots). UI sounds pulled to `public/sounds/`
+- **Assets pulled to:** `docs/reference/2026-09-24/` (html, js, css, workgrid atlases, blueprint.json, shots) — **local only, git-ignored**: it is Phantom's code and imagery and is not published with this repo. UI sounds pulled to `public/sounds/` (these ship).
 
 ## Fakhrul's instruction (2026-09-24)
 "can download any assets. but make the content change to fit FF dev studio and branding for ff dev studio too"

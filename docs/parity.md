@@ -1,6 +1,6 @@
 # Parity ledger
 
-**27/36 complete** — 22 done, 4 partial, 5 omitted, 5 improved
+**30/39 complete** — 23 done, 4 partial, 5 omitted, 7 improved
 
 ## about
 
@@ -41,10 +41,13 @@
 | a11y-grid | Screen-reader list of every project behind the canvas | improved | reference canvas has none | reference canvas has none |
 | filter | Filter panel: zone / feature / stack / client, AND across groups | done | filter-active.png; URL /?zone=study&feature=webgl |  |
 | filter-url | Filters and view persist in the URL | improved | reference keeps them in state only | reference keeps them in state only |
+| grid-borders | Tile borders that stay steady while the grid moves | improved | flicker-probe in Chrome: 0% swing; 2725/2725 crossings exactly 1px | reference draws them as sub-pixel gaps; ours are pixel-snapped in the lens pass |
 | grid-drag | Drag with 3px threshold, inertia decay 4·dt, press zoom-out z+.4 | done | headless capture docs/qa/shots/home-drag.png checked by eye against the reference capture |  |
+| grid-edges | Picture edges without a bleeding rim | improved | fringe-probe: 18.8 -> 2.2 with gutter toggled in one session | atlas gutter + 1px coverage ramp |
 | grid-hit | Hit test through the lens | improved | reference compares NDC to half-scale uv; ours inverts the lens | reference compares NDC to half-scale uv; ours inverts the lens |
 | grid-hover | Hover blur background + label .8→1, eased 5·dt | done | headless capture docs/qa/shots/home-hover.png checked by eye against the reference capture |  |
 | grid-keys | Arrows pan, Tab walks spiral, Enter opens | done | kb.mjs: Tab announced, Enter → /projects/ff-stanzza |  |
+| grid-label-res | Sharp tile labels | done | sharp-probe: acutance 2.94 -> 3.88, crisp edges 13.5 -> 23.6 per 1000px | 2x label atlas, 1.5x scene target |
 | grid-labels | Per-tile label: client mark, title, zone+feature pills, year | done | runtime Canvas2D atlas; capture |  |
 | grid-lens | Barrel lens (.88 + d·r², d=-.07·aspect) + vignette | done | shader constants from bundle; capture |  |
 | grid-parallax | Ambient pointer parallax .07 | done | code; observed in captures |  |

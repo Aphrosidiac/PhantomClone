@@ -286,5 +286,29 @@
   "status": "partial",
   "evidence": "SPA: titles per route client-side; no per-route prerender",
   "notes": "SPA: titles per route client-side; no per-route prerender"
+ },
+ {
+  "id": "grid-borders",
+  "surface": "home",
+  "feature": "Tile borders that stay steady while the grid moves",
+  "status": "improved",
+  "evidence": "flicker-probe in Chrome: 0% swing; 2725/2725 crossings exactly 1px",
+  "notes": "reference draws them as sub-pixel gaps; ours are pixel-snapped in the lens pass"
+ },
+ {
+  "id": "grid-edges",
+  "surface": "home",
+  "feature": "Picture edges without a bleeding rim",
+  "status": "improved",
+  "evidence": "fringe-probe: 18.8 -> 2.2 with gutter toggled in one session",
+  "notes": "atlas gutter + 1px coverage ramp"
+ },
+ {
+  "id": "grid-label-res",
+  "surface": "home",
+  "feature": "Sharp tile labels",
+  "status": "done",
+  "evidence": "sharp-probe: acutance 2.94 -> 3.88, crisp edges 13.5 -> 23.6 per 1000px",
+  "notes": "2x label atlas, 1.5x scene target"
  }
 ]
