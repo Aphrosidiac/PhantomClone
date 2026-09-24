@@ -1,0 +1,1874 @@
+{
+ "ff-search": {
+  "cover": {
+   "src": "/media/ff-search/s-hero.webp",
+   "sm": "/media/ff-search/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "The hero: the FF mark over a halftone field, the studio line in a mint panel",
+   "page": "ff-search-b4q.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-search/s-built.webp",
+      "sm": "/media/ff-search/s-built-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "BUILT PROPERLY. set large in the grid",
+      "page": "ff-search-b4q.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-search/s-stats.webp",
+      "sm": "/media/ff-search/s-stats-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The numbers: RM1K–5K on mint, 60+ builds on black",
+      "page": "ff-search-b4q.pages.dev"
+     },
+     {
+      "src": "/media/ff-search/s-services.webp",
+      "sm": "/media/ff-search/s-services-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Services on black, each with a wireframe globe",
+      "page": "ff-search-b4q.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ff-search/s-m-built.webp",
+      "sm": "/media/ff-search/s-m-built-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: BUILT PROPERLY.",
+      "page": "ff-search-b4q.pages.dev"
+     },
+     {
+      "src": "/media/ff-search/s-m-stats.webp",
+      "sm": "/media/ff-search/s-m-stats-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the numbers",
+      "page": "ff-search-b4q.pages.dev"
+     },
+     {
+      "src": "/media/ff-search/s-m-team.webp",
+      "sm": "/media/ff-search/s-m-team-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: a team portrait",
+      "page": "ff-search-b4q.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-search/s-dark.webp",
+      "sm": "/media/ff-search/s-dark-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The hero in the dark theme",
+      "page": "ff-search-b4q.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-search/s-team2.webp",
+      "sm": "/media/ff-search/s-team2-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The team: black-and-white portraits under role tags",
+      "page": "ff-search-b4q.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-search/s-clients.webp",
+      "sm": "/media/ff-search/s-clients-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The Clients index",
+      "page": "ff-search-b4q.pages.dev"
+     },
+     {
+      "src": "/media/ff-search/s-footer.webp",
+      "sm": "/media/ff-search/s-footer-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The footer: the //FF Dev Studio lockup",
+      "page": "ff-search-b4q.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-search/s-cta.webp",
+      "sm": "/media/ff-search/s-cta-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "LET’S START A CONVERSATION in knocked-out type over the halftone",
+      "page": "ff-search-b4q.pages.dev"
+     }
+    ]
+   }
+  ]
+ },
+ "ff-stanzza": {
+  "cover": {
+   "src": "/media/ff-stanzza/s-hero.webp",
+   "sm": "/media/ff-stanzza/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "The hero: a warm living room under the demo notice",
+   "page": "ff-stanzza.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-stanzza/s-pau.webp",
+      "sm": "/media/ff-stanzza/s-pau-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Pau Claris Apartment on olive green, with the project’s facts",
+      "page": "ff-stanzza.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-stanzza/s-navy.webp",
+      "sm": "/media/ff-stanzza/s-navy-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Architectural thinking. Design sensibility. Premium delivery. — line drawings on navy",
+      "page": "ff-stanzza.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ff-stanzza/s-m-hero.webp",
+      "sm": "/media/ff-stanzza/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "ff-stanzza.pages.dev"
+     },
+     {
+      "src": "/media/ff-stanzza/s-m-pau.webp",
+      "sm": "/media/ff-stanzza/s-m-pau-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: Pau Claris on green",
+      "page": "ff-stanzza.pages.dev"
+     },
+     {
+      "src": "/media/ff-stanzza/s-m-navy.webp",
+      "sm": "/media/ff-stanzza/s-m-navy-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: architectural thinking on navy",
+      "page": "ff-stanzza.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-stanzza/s-cards.webp",
+      "sm": "/media/ff-stanzza/s-cards-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Architecture and Design cards passing on the horizontal track",
+      "page": "ff-stanzza.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-stanzza/s-blog.webp",
+      "sm": "/media/ff-stanzza/s-blog-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The blog: Barcelona Pavilion and L’Atelier",
+      "page": "ff-stanzza.pages.dev"
+     },
+     {
+      "src": "/media/ff-stanzza/s-about2.webp",
+      "sm": "/media/ff-stanzza/s-about2-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "About us: 182 projects worldwide",
+      "page": "ff-stanzza.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-stanzza/s-about.webp",
+      "sm": "/media/ff-stanzza/s-about-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "About us: 10 years in Spain over the Sagrada Família",
+      "page": "ff-stanzza.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ff-stanzza/s-m-lead.webp",
+      "sm": "/media/ff-stanzza/s-m-lead-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the responsible lead",
+      "page": "ff-stanzza.pages.dev"
+     },
+     {
+      "src": "/media/ff-stanzza/s-m-design.webp",
+      "sm": "/media/ff-stanzza/s-m-design-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the Design card",
+      "page": "ff-stanzza.pages.dev"
+     },
+     {
+      "src": "/media/ff-stanzza/s-m-about.webp",
+      "sm": "/media/ff-stanzza/s-m-about-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: 10 years in Spain",
+      "page": "ff-stanzza.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-stanzza/s-footer.webp",
+      "sm": "/media/ff-stanzza/s-footer-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The footer’s pencil drawing of a pavilion",
+      "page": "ff-stanzza.pages.dev"
+     }
+    ]
+   }
+  ]
+ },
+ "sunlight-supplies": {
+  "cover": {
+   "src": "/media/sunlight-supplies/s-hero.webp",
+   "sm": "/media/sunlight-supplies/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Racking, from the site survey up — the hero over a live 3D rack",
+   "page": "ff-sunlight.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/sunlight-supplies/s-stage-b.webp",
+      "sm": "/media/sunlight-supplies/s-stage-b-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Six stages: beams hung",
+      "page": "ff-sunlight.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/sunlight-supplies/s-stage-a.webp",
+      "sm": "/media/sunlight-supplies/s-stage-a-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Six stages: the frames standing",
+      "page": "ff-sunlight.pages.dev"
+     },
+     {
+      "src": "/media/sunlight-supplies/s-stage-c.webp",
+      "sm": "/media/sunlight-supplies/s-stage-c-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Six stages: loaded out",
+      "page": "ff-sunlight.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/sunlight-supplies/s-m-hero.webp",
+      "sm": "/media/sunlight-supplies/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "ff-sunlight.pages.dev"
+     },
+     {
+      "src": "/media/sunlight-supplies/s-m-stage.webp",
+      "sm": "/media/sunlight-supplies/s-m-stage-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: a rack stage",
+      "page": "ff-sunlight.pages.dev"
+     },
+     {
+      "src": "/media/sunlight-supplies/s-m-installed.webp",
+      "sm": "/media/sunlight-supplies/s-m-installed-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: installed work",
+      "page": "ff-sunlight.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/sunlight-supplies/s-systems.webp",
+      "sm": "/media/sunlight-supplies/s-systems-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Eighteen systems, with installed photographs",
+      "page": "ff-sunlight.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/sunlight-supplies/s-installed.webp",
+      "sm": "/media/sunlight-supplies/s-installed-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Racking that is already standing in Johor",
+      "page": "ff-sunlight.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/sunlight-supplies/s-retail.webp",
+      "sm": "/media/sunlight-supplies/s-retail-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The other half of the business: shop-floor fixtures",
+      "page": "ff-sunlight.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/sunlight-supplies/s-counters.webp",
+      "sm": "/media/sunlight-supplies/s-counters-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Three counters in Johor Bahru",
+      "page": "ff-sunlight.pages.dev"
+     }
+    ]
+   }
+  ]
+ },
+ "lewix-ai": {
+  "cover": {
+   "src": "/media/lewix-ai/s-hero.webp",
+   "sm": "/media/lewix-ai/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "LEWIX over the particle mountain",
+   "page": "lewix.ai"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-ai/s-mountain.webp",
+      "sm": "/media/lewix-ai/s-mountain-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The camera climbing the particle mountain",
+      "page": "lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/lewix-ai/s-loader.webp",
+      "sm": "/media/lewix-ai/s-loader-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The loader: the Lewix mark filling",
+      "page": "lewix.ai"
+     },
+     {
+      "src": "/media/lewix-ai/s-mountain2.webp",
+      "sm": "/media/lewix-ai/s-mountain2-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The ridge, close",
+      "page": "lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/lewix-ai/s-m-hero.webp",
+      "sm": "/media/lewix-ai/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "lewix.ai"
+     },
+     {
+      "src": "/media/lewix-ai/s-m-lewis.webp",
+      "sm": "/media/lewix-ai/s-m-lewis-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: a founder as a particle figure",
+      "page": "lewix.ai"
+     },
+     {
+      "src": "/media/lewix-ai/s-m-work.webp",
+      "sm": "/media/lewix-ai/s-m-work-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the work list",
+      "page": "lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-ai/s-about.webp",
+      "sm": "/media/lewix-ai/s-about-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "01 About",
+      "page": "lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-ai/s-team.webp",
+      "sm": "/media/lewix-ai/s-team-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "03 Founding Team: each founder as a particle figure",
+      "page": "lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-ai/s-work.webp",
+      "sm": "/media/lewix-ai/s-work-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "04 Work: the systems in production",
+      "page": "lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-ai/s-footer.webp",
+      "sm": "/media/lewix-ai/s-footer-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The footer: LEWIX over the mountain",
+      "page": "lewix.ai"
+     }
+    ]
+   }
+  ]
+ },
+ "smoothsail": {
+  "cover": {
+   "src": "/media/smoothsail/s-hero.webp",
+   "sm": "/media/smoothsail/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Your shop, open by the weekend — the hero",
+   "page": "smoothsail.my"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/smoothsail/s-mock.webp",
+      "sm": "/media/smoothsail/s-mock-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A real storefront running on SmoothSail, framed in the hero",
+      "page": "smoothsail.my"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/smoothsail/s-ms.webp",
+      "sm": "/media/smoothsail/s-ms-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The site in Bahasa Melayu",
+      "page": "smoothsail.my/ms"
+     },
+     {
+      "src": "/media/smoothsail/s-domain.webp",
+      "sm": "/media/smoothsail/s-domain-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "A shop on your own address, desktop and phone",
+      "page": "smoothsail.my"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/smoothsail/s-m-hero.webp",
+      "sm": "/media/smoothsail/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "smoothsail.my"
+     },
+     {
+      "src": "/media/smoothsail/s-m-products.webp",
+      "sm": "/media/smoothsail/s-m-products-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the storefront in the hero",
+      "page": "smoothsail.my"
+     },
+     {
+      "src": "/media/smoothsail/s-m-orders.webp",
+      "sm": "/media/smoothsail/s-m-orders-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the orders view",
+      "page": "smoothsail.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/smoothsail/s-parts.webp",
+      "sm": "/media/smoothsail/s-parts-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The parts of selling that nobody enjoys",
+      "page": "smoothsail.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/smoothsail/s-orders.webp",
+      "sm": "/media/smoothsail/s-orders-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Paid and packed are two different questions — the orders view",
+      "page": "smoothsail.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/smoothsail/s-why.webp",
+      "sm": "/media/smoothsail/s-why-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "We tell you why, not just that",
+      "page": "smoothsail.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/smoothsail/s-malaysian.webp",
+      "sm": "/media/smoothsail/s-malaysian-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Malaysian by default, not by plugin",
+      "page": "smoothsail.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/smoothsail/s-thirty.webp",
+      "sm": "/media/smoothsail/s-thirty-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Thirty days, no card, your own shop at the end of it",
+      "page": "smoothsail.my"
+     }
+    ]
+   }
+  ]
+ },
+ "big-brain-furniture": {
+  "cover": {
+   "src": "/media/big-brain-furniture/s-hero.webp",
+   "sm": "/media/big-brain-furniture/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Old Wood, New Life — the hero",
+   "page": "bbf.lewix.ai"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture/s-danga.webp",
+      "sm": "/media/big-brain-furniture/s-danga-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Project spotlight: Danga Sutera",
+      "page": "bbf.lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture/s-product.webp",
+      "sm": "/media/big-brain-furniture/s-product-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "A product page",
+      "page": "bbf.lewix.ai/products/lauren-reclaimed-teakwood-plate.html"
+     },
+     {
+      "src": "/media/big-brain-furniture/s-materials.webp",
+      "sm": "/media/big-brain-furniture/s-materials-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The material index",
+      "page": "bbf.lewix.ai/materials.html"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture/s-m-hero.webp",
+      "sm": "/media/big-brain-furniture/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "bbf.lewix.ai"
+     },
+     {
+      "src": "/media/big-brain-furniture/s-m-danga.webp",
+      "sm": "/media/big-brain-furniture/s-m-danga-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: Danga Sutera",
+      "page": "bbf.lewix.ai"
+     },
+     {
+      "src": "/media/big-brain-furniture/s-m-categories.webp",
+      "sm": "/media/big-brain-furniture/s-m-categories-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: categories",
+      "page": "bbf.lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture/s-collection.webp",
+      "sm": "/media/big-brain-furniture/s-collection-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A collection page: dining",
+      "page": "bbf.lewix.ai/collections/dining.html"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture/s-categories.webp",
+      "sm": "/media/big-brain-furniture/s-categories-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Explore all categories",
+      "page": "bbf.lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture/s-journal.webp",
+      "sm": "/media/big-brain-furniture/s-journal-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "From the journal",
+      "page": "bbf.lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture/s-dining.webp",
+      "sm": "/media/big-brain-furniture/s-dining-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The reclaimed teak dining room",
+      "page": "bbf.lewix.ai"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture/s-projects.webp",
+      "sm": "/media/big-brain-furniture/s-projects-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The projects index",
+      "page": "bbf.lewix.ai/projects.html"
+     }
+    ]
+   }
+  ]
+ },
+ "big-brain-furniture-alt": {
+  "cover": {
+   "src": "/media/big-brain-furniture-alt/s-hero.webp",
+   "sm": "/media/big-brain-furniture-alt/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Crafted for Moments, Made for Gathering — the split hero",
+   "page": "ff-bbf-alt.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture-alt/s-categories.webp",
+      "sm": "/media/big-brain-furniture-alt/s-categories-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Categories as tall photographs",
+      "page": "ff-bbf-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture-alt/s-product.webp",
+      "sm": "/media/big-brain-furniture-alt/s-product-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "A product page",
+      "page": "ff-bbf-alt.pages.dev/products/giselle-tray.html"
+     },
+     {
+      "src": "/media/big-brain-furniture-alt/s-imperfection.webp",
+      "sm": "/media/big-brain-furniture-alt/s-imperfection-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Guided by Imperfection",
+      "page": "ff-bbf-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture-alt/s-m-hero.webp",
+      "sm": "/media/big-brain-furniture-alt/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "ff-bbf-alt.pages.dev"
+     },
+     {
+      "src": "/media/big-brain-furniture-alt/s-m-1.webp",
+      "sm": "/media/big-brain-furniture-alt/s-m-1-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: Old Wood, New Life over a slab of reclaimed teak",
+      "page": "ff-bbf-alt.pages.dev"
+     },
+     {
+      "src": "/media/big-brain-furniture-alt/s-m-4.webp",
+      "sm": "/media/big-brain-furniture-alt/s-m-4-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: Guided by Imperfection",
+      "page": "ff-bbf-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture-alt/s-oldwood.webp",
+      "sm": "/media/big-brain-furniture-alt/s-oldwood-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Old Wood, New Life beside a slab of reclaimed teak",
+      "page": "ff-bbf-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture-alt/s-table.webp",
+      "sm": "/media/big-brain-furniture-alt/s-table-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "On the Table: reclaimed teak serving pieces",
+      "page": "ff-bbf-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture-alt/s-storage.webp",
+      "sm": "/media/big-brain-furniture-alt/s-storage-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Storage That Earns Its Wall",
+      "page": "ff-bbf-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture-alt/s-collection.webp",
+      "sm": "/media/big-brain-furniture-alt/s-collection-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A collection page: sofas",
+      "page": "ff-bbf-alt.pages.dev/collections/sofa.html"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/big-brain-furniture-alt/s-rooms.webp",
+      "sm": "/media/big-brain-furniture-alt/s-rooms-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Shop by room",
+      "page": "ff-bbf-alt.pages.dev"
+     }
+    ]
+   }
+  ]
+ },
+ "ascend-peptides": {
+  "cover": {
+   "src": "/media/ascend-peptides/s-hero.webp",
+   "sm": "/media/ascend-peptides/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Premium Research Peptides in Malaysia — the hero",
+   "page": "ascendpeptides.my"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ascend-peptides/s-product.webp",
+      "sm": "/media/ascend-peptides/s-product-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A product page: specification first",
+      "page": "ascendpeptides.my/products/ghk-cu-100mg"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ascend-peptides/s-feature.webp",
+      "sm": "/media/ascend-peptides/s-feature-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The featured compound: vial, specification and price",
+      "page": "ascendpeptides.my"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ascend-peptides/s-m-hero.webp",
+      "sm": "/media/ascend-peptides/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "ascendpeptides.my"
+     },
+     {
+      "src": "/media/ascend-peptides/s-m-vial.webp",
+      "sm": "/media/ascend-peptides/s-m-vial-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: verified purity, and the featured compound’s price",
+      "page": "ascendpeptides.my"
+     },
+     {
+      "src": "/media/ascend-peptides/s-m-product.webp",
+      "sm": "/media/ascend-peptides/s-m-product-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: a product page",
+      "page": "ascendpeptides.my/products/ghk-cu-100mg"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ascend-peptides/s-featured.webp",
+      "sm": "/media/ascend-peptides/s-featured-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Featured products",
+      "page": "ascendpeptides.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ascend-peptides/s-categories.webp",
+      "sm": "/media/ascend-peptides/s-categories-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Shop by category",
+      "page": "ascendpeptides.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ascend-peptides/s-calculator.webp",
+      "sm": "/media/ascend-peptides/s-calculator-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The reconstitution calculator",
+      "page": "ascendpeptides.my/calculator"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ascend-peptides/s-product2.webp",
+      "sm": "/media/ascend-peptides/s-product2-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A product page: documentation and storage",
+      "page": "ascendpeptides.my/products/ghk-cu-100mg"
+     }
+    ]
+   }
+  ]
+ },
+ "lewix-my": {
+  "cover": {
+   "src": "/media/lewix-my/s-hero.webp",
+   "sm": "/media/lewix-my/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Software your business runs on — the hero over a live dashboard",
+   "page": "lewix.my"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-my/s-dashboard.webp",
+      "sm": "/media/lewix-my/s-dashboard-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The dashboard in the hero",
+      "page": "lewix.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-my/s-horizon.webp",
+      "sm": "/media/lewix-my/s-horizon-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Horizon: where is software and AI going?",
+      "page": "lewix.my"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/lewix-my/s-system.webp",
+      "sm": "/media/lewix-my/s-system-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "One system your whole operation runs on",
+      "page": "lewix.my"
+     },
+     {
+      "src": "/media/lewix-my/s-integrations.webp",
+      "sm": "/media/lewix-my/s-integrations-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Or start from what you already run — integrations on dark",
+      "page": "lewix.my"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/lewix-my/s-m-hero.webp",
+      "sm": "/media/lewix-my/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "lewix.my"
+     },
+     {
+      "src": "/media/lewix-my/s-m-horizon.webp",
+      "sm": "/media/lewix-my/s-m-horizon-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: Horizon",
+      "page": "lewix.my"
+     },
+     {
+      "src": "/media/lewix-my/s-m-integrations.webp",
+      "sm": "/media/lewix-my/s-m-integrations-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: integrations",
+      "page": "lewix.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-my/s-store.webp",
+      "sm": "/media/lewix-my/s-store-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "SmoothSail: a store builder for the way Malaysia actually sells",
+      "page": "lewix.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-my/s-build.webp",
+      "sm": "/media/lewix-my/s-build-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "How we build",
+      "page": "lewix.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/lewix-my/s-footer.webp",
+      "sm": "/media/lewix-my/s-footer-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The footer",
+      "page": "lewix.my"
+     }
+    ]
+   }
+  ]
+ },
+ "basement-translation": {
+  "cover": {
+   "src": "/media/basement-translation/s-talk.webp",
+   "sm": "/media/basement-translation/s-talk-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "You talk to the person who builds it.",
+   "page": "ff-concepts.pages.dev/concepts/01"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/basement-translation/s-hero.webp",
+      "sm": "/media/basement-translation/s-hero-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The hero: a line drawing on black",
+      "page": "ff-concepts.pages.dev/concepts/01"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/basement-translation/s-capabilities.webp",
+      "sm": "/media/basement-translation/s-capabilities-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Capabilities",
+      "page": "ff-concepts.pages.dev/concepts/01"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/basement-translation/s-m-1.webp",
+      "sm": "/media/basement-translation/s-m-1-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: You talk to the person who builds it.",
+      "page": "ff-concepts.pages.dev/concepts/01"
+     },
+     {
+      "src": "/media/basement-translation/s-m-4.webp",
+      "sm": "/media/basement-translation/s-m-4-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: capabilities, numbered",
+      "page": "ff-concepts.pages.dev/concepts/01"
+     },
+     {
+      "src": "/media/basement-translation/s-m-5.webp",
+      "sm": "/media/basement-translation/s-m-5-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the Showpiece build and its price",
+      "page": "ff-concepts.pages.dev/concepts/01"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/basement-translation/s-ways.webp",
+      "sm": "/media/basement-translation/s-ways-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Ways in: the three builds and their prices",
+      "page": "ff-concepts.pages.dev/concepts/01"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/basement-translation/s-end.webp",
+      "sm": "/media/basement-translation/s-end-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Let’s build something.",
+      "page": "ff-concepts.pages.dev/concepts/01"
+     }
+    ]
+   }
+  ]
+ },
+ "ff-shoots": {
+  "cover": {
+   "src": "/media/ff-shoots/s-slider.webp",
+   "sm": "/media/ff-shoots/s-slider-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "The slider",
+   "page": "ff-shoots.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-shoots/s-grid.webp",
+      "sm": "/media/ff-shoots/s-grid-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Grid view",
+      "page": "ff-shoots.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-shoots/s-fisheye.webp",
+      "sm": "/media/ff-shoots/s-fisheye-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The slider through the fisheye lens",
+      "page": "ff-shoots.pages.dev"
+     },
+     {
+      "src": "/media/ff-shoots/s-slider3.webp",
+      "sm": "/media/ff-shoots/s-slider3-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The slider",
+      "page": "ff-shoots.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ff-shoots/s-m-slider.webp",
+      "sm": "/media/ff-shoots/s-m-slider-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the slider",
+      "page": "ff-shoots.pages.dev"
+     },
+     {
+      "src": "/media/ff-shoots/s-m-slider2.webp",
+      "sm": "/media/ff-shoots/s-m-slider2-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the slider",
+      "page": "ff-shoots.pages.dev"
+     },
+     {
+      "src": "/media/ff-shoots/s-m-slider3.webp",
+      "sm": "/media/ff-shoots/s-m-slider3-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the slider",
+      "page": "ff-shoots.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-shoots/s-project.webp",
+      "sm": "/media/ff-shoots/s-project-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A project opened from the slider",
+      "page": "ff-shoots.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-shoots/s-about.webp",
+      "sm": "/media/ff-shoots/s-about-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "About",
+      "page": "ff-shoots.pages.dev/about"
+     }
+    ]
+   }
+  ]
+ },
+ "ff-frames": {
+  "cover": {
+   "src": "/media/ff-frames/s-weddings.webp",
+   "sm": "/media/ff-frames/s-weddings-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Weddings",
+   "page": "ff-frames.pages.dev/weddings"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-frames/s-home-w.webp",
+      "sm": "/media/ff-frames/s-home-w-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Weddings under the cursor",
+      "page": "ff-frames.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-frames/s-engagements.webp",
+      "sm": "/media/ff-frames/s-engagements-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Engagements",
+      "page": "ff-frames.pages.dev/engagements"
+     },
+     {
+      "src": "/media/ff-frames/s-exchange.webp",
+      "sm": "/media/ff-frames/s-exchange-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Editorial exchange",
+      "page": "ff-frames.pages.dev/editorials/exchange"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ff-frames/s-m-home.webp",
+      "sm": "/media/ff-frames/s-m-home-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the index",
+      "page": "ff-frames.pages.dev"
+     },
+     {
+      "src": "/media/ff-frames/s-m-weddings.webp",
+      "sm": "/media/ff-frames/s-m-weddings-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: weddings",
+      "page": "ff-frames.pages.dev/weddings"
+     },
+     {
+      "src": "/media/ff-frames/s-m-exchange.webp",
+      "sm": "/media/ff-frames/s-m-exchange-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: editorial exchange",
+      "page": "ff-frames.pages.dev/editorials/exchange"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-frames/s-exchange2.webp",
+      "sm": "/media/ff-frames/s-exchange2-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Editorial exchange",
+      "page": "ff-frames.pages.dev/editorials/exchange"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-frames/s-commercial.webp",
+      "sm": "/media/ff-frames/s-commercial-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Commercial",
+      "page": "ff-frames.pages.dev/commercial"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-frames/s-stories2.webp",
+      "sm": "/media/ff-frames/s-stories2-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Stories",
+      "page": "ff-frames.pages.dev/stories"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-frames/s-weddings3.webp",
+      "sm": "/media/ff-frames/s-weddings3-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Weddings",
+      "page": "ff-frames.pages.dev/weddings"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-frames/s-about.webp",
+      "sm": "/media/ff-frames/s-about-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "About",
+      "page": "ff-frames.pages.dev/about"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-frames/s-pricing.webp",
+      "sm": "/media/ff-frames/s-pricing-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Pricing",
+      "page": "ff-frames.pages.dev/pricing"
+     }
+    ]
+   }
+  ]
+ },
+ "meridian": {
+  "cover": {
+   "src": "/media/meridian/s-search.webp",
+   "sm": "/media/meridian/s-search-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "A project opened: FF Search",
+   "page": "ffdev.studio/ff-search"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/meridian/s-strip-hover.webp",
+      "sm": "/media/meridian/s-strip-hover-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A project under the cursor",
+      "page": "ffdev.studio"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/meridian/s-about.webp",
+      "sm": "/media/meridian/s-about-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "About",
+      "page": "ffdev.studio/about"
+     },
+     {
+      "src": "/media/meridian/s-pricing.webp",
+      "sm": "/media/meridian/s-pricing-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Pricing",
+      "page": "ffdev.studio/pricing"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/meridian/s-m-strip.webp",
+      "sm": "/media/meridian/s-m-strip-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the index",
+      "page": "ffdev.studio"
+     },
+     {
+      "src": "/media/meridian/s-m-project.webp",
+      "sm": "/media/meridian/s-m-project-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: a project",
+      "page": "ffdev.studio/ff-search"
+     },
+     {
+      "src": "/media/meridian/s-m-about.webp",
+      "sm": "/media/meridian/s-m-about-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: about",
+      "page": "ffdev.studio/about"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/meridian/s-shoots.webp",
+      "sm": "/media/meridian/s-shoots-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A project opened: FF Shoots",
+      "page": "ffdev.studio/ff-shoots"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/meridian/s-stanzza.webp",
+      "sm": "/media/meridian/s-stanzza-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A project opened: FF Stanzza",
+      "page": "ffdev.studio/ff-stanzza"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/meridian/s-strip4.webp",
+      "sm": "/media/meridian/s-strip4-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The strip",
+      "page": "ffdev.studio"
+     }
+    ]
+   }
+  ]
+ },
+ "obys-translation": {
+  "cover": {
+   "src": "/media/obys-translation/s-grid-hover.webp",
+   "sm": "/media/obys-translation/s-grid-hover-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Grid, a card under the cursor",
+   "page": "ff-concepts.pages.dev/concepts/02"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/obys-translation/s-horizontal2.webp",
+      "sm": "/media/obys-translation/s-horizontal2-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Horizontal layout, scrolled",
+      "page": "ff-concepts.pages.dev/concepts/02"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/obys-translation/s-vertical-hover.webp",
+      "sm": "/media/obys-translation/s-vertical-hover-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Vertical, a card under the cursor",
+      "page": "ff-concepts.pages.dev/concepts/02"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/obys-translation/s-vertical2.webp",
+      "sm": "/media/obys-translation/s-vertical2-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Vertical layout, scrolled",
+      "page": "ff-concepts.pages.dev/concepts/02"
+     }
+    ]
+   }
+  ]
+ }
+}

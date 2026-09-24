@@ -51,7 +51,7 @@ src/
   sound.js            Web Audio UI sounds (lazy-loaded on first enable)
   style.css           tokens + every component, desktop and phone
 public/
-  media/<slug>/       tile.jpg (grid) + w-N.jpg (project screens) per project
+  media/<slug>/       tile.jpg (grid) + s-*.webp (project page, from tools/shots.mjs) per project
   fonts/              Instrument Sans (variable, subset) + DM Mono — both SIL OFL
   sounds/             UI sounds (from the reference)
   ff-*.svg, og.jpg    brand marks, favicon, social image

@@ -45,7 +45,8 @@
 | grid-drag | Drag with 3px threshold, inertia decay 4·dt, press zoom-out z+.4 | done | headless capture docs/qa/shots/home-drag.png checked by eye against the reference capture |  |
 | grid-edges | Picture edges without a bleeding rim | improved | fringe-probe: 18.8 -> 2.2 with gutter toggled in one session | atlas gutter + 1px coverage ramp |
 | grid-hit | Hit test through the lens | improved | reference compares NDC to half-scale uv; ours inverts the lens | reference compares NDC to half-scale uv; ours inverts the lens |
-| grid-hover | Hover blur background + label .8→1, eased 5·dt | done | headless capture docs/qa/shots/home-hover.png checked by eye against the reference capture |  |
+| grid-hover | Hover blur background (media centre ×20, 5×5 box blur at the reference's 340px-cell mip) + label .8→1, eased 5·dt | done | 2026-09-24: was a flat mean colour; now the per-pixel gradient, matched to the reference shader source |  |
+| grid-video | Video atlas: one looping 5 s / 20 fps video behind every moving tile, played while the grid is the page, paused elsewhere; hover glow sampled from the moving frame | done | 2026-09-24: 10 of 14 projects from screen recordings; 16:9 cells (reference: square + alpha); seamless loop and faststart (reference: hard cut, moov at end); still until first frame (reference: black) |  |
 | grid-keys | Arrows pan, Tab walks spiral, Enter opens | done | kb.mjs: Tab announced, Enter → /projects/ff-stanzza |  |
 | grid-label-res | Sharp tile labels | done | sharp-probe: acutance 2.94 -> 3.88, crisp edges 13.5 -> 23.6 per 1000px | 2x label atlas, 1.5x scene target |
 | grid-labels | Per-tile label: client mark, title, zone+feature pills, year | done | runtime Canvas2D atlas; capture |  |
@@ -69,5 +70,6 @@
 | ID | Feature | Status | Evidence | Notes |
 | --- | --- | --- | --- | --- |
 | project | Project page ×14: title, meta, live link, cover, statement, about, facts, shots, features, related | done | project-full.png, 14 routes |  |
+| project-media | Case-study media: full-width, 2-up and 3-up rows at retina width (reference: 3680 px, full / pair / 3-up portrait) | done | 2026-09-25: 159 screenshots of the 14 live sites at 3200 px via tools/shots.mjs, webp 2880/1440 with srcset; rows checked at 1440 and 390 wide. Still images where the reference mixes in video |  |
 | project-pixelate | Pixelate morph route transition | partial | fade/lift transition instead of WebGL pixel morph | fade/lift transition instead of WebGL pixel morph |
 

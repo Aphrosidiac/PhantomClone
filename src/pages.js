@@ -1,8 +1,16 @@
 // Page templates. Each returns { html, title, theme }.
-import { PROJECTS, ZONES, PRICING, CONTACT, bySlug, tileUrl, shotUrl, label, STACK_LABEL } from './data.js';
+import { PROJECTS, ZONES, PRICING, CONTACT, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const MARK = '<svg viewBox="0 0 194 72" aria-hidden="true"><path d="M0 72 16 0h14L14 72Z"/><path d="M24 72 40 0h14L38 72Z"/><path d="M72 0h54v15H88v13h32v14H88v30H72Z"/><path d="M140 0h54v15h-38v13h32v14h-32v30h-16Z"/></svg>';
+// one captured shot, framed on the project's plate: desktop frames in a browser window (with the address
+// it shows), phones inset with rounded corners. Two widths; the browser picks by rendered size.
+const SIZES = { full: 'calc((100vw - 2 * var(--margin)) * .82)', pair: '(max-width: 700px) 86vw, 38vw', trio: '(max-width: 700px) 50vw, 24vw' };
+const img = (m, kind, lazy) => `<img src="${m.sm}" srcset="${m.sm} ${m.smw}w, ${m.src} ${m.w}w" sizes="${SIZES[kind]}" alt="${esc(m.alt)}" width="${m.w}" height="${m.h}" ${lazy ? 'loading="lazy" decoding="async"' : 'fetchpriority="high"'}>`;
+const bar = (m) => `<div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>${esc(m.page)}</span></div>`;
+const shot = (m, kind, lazy = true) => `<figure class="shot shot--${kind}"><div class="win${kind === 'trio' ? ' win--phone' : ''}">${kind !== 'trio' ? bar(m) : ''}${img(m, kind, lazy)}</div></figure>`;
+// plate tone decides the window bar: dark plates get a dark browser
+const dark = (hex) => { const n = parseInt(hex.slice(1), 16); return (0.2126 * (n >> 16) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255 < 0.45; };
 const split = (text) => text.split(' ').map((w, i) => `<span class="w" style="--i:${i}">${esc(w)}</span>`).join(' ');
 
 export const footer = () => `
@@ -18,20 +26,20 @@ export function project(slug) {
   if (!p) return notFound();
   const i = PROJECTS.indexOf(p);
   const related = [1, 2, 3].map((k) => PROJECTS[(i + k * 4) % PROJECTS.length]);
-  const shots = Array.from({ length: p.shots }, (_, k) => k).filter((k) => k > 0 || p.shots === 1);
+  const m = media(p);
   return {
     title: `FF Dev Studio | ${p.title}`,
     theme: 'light',
     client: p.client,
     html: `
-    <article class="project">
+    <article class="project" style="--plate:${p.plate}"${dark(p.plate) ? ' data-plate="dark"' : ''}>
       <header class="p-hero"><h1 class="large-title">${esc(p.title)}</h1></header>
       <hr class="rule" style="margin:0 var(--margin)">
       <div class="p-meta mono">
         <div class="pills"><span>Zone &amp; year</span><a class="pill pill--zone" href="/?zone=${p.zone}" data-link>${ZONES[p.zone].name}</a><span class="pill">${p.year}</span></div>
-        <a class="p-live" href="${p.url}" target="_blank" rel="noopener">See it live <span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="p-live" href="${p.url}" target="_blank" rel="noopener"><span class="lbl">See it live<span class="host">${esc(new URL(p.url).host)}</span></span><span class="arrow" aria-hidden="true">↗</span></a>
       </div>
-      <div class="p-cover"><img src="${shotUrl(p, 0)}" alt="${esc(p.title)} — the site" width="1600" height="900" fetchpriority="high"></div>
+      <div class="p-cover">${shot(m.cover, 'full', false)}</div>
       <section class="p-intro"><p class="statement reveal">${split(p.statement)}</p></section>
       <section class="p-about">
         <p class="mono">About</p>
@@ -43,7 +51,7 @@ export function project(slug) {
           ${p.reference ? `<div><dt>Reference</dt><dd>${esc(p.reference)}</dd></div>` : ''}
         </dl>
       </section>
-      <div class="p-shots">${shots.map((k) => `<figure><img src="${shotUrl(p, k)}" alt="${esc(p.title)}, screen ${k + 1}" loading="lazy" width="1600" height="900"></figure>`).join('')}</div>
+      <div class="p-shots">${m.rows.map((r) => `<div class="p-row p-row--${r.kind}">${r.items.map((x) => shot(x, r.kind)).join('')}</div>`).join('')}</div>
       <section class="p-features">
         <p class="mono">Features</p>
         <div class="pills mono">${p.features.map((f) => `<a class="pill" href="/?feature=${f}" data-link>${esc(label(f))}</a>`).join('')}${p.stack.map((s) => `<span class="pill pill--zone">${esc(label(s, STACK_LABEL))}</span>`).join('')}</div>
@@ -100,7 +108,7 @@ export function about(tab = 'studio') {
         <div class="txt"><p>${esc(ZONES[z].blurb)}</p><p>${esc(ZONES[z].line)}</p><a class="mono" href="/?zone=${z}" data-link>View our ${ZONES[z].name.toLowerCase()} work</a></div>
         <div class="im"><img src="${tileUrl(pick(s))}" alt="" loading="lazy"></div>
       </div>`).join('')}
-    <div class="band" style="margin-top:80px">${['ff-frames', 'obys-translation', 'ascend-peptides'].map((s) => `<img src="${shotUrl(pick(s), 1)}" alt="" loading="lazy">`).join('')}</div>
+    <div class="band" style="margin-top:80px">${['ff-frames', 'ff-shoots', 'ascend-peptides'].map((s) => `<img src="${media(pick(s)).rows.find((r) => r.kind === 'trio').items[0].sm}" alt="" loading="lazy">`).join('')}</div>
     <section class="a-row a-block" style="padding-bottom:40px"><p class="mono">Clients</p><div class="content"><p class="statement reveal">${split('From industrial suppliers to research catalogues and product companies — every one of them talks to the person building their site.')}</p></div></section>
     <ul class="clients">${['Sunlight Supplies', 'TGS Furnishings', 'Ascend Peptides', 'Lewix.ai'].map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
     <section class="a-row a-block" style="padding-bottom:0;margin-top:150px"><p class="mono">Our Studio</p><div class="content"><h2 class="sub-title" style="font-size:clamp(2rem,3vw,3rem);text-transform:none">One studio, in Kuala Lumpur</h2></div></section>

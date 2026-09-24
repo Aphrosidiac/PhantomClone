@@ -3,6 +3,7 @@
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { label } from './data.js';
+import VIDEO from './video-atlas.json';
 
 const GRID = 11;              // instances per side; the plane wraps every 11 units
 const CAM_Z = 3.43;           // resting camera distance
@@ -14,6 +15,8 @@ const MEDIA_ZOOM = 0.7;       // media occupies the centre 70% of a tile
 const CELL = 683;             // atlas cell size in px (the reference's label cell: 4096 / 6)
 const LABEL_IDLE = 0.8;       // label opacity when not hovered
 const BLUR_OPACITY = 0.7;     // hovered tile background strength
+const BLUR_ZOOM = 20;         // hovered background: the media's centre 1/20th, stretched over the tile
+const REF_CELL = 340;         // the reference's atlas cell in texels (2040 / 6); its blur is sized in these
 
 
 // ---------------------------------------------------------------- atlas (Canvas2D, runtime)
@@ -75,18 +78,6 @@ function drawMedia(ctx, img, x0, y0) {
   ctx.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, x0, y0, CELL, CELL);
 }
 
-// the reference blurs the centre of the media at 20x zoom; that is the centre's mean colour
-function centreColour(img) {
-  const c = document.createElement('canvas'); c.width = c.height = 8;
-  const x = c.getContext('2d', { willReadFrequently: true });
-  const s = Math.min(img.width, img.height) * 0.25;
-  x.drawImage(img, (img.width - s) / 2, (img.height - s) / 2, s, s, 0, 0, 8, 8);
-  const d = x.getImageData(0, 0, 8, 8).data; let r = 0, g = 0, b = 0;
-  for (let i = 0; i < d.length; i += 4) { r += d[i]; g += d[i + 1]; b += d[i + 2]; }
-  const n = d.length / 4;
-  return [r / n / 255, g / n / 255, b / n / 255];
-}
-
 async function buildAtlas(projects, tileUrl, { mediaMax, labelMax, labelScale }) {
   await Promise.all([document.fonts.load('600 26px "Instrument Sans"'), document.fonts.load('400 17px "DM Mono"')]);
   const cols = Math.ceil(Math.sqrt(projects.length));
@@ -99,31 +90,30 @@ async function buildAtlas(projects, tileUrl, { mediaMax, labelMax, labelScale })
   const [mc, mx] = make(1, mediaMax); const [lc, lx] = make(labelScale, labelMax);
   mx.fillStyle = '#000'; mx.fillRect(0, 0, cols * CELL, cols * CELL);
   const imgs = await Promise.all(projects.map((p) => loadImage(tileUrl(p)).catch(() => null)));
-  const colours = [];
   projects.forEach((p, i) => {
     const x0 = (i % cols) * CELL, y0 = Math.floor(i / cols) * CELL;
-    if (imgs[i]) { drawMedia(mx, imgs[i], x0, y0); colours.push(centreColour(imgs[i])); } else colours.push([0.1, 0.1, 0.1]);
+    if (imgs[i]) drawMedia(mx, imgs[i], x0, y0);
     drawLabel(lx, p, x0, y0);
   });
   const tex = (c) => { const t = new THREE.CanvasTexture(c); t.anisotropy = 8; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; return t; };
-  return { media: tex(mc), labels: tex(lc), cols, colours };
+  return { media: tex(mc), labels: tex(lc), cols, mediaSize: mc.width };
 }
 
 // ---------------------------------------------------------------- shaders
 const tileVert = /* glsl */`
   attribute vec2 cellOrigin;
   attribute float hover;
-  attribute vec3 blurColour;
+  attribute vec4 videoRect;
   uniform float cells;
   varying vec2 vUv;
   varying vec2 vCell;
   varying float vHover;
-  varying vec3 vBlur;
+  varying vec4 vVideo;
   void main() {
     vUv = uv;
     vCell = cellOrigin;
     vHover = hover;
-    vBlur = blurColour;
+    vVideo = videoRect;
     gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4(position, 1.0);
   }`;
 const tileFrag = /* glsl */`
@@ -135,13 +125,52 @@ const tileFrag = /* glsl */`
   uniform float labelIdle;
   uniform float blurOpacity;
   uniform float mediaGutter;
+  uniform float blurZoom;
+  uniform float blurLod;
+  uniform float blurTexel;
+  uniform sampler2D videoMap;
+  uniform float videoOn;       // 0 until the video's first frame, then eases to 1
+  uniform float videoAspect;
+  uniform vec2 videoSize;      // atlas size in px (manifest scale)
   varying vec2 vUv;
   varying vec2 vCell;
   varying float vHover;
-  varying vec3 vBlur;
+  varying vec4 vVideo;         // this tile's frame in the video atlas: GL uv x, y (bottom), w, h; w = 0 for none
   vec2 atlas(vec2 uv) { return (vCell + vec2(uv.x, 1.0 - uv.y)) / cells; }
+  // The hovered background, as the reference does it: the centre 1/20th of the media stretched over
+  // the whole tile, 5x5 box-blurred. It keeps the picture's colours where they are (a sky stays at
+  // the top, a floor at the bottom), so the tile glows in a gradient of the image rather than one
+  // flat mean. Sampled at the mip whose resolution matches the reference's 340px cell, so the
+  // gradient is as soft as theirs; the kernel steps one of their texels.
+  vec3 blurColour() {
+    vec2 b = atlas((vUv - 0.5) / blurZoom + 0.5); b.y = 1.0 - b.y;
+    vec3 c = vec3(0.0);
+    for (float x = -2.0; x <= 2.0; x++)
+      for (float y = -2.0; y <= 2.0; y++)
+        c += textureLod(mediaMap, b + vec2(x, y) * blurTexel, blurLod).rgb;
+    return c / 25.0;
+  }
+  // The same background from the moving picture: the frame's centre, a square of 1/20th of its width,
+  // stretched over the tile and 5x5 box-blurred — so a video tile's glow shifts as the clip plays.
+  vec3 videoBlurColour() {
+    float side = vVideo.z * videoSize.x / blurZoom;
+    vec2 win = vec2(side) / videoSize;
+    vec2 b = vVideo.xy + 0.5 * vVideo.zw + (vUv - 0.5) * win;
+    vec3 c = vec3(0.0);
+    for (float x = -2.0; x <= 2.0; x++)
+      for (float y = -2.0; y <= 2.0; y++)
+        c += textureLod(videoMap, b + vec2(x, y) * win / 17.0, 0.0).rgb;
+    return c / 25.0;
+  }
   void main() {
-    vec3 col = vBlur * blurOpacity * vHover;
+    float v = vVideo.z > 0.0 ? videoOn : 0.0;
+    vec3 bg = vec3(0.0);
+    if (vHover > 0.001) {
+      bg = blurColour();
+      if (v > 0.0) bg = mix(bg, videoBlurColour(), v);
+      bg *= blurOpacity * vHover;
+    }
+    vec3 col = bg;
     vec2 m = (vUv - 0.5) / mediaZoom + 0.5;
     // Sample only the inner part of the atlas cell (a gutter of real image pixels on every side),
     // so mipmaps never pull the neighbouring cell's picture into this edge as a bright fringe.
@@ -151,6 +180,16 @@ const tileFrag = /* glsl */`
     vec2 edge = min(m, 1.0 - m) / fwidth(m);
     float cover = clamp(min(edge.x, edge.y) + 0.5, 0.0, 1.0);
     col = mix(col, texture2D(mediaMap, a).rgb, cover);
+    if (v > 0.0) {
+      // the clip keeps its own aspect: full media width, letterboxed in the tile like the reference's
+      // landscape website tiles; outside it the background (black, or the hover glow) shows
+      vec2 vm = (vUv - 0.5) / vec2(mediaZoom, mediaZoom / videoAspect) + 0.5;
+      vec2 ve = min(vm, 1.0 - vm) / fwidth(vm);
+      float vc = clamp(min(ve.x, ve.y) + 0.5, 0.0, 1.0);
+      vec2 inset = 3.0 / videoSize; // keep bilinear/mip taps inside this clip's cell
+      vec2 t = clamp(vVideo.xy + clamp(vm, 0.0, 1.0) * vVideo.zw, vVideo.xy + inset, vVideo.xy + vVideo.zw - inset);
+      col = mix(col, mix(bg, texture2D(videoMap, t).rgb, vc), v);
+    }
     vec2 l = atlas(vUv); l.y = 1.0 - l.y;
     vec4 lab = texture2D(labelMap, l);
     col = mix(col, lab.rgb, lab.a * mix(labelIdle, 1.0, vHover));
@@ -257,9 +296,14 @@ export class WorkGrid {
       uniforms: {
         mediaMap: { value: this.atlas.media }, labelMap: { value: this.atlas.labels }, cells: { value: this.atlas.cols },
         opacity: { value: 1 }, mediaZoom: { value: MEDIA_ZOOM }, labelIdle: { value: LABEL_IDLE }, blurOpacity: { value: BLUR_OPACITY }, mediaGutter: { value: 24 / CELL },
+        blurZoom: { value: BLUR_ZOOM }, blurTexel: { value: 1 / (REF_CELL * this.atlas.cols) },
+        blurLod: { value: Math.max(0, Math.log2(this.atlas.mediaSize / this.atlas.cols / REF_CELL)) },
+        videoMap: { value: new THREE.DataTexture(new Uint8Array(4), 1, 1) }, videoOn: { value: 0 },
+        videoAspect: { value: VIDEO.aspect }, videoSize: { value: new THREE.Vector2(VIDEO.width, VIDEO.height) },
       },
     });
     this.setProjects(this.all);
+    this.setupVideo();
     this.loop();
   }
 
@@ -268,19 +312,20 @@ export class WorkGrid {
     if (this.mesh) { this.scene.remove(this.mesh); this.mesh.geometry.dispose(); }
     const count = GRID * GRID; const slots = spiral(GRID);
     const geo = new THREE.PlaneGeometry(1, 1);
-    const origin = new Float32Array(count * 2), hover = new Float32Array(count), blur = new Float32Array(count * 3);
+    const origin = new Float32Array(count * 2), hover = new Float32Array(count), video = new Float32Array(count * 4);
     this.tiles = [];
     for (let i = 0; i < count; i++) {
       const p = this.list[i % this.list.length]; const ai = this.all.indexOf(p);
       origin[i * 2] = ai % this.atlas.cols; origin[i * 2 + 1] = Math.floor(ai / this.atlas.cols);
-      blur.set(this.atlas.colours[ai], i * 3);
+      const vc = VIDEO.cells[p.slug]; // [x, y, w, h] px, top-left origin → GL uv, bottom-left
+      if (vc) video.set([vc[0] / VIDEO.width, 1 - (vc[1] + vc[3]) / VIDEO.height, vc[2] / VIDEO.width, vc[3] / VIDEO.height], i * 4);
       // grid y grows downward in the spiral; flip so it reads top-to-bottom
       this.tiles.push({ project: p, gx: slots[i][0] - (GRID - 1) / 2, gy: -(slots[i][1] - (GRID - 1) / 2), x: 0, y: 0 });
     }
     geo.setAttribute('cellOrigin', new THREE.InstancedBufferAttribute(origin, 2));
     this.hoverAttr = new THREE.InstancedBufferAttribute(hover, 1); this.hoverAttr.setUsage(THREE.DynamicDrawUsage);
     geo.setAttribute('hover', this.hoverAttr);
-    geo.setAttribute('blurColour', new THREE.InstancedBufferAttribute(blur, 3));
+    geo.setAttribute('videoRect', new THREE.InstancedBufferAttribute(video, 4));
     this.mesh = new THREE.InstancedMesh(geo, this.material, count); this.mesh.frustumCulled = false;
     this.scene.add(this.mesh);
     this.hovered = -1; this.focusIndex = 0;
@@ -422,7 +467,37 @@ export class WorkGrid {
   }
 
   // ------------------------------------------------ lifecycle
+  // ------------------------------------------------ video atlas (docs/reference-spec.md §6a)
+  // One detached, muted, inline, looping <video> behind every moving tile. Tiles keep their still
+  // image until the first frame is decoded, then ease over. Reduced motion and data-saver keep stills.
+  setupVideo() {
+    const q = new URLSearchParams(location.search);
+    if (this.reduced || navigator.connection?.saveData || q.get('video') === '0' || !Object.keys(VIDEO.cells).length) return;
+    const v = document.createElement('video');
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.setAttribute('playsinline', '');
+    v.loop = true; v.preload = 'auto'; v.crossOrigin = 'anonymous';
+    v.src = innerWidth < 700 ? VIDEO.srcPhone : VIDEO.src;
+    // loop is set; the reference also rewinds on `ended`, for browsers that drop `loop` on detached video
+    v.addEventListener('ended', () => { v.currentTime = 0; if (this.videoWanted) v.play().catch(() => {}); });
+    const tex = new THREE.VideoTexture(v);
+    tex.generateMipmaps = true; tex.minFilter = THREE.LinearMipmapLinearFilter; tex.magFilter = THREE.LinearFilter;
+    this.material.uniforms.videoMap.value = tex;
+    const shown = () => gsap.to(this.material.uniforms.videoOn, { value: 1, duration: 0.6, ease: 'power1.inOut' });
+    if ('requestVideoFrameCallback' in v) v.requestVideoFrameCallback(shown); else v.addEventListener('playing', shown, { once: true });
+    document.addEventListener('visibilitychange', () => this.playVideo(this.videoWanted));
+    this.video = v;
+    this.playVideo(this.videoWanted);
+  }
+
+  // plays while the grid is the page (as the reference: fadeIn plays, fadeOut pauses) and the tab is visible
+  playVideo(on) {
+    this.videoWanted = on;
+    if (!this.video) return;
+    if (on && !document.hidden) this.video.play().catch(() => {}); else this.video.pause();
+  }
+
   intro() {
+    this.playVideo(true);
     this.material.uniforms.opacity.value = 0;
     this.camera.position.z = CAM_Z + 1.2;
     gsap.to(this.material.uniforms.opacity, { value: 1, duration: this.reduced ? 0 : 1.2, ease: 'power1.inOut' });
@@ -433,6 +508,7 @@ export class WorkGrid {
   // leaving the home page: dim to .3 and pull back; returning: centre and restore
   setActive(on) {
     this.active = on;
+    this.playVideo(on);
     if (!this.material) return;
     gsap.to(this.material.uniforms.opacity, { value: on ? 1 : 0.3, duration: this.reduced ? 0 : 1, ease: 'power1.inOut' });
     this.zoomTo(on ? CAM_Z : AWAY_Z, 1);

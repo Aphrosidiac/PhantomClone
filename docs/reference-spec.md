@@ -42,6 +42,14 @@ Type: Helvetica Now (self-hosted) 500/700/800; ballinger-mono (Typekit, domain-l
 - Route transition: pixelate morph between frames (`pixelSize`, `easeInCubic`) `[measured]`.
 - Loader: two words "PHANTOM STUDIOS®" / "TECHNOLOGY CREATIVE" spread apart while a progress bar scales, 1.5s delay then the grid intro `[observed]`.
 
+### 6a. Video tiles `[measured 2026-09-24: bundle, blueprint.json, ffprobe]`
+- **Blueprint.** `workgridAssets/production/blueprint.json` = `{atlases[3], cells[85]}`. Atlas 0/1 are `image` (jpg), atlas 2 is `video` (mp4). Each cell: id, title, `mediaType`, source `mediaUrl`, client logo, zone, features, `atlas {index, cellX, cellY}`. 36 video cells fill atlas 2; 5 more video projects overflow into image atlas 1 as a still frame.
+- **One video, 36 clips.** `media-rgb-atlas-2.mp4`: 2040×2040 (6×6 cells of 340), H.264 High L5.0, yuv420p, **20 fps, 100 frames = 5.0 s**, one keyframe, B-frames, no audio, ~5.2 Mb/s, 3.2 MB, `moov` at the END (not faststart, so nothing plays until the whole file is in). Every cell loops the same 5 s in lockstep; source clips are cut down to 5 s (some are three quick scenes, some one slow move).
+- **Alpha is static.** `media-alpha-atlas-2.jpg` is one mask per cell (rectangles, rounded phone screens, a cut-out heart). The video carries no alpha; the moving picture must stay inside its fixed mask.
+- **Playback (`class L`).** Detached `<video>` (never in the DOM): `crossOrigin=anonymous, muted, playsInline, webkit-playsinline, preload=auto, loop`, created paused. `THREE.VideoTexture`, `generateMipmaps=false`, Linear min/mag. An `ended` listener also rewinds and replays (belt-and-braces over `loop`). `onReady`/`canplaythrough` is wired but nothing waits on it: video tiles are black until the file arrives.
+- **When it plays.** Grid `fadeIn()` → `assets.play()`; `fadeOut()` (leaving home) → `pause()`. Paused during the intro while the grid is not rendering (`!isWorkGridRender && state === INTRO`).
+- **Shader.** Same path as image atlases: `colorMap2` is the video texture, sampled by `vMediaUv` and by the ×20 hover blur, so a video tile's hover glow shifts colour as the clip plays.
+
 ## 7. Content model `[measured]`
 Project: uid, title, launch_date, zone (experience/product/communication), features[], service (region), clients[] (name + logo), about[] rich text, work_grid media. Filters come from the same fields.
 

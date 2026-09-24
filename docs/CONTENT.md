@@ -7,7 +7,7 @@ links are generated from it — there is nothing else to update.
 
 1. **Images** — create `public/media/<slug>/`:
    - `tile.jpg` — the grid image. Any aspect; it is centre-cropped to a square. ≥ 1200 px on the short side is plenty. Keep the subject away from the outer ~4 % (the edge gutter is not shown).
-   - `w-0.jpg … w-N.jpg` — project screens, 16:9, ~1600×900. `w-0` is the cover; the rest are the gallery.
+   - project-page screens are captured, not drawn — see **Project page media** below.
 2. **Entry** — append to `PROJECTS`:
 
 ```js
@@ -25,7 +25,6 @@ links are generated from it — there is nothing else to update.
   reference: 'somesite.com',          // optional — only for studies/recreations
   statement: 'One sentence that says what it is.',
   about: ['Paragraph one.', 'Paragraph two.'],
-  shots: 6,                           // how many w-N.jpg files exist
 },
 ```
 
@@ -34,6 +33,51 @@ listed in `FEATURE_LABEL` / `STACK_LABEL` (e.g. `'3d': '3D'`, `next: 'Next.js'`)
 
 The grid atlas is laid out as a square of `ceil(√n)` cells; up to 16 projects fit the current atlas
 caps at full resolution, beyond that cells are scaled down automatically.
+
+## Project page media
+
+Each project page is a cover plus rows, laid out the way the reference's case studies are: full-width
+16:9 frames, 2-up frames side by side and 3-up phone screens, each framed on the project's `plate`
+colour (in `src/data.js`) — desktop shots in a browser window showing the page's address. Every image is a screenshot of the live
+site, captured and encoded by `tools/shots.mjs` from the recipe in `tools/shots.recipes.mjs`:
+
+- a recipe names the site, a viewport (`wide` 1600×900, `mid` 1440×810, `narrow` 1280×720 — pick
+  the one that makes the site's own container fill the frame — or `phone` 414×670) and, per shot, how
+  to get the page into that state: scroll to a heading, wheel into a pinned section, click a toggle,
+  hover a row. Frames are 3200×1800 (phone 1242×2010).
+- `cover` and `rows` choose from the shots.
+- `alt` is the image's description on the page — write what the frame shows.
+
+```
+node tools/shots.mjs ff-frames                       # capture into .shots-raw/ (gitignored)
+SHOT='^pricing' node tools/shots.mjs ff-frames       # re-shoot matching ids only
+FFMPEG=path/to/ffmpeg node tools/shots.mjs --encode ff-frames   # -> public/media/<slug>/s-*.webp + src/shots.json
+```
+
+The encode writes two widths of each (2880/1440 full, 1600/800 pair, 1242/621 phone) and the page
+serves them with `srcset`. Wait for what the frame is for: counters that roll, lazy images (the
+recipe's `init: EAGER` loads them up front), a 3D stage that fills over a second or two.
+
+## Video tiles
+
+Moving tiles come from one video atlas, the way the reference does it (`docs/reference-spec.md` §6a):
+every clip is a 5 s loop at 20 fps, packed 3 across into `public/media/video/atlas.mp4` (1920×1440,
+16:9 cells of 640×360) plus a half-size `atlas-phone.mp4`. `src/video-atlas.json` maps each project
+slug to its cell; a project without a cell keeps its still `tile.jpg`.
+
+To add or re-cut a clip:
+
+1. Screen-record the site in Chrome at 1920×1080 (the crop assumes Chrome's tab strip and address
+   bar above the page and a scrollbar on the right — re-measure `CROP` if the window differs).
+2. Add `{ slug, file, at }` to `CLIPS` in `tools/video-atlas.mjs`; `at` is the loop's first frame.
+   The loop plays 7.5 s of source at 1.5× (`speed: 1` for an intro that should keep its own pace).
+   The wrap dissolves in from the 0.75 s of source just BEFORE `at` (0.5 s at `speed: 1`), so keep a
+   page reload or cut out of that lead-in. Pick for tile size (~200 px wide): startup sequences,
+   big type, colour and large motion read; scrolling past small text does not.
+3. `FFMPEG=path/to/ffmpeg node tools/video-atlas.mjs "C:/Users/Fakhrul/Videos"`
+
+The still `tile.jpg` still matters: it shows until the video's first frame, and for visitors with
+reduced motion or data-saver on (`?video=0` forces it, for testing).
 
 ## Zones
 
