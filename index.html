@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>FF Dev Studio — Custom websites, designed and built end to end</title>
+  <meta name="description" content="FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. Selected work, shown running rather than described." />
+  <meta name="theme-color" content="#000000" />
+  <link rel="icon" href="/ff-favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FF Dev Studio" />
+  <meta property="og:title" content="FF Dev Studio — Work" />
+  <meta property="og:description" content="Custom websites, designed and built end to end. Projects from RM1,000." />
+  <meta property="og:image" content="/og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preload" href="/fonts/instrument-sans-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/dmmono-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body data-route="home">
+  <a class="skip" href="#page">Skip to content</a>
+
+  <div id="stage" class="stage"></div>
+
+  <header class="header" id="header">
+    <div class="header-blur" aria-hidden="true"></div>
+    <div class="header-grid">
+      <a class="logo" href="/" data-link aria-label="FF Dev Studio — work">
+        <svg viewBox="0 0 194 72" aria-hidden="true"><path d="M0 72 16 0h14L14 72Z"/><path d="M24 72 40 0h14L38 72Z"/><path d="M72 0h54v15H88v13h32v14H88v30H72Z"/><path d="M140 0h54v15h-38v13h32v14h-32v30h-16Z"/></svg>
+        <span class="logo-x" aria-hidden="true"></span>
+        <span class="logo-client mono" aria-hidden="true"></span>
+      </a>
+      <button class="sound mono" id="sound" type="button" aria-pressed="false">
+        <span class="sound-dots" aria-hidden="true"></span>
+        <span>Sound [<b>Off</b>]</span>
+      </button>
+      <p class="blurb mono">FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia.</p>
+      <div class="clocks mono" aria-label="Local times">
+        <span class="clock-dot" aria-hidden="true"></span>
+        <span>Kuala Lumpur, MY</span><span id="clock-kl">--:--</span>
+        <svg class="clock-arrow" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 1v5h5" fill="none" stroke="currentColor"/></svg>
+        <span class="dim">Your time</span><span class="dim" id="clock-you">--:--</span>
+      </div>
+      <a class="cta" href="/contact" data-link>Let’s Talk</a>
+    </div>
+  </header>
+
+  <p id="live" class="sr-only" aria-live="polite"></p>
+  <main id="page" class="page" tabindex="-1"></main>
+
+  <!-- list view: an overlay state of the home page, as on the reference -->
+  <aside class="listview" id="listview" aria-label="All projects, as a list" inert>
+    <div class="listview-inner">
+      <div class="lv-head"><h2>All projects</h2><h3 id="lv-count">14 projects</h3></div>
+      <div id="lv-groups"></div>
+    </div>
+  </aside>
+
+  <!-- filter panel -->
+  <section class="filter" id="filter" aria-label="Filter work" hidden>
+    <div class="filter-panel">
+      <p class="mono">Filter by zone</p>
+      <div class="zones" id="f-zones"></div>
+      <div class="filter-cols">
+        <div><p class="mono">Feature</p><ul id="f-features"></ul></div>
+        <div>
+          <div><p class="mono">Stack</p><ul id="f-stack"></ul></div>
+          <div class="f-gap"><p class="mono">Client</p><ul id="f-clients"></ul></div>
+        </div>
+      </div>
+      <button class="f-reset mono" id="f-reset" type="button">Clear all</button>
+    </div>
+  </section>
+
+  <nav class="bottom" aria-label="Primary">
+    <div class="toggle toggle--view" id="viewtoggle" role="group" aria-label="View">
+      <span class="hl" aria-hidden="true"></span>
+      <button type="button" data-view="grid" aria-pressed="true" aria-label="Grid view">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3.5" y="3.5" width="5" height="5" rx="1"/><rect x="11.5" y="3.5" width="5" height="5" rx="1"/><rect x="3.5" y="11.5" width="5" height="5" rx="1"/><rect x="11.5" y="11.5" width="5" height="5" rx="1"/></svg>
+      </button>
+      <button type="button" data-view="list" aria-pressed="false" aria-label="List view">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h12M4 10h12M4 14h12"/></svg>
+      </button>
+    </div>
+    <div class="toggle toggle--nav" id="navtoggle">
+      <span class="hl" aria-hidden="true"></span>
+      <a href="/" data-link data-nav="home">Work</a>
+      <a href="/about" data-link data-nav="about">About</a>
+      <a href="/pricing" data-link data-nav="pricing">Pricing</a>
+    </div>
+    <button class="filter-btn" id="filterbtn" type="button" aria-expanded="false" aria-controls="filter"><p>Filter</p></button>
+  </nav>
+
+  <!-- contact overlay -->
+  <div class="contact" id="contact" role="dialog" aria-modal="true" aria-labelledby="contact-title" hidden></div>
+
+  <!-- loader -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-words"><h2><span>FF Dev Studio</span></h2><h2><span>Creative Tech Studio</span></h2></div>
+    <div class="loader-bar"></div>
+    <p class="loader-note mono">A recreation of the Phantom Studios site, built by FF Dev Studio with its own work. Not affiliated.</p>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
