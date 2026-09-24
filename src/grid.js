@@ -23,10 +23,15 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
 }
 
-async function loadImage(src) {
-  const img = new Image(); img.decoding = 'async'; img.src = src;
-  await img.decode();
-  return img;
+// onload, not img.decode(): Chrome can hold decode() pending indefinitely while the tab is in the
+// background, which left a site opened in a background tab with a black grid
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error(`image failed: ${src}`));
+    img.src = src;
+  });
 }
 
 function drawLabel(ctx, p, x0, y0) {
