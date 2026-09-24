@@ -82,13 +82,16 @@ function centreColour(img) {
   return [r / n / 255, g / n / 255, b / n / 255];
 }
 
-async function buildAtlas(projects, tileUrl, maxTex) {
+async function buildAtlas(projects, tileUrl, { mediaMax, labelMax, labelScale }) {
   await Promise.all([document.fonts.load('600 26px "Instrument Sans"'), document.fonts.load('400 17px "DM Mono"')]);
   const cols = Math.ceil(Math.sqrt(projects.length));
-  let size = cols * CELL; let scale = 1;
-  if (size > maxTex) { scale = maxTex / size; size = maxTex; }
-  const make = () => { const c = document.createElement('canvas'); c.width = c.height = size; const x = c.getContext('2d'); x.scale(scale, scale); return [c, x]; };
-  const [mc, mx] = make(); const [lc, lx] = make();
+  const make = (k, max) => {
+    const size = Math.min(max, Math.round(cols * CELL * k)); const c = document.createElement('canvas'); c.width = c.height = size;
+    const x = c.getContext('2d'); x.scale(size / (cols * CELL), size / (cols * CELL)); return [c, x];
+  };
+  // labels get more pixels than media: a 17px mono caption in a 683px cell is only ~8 screen px
+  // tall, so at 1x it is sampled from a blurred mip level and reads as low-res
+  const [mc, mx] = make(1, mediaMax); const [lc, lx] = make(labelScale, labelMax);
   mx.fillStyle = '#000'; mx.fillRect(0, 0, cols * CELL, cols * CELL);
   const imgs = await Promise.all(projects.map((p) => loadImage(tileUrl(p)).catch(() => null)));
   const colours = [];
@@ -97,7 +100,7 @@ async function buildAtlas(projects, tileUrl, maxTex) {
     if (imgs[i]) { drawMedia(mx, imgs[i], x0, y0); colours.push(centreColour(imgs[i])); } else colours.push([0.1, 0.1, 0.1]);
     drawLabel(lx, p, x0, y0);
   });
-  const tex = (c) => { const t = new THREE.CanvasTexture(c); t.anisotropy = 4; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; return t; };
+  const tex = (c) => { const t = new THREE.CanvasTexture(c); t.anisotropy = 8; t.generateMipmaps = true; t.minFilter = THREE.LinearMipmapLinearFilter; return t; };
   return { media: tex(mc), labels: tex(lc), cols, colours };
 }
 
@@ -236,8 +239,13 @@ export class WorkGrid {
 
   async load() {
     // phones get a smaller atlas: tiles are ~40% the size on screen
-    const max = Math.min(this.renderer.capabilities.maxTextureSize, innerWidth < 700 ? 2048 : 4096);
-    this.atlas = await buildAtlas(this.all, this.tileUrl, max);
+    const cap = this.renderer.capabilities.maxTextureSize; const phone = innerWidth < 700;
+    const q = new URLSearchParams(location.search); // ?ls= / ?ss= override quality, for A/B probes
+    this.atlas = await buildAtlas(this.all, this.tileUrl, {
+      mediaMax: Math.min(cap, phone ? 2048 : 4096),
+      labelMax: Math.min(cap, phone ? 4096 : 8192),
+      labelScale: +(q.get('ls') || 2),
+    });
     this.material = new THREE.ShaderMaterial({
       vertexShader: tileVert, fragmentShader: tileFrag,
       uniforms: {
@@ -435,8 +443,13 @@ export class WorkGrid {
     const unitPx = Math.min(h * 0.291, w / 2.6);
     this.camera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(h / unitPx / (2 * CAM_Z)));
     this.camera.aspect = w / h; this.camera.updateProjectionMatrix();
+    // the lens pass enlarges the centre by 1/.88; render the scene larger than the screen so that
+    // pass shrinks instead of enlarging, which would otherwise soften every label and picture
+    const q = new URLSearchParams(location.search);
+    const ss = +(q.get('ss') || (w < 700 ? 1.15 : 1.5));
     const pr = this.renderer.getPixelRatio();
-    this.target.setSize(Math.round(w * pr), Math.round(h * pr));
+    const max = this.renderer.capabilities.maxTextureSize;
+    this.target.setSize(Math.min(max, Math.round(w * pr * ss)), Math.min(max, Math.round(h * pr * ss)));
     this.updateLens();
   }
 
