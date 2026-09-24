@@ -126,6 +126,7 @@ const tileFrag = /* glsl */`
   uniform float mediaZoom;
   uniform float labelIdle;
   uniform float blurOpacity;
+  uniform float mediaGutter;
   varying vec2 vUv;
   varying vec2 vCell;
   varying float vHover;
@@ -134,10 +135,14 @@ const tileFrag = /* glsl */`
   void main() {
     vec3 col = vBlur * blurOpacity * vHover;
     vec2 m = (vUv - 0.5) / mediaZoom + 0.5;
-    if (m.x > 0.0 && m.x < 1.0 && m.y > 0.0 && m.y < 1.0) {
-      vec2 a = atlas(m); a.y = 1.0 - a.y;
-      col = texture2D(mediaMap, a).rgb;
-    }
+    // Sample only the inner part of the atlas cell (a gutter of real image pixels on every side),
+    // so mipmaps never pull the neighbouring cell's picture into this edge as a bright fringe.
+    vec2 inner = mediaGutter + clamp(m, 0.0, 1.0) * (1.0 - 2.0 * mediaGutter);
+    vec2 a = atlas(inner); a.y = 1.0 - a.y;
+    // picture edge: a fixed 1-screen-pixel coverage ramp instead of a hard, aliased cut
+    vec2 edge = min(m, 1.0 - m) / fwidth(m);
+    float cover = clamp(min(edge.x, edge.y) + 0.5, 0.0, 1.0);
+    col = mix(col, texture2D(mediaMap, a).rgb, cover);
     vec2 l = atlas(vUv); l.y = 1.0 - l.y;
     vec4 lab = texture2D(labelMap, l);
     col = mix(col, lab.rgb, lab.a * mix(labelIdle, 1.0, vHover));
@@ -167,8 +172,13 @@ const lensFrag = /* glsl */`
       // tile borders, computed per screen pixel after the lens rather than resampled from the
       // scene, so a moving grid never makes a thin line shimmer
       vec2 w = (d - 0.5) * visible - gridOffset + 0.5;
-      vec2 dist = abs(fract(w + 0.5) - 0.5) / fwidth(w);
-      float line = 1.0 - clamp(min(dist.x, dist.y) - 0.1, 0.0, 1.0);
+      // Snap each line to exactly one device pixel: a pixel is on the line when a whole-number
+      // grid coordinate falls inside it. An anti-aliased 1px line splits across two pixels at
+      // ~60% whenever it sits between them, which reads as flicker as the grid drifts.
+      float hx = 0.5 * dFdx(w.x), hy = 0.5 * dFdy(w.y);
+      float vx = floor(w.x + hx) - floor(w.x - hx);
+      float vy = floor(w.y + hy) - floor(w.y - hy);
+      float line = clamp(abs(vx) + abs(vy), 0.0, 1.0);
       c = mix(c, vec3(0.3), line * lineAlpha);
     }
     float dist = distance(vUv, vec2(0.5));
@@ -232,7 +242,7 @@ export class WorkGrid {
       vertexShader: tileVert, fragmentShader: tileFrag,
       uniforms: {
         mediaMap: { value: this.atlas.media }, labelMap: { value: this.atlas.labels }, cells: { value: this.atlas.cols },
-        opacity: { value: 1 }, mediaZoom: { value: MEDIA_ZOOM }, labelIdle: { value: LABEL_IDLE }, blurOpacity: { value: BLUR_OPACITY },
+        opacity: { value: 1 }, mediaZoom: { value: MEDIA_ZOOM }, labelIdle: { value: LABEL_IDLE }, blurOpacity: { value: BLUR_OPACITY }, mediaGutter: { value: 24 / CELL },
       },
     });
     this.setProjects(this.all);
@@ -445,9 +455,20 @@ export class WorkGrid {
     this.mesh.instanceMatrix.needsUpdate = true;
   }
 
+  draw() {
+    const lu = this.lens.material.uniforms; const vh = this.visibleHeight(this.camera.position.z);
+    lu.visible.value.set(vh * this.camera.aspect, vh);
+    lu.gridOffset.value.set(this.offset.x + this.ambient.x, this.offset.y + this.ambient.y);
+    lu.lineAlpha.value = this.material ? this.material.uniforms.opacity.value : 0;
+    this.renderer.setRenderTarget(this.target);
+    this.renderer.render(this.scene, this.camera);
+    this.renderer.setRenderTarget(null);
+    this.renderer.render(this.lensScene, this.lensCam);
+  }
+
   loop() {
     this.raf = requestAnimationFrame(() => this.loop());
-    if (document.hidden) return;
+    if (document.hidden || this.frozen) return;
     this.clock.update(); const dt = Math.min(this.clock.getDelta(), 0.1);
     if (this.dragging) this.offset.add(this.dragStep);
     else if (this.active) this.offset.add(this.velocity);
@@ -464,14 +485,7 @@ export class WorkGrid {
       this.hoverAttr.needsUpdate = true;
     }
     this.canvas.style.cursor = this.pressed && this.dragging ? 'grabbing' : this.hovered >= 0 && this.active ? 'pointer' : '';
-    const lu = this.lens.material.uniforms; const vh = this.visibleHeight(this.camera.position.z);
-    lu.visible.value.set(vh * this.camera.aspect, vh);
-    lu.gridOffset.value.set(this.offset.x + this.ambient.x, this.offset.y + this.ambient.y);
-    lu.lineAlpha.value = this.material ? this.material.uniforms.opacity.value : 0;
-    this.renderer.setRenderTarget(this.target);
-    this.renderer.render(this.scene, this.camera);
-    this.renderer.setRenderTarget(null);
-    this.renderer.render(this.lensScene, this.lensCam);
+    this.draw();
   }
 }
 
