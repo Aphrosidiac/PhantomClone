@@ -108,16 +108,24 @@ body[data-theme='light'] .toggle .hl { background: var(--ink); }
 body[data-theme='light'] .toggle > [aria-current='page'] { color: var(--bone); }
 
 /* ------------------------------------------------------------------ loader */
-.loader { position: fixed; inset: 0; z-index: 30000; background: var(--black); display: grid; place-items: center; transition: opacity .5s; }
-.loader.is-done { opacity: 0; pointer-events: none; }
-.loader-words { display: flex; gap: 1.2em; font-size: 14px; }
-.loader-words h2 { font-size: inherit; font-weight: 600; text-transform: uppercase; letter-spacing: -.01em; overflow: hidden; }
-.loader-words span { display: inline-block; transition: transform 1.4s var(--ease-inout); }
-.loader.is-loaded .loader-words h2:first-child span { transform: translateX(-22vw); }
-.loader.is-loaded .loader-words h2:last-child span { transform: translateX(22vw); }
-.loader.is-loaded .loader-words h2 { overflow: visible; }
-.loader-bar { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--lime); transform-origin: 0 50%; transform: scaleX(0); transition: transform .4s var(--ease-out); }
-.loader-note { position: absolute; left: 50%; bottom: 40px; transform: translateX(-50%); width: min(90vw, 420px); text-align: center; opacity: .45; }
+/* the black is two panels meeting on a seam at the slash's angle; they part to reveal the grid */
+.loader { position: fixed; inset: 0; z-index: 30000; color: var(--bone); pointer-events: none; --seam: 5%; }
+.loader:not(.is-done) { pointer-events: auto; }
+.ld-panel { position: absolute; inset: 0 -1px; background: var(--black); will-change: transform; }
+.ld-panel--a { clip-path: polygon(0 0, calc(50% + var(--seam) + 1px) 0, calc(50% - var(--seam) + 1px) 100%, 0 100%); }
+.ld-panel--b { clip-path: polygon(calc(50% + var(--seam)) 0, 100% 0, 100% 100%, calc(50% - var(--seam)) 100%); }
+.ld-stage { position: absolute; inset: 0; display: grid; place-items: center; }
+.loader:not(.ld-go) :is(.ld-stage, .ld-corner, .ld-count, .ld-ticker) { visibility: hidden; }
+.ld-lockup { width: min(58vw, 640px); height: auto; overflow: hidden; }
+.ld-corner { position: absolute; top: 28px; line-height: 1.5; }
+.ld-corner span, .ld-ticker { opacity: .45; }
+.ld-corner--tl { left: var(--margin); }
+.ld-corner--tr { right: var(--margin); text-align: right; }
+.ld-count { position: absolute; left: var(--margin); bottom: 22px; display: flex; align-items: flex-start; gap: 6px; margin: 0; font-weight: 600; font-size: clamp(56px, 9vw, 150px); line-height: .8; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.ld-pct { margin-top: .5em; font-size: .72rem; letter-spacing: 0; opacity: .45; }
+.ld-ticker { position: absolute; right: var(--margin); bottom: 30px; margin: 0; text-align: right; }
+.loader-bar { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--bone); transform-origin: 0 50%; transform: scaleX(0); }
+.loader-note { position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%); width: min(90vw, 420px); text-align: center; opacity: .35; }
 
 /* ------------------------------------------------------------------ list view */
 .listview { position: fixed; inset: 0; z-index: 100; background: var(--black); overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity .3s ease-in-out; }
@@ -398,6 +406,9 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
   .clocks { grid-column: 8 / span 3; }
 }
 @media (max-width: 1023px) {
+  .ld-lockup { width: 82vw; }
+  .ld-corner { top: 20px; }
+  .loader-note { display: none; }
   .header { height: 80px; padding-top: 16px; }
   .header-grid { grid-template-columns: 1fr auto; }
   .logo { grid-column: 1; height: 55px; margin-top: -6px; padding-left: 4px; }

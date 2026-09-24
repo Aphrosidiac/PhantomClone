@@ -145,7 +145,10 @@ in CSS, so reduced motion or a paused tab never leaves content invisible.
 1. Render the current route immediately (under the loader).
 2. Start the grid (atlases) and wait for fonts.
 3. Home waits for the grid (capped at 9 s); inner pages wait only for fonts (capped at 1.2 s).
-4. Loader words part, bar fills, loader fades; on home the grid intro plays.
+4. Loader (`src/loader.js`): the FF Dev Studio lockup builds itself (slashes, Fs, divider, DEV STUDIO) while a
+   counter chases the real load progress, capped by the build so both land together; then the lockup exits,
+   the grid intro starts underneath and the black splits along the slash's angle and parts over it.
+   Inner pages run it faster (they only wait for fonts); reduced motion gets a plain fade.
 
 ## 6. Sound — `src/sound.js`
 

@@ -2,6 +2,7 @@ import { PROJECTS, ZONES, FILTERS, CONTACT, STACK_LABEL, label, matches, tileUrl
 import { WorkGrid, hasWebGL2 } from './grid.js';
 import * as pages from './pages.js';
 import { sound } from './sound.js';
+import { loaderIntro } from './loader.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -369,32 +370,33 @@ tick(); setInterval(tick, 10000);
 
 // ------------------------------------------------------------------ boot
 (async function boot() {
-  const loader = $('#loader'); const bar = $('.loader-bar', loader);
   const first = location.pathname;
+  const isHome = match(first).name === 'home';
+  // inner pages run the same intro, faster: they only wait for the fonts
+  const intro = loaderIntro({ reduced, titles: PROJECTS.map((p) => p.title), quick: !isHome });
   await render(true);
-  let progress = 0.1; bar.style.transform = `scaleX(${progress})`;
-  const creep = setInterval(() => { progress = Math.min(0.9, progress + 0.04); bar.style.transform = `scaleX(${progress})`; }, 120);
+  intro.progress(0.1);
+  let creep = 0.1;
+  const creeper = setInterval(() => { creep = Math.min(0.85, creep + 0.035); intro.progress(creep); }, 120);
   const fonts = document.fonts.ready;
   const T = (window.__ffTimings = { start: Math.round(performance.now()) });
   const g = initGrid().then((x) => { T.gridReady = Math.round(performance.now()); return x; }).catch((err) => { console.error(err); setView('list'); return null; });
-  fonts.then(() => { T.fonts = Math.round(performance.now()); });
+  fonts.then(() => { T.fonts = Math.round(performance.now()); intro.progress(0.4); });
   // only the home page waits for the grid (capped); inner pages need nothing but the fonts
-  const isHome = match(first).name === 'home';
   const cap = new Promise((r) => setTimeout(r, isHome ? 9000 : 1200));
   await Promise.race([Promise.all([fonts, isHome ? g : fonts]), cap]);
-  clearInterval(creep); bar.style.transform = 'scaleX(1)';
-  loader.classList.add('is-loaded');
+  clearInterval(creeper);
   sound.play('load', 0.5);
-  await new Promise((r) => setTimeout(r, reduced ? 0 : isHome ? 1500 : 700));
-  loader.classList.add('is-done'); T.loaderDone = Math.round(performance.now());
-  setTimeout(() => loader.remove(), 800);
-  syncAllToggles();
-  g.then(() => {
-    if (!grid) return;
-    grid.setProjects(filtered());
-    const onHome = state.route.name === 'home';
-    grid.active = onHome && state.view === 'grid' && !open() && $('#contact').hidden;
-    if (onHome) grid.intro(); else { grid.setLens(-0.07, true); grid.setActive(false); }
+  await intro.finish(() => {
+    T.loaderDone = Math.round(performance.now());
+    syncAllToggles();
+    g.then(() => {
+      if (!grid) return;
+      grid.setProjects(filtered());
+      const onHome = state.route.name === 'home';
+      grid.active = onHome && state.view === 'grid' && !open() && $('#contact').hidden;
+      if (onHome) grid.intro(); else { grid.setLens(-0.07, true); grid.setActive(false); }
+    });
   });
   window.__ff = { grid, state };
 })();

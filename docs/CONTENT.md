@@ -98,7 +98,7 @@ clock. The contact form's kick-off options and work types are `KICKOFF` and `WOR
 
 ## Page copy
 
-- Header line, loader words, meta tags: `index.html`
+- Header line, loader lockup and corner labels, meta tags: `index.html` (the lockup paths are verbatim brand SVG)
 - About (Studio + Approach), Pricing, 404, footer, home screen-reader copy: `src/pages.js`
   (`STEPS` and `INCLUDED` mirror the process and inclusions in SERVICE_ARCHITECTURE.md)
 - Contact overlay copy: `src/main.js` (`contactHome`, `contactForm`, `contactDone`)
