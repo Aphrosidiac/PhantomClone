@@ -26,3 +26,4 @@ Instruments: headless Chromium via Playwright (`tools/states.mjs`, `tools/shot.m
 | Tile labels | low-res text (reported) | sharpness probe, same frame | 2× label atlas + 1.5× scene target: acutance 2.94 → 3.88, crisp edges 13.5 → 23.6 per 1000 px |
 
 Lesson recorded: the first border "fix" was declared done from a still screenshot. A still cannot show flicker; the probes now exist so motion defects are measured, not judged.
+| Wheel / trackpad scroll | "scrolls extremely fast" (reported) | tools/wheel-probe.js, live loop in Chrome | wheel fed the inertia: 300 px scrolled moved 1,102 px → now 1:1 (300 → 300, 100 → 100) |

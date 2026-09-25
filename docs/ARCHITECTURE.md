@@ -88,7 +88,7 @@ pixels at ~60 % whenever it sits between them). See VERIFICATION.md for the meas
 | Pointer down | camera to z+0.4 (0.4 s, expo.out) |
 | Drag (> 3 px) | pixel delta → world at depth z+0.58; release keeps the last delta as velocity, decaying `lerp(0, 4·dt)` |
 | Click (≤ 3 px) | opens the tile under the pointer. Hit-testing **inverts the lens** first, so the tile you see is the tile you get (the reference compares un-lensed coordinates and misses near the edges). |
-| Wheel / trackpad | adds to velocity (not on the reference; added for trackpads) |
+| Wheel / trackpad | moves the grid exactly the distance scrolled, eased over ~0.1 s; never feeds the drag inertia (trackpads bring their own momentum). Not on the reference; added for trackpads |
 | Arrows | pan |
 | Tab / Shift-Tab (canvas focused) | walk the spiral one tile at a time (0.3 s, power2.inOut); leaves the canvas at either end |
 | Enter | open the focused/hovered tile |

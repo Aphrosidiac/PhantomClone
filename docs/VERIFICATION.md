@@ -32,6 +32,7 @@ eval(await fetch('/tools/flicker-probe.js').then(r => r.text()))
 |---|---|---|
 | `tools/flicker-probe.js` | Steps the grid 60× by ~0.5 px, reads one row, tracks each grid line's peak contrast across frames | a grid line's min = max (0 % spread) |
 | `tools/fringe-probe.js` | Predicts every picture edge's screen position (world → inverse lens), measures edge brightness minus the picture 5 px inside, per frame | average fringe near 0 (no bright rim) |
+| `tools/wheel-probe.js` | Fires wheel events on the canvas and reports how far the grid moved once settled | moved = scrolled |
 | `tools/sharp-probe.js` | Fixed frame; acutance (mean \|Δ luminance\|) and crisp-edge density over the label strips of the centre row | higher is sharper; compare `/?ss=1&ls=1` (old) with `/` |
 
 The line-isolation check used for the border fix is not a file; it is the flicker probe with the tiles
@@ -65,6 +66,13 @@ darker than inside), i.e. no rim.
 |---|---|---|
 | `?ss=1&ls=1` — 1× labels, 1× scene | 2.94 | 13.5 |
 | current — 2× labels, 1.5× scene | **3.88** | **23.6** |
+
+### Wheel / trackpad scroll (live render loop, Chrome)
+
+| Build | Trackpad 300 px | Mouse notch 100 px |
+|---|---|---|
+| Wheel fed the drag inertia | moved **1,102 px** (3.7×) | — |
+| Wheel moves 1:1, eased ~0.1 s (current) | **300 px** | **100 px** |
 
 ### Boot (real Chrome, dev server, unfocused window)
 

@@ -253,7 +253,7 @@ export class WorkGrid {
   constructor(container, { projects, tileUrl, onOpen, onHover, reduced }) {
     this.container = container; this.all = projects; this.tileUrl = tileUrl;
     this.onOpen = onOpen; this.onHover = onHover; this.reduced = reduced;
-    this.offset = new THREE.Vector2(); this.velocity = new THREE.Vector2(); this.dragStep = new THREE.Vector2();
+    this.offset = new THREE.Vector2(); this.velocity = new THREE.Vector2(); this.wheelPending = new THREE.Vector2(); this.dragStep = new THREE.Vector2();
     this.pointer = new THREE.Vector2(0, 0); this.ambient = new THREE.Vector2();
     this.hovered = -1; this.active = true; this.pressed = false; this.dragging = false;
     this.focusIndex = 0; this.lensFactor = 0;
@@ -360,11 +360,15 @@ export class WorkGrid {
       this.dragging = false;
     };
     this.onLeave = () => { if (!this.pressed) { this.pointerIn = false; } };
+    // Wheel / trackpad scroll moves the grid by exactly the distance scrolled, like a page, eased over
+    // ~0.1 s. It used to feed the drag inertia, which kept pushing for many frames after every event:
+    // 300 px of trackpad scroll moved the grid 1,102 px. Trackpads supply their own momentum events.
     this.onWheel = (e) => {
       if (!this.active) return;
       e.preventDefault();
-      const k = e.deltaMode === 1 ? 16 : 1;
-      this.velocity.add(this.pxToWorld(-e.deltaX * k * 0.35, -e.deltaY * k * 0.35));
+      const k = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? this.canvas.clientHeight : 1;
+      this.wheelPending.add(this.pxToWorld(-e.deltaX * k, -e.deltaY * k));
+      this.velocity.set(0, 0);
     };
     this.onKey = (e) => {
       if (!this.active || e.target.closest('input,textarea,select,[contenteditable]') || document.body.classList.contains('overlay-open')) return;
@@ -444,7 +448,7 @@ export class WorkGrid {
     const t = this.tiles[this.focusIndex % this.tiles.length];
     const target = { x: -t.gx, y: -t.gy };
     gsap.to(this.offset, { ...target, duration: this.reduced ? 0 : 0.3, ease: 'power2.inOut' });
-    this.velocity.set(0, 0);
+    this.velocity.set(0, 0); this.wheelPending.set(0, 0);
     this.hovered = this.focusIndex % this.tiles.length;
     this.onHover?.(t.project);
     return t.project;
@@ -515,7 +519,7 @@ export class WorkGrid {
     if (on) this.center(); else { this.hovered = -1; }
   }
 
-  center() { gsap.to(this.offset, { x: 0, y: 0, duration: this.reduced ? 0 : 0.3, ease: 'power2.inOut' }); this.velocity.set(0, 0); }
+  center() { gsap.to(this.offset, { x: 0, y: 0, duration: this.reduced ? 0 : 0.3, ease: 'power2.inOut' }); this.velocity.set(0, 0); this.wheelPending.set(0, 0); }
 
   resize() {
     const w = this.container.clientWidth || innerWidth, h = this.container.clientHeight || innerHeight;
@@ -572,6 +576,10 @@ export class WorkGrid {
     this.clock.update(); const dt = Math.min(this.clock.getDelta(), 0.1);
     if (this.dragging) this.offset.add(this.dragStep);
     else if (this.active) this.offset.add(this.velocity);
+    if (this.wheelPending.lengthSq() > 1e-10) {
+      const step = this.wheelPending.clone().multiplyScalar(this.reduced ? 1 : Math.min(1, 14 * dt));
+      this.offset.add(step); this.wheelPending.sub(step);
+    }
     this.dragStep.set(0, 0);
     this.velocity.lerp(new THREE.Vector2(), Math.min(1, 4 * dt));
     // ambient parallax toward the pointer
