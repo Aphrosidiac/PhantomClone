@@ -3,6 +3,7 @@ import { WorkGrid, hasWebGL2 } from './grid.js';
 import * as pages from './pages.js';
 import { sound } from './sound.js';
 import { loaderIntro } from './loader.js';
+import { applySeo } from './seo.js';
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -165,6 +166,7 @@ async function render(first = false, forcePath = null) {
   if (r.name === 'contact') {
     // the contact page is an overlay on whatever was underneath (home, on a cold load)
     if (!state.route) await render(first, '/');
+    applySeo(r);
     openContact();
     return;
   }
@@ -173,7 +175,7 @@ async function render(first = false, forcePath = null) {
   state.route = r;
   const page = r.name === 'home' ? pages.homeSeo() : r.name === 'project' ? pages.project(r.slug) : r.name === 'about' ? pages.about(r.tab) : r.name === 'pricing' ? pages.pricing() : pages.notFound();
   if (r.name === 'project' && page.status === 404) r.name = '404';
-  document.title = page.title;
+  applySeo(r);
   body.dataset.theme = page.theme;
   body.dataset.route = r.name;
   $('meta[name="theme-color"]').content = page.theme === 'light' ? '#f3efe4' : r.name === 'about' ? '#242421' : '#000000';
@@ -218,7 +220,7 @@ document.addEventListener('click', (e) => {
   if (u.origin !== location.origin) return;
   e.preventDefault();
   sound.play('click');
-  if (u.pathname === '/contact') { history.pushState({}, '', '/contact'); openContact(); return; }
+  if (u.pathname === '/contact') { history.pushState({}, '', '/contact'); applySeo({ name: 'contact' }); openContact(); return; }
   navigate(u.pathname + u.search);
 });
 
@@ -312,7 +314,7 @@ function closeContact(restore = true) {
 }
 function leaveContact() {
   closeContact();
-  if (location.pathname === '/contact') history.pushState({}, '', state.lastNonContact || '/');
+  if (location.pathname === '/contact') { history.pushState({}, '', state.lastNonContact || '/'); if (state.route) applySeo(state.route); }
 }
 $('#contact').addEventListener('click', (e) => {
   const b = e.target.closest('[data-c]'); if (!b) return;

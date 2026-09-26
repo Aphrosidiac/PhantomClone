@@ -21,7 +21,6 @@ set -a; . "$ENV_FILE"; set +a
 : "${CLOUDFLARE_ACCOUNT_ID:?missing in $ENV_FILE}"
 
 npm run build
-printf '/*\t/index.html\t200\n' > dist/_redirects   # SPA: every route serves the app
 
 npx --yes wrangler@latest pages project list 2>/dev/null | grep -q "│ $PROJECT " \
   || npx --yes wrangler@latest pages project create "$PROJECT" --production-branch main --force

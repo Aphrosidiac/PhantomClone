@@ -5,3 +5,4 @@ docs/reference/*/shots/*.html
 docs/reference/
 .claude/
 .shots-raw/
+.wrangler/

@@ -27,3 +27,10 @@ Instruments: headless Chromium via Playwright (`tools/states.mjs`, `tools/shot.m
 
 Lesson recorded: the first border "fix" was declared done from a still screenshot. A still cannot show flicker; the probes now exist so motion defects are measured, not judged.
 | Wheel / trackpad scroll | "scrolls extremely fast" (reported) | tools/wheel-probe.js, live loop in Chrome | wheel fed the inertia: 300 px scrolled moved 1,102 px → now 1:1 (300 → 300, 100 → 100) |
+
+## 2026-09-26 — SEO
+
+- Built with the per-route prerender; served `dist/` through `wrangler pages dev` (Cloudflare's own asset server). Results: 200 for every route, each with its own `<title>`; 308 for trailing slashes and `.html` URLs; 404 for unknown paths and unknown project slugs.
+- Real Chrome, production build: the grid renders over the prerendered home; cold `/projects/lewix-ai` and `/contact` load with no console errors. Client navigation swaps title, canonical, og:image and JSON-LD on every route, including opening and closing the contact overlay. The "Let's Talk" path initially missed this, and it is now fixed.
+- Two SEO audit passes (technical + schema). Fixed from them: `/contact` prerendered the home body under a contact title (it now has its own hidden h1, brief and links); `Organization.founder` pointed at a Person node missing from 5 page graphs (every graph now carries it); HSTS added. A script checked every page's graph after the rebuild: zero dangling `@id` references.
+- Titles ≤ 65 characters and descriptions ≤ 162 on all 20 files.

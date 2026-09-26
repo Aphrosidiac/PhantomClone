@@ -20,7 +20,7 @@ rebuilt from scratch and carrying **FF Dev Studio's own work, words and identity
 ```bash
 npm install
 npm run dev        # http://localhost:3175
-npm run build      # → dist/ (static; any host that can fall back to index.html)
+npm run build      # → dist/: vite build + per-route prerender, sitemap, robots, llms.txt
 npm run preview    # serve dist/ on :3176
 ```
 
@@ -47,6 +47,7 @@ src/
   main.js             router (History API), list view, filter + URL sync, contact overlay/form, clocks, boot
   grid.js             WorkGrid — the WebGL engine (atlases, shaders, input, lens pass)
   pages.js            HTML templates: project, about, pricing, 404, home SEO block
+  seo.js              per-route title, meta, canonical, share cards, JSON-LD (prerender + router)
   data.js             the content model: projects, zones, filters, pricing, contact
   sound.js            Web Audio UI sounds (lazy-loaded on first enable)
   style.css           tokens + every component, desktop and phone
@@ -54,9 +55,10 @@ public/
   media/<slug>/       tile.jpg (grid) + s-*.webp (project page, from tools/shots.mjs) per project
   fonts/              Instrument Sans (variable, subset) + DM Mono — both SIL OFL
   sounds/             UI sounds (from the reference)
-  ff-*.svg, og.jpg    brand marks, favicon, social image
-  _redirects          SPA fallback for Cloudflare Pages
+  ff-*.svg, og.jpg    brand marks, favicon, social image; logo.png + touch icons + site.webmanifest
+  _headers            Cloudflare Pages cache + security headers
 tools/                verification instruments (Playwright captures + in-page GPU probes)
+scripts/prerender.mjs static HTML per route + sitemap.xml, robots.txt, llms.txt (runs in npm run build)
 scripts/deploy.sh     Cloudflare Pages direct upload
 docs/                 architecture, content guide, verification, spec, parity ledger, QA log
 ```
@@ -67,6 +69,7 @@ docs/                 architecture, content guide, verification, spec, parity le
 |---|---|
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | How the grid engine, router, overlays and styling fit together; every tuned constant and why |
 | [docs/CONTENT.md](docs/CONTENT.md) | Adding or editing a project, pricing, copy, filters, sounds |
+| [docs/SEO.md](docs/SEO.md) | Prerendered routes, meta and JSON-LD per route, URLs and status codes, sitemap, what to redo when content changes |
 | [docs/VERIFICATION.md](docs/VERIFICATION.md) | The instruments in `tools/`, how to run them, and the recorded results |
 | [docs/reference-spec.md](docs/reference-spec.md) | What was measured on phantom.land, with provenance markers |
 | [docs/brief.md](docs/brief.md) | Scope: what was built, what deliberately was not |
@@ -75,7 +78,7 @@ docs/                 architecture, content guide, verification, spec, parity le
 
 ## Deploy
 
-Static output; any host works if unknown paths fall back to `index.html` (`public/_redirects` does this on Cloudflare Pages).
+Static output, one HTML file per route (`about.html` is served at `/about`, and so on); unknown paths get `404.html` with a 404 status. Cloudflare Pages does this natively; on another host, map clean URLs to `.html` files. Set `VITE_SITE_URL` if the site moves off ff-phantom.pages.dev — see [docs/SEO.md](docs/SEO.md).
 
 ```bash
 npm run deploy                      # Cloudflare Pages project "ff-phantom", production

@@ -1,4 +1,4 @@
-// Page templates. Each returns { html, title, theme }.
+// Page templates. Each returns { html, theme }; titles and meta live in seo.js.
 import { PROJECTS, ZONES, PRICING, CONTACT, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -28,7 +28,6 @@ export function project(slug) {
   const related = [1, 2, 3].map((k) => PROJECTS[(i + k * 4) % PROJECTS.length]);
   const m = media(p);
   return {
-    title: `FF Dev Studio | ${p.title}`,
     theme: 'light',
     client: p.client,
     html: `
@@ -128,7 +127,6 @@ export function about(tab = 'studio') {
     <ol class="steps" style="list-style:none;padding:0">${STEPS.map(([h, t], i) => `<li><span class="n mono">${String(i + 1).padStart(2, '0')}</span><h3>${esc(h)}</h3><p>${esc(t)}</p></li>`).join('')}</ol>
     <section class="a-row a-block" style="margin-top:120px"><p class="mono">Included</p><div class="content"><ul class="incl">${INCLUDED.map((t) => `<li>${esc(t)}</li>`).join('')}</ul><a class="btn-pill" href="/pricing" data-link>See pricing</a></div></section>`;
   return {
-    title: `FF Dev Studio | ${tab === 'approach' ? 'Approach' : 'Studio'}`,
     theme: 'dark',
     html: `
     <div class="about" data-tab="${tab}">
@@ -145,12 +143,11 @@ export function about(tab = 'studio') {
 
 export function pricing() {
   return {
-    title: 'FF Dev Studio | Pricing',
     theme: 'dark',
     html: `
     <div class="pricing">
       <section class="pr-hero">
-        <p class="mono label-dot">Pricing</p>
+        <h1 class="mono label-dot">Pricing</h1>
         <div class="content">
           <p class="big reveal">${split('Projects start from RM1,000. Most land between RM1,000 and RM5,000, quoted after one conversation. You talk to the person who builds it — which is why a studio this size can do work this detailed at a price that makes sense.')}</p>
           <a class="btn-pill" href="#bands">View the bands</a>
@@ -192,7 +189,6 @@ export function pricing() {
 
 export function notFound() {
   return {
-    title: 'FF Dev Studio | Not found',
     theme: 'dark',
     status: 404,
     html: `<section class="nf"><h1 class="large-title">404</h1><p class="mono">This page was cut.</p><p><a class="btn-pill" href="/" data-link>Back to the work</a></p></section>`,
@@ -201,11 +197,25 @@ export function notFound() {
 
 export function homeSeo() {
   return {
-    title: 'FF Dev Studio — Custom websites, designed and built end to end',
     theme: 'dark',
     html: `
       <h1 class="sr-only">FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia.</h1>
       <p class="sr-only">Drag the grid to explore the work, use the arrow keys to move it, or switch to the list view. Projects start from RM1,000.</p>
-      <nav class="sr-only" aria-label="All work"><ul>${PROJECTS.map((p) => `<li><a href="/projects/${p.slug}" data-link>${esc(p.title)} — ${esc(p.type)}</a></li>`).join('')}</ul></nav>`,
+      ${workNav()}`,
+  };
+}
+
+// hidden behind the canvas: every project as a real link with its one-line statement
+const workNav = () => `<nav class="sr-only" aria-label="All work"><ul>${PROJECTS.map((p) => `<li><a href="/projects/${p.slug}" data-link>${esc(p.title)} — ${esc(p.type)}</a> <span>${esc(p.statement)}</span></li>`).join('')}</ul></nav>`;
+
+// /contact is an overlay on the home page; this is the static page under it, for crawlers and no-JS
+export function contactSeo() {
+  return {
+    theme: 'dark',
+    html: `
+      <h1 class="sr-only">Start a project with FF Dev Studio</h1>
+      <p class="sr-only">Tell us about your website in a seven-question brief, then send it by email or WhatsApp. Projects start from RM1,000; most land between RM1,000 and RM5,000, quoted after one conversation.</p>
+      <p class="sr-only">Email <a href="mailto:${CONTACT.email}">${CONTACT.email}</a> · WhatsApp <a href="${CONTACT.wa}">${esc(CONTACT.whatsapp)}</a> · ${esc(CONTACT.city)}</p>
+      ${workNav()}`,
   };
 }

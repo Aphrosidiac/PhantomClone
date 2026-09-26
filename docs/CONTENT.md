@@ -28,7 +28,11 @@ links are generated from it — there is nothing else to update.
 },
 ```
 
-Filters pick up new features, stack items and clients automatically. Labels are title-cased unless
+Filters pick up new features, stack items and clients automatically. Its title, meta, sitemap entry
+and JSON-LD come from this entry too; render its share card with `node tools/seo-assets.mjs` (dev
+server running) — see `docs/SEO.md`.
+
+ Labels are title-cased unless
 listed in `FEATURE_LABEL` / `STACK_LABEL` (e.g. `'3d': '3D'`, `next: 'Next.js'`).
 
 The grid atlas is laid out as a square of `ceil(√n)` cells; up to 16 projects fit the current atlas
@@ -89,7 +93,7 @@ shown on the About page. Adding a zone means adding an entry here and choosing a
 
 `PRICING` is transcribed from `ffdevstudio/SERVICE_ARCHITECTURE.md`, the source of truth for FF's
 prices. Change that document first, then copy the figures here — do not invent tiers, rename plans or
-round numbers. Bands render as the three columns on `/pricing`; `care` renders as the plan list.
+round numbers. The pricing page's meta description in `src/seo.js` quotes the bands — update it too. Bands render as the three columns on `/pricing`; `care` renders as the plan list.
 
 ## Contact details
 
@@ -98,7 +102,8 @@ clock. The contact form's kick-off options and work types are `KICKOFF` and `WOR
 
 ## Page copy
 
-- Header line, loader lockup and corner labels, meta tags: `index.html` (the lockup paths are verbatim brand SVG)
+- Page titles, meta descriptions, structured data: `src/seo.js`
+- Header line, loader lockup and corner labels: `index.html` (the lockup paths are verbatim brand SVG)
 - About (Studio + Approach), Pricing, 404, footer, home screen-reader copy: `src/pages.js`
   (`STEPS` and `INCLUDED` mirror the process and inclusions in SERVICE_ARCHITECTURE.md)
 - Contact overlay copy: `src/main.js` (`contactHome`, `contactForm`, `contactDone`)
