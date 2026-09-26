@@ -125,13 +125,10 @@ export function about(tab = 'studio') {
       <div class="addr mono">FF Dev Studio<br>Kuala Lumpur<br>Malaysia</div>
       <div class="links mono"><a href="mailto:${CONTACT.email}">${CONTACT.email}</a><a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="https://ffdev.studio" target="_blank" rel="noopener">ffdev.studio</a></div>
     </div>
-    <section class="a-row a-block" style="padding-bottom:70px;margin-top:150px"><p class="mono">Team</p><div class="content"><p class="statement reveal">${split('Design, development and motion, made in-house from the first sketch to launch.')}</p></div></section>
-    <!-- the same row as the Zones above: label · name · text · image -->
-    <div class="zone-row team-row">
-      <span class="ico mono">Founder</span>
-      <h3>Fakhrul</h3>
-      <div class="txt"><p>Design · Development · Motion</p><p>Every project is scoped, designed, built and launched here — and looked after once it is live, on a care plan if you want one.</p></div>
-      <div class="im im--mark">${MARK}</div>
+    <section class="a-row a-block" style="padding-bottom:40px;margin-top:150px"><p class="mono">Team</p><div class="content"><p class="statement reveal">${split('Design, development and motion, made in-house from the first sketch to launch.')}</p></div></section>
+    <div class="team">
+      <div class="card"><div class="ph">${MARK}</div><h4>Fakhrul</h4><p class="mono" style="opacity:.6">Founder · Design · Development</p></div>
+      <p class="note body-copy">Every project is scoped, designed, built and launched here — and looked after once it is live, on a care plan if you want one.</p>
     </div>`;
   const approach = `
     <section class="a-row a-hero"><p class="mono" aria-hidden="true">Approach</p><div class="content"><span class="tag mono">Approach</span><h1 class="sub-title">Smallest scope, strongest result</h1></div></section>
