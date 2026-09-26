@@ -31,7 +31,7 @@ Requires Node 20+. WebGL2 is required for the grid; browsers without it are sent
 | **About** | Studio tab (hero, zones, clients strip with each brand's own logo, the studio, the team) and Approach tab (nine-step process, what every build includes). |
 | **Pricing** | The three estimating bands as panels, managed-care plans as rows and terms, laid out on About's row system. Transcribed from FF's `SERVICE_ARCHITECTURE.md`, never invented. |
 | **Contact** | Overlay from "Let's Talk" or `/contact`. A 7-question brief form; on completion the visitor sends it themselves by **email or WhatsApp** (pre-filled). The site has no backend and sends nothing on its own. |
-| **Header** | Mark, sound toggle (off by default), studio line, Kuala Lumpur clock + the visitor's own time, Let's Talk. |
+| **Header** | Mark, sound toggle (currently disabled: hidden, see `SOUND_AVAILABLE` in `src/sound.js`), studio line, Kuala Lumpur clock + the visitor's own time, Let's Talk. |
 
 ## Project layout
 
@@ -43,7 +43,7 @@ src/
   pages.js            HTML templates: project, about, pricing, 404, home SEO block
   seo.js              per-route title, meta, canonical, share cards, JSON-LD (prerender + router)
   data.js             the content model: projects, zones, filters, pricing, contact
-  sound.js            Web Audio UI sounds (lazy-loaded on first enable)
+  sound.js            Web Audio UI sounds (lazy-loaded on first enable; disabled for now by SOUND_AVAILABLE)
   style.css           tokens + every component, desktop and phone
 public/
   media/<slug>/       tile.jpg (grid) + s-*.webp (project page, from tools/shots.mjs) per project

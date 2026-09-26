@@ -1,7 +1,7 @@
 import { PROJECTS, ZONES, FILTERS, CONTACT, STACK_LABEL, label, matches, tileUrl } from './data.js';
 import { WorkGrid, hasWebGL2 } from './grid.js';
 import * as pages from './pages.js';
-import { sound } from './sound.js';
+import { sound, SOUND_AVAILABLE } from './sound.js';
 import { loaderIntro } from './loader.js';
 import { applySeo } from './seo.js';
 
@@ -349,6 +349,7 @@ $('#contact').addEventListener('keydown', (e) => {
 });
 
 // ------------------------------------------------------------------ header: sound + clocks
+$('#sound').hidden = !SOUND_AVAILABLE;
 $('.sound-dots').innerHTML = '<i></i>'.repeat(24);
 $$('.sound-dots i').forEach((i, k) => { i.style.animationDelay = `${(k % 8) * 0.11 + Math.floor(k / 8) * 0.07}s`; });
 $('#sound').addEventListener('click', () => {

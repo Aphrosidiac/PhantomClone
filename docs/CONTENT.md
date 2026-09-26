@@ -110,6 +110,7 @@ clock. The contact form's kick-off options and work types are `KICKOFF` and `WOR
 
 ## Sounds
 
+Sound is disabled for now (`SOUND_AVAILABLE = false` in `src/sound.js` hides the toggle). The files stay.
 Replace any file in `public/sounds/` keeping the name (`click grid load other project riser swipe
 whoosh`). Short, quiet files work best — the grid tick fires on every tile change.
 

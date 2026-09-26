@@ -1,4 +1,7 @@
 // UI sounds. Off by default.
+// SOUND_AVAILABLE = false disables sound entirely for now: the header toggle is hidden and nothing
+// loads or plays. The files in public/sounds/ stay; set it to true to bring the toggle back.
+export const SOUND_AVAILABLE = false;
 const FILES = ['click', 'grid', 'load', 'other', 'project', 'riser', 'swipe', 'whoosh'];
 let ctx = null; const buffers = {}; let lastGrid = 0;
 
@@ -13,6 +16,7 @@ async function ensure() {
 export const sound = {
   enabled: false,
   async setEnabled(on) {
+    if (!SOUND_AVAILABLE) return;
     this.enabled = on;
     try { localStorage.setItem('ff-sound', on ? '1' : '0'); } catch {}
     if (on) { await ensure(); ctx.resume(); }

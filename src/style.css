@@ -67,6 +67,7 @@ body:not([data-route='home']) .stage { pointer-events: none; }
 body[data-route='project'] .logo-x { display: block; width: 14px; height: 14px; background: linear-gradient(45deg, transparent 46%, currentColor 46%, currentColor 54%, transparent 54%), linear-gradient(-45deg, transparent 46%, currentColor 46%, currentColor 54%, transparent 54%); opacity: .35; }
 body[data-route='project'] .logo-client { display: block; font-size: .8rem; }
 .sound { grid-column: 5 / span 2; display: flex; align-items: flex-start; gap: 12px; margin-top: 1px; text-align: left; }
+.sound[hidden] { display: none; }
 .sound-dots { display: grid; grid-template-columns: repeat(8, 2px); grid-auto-rows: 2px; gap: 1px; margin-top: 1px; }
 .sound-dots i { width: 2px; height: 2px; border-radius: 50%; background: currentColor; opacity: .35; transition: opacity .2s; }
 .sound[aria-pressed='true'] .sound-dots i { animation: eq .9s ease-in-out infinite alternate; }

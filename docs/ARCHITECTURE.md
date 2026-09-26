@@ -171,6 +171,10 @@ scrolls under it softly. Two rules keep that working:
 
 ## 6. Sound — `src/sound.js`
 
+**Currently disabled.** `SOUND_AVAILABLE = false` in `sound.js` hides the header toggle (`hidden` in
+`index.html` too, so prerendered pages never show it) and makes `setEnabled()` a no-op, so nothing
+loads or plays. The files stay in `public/sounds/`; set it to `true` to bring sound back.
+
 Off by default. The first enable creates an `AudioContext` and decodes the eight files. Events:
 click (UI), grid (hover, rate-limited to one per 90 ms), swipe (drag start), project (open / submit),
 whoosh (overlays), other (close / error), load (loader).
