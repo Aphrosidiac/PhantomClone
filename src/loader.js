@@ -9,7 +9,7 @@ export function loaderIntro({ reduced, titles, quick = false }) {
   const $$ = (s) => [...root.querySelectorAll(s)];
   const num = $('.ld-num'), bar = $('.loader-bar'), tick = $('.ld-tick');
   const all = $('.ld-all'), slashes = $$('.ld-s'), efs = $$('.ld-f'), div = $('.ld-div'), letters = $$('.ld-l');
-  const chrome = $$('.ld-corner, .ld-count, .ld-ticker, .loader-note');
+  const chrome = $$('.ld-corner, .ld-count, .ld-ticker');
 
   // the seam runs at the slash's slope: 16 across for every 72 up
   const seam = () => root.style.setProperty('--seam', `${(((16 / 72) * innerHeight) / 2 / innerWidth) * 100}%`);

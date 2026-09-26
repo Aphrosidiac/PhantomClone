@@ -125,7 +125,6 @@ body[data-theme='light'] .toggle > [aria-current='page'] { color: var(--bone); }
 .ld-pct { margin-top: .5em; font-size: .72rem; letter-spacing: 0; opacity: .45; }
 .ld-ticker { position: absolute; right: var(--margin); bottom: 30px; margin: 0; text-align: right; }
 .loader-bar { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--bone); transform-origin: 0 50%; transform: scaleX(0); }
-.loader-note { position: absolute; left: 50%; bottom: 34px; transform: translateX(-50%); width: min(90vw, 420px); text-align: center; opacity: .35; }
 
 /* ------------------------------------------------------------------ list view */
 .listview { position: fixed; inset: 0; z-index: 100; background: var(--black); overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity .3s ease-in-out; }
@@ -415,7 +414,6 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
 @media (max-width: 1023px) {
   .ld-lockup { width: 82vw; }
   .ld-corner { top: 20px; }
-  .loader-note { display: none; }
   .header { height: 80px; padding-top: 16px; }
   .header-grid { grid-template-columns: 1fr auto; }
   .logo { grid-column: 1; height: 55px; margin-top: -6px; padding-left: 4px; }
