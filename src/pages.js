@@ -18,7 +18,6 @@ export const footer = () => `
     <div class="c1">${MARK.replace('<svg', '<svg style="width:64px;fill:currentColor"')}</div>
     <div class="c2 mono">FF Dev Studio<br>${esc(CONTACT.city)}</div>
     <div class="c3 mono"><a href="mailto:${CONTACT.email}">${CONTACT.email}</a><a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a></div>
-    <div class="c4 mono">A recreation of the Phantom Studios site (phantom.land), built by FF Dev Studio with its own work and words. Not affiliated with Phantom.</div>
   </footer>`;
 
 export function project(slug) {

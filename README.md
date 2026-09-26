@@ -7,7 +7,7 @@ rebuilt from scratch and carrying **FF Dev Studio's own work, words and identity
 > **Not affiliated with Phantom.** The structure, interaction model and motion numbers are studied
 > from phantom.land; every line of code here is ours. The projects, images, copy, prices and brand
 > are FF Dev Studio's. The only files taken from the reference are its eight UI sound effects
-> (`public/sounds/`). The same notice appears on the site's loader, list view and footers.
+> (`public/sounds/`). The same notice appears on the site's loader and at the end of the list view (removed from the page footers at Fakhrul's request, 2026-09-26).
 
 - **Stack:** Vite (static SPA) · three.js · GSAP · vanilla JS/CSS — no framework
 - **Routes:** `/` work grid (+ list view, filters) · `/projects/:slug` ×14 · `/about` · `/about/approach` · `/pricing` · `/contact` (overlay) · 404
