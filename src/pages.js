@@ -142,41 +142,48 @@ export function about(tab = 'studio') {
 }
 
 export function pricing() {
+  // one row system with About: a rule, a mono label in the first three columns, content in the other nine
   return {
     theme: 'dark',
     html: `
     <div class="pricing">
-      <section class="pr-hero">
+      <section class="pr-row pr-hero">
         <h1 class="mono label-dot">Pricing</h1>
         <div class="content">
           <p class="big reveal">${split('Projects start from RM1,000. Most land between RM1,000 and RM5,000, quoted after one conversation. You talk to the person who builds it — which is why a studio this size can do work this detailed at a price that makes sense.')}</p>
           <a class="btn-pill" href="#bands">View the bands</a>
         </div>
       </section>
-      <section class="values" id="bands" aria-label="Estimating bands">
-        ${PRICING.bands.map((b, i) => `
-        <div class="value">
-          <p class="mono">Band 0${i + 1}</p>
-          <h3>${esc(b.name)}</h3>
-          <p class="price">${esc(b.range)}</p>
-          <p>${esc(b.line)}</p>
-          <p class="mono d">${esc(b.days)}</p>
-        </div>`).join('')}
+      <section class="pr-row" id="bands" aria-labelledby="pr-bands">
+        <h2 class="mono label-dot" id="pr-bands">Bands</h2>
+        <div class="content tiers">
+          ${PRICING.bands.map((b, i) => `
+          <div class="tier">
+            <p class="mono">Band 0${i + 1}</p>
+            <h3>${esc(b.name)}</h3>
+            <p class="price">${esc(b.range)}</p>
+            <p class="line">${esc(b.line)}</p>
+            <p class="mono d">${esc(b.days)}</p>
+          </div>`).join('')}
+        </div>
       </section>
-      <section class="roles">
-        <div class="roles-head"><p class="mono label-dot">Care</p><h2>Managed care, if you want it:</h2></div>
-        ${PRICING.care.map((c) => `
-        <div class="role">
-          <span class="mono">Care plan</span>
-          <h3>${esc(c.name)}${c.note ? `<span class="tag mono">${esc(c.note)}</span>` : ''}</h3>
-          <span class="p">${esc(c.price)}</span>
-          <span class="y">${esc(c.year)}</span>
-        </div>`).join('')}
-        <div class="roles-head" style="margin-top:22px"><span></span><p class="body-copy" style="grid-column:4/span 7;font-size:15px;opacity:.7">${esc(PRICING.care.map((c) => `${c.name}: ${c.line}`).join(' '))}</p></div>
-      </section>
-      <section class="wild">
+      <section class="pr-row" aria-labelledby="pr-care">
+        <h2 class="mono label-dot" id="pr-care">Care</h2>
         <div class="content">
-          <p class="mono label-dot" style="margin-bottom:22px">Terms</p>
+          <p class="lead">Managed care, if you want it.</p>
+          <ul class="plans">
+            ${PRICING.care.map((c) => `
+            <li class="plan">
+              <h3>${esc(c.name)}${c.note ? `<span class="tag mono">${esc(c.note)}</span>` : ''}</h3>
+              <p class="line">${esc(c.line)}</p>
+              <p class="price">${esc(c.price)}<span>${esc(c.year)}</span></p>
+            </li>`).join('')}
+          </ul>
+        </div>
+      </section>
+      <section class="pr-row" aria-labelledby="pr-terms">
+        <h2 class="mono label-dot" id="pr-terms">Terms</h2>
+        <div class="content terms">
           <p>${esc(PRICING.terms)} These are estimating bands, not quality tiers — a project is quoted above them when its real scope needs it.</p>
           <p>Not sure where yours sits? Send the brief and get a straight answer.</p>
           <a class="btn-pill" href="/contact" data-link>Start a project</a>

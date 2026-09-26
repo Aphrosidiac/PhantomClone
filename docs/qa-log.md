@@ -34,3 +34,10 @@ Lesson recorded: the first border "fix" was declared done from a still screensho
 - Real Chrome, production build: the grid renders over the prerendered home; cold `/projects/lewix-ai` and `/contact` load with no console errors. Client navigation swaps title, canonical, og:image and JSON-LD on every route, including opening and closing the contact overlay. The "Let's Talk" path initially missed this, and it is now fixed.
 - Two SEO audit passes (technical + schema). Fixed from them: `/contact` prerendered the home body under a contact title (it now has its own hidden h1, brief and links); `Organization.founder` pointed at a Person node missing from 5 page graphs (every graph now carries it); HSTS added. A script checked every page's graph after the rebuild: zero dangling `@id` references.
 - Titles ≤ 65 characters and descriptions ≤ 162 on all 20 files.
+
+## 2026-09-26 — Pricing page layout
+
+- Reported broken. Causes: the hero started at the header's edge, so the header blurb sat on the headline. The "Pricing" label was an inline-flex grid item stretched to the hero's height, which centred it mid-screen. Band titles at 4.2rem wrapped in a third of the width, prices were 13px mono, and all three care descriptions ran together as one paragraph under the table. Terms floated with nothing to anchor it.
+- Rebuilt on the About page's row system. Each section is a rule, a mono label in columns 1–3 (now the h2s: Bands, Care, Terms) and content in 4–12. Bands are three panels with the price as the second-largest text. Care plans are rows of name, what's included, and monthly/yearly price. Copy is unchanged.
+- Header between 1024 and 1439px: the blurb's columns overlapped the sound toggle, so grid auto-placement pushed it to a second row, below the 104px blur band and over the page on every route. Now pinned to row 1 with non-overlapping columns. Measured at 1024/1100/1280/1408/1440/1600: all items end ≤ 96px, no horizontal overlap.
+- Checked at 1440, 1100 and 390 (full page) and in real Chrome at 1408. The shared `.btn-pill` rule was dropped in the rewrite and then restored; it is also used by About and 404.
