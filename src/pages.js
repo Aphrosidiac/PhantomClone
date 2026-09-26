@@ -223,7 +223,7 @@ export function faq() {
         <p class="mono label-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
         <div class="content">
           <h2 id="q-${f.id}">${esc(f.q)}</h2>
-          ${f.a.map((t) => `<p>${esc(t)}</p>`).join('')}
+          ${f.a.map((t) => `<p>${esc(t).replace(CONTACT.email, `<!--email_off-->${CONTACT.email}<!--/email_off-->`)}</p>`).join('')}
           ${f.list ? `<ul class="incl">${f.list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
           ${f.after ? `<p>${esc(f.after)}</p>` : ''}
           ${f.more ? `<a class="more mono" href="${f.more[0]}" data-link>${esc(f.more[1])}</a>` : ''}
