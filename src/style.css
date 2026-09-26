@@ -303,7 +303,6 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
 .team .card .ph { aspect-ratio: 4 / 5; background: var(--black); display: grid; place-items: center; border-radius: 3px; }
 .team .card .ph svg { width: 45%; fill: var(--bone); }
 .team .card h4 { margin: 14px 0 2px; font-size: 18px; }
-.team .note { grid-column: 7 / span 5; align-self: start; max-width: 28em; }
 .steps { counter-reset: s; margin: 0 var(--margin); }
 .steps li { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: 22px 0 46px; border-top: 1px solid rgba(255,255,255,.14); }
 .steps li .n { grid-column: 1 / span 3; }

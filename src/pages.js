@@ -128,7 +128,6 @@ export function about(tab = 'studio') {
     <section class="a-row a-block" style="padding-bottom:40px;margin-top:150px"><p class="mono">Team</p><div class="content"><p class="statement reveal">${split('Design, development and motion, made in-house from the first sketch to launch.')}</p></div></section>
     <div class="team">
       <div class="card"><div class="ph">${MARK}</div><h4>Fakhrul</h4><p class="mono" style="opacity:.6">Founder · Design · Development</p></div>
-      <p class="note body-copy">Every project is scoped, designed, built and launched here — and looked after once it is live, on a care plan if you want one.</p>
     </div>`;
   const approach = `
     <section class="a-row a-hero"><p class="mono" aria-hidden="true">Approach</p><div class="content"><span class="tag mono">Approach</span><h1 class="sub-title">Smallest scope, strongest result</h1></div></section>
