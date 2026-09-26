@@ -1,4 +1,4 @@
-// UI sounds (files from the reference, reused with Fakhrul's go-ahead). Off by default, as there.
+// UI sounds. Off by default.
 const FILES = ['click', 'grid', 'load', 'other', 'project', 'riser', 'swipe', 'whoosh'];
 let ctx = null; const buffers = {}; let lastGrid = 0;
 

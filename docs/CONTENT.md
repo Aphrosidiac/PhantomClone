@@ -40,7 +40,7 @@ caps at full resolution, beyond that cells are scaled down automatically.
 
 ## Project page media
 
-Each project page is a cover plus rows, laid out the way the reference's case studies are: full-width
+Each project page is a cover plus rows, laid out as case studies: full-width
 16:9 frames, 2-up frames side by side and 3-up phone screens, each framed on the project's `plate`
 colour (in `src/data.js`) — desktop shots in a browser window showing the page's address. Every image is a screenshot of the live
 site, captured and encoded by `tools/shots.mjs` from the recipe in `tools/shots.recipes.mjs`:
@@ -64,7 +64,7 @@ recipe's `init: EAGER` loads them up front), a 3D stage that fills over a second
 
 ## Video tiles
 
-Moving tiles come from one video atlas, the way the reference does it (`docs/reference-spec.md` §6a):
+Moving tiles come from one video atlas:
 every clip is a 5 s loop at 20 fps, packed 3 across into `public/media/video/atlas.mp4` (1920×1440,
 16:9 cells of 640×360) plus a half-size `atlas-phone.mp4`. `src/video-atlas.json` maps each project
 slug to its cell; a project without a cell keeps its still `tile.jpg`.

@@ -1,13 +1,7 @@
 # FF Grid
 
 The FF Dev Studio portfolio as an infinite, draggable WebGL work grid seen through a barrel lens —
-a recreation of the experience of [phantom.land](https://www.phantom.land) (Phantom Studios),
-rebuilt from scratch and carrying **FF Dev Studio's own work, words and identity**.
-
-> **Not affiliated with Phantom.** The structure, interaction model and motion numbers are studied
-> from phantom.land; every line of code here is ours. The projects, images, copy, prices and brand
-> are FF Dev Studio's. The only files taken from the reference are its eight UI sound effects
-> (`public/sounds/`). The same notice appears at the end of the list view (removed from the loader and page footers at Fakhrul's request, 2026-09-26).
+FF Dev Studio's own work, words and identity.
 
 - **Stack:** Vite (static SPA) · three.js · GSAP · vanilla JS/CSS — no framework
 - **Routes:** `/` work grid (+ list view, filters) · `/projects/:slug` ×14 · `/about` · `/about/approach` · `/pricing` · `/contact` (overlay) · 404
@@ -54,7 +48,7 @@ src/
 public/
   media/<slug>/       tile.jpg (grid) + s-*.webp (project page, from tools/shots.mjs) per project
   fonts/              Instrument Sans (variable, subset) + DM Mono — both SIL OFL
-  sounds/             UI sounds (from the reference)
+  sounds/             UI sounds
   ff-*.svg, og.jpg    brand marks, favicon, social image; logo.png + touch icons + site.webmanifest
   brand/              client logos for the About strip (kit files + rendered lockups)
   _headers            Cloudflare Pages cache + security headers
@@ -62,7 +56,7 @@ tools/                verification instruments (Playwright captures + in-page GP
                       (share cards, icons) and client-logos.mjs (About strip lockups)
 scripts/prerender.mjs static HTML per route + sitemap.xml, robots.txt, llms.txt (runs in npm run build)
 scripts/deploy.sh     Cloudflare Pages direct upload
-docs/                 architecture, content guide, verification, spec, parity ledger, QA log
+docs/                 architecture, content guide, SEO, verification, QA log
 ```
 
 ## Documentation
@@ -73,9 +67,6 @@ docs/                 architecture, content guide, verification, spec, parity le
 | [docs/CONTENT.md](docs/CONTENT.md) | Adding or editing a project, pricing, copy, filters, sounds |
 | [docs/SEO.md](docs/SEO.md) | Prerendered routes, meta and JSON-LD per route, URLs and status codes, sitemap, what to redo when content changes |
 | [docs/VERIFICATION.md](docs/VERIFICATION.md) | The instruments in `tools/`, how to run them, and the recorded results |
-| [docs/reference-spec.md](docs/reference-spec.md) | What was measured on phantom.land, with provenance markers |
-| [docs/brief.md](docs/brief.md) | Scope: what was built, what deliberately was not |
-| [docs/parity.md](docs/parity.md) | Feature-by-feature ledger against the reference |
 | [docs/qa-log.md](docs/qa-log.md) | What was checked, how, and what it caught |
 
 ## Deploy
@@ -99,6 +90,5 @@ FF_BRANCH=preview npm run deploy    # preview alias, production untouched
 
 ## Credits
 
-- **Reference:** Phantom Studios, [phantom.land](https://www.phantom.land) — interaction model and UI sounds. Not affiliated.
 - **Fonts:** [Instrument Sans](https://github.com/Instrument/instrument-sans) (SIL OFL 1.1, licence in `public/fonts/`), [DM Mono](https://fonts.google.com/specimen/DM+Mono) (SIL OFL 1.1).
 - **Work, copy, imagery, brand:** FF Dev Studio — [ffdev.studio](https://ffdev.studio) · hello@ffdev.studio

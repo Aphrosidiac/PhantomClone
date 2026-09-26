@@ -18,7 +18,6 @@ Start the dev server first: `npm run dev` (port 3175).
 |---|---|
 | `node tools/states.mjs [base] [outDir]` | `docs/qa/shots/*.png` — home, hover, drag, list, filter (open/active), filtered grid + list, project (+ full page), about, approach, pricing, contact, form errors, form done, 404, cold `/contact`, and the phone set `m-*.png`. Prints URLs at each step, horizontal overflow at 390 px, and any page errors. |
 | `node tools/shot.mjs <url> <out.png> [WxH] [waitMs] [js]` | one screenshot; optional expression evaluated first and printed |
-| `node tools/research.mjs`, `node tools/research2.mjs` | the reference captures used for the spec (written to the git-ignored `docs/reference/`) |
 
 ## GPU probes (run in a real browser on `/`)
 

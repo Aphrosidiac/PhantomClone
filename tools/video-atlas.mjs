@@ -1,8 +1,8 @@
-// Build the grid's video atlas from screen recordings of the work, the way the reference does it:
+// Build the grid's video atlas from screen recordings of the work:
 // every clip cut to the same 5 s loop at 20 fps and packed into ONE video, so the browser decodes a
-// single stream however many tiles move. Differences from the reference, on purpose:
+// single stream however many tiles move. Choices, on purpose:
 //   - 16:9 cells instead of square ones: the clips are websites, and a letterboxed square wastes 44%
-//     of the pixels (the shader places the frame in the tile at its own aspect, docs/reference-spec §6a)
+//     of the pixels (the shader places the frame in the tile at its own aspect)
 //   - each loop blends its tail into its head, so there is no visible jump when it wraps
 //   - moov at the front (+faststart), so playback can start before the whole file has arrived
 //
@@ -45,8 +45,8 @@ const CLIPS = [
   { slug: 'big-brain-furniture-alt', file: '2026-09-24 17-26-44.mp4', at: 2.7 },
 ];
 
-const LOOP = 5;       // seconds, as the reference
-const FPS = 20;       // as the reference
+const LOOP = 5;       // seconds
+const FPS = 20;
 const SPEED = 1.5;    // recordings are browsed at reading pace; 1.5x reads as motion in a 5 s loop
 const FADE = 0.5;     // tail-into-head crossfade
 const CELL = { w: 640, h: 360 };

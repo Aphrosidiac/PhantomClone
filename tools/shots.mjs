@@ -1,6 +1,5 @@
-// Capture the project-page screenshots from the live sites, the way the reference's case studies are
-// built: full-width 16:9 frames, 2-up frames side by side and 3-up phone screens (414x670, the
-// reference's 0.62 portrait), all at 2x+ so a full-width row is sharp on a retina screen.
+// Capture the project-page screenshots from the live sites as case-study rows: full-width 16:9
+// frames, 2-up frames side by side and 3-up phone screens (414x670, a 0.62 portrait), all at 2x+ so a full-width row is sharp on a retina screen.
 //
 // usage: node tools/shots.mjs [slug ...]            capture raw frames into $SHOTS_RAW (default .shots-raw/)
 //        node tools/shots.mjs --encode [slug ...]   encode them into public/media/<slug>/ + src/shots.json

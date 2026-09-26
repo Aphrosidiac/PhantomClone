@@ -1,5 +1,4 @@
 // The work grid: an infinite, draggable plane of project tiles seen through a barrel lens.
-// Numbers are the reference's (docs/reference-spec.md §6); the code is ours.
 import * as THREE from 'three';
 import gsap from 'gsap';
 import { label } from './data.js';
@@ -9,14 +8,14 @@ const GRID = 11;              // instances per side; the plane wraps every 11 un
 const CAM_Z = 3.43;           // resting camera distance
 const PRESS_Z = CAM_Z + 0.4;  // pulled back while the pointer is down
 const AWAY_Z = CAM_Z + 1;     // pulled back while another page is open
-const FOV = 56;               // tuned so ~4.6 tiles span 1440px, as on the reference
+const FOV = 56;               // tuned so ~4.6 tiles span 1440px
 const LENS = -0.07;           // distortion factor, multiplied by aspect
 const MEDIA_ZOOM = 0.7;       // media occupies the centre 70% of a tile
-const CELL = 683;             // atlas cell size in px (the reference's label cell: 4096 / 6)
+const CELL = 683;             // atlas cell size in px (4096 / 6)
 const LABEL_IDLE = 0.8;       // label opacity when not hovered
 const BLUR_OPACITY = 0.7;     // hovered tile background strength
 const BLUR_ZOOM = 20;         // hovered background: the media's centre 1/20th, stretched over the tile
-const REF_CELL = 340;         // the reference's atlas cell in texels (2040 / 6); its blur is sized in these
+const REF_CELL = 340;         // hover-blur cell in texels (2040 / 6); the blur is sized in these
 
 
 // ---------------------------------------------------------------- atlas (Canvas2D, runtime)
@@ -140,11 +139,11 @@ const tileFrag = /* glsl */`
   varying float vHover;
   varying vec4 vVideo;         // this tile's frame in the video atlas: GL uv x, y (bottom), w, h; w = 0 for none
   vec2 atlas(vec2 uv) { return (vCell + vec2(uv.x, 1.0 - uv.y)) / cells; }
-  // The hovered background, as the reference does it: the centre 1/20th of the media stretched over
+  // The hovered background: the centre 1/20th of the media stretched over
   // the whole tile, 5x5 box-blurred. It keeps the picture's colours where they are (a sky stays at
   // the top, a floor at the bottom), so the tile glows in a gradient of the image rather than one
-  // flat mean. Sampled at the mip whose resolution matches the reference's 340px cell, so the
-  // gradient is as soft as theirs; the kernel steps one of their texels.
+  // flat mean. Sampled at the mip whose resolution matches a 340px cell, so the
+  // gradient stays soft; the kernel steps one texel of that cell.
   vec3 blurColour() {
     vec2 b = atlas((vUv - 0.5) / blurZoom + 0.5); b.y = 1.0 - b.y;
     vec3 c = vec3(0.0);
@@ -184,7 +183,7 @@ const tileFrag = /* glsl */`
     float cover = clamp(min(edge.x, edge.y) + 0.5, 0.0, 1.0);
     col = mix(col, texture2D(mediaMap, a).rgb, cover);
     if (v > 0.0) {
-      // the clip keeps its own aspect: full media width, letterboxed in the tile like the reference's
+      // the clip keeps its own aspect: full media width, letterboxed in the tile
       // landscape website tiles; outside it the background (black, or the hover glow) shows
       vec2 vm = (vUv - 0.5) / vec2(mediaZoom, mediaZoom / videoAspect) + 0.5;
       vec2 ve = min(vm, 1.0 - vm) / fwidth(vm);
@@ -236,7 +235,7 @@ const lensFrag = /* glsl */`
     gl_FragColor = vec4(c, 1.0);
   }`;
 
-// centre-out square spiral, as the reference lays its 121 slots
+// centre-out square spiral over the 121 slots
 function spiral(n) {
   const out = []; let x = Math.floor(n / 2), y = Math.floor(n / 2);
   out.push([x, y]);
@@ -262,7 +261,7 @@ export class WorkGrid {
     this.focusIndex = 0; this.lensFactor = 0;
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
     this.renderer.setClearColor(0x000000, 1);
-    // colours pass through as sRGB bytes end to end, like the reference's `linear` canvas
+    // colours pass through as sRGB bytes end to end
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
     this.canvas = this.renderer.domElement; this.canvas.className = 'grid-canvas';
     this.canvas.tabIndex = 0;
@@ -445,7 +444,7 @@ export class WorkGrid {
     if (t && this.active) this.onOpen?.(t.project);
   }
 
-  // Tab / shift-Tab walks the spiral, as the reference does
+  // Tab / shift-Tab walks the spiral
   focusStep(dir) {
     this.focusIndex = Math.max(0, this.focusIndex + dir);
     const t = this.tiles[this.focusIndex % this.tiles.length];
@@ -474,7 +473,7 @@ export class WorkGrid {
   }
 
   // ------------------------------------------------ lifecycle
-  // ------------------------------------------------ video atlas (docs/reference-spec.md §6a)
+  // ------------------------------------------------ video atlas
   // One detached, muted, inline, looping <video> behind every moving tile. Tiles keep their still
   // image until the first frame is decoded, then ease over. Reduced motion and data-saver keep stills.
   setupVideo() {
@@ -484,7 +483,7 @@ export class WorkGrid {
     v.muted = true; v.defaultMuted = true; v.playsInline = true; v.setAttribute('playsinline', '');
     v.loop = true; v.preload = 'auto'; v.crossOrigin = 'anonymous';
     v.src = innerWidth < 700 ? VIDEO.srcPhone : VIDEO.src;
-    // loop is set; the reference also rewinds on `ended`, for browsers that drop `loop` on detached video
+    // loop is set; also rewinds on `ended`, for browsers that drop `loop` on detached video
     v.addEventListener('ended', () => { v.currentTime = 0; if (this.videoWanted) v.play().catch(() => {}); });
     const tex = new THREE.VideoTexture(v);
     tex.generateMipmaps = true; tex.minFilter = THREE.LinearMipmapLinearFilter; tex.magFilter = THREE.LinearFilter;
@@ -496,7 +495,7 @@ export class WorkGrid {
     this.playVideo(this.videoWanted);
   }
 
-  // plays while the grid is the page (as the reference: fadeIn plays, fadeOut pauses) and the tab is visible
+  // plays while the grid is the page and the tab is visible
   playVideo(on) {
     this.videoWanted = on;
     if (!this.video) return;

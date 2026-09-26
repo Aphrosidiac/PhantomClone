@@ -64,7 +64,6 @@ function renderList() {
         </a>
       </li>`).join('')}</ul></div>`).join('')
     : `<p class="lv-empty">Nothing matches those filters. <button class="mono" type="button" data-clear style="text-decoration:underline">Clear filters</button></p>`;
-  $('#lv-groups').insertAdjacentHTML('beforeend', `<p class="lv-foot mono">A recreation of the Phantom Studios site, built by FF Dev Studio with its own work. Not affiliated.</p>`);
 }
 
 function setView(v, push = true) {

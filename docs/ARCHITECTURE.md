@@ -37,7 +37,7 @@ index.html ──► src/main.js ──► router ──► src/pages.js   (HTML
   Drawn at **2×** the media resolution (cap 8192 / 4096 on phones), because a 17 px caption in a
   683 px cell is only ~8 screen pixels tall and would otherwise be sampled from a blurred mip.
 
-A per-project **hover colour** is the mean of the centre quarter of its image — the reference blurs
+A per-project **hover colour** is the mean of the centre quarter of its image — it stands in for a blur of
 the centre of the media at 20× zoom, which comes to the same thing.
 
 Nothing is pre-baked, so adding a project needs no asset pipeline (see CONTENT.md).
@@ -54,7 +54,7 @@ Nothing is pre-baked, so adding a project needs no asset pipeline (see CONTENT.m
 
 ### Lens pass
 
-Straight from the reference's numbers:
+The tuned numbers:
 
 ```glsl
 m  = 2·(uv − .5);                       // screen → [-1, 1]
@@ -78,8 +78,7 @@ pixels at ~60 % whenever it sits between them). See VERIFICATION.md for the meas
   hundreds of MB of multisampled GPU memory. Typical results: 1440×900 @2× → supersample 1.27;
   1920×1080 @2× → 1.0; 3840×2160 @2× → pixel ratio 1.0.
 - FOV is derived from a target tile size: `unitPx = min(0.291·height, width / 2.6)` →
-  `fov = 2·atan(height / unitPx / (2·3.43))`. Desktop gets a ~306 px tile at 900 px tall (measured on the
-  reference); a portrait phone is limited by width and shows ~2.5 columns.
+  `fov = 2·atan(height / unitPx / (2·3.43))`. Desktop gets a ~306 px tile at 900 px tall; a portrait phone is limited by width and shows ~2.5 columns.
 - `?ss=` and `?ls=` URL parameters override the supersample and label scale — used for A/B probes.
 
 ### Input
@@ -88,8 +87,8 @@ pixels at ~60 % whenever it sits between them). See VERIFICATION.md for the meas
 |---|---|
 | Pointer down | camera to z+0.4 (0.4 s, expo.out) |
 | Drag (> 3 px) | pixel delta → world at depth z+0.58; release keeps the last delta as velocity, decaying `lerp(0, 4·dt)` |
-| Click (≤ 3 px) | opens the tile under the pointer. Hit-testing **inverts the lens** first, so the tile you see is the tile you get (the reference compares un-lensed coordinates and misses near the edges). |
-| Wheel / trackpad | moves the grid exactly the distance scrolled, eased over ~0.1 s; never feeds the drag inertia (trackpads bring their own momentum). Not on the reference; added for trackpads |
+| Click (≤ 3 px) | opens the tile under the pointer. Hit-testing **inverts the lens** first, so the tile you see is the tile you get. |
+| Wheel / trackpad | moves the grid exactly the distance scrolled, eased over ~0.1 s; never feeds the drag inertia (trackpads bring their own momentum). |
 | Arrows | pan |
 | Tab / Shift-Tab (canvas focused) | walk the spiral one tile at a time (0.3 s, power2.inOut); leaves the canvas at either end |
 | Enter | open the focused/hovered tile |
@@ -145,7 +144,7 @@ clients strip shows each brand's own logo from `public/brand/` (see CONTENT.md).
 ## 4. Styling — `src/style.css`
 
 Tokens on `:root`: FF palette (`--ink --bone --graphite --lime` …), `--sans` (Instrument Sans),
-`--mono` (DM Mono), `--margin: 24px`, `--gap: 12px`, and the reference's measured easings
+`--mono` (DM Mono), `--margin: 24px`, `--gap: 12px`, and the easings
 (`--ease-out .16,1,.3,1`, `--ease-inout .81,-.01,0,1`, `--ease-toggle .93,-.24,.4,1.17`).
 Header and page grids are 12 columns (16 at ≥1920 px). Breakpoints: 1024 (phone/tablet layout),
 1440, 1920. Every entrance animation animates **towards** a resting state that is already correct

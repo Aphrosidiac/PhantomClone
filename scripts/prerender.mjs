@@ -81,7 +81,7 @@ writeFileSync(join(DIST, 'llms.txt'), `# FF Dev Studio
 
 > FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. A studio in Kuala Lumpur where the person who scopes your site is the person who builds it. Projects start from RM1,000.
 
-This site is an index of FF Dev Studio's work, shown as a draggable WebGL grid. Its interaction model recreates the Phantom Studios site (phantom.land); the work, words and brand are FF Dev Studio's, and it is not affiliated with Phantom. The studio's main site is https://ffdev.studio.
+This site is an index of FF Dev Studio's work, shown as a draggable WebGL grid. The studio's main site is https://ffdev.studio.
 
 ## Pages
 

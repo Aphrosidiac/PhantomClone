@@ -1,5 +1,4 @@
-/* FF Grid — structure and numbers measured from the reference (docs/reference-spec.md),
-   identity from the FF brand kit (Ink / Bone / Graphite / Signal Lime, Instrument Sans). */
+/* FF Grid — identity from the FF brand kit (Ink / Bone / Graphite / Signal Lime, Instrument Sans). */
 
 @font-face { font-family: 'Instrument Sans'; src: url('/fonts/instrument-sans-var.woff2') format('woff2'); font-weight: 400 700; font-stretch: 75% 100%; font-display: swap; }
 @font-face { font-family: 'DM Mono'; src: url('/fonts/dmmono-400.woff2') format('woff2'); font-weight: 400; font-display: swap; }
@@ -48,7 +47,7 @@ ul { list-style: none; }
 .skip { position: fixed; left: 12px; top: -60px; z-index: 20000; background: var(--lime); color: var(--ink); padding: 10px 14px; border-radius: 40px; text-decoration: none; }
 .skip:focus { top: 12px; }
 
-/* mono detail — .68rem / 400 / 1.1 / caps, as the reference's typography_MonoDetail */
+/* mono detail — .68rem / 400 / 1.1 / caps */
 .mono { font-family: var(--mono); font-size: .68rem; font-weight: 400; letter-spacing: 0; line-height: 1.1; text-transform: uppercase; }
 
 /* ------------------------------------------------------------------ stage */
@@ -222,7 +221,7 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
 .p-facts { grid-column: 10 / span 3; display: grid; gap: 18px; align-content: start; }
 .p-facts dt { opacity: .5; margin-bottom: 4px; }
 .p-facts dd { margin: 0; font-size: 15px; }
-/* rows as the reference's case studies: full width, 2-up, 3-up phone screens — each shot
+/* case-study rows: full width, 2-up, 3-up phone screens — each shot
    framed on the project's plate so it reads as a picture of the site, with room around it */
 .p-shots { display: grid; gap: var(--gap); padding: 0 var(--margin); }
 .p-row { display: grid; gap: var(--gap); }
