@@ -38,6 +38,8 @@ const ROUTES = [
   { file: 'about/approach.html', route: { name: 'about', tab: 'approach' }, page: pages.about('approach') },
   { file: 'pricing.html', route: { name: 'pricing' }, page: pages.pricing() },
   { file: 'faq.html', route: { name: 'faq' }, page: pages.faq() },
+  { file: 'privacy.html', route: { name: 'privacy' }, page: pages.privacy() },
+  { file: 'cookies.html', route: { name: 'cookies' }, page: pages.cookies() },
   { file: 'contact.html', route: { name: 'contact' }, page: pages.contactSeo() },
   { file: '404.html', route: { name: '404' }, page: pages.notFound() },
 ];
@@ -65,7 +67,7 @@ for (const r of ROUTES) {
 // sitemap: every indexable route; images are the pages' own captures
 const indexable = ROUTES.filter((r) => r.route.name !== '404');
 const urlFor = (r) => SITE_URL + seoFor(r.route).path;
-const SOURCES = { home: ['src/data.js'], project: ['src/data.js', 'src/shots.json'], about: ['src/pages.js'], pricing: ['src/pages.js', 'src/data.js'], faq: ['src/data.js'], contact: ['src/pages.js'] };
+const SOURCES = { home: ['src/data.js'], project: ['src/data.js', 'src/shots.json'], about: ['src/pages.js'], pricing: ['src/pages.js', 'src/data.js'], faq: ['src/data.js'], privacy: ['src/legal.js'], cookies: ['src/legal.js'], contact: ['src/pages.js'] };
 const lastmodFor = (r) => changed([...SOURCES[r.route.name], ...(r.route.name === 'project' ? [`public/media/${r.route.slug}`] : [])]);
 const imagesFor = (r) => {
   if (r.route.name !== 'project') return [];
@@ -101,6 +103,8 @@ This site is an index of FF Dev Studio's work, shown as a draggable WebGL grid.
 - [About — Approach](${SITE_URL}/about/approach): the nine-step process and what every build includes
 - [Pricing](${SITE_URL}/pricing): estimating bands and care plans
 - [Questions](${SITE_URL}/faq): cost, timing, what is included, ownership, languages, hosting and what happens after launch
+- [Privacy](${SITE_URL}/privacy): what the site collects and your rights under Malaysia's PDPA 2010
+- [Cookies](${SITE_URL}/cookies): browser storage, analytics only with consent
 - [Contact](${SITE_URL}/contact): a seven-question brief, sent by email or WhatsApp
 
 ## Work

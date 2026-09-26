@@ -2,6 +2,7 @@
 // cards and schema.org JSON-LD. The same function feeds the build-time prerender
 // (scripts/prerender.mjs writes it into each route's static HTML) and the client router (which
 // swaps it on navigation), so a crawler and a visitor always see the same head.
+import { LEGAL_UPDATED_ISO } from './legal.js';
 import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, bySlug, media, label, STACK_LABEL } from './data.js';
 
 export const SITE_URL = String(import.meta.env?.VITE_SITE_URL || 'https://ffdev.studio').replace(/\/$/, '');
@@ -160,6 +161,14 @@ export function seoFor(route) {
       const title = 'Start a project — contact FF Dev Studio';
       const description = `Tell FF Dev Studio about your website: a seven-question brief, sent by email or WhatsApp. ${CONTACT.email} · WhatsApp ${CONTACT.whatsapp}.`;
       return { ...base, path, title, description, graph: [...core(), webpage('ContactPage', path, title, description, { about: { '@id': ORG }, breadcrumb: crumbs([['Contact', path]]) })] };
+    }
+    case 'privacy':
+    case 'cookies': {
+      const path = `/${route.name}`;
+      const [title, description, name] = route.name === 'privacy'
+        ? ['Privacy notice | FF Dev Studio', 'What ffdev.studio collects, why, who handles it and your rights under Malaysia’s Personal Data Protection Act 2010. Run by FF DEV STUDIO (SSM 202603234793).', 'Privacy']
+        : ['Cookies | FF Dev Studio', 'The cookies and browser storage ffdev.studio uses, what each is for and how long it is kept. Analytics only with your consent; change your choice here.', 'Cookies'];
+      return { ...base, path, title, description, graph: [...core(), webpage('WebPage', path, title, description, { about: { '@id': ORG }, dateModified: LEGAL_UPDATED_ISO, breadcrumb: crumbs([[name, path]]) })] };
     }
     case 'faq': {
       const path = '/faq';

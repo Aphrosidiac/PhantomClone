@@ -55,8 +55,7 @@ Parked until Fakhrul sets them up; `sameAs` stays empty until then.
   right default for a studio that wants to be known; say if you want them blocked.
 - **Cloudflare Email Obfuscation** is still on for the zone. The site opts out with
   `email_off`, so no change is needed; turning it off in Scrape Shield would also work.
-- **Privacy page.** Legal pages are parked. The contact overlay already states no cookies and no
-  analytics; a short `/privacy` page would make that citable. Your call.
+- ~~Privacy page~~ — DONE 2026-09-26: `/privacy` (PDPA 2010) and `/cookies`, with PostHog analytics behind a consent banner (docs/ANALYTICS.md).
 - **Bahasa Malaysia version** of the FAQ and pricing. Malaysian searches in BM are real
   (`prompts_v1.csv` p003); a translation needs your register (colloquial, not baku).
 

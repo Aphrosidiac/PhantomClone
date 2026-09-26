@@ -33,7 +33,7 @@ was removed), so unknown paths return a real 404.
 |---|---|
 | `/`, `/?zone=…&view=list` | `index.html` (200). The filter and list states canonicalise to `/`. |
 | `/projects/<slug>` | `projects/<slug>.html` (200) |
-| `/about`, `/about/approach`, `/pricing`, `/faq`, `/contact` | `about.html`, `about/approach.html`, `pricing.html`, `faq.html`, `contact.html` (200) |
+| `/about`, `/about/approach`, `/pricing`, `/faq`, `/privacy`, `/cookies`, `/contact` | `about.html`, `about/approach.html`, `pricing.html`, `faq.html`, `privacy.html`, `cookies.html`, `contact.html` (200) |
 | `/about/`, `/projects/x/`, `/index.html`, `/about.html` | 308 to the canonical URL, without the trailing slash or `.html` |
 | `/<slug>` (the previous ffdev.studio's project URLs) | 301 to `/projects/<slug>` (`_redirects`, written by the prerender from `PROJECTS`) |
 | anything else, including an unknown project | `404.html` (404, `noindex, follow`) |

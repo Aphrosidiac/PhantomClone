@@ -4,6 +4,10 @@ import * as pages from './pages.js';
 import { sound, SOUND_AVAILABLE } from './sound.js';
 import { loaderIntro } from './loader.js';
 import { applySeo } from './seo.js';
+import { initAnalytics, track } from './analytics.js';
+import { showConsent, refreshCookieStatus } from './consent.js';
+
+initAnalytics();
 
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
@@ -42,10 +46,11 @@ async function initGrid() {
   if (!hasWebGL2()) { setView('list'); return null; }
   grid = new WorkGrid(stage, {
     projects: PROJECTS, tileUrl, reduced,
-    onOpen: (p) => { sound.play('project'); navigate(`/projects/${p.slug}`); },
+    onOpen: (p) => { sound.play('project'); openSource = 'grid'; navigate(`/projects/${p.slug}`); },
     onHover: (p) => { if (p) { sound.play('grid', 0.35); if (grid?.keyboard) $('#live').textContent = `${p.title}, ${p.type}. Press Enter to open.`; } },
   });
-  stage.addEventListener('grid:dragstart', () => sound.play('swipe', 0.5));
+  let dragged = false;
+  stage.addEventListener('grid:dragstart', () => { sound.play('swipe', 0.5); if (!dragged) { dragged = true; track('grid_dragged'); } });
   await grid.load();
   return grid;
 }
@@ -76,7 +81,7 @@ function setView(v, push = true) {
   if (grid) grid.active = v === 'grid' && state.route?.name === 'home' && $('#filter').hidden;
   if (push) syncQuery();
 }
-$$('#viewtoggle button').forEach((b) => b.addEventListener('click', () => { sound.play('click'); setView(b.dataset.view); }));
+$$('#viewtoggle button').forEach((b) => b.addEventListener('click', () => { sound.play('click'); if (state.view !== b.dataset.view) track('view_changed', { view: b.dataset.view }); setView(b.dataset.view); }));
 
 // ------------------------------------------------------------------ filter
 const groups = { zones: '#f-zones', features: '#f-features', stack: '#f-stack', clients: '#f-clients' };
@@ -97,6 +102,7 @@ $('#filter').addEventListener('click', (e) => {
   if (g === 'zones') state.filters.zones = v ? (state.filters.zones.includes(v) ? [] : [v]) : [];
   else { const a = state.filters[g]; state.filters[g] = a.includes(v) ? a.filter((x) => x !== v) : [...a, v]; }
   applyFilters();
+  track('filter_changed', { group: g, value: v || 'all', on: g === 'zones' ? state.filters.zones.includes(v) : state.filters[g].includes(v), active_filters: filterCount(), results: filtered().length });
 });
 $('#f-reset').addEventListener('click', () => { clearFilters(); sound.play('click'); });
 function clearFilters() { for (const k in state.filters) state.filters[k] = []; applyFilters(); }
@@ -150,9 +156,14 @@ function match(path) {
   if (path === '/about/approach') return { name: 'about', tab: 'approach' };
   if (path === '/pricing' || path === '/pricing/') return { name: 'pricing' };
   if (path === '/faq' || path === '/faq/') return { name: 'faq' };
+  if (path === '/privacy' || path === '/privacy/') return { name: 'privacy' };
+  if (path === '/cookies' || path === '/cookies/') return { name: 'cookies' };
   if (path === '/contact' || path === '/contact/') return { name: 'contact' };
   return { name: '404' };
 }
+
+// where the next project view came from: 'grid' | 'list' | 'related' (set by the click that opens it)
+let openSource = null;
 
 let revealObs;
 function wireReveals() {
@@ -173,8 +184,13 @@ async function render(first = false, forcePath = null) {
   closeContact(false);
   const same = state.route && state.route.name === r.name && state.route.slug === r.slug && state.route.tab === r.tab;
   state.route = r;
-  const page = r.name === 'home' ? pages.homeSeo() : r.name === 'project' ? pages.project(r.slug) : r.name === 'about' ? pages.about(r.tab) : r.name === 'pricing' ? pages.pricing() : r.name === 'faq' ? pages.faq() : pages.notFound();
+  const page = r.name === 'home' ? pages.homeSeo() : r.name === 'project' ? pages.project(r.slug) : r.name === 'about' ? pages.about(r.tab) : r.name === 'pricing' ? pages.pricing() : r.name === 'faq' ? pages.faq() : r.name === 'privacy' ? pages.privacy() : r.name === 'cookies' ? pages.cookies() : pages.notFound();
   if (r.name === 'project' && page.status === 404) r.name = '404';
+  if (r.name === 'project' && !same) {
+    const p = PROJECTS.find((x) => x.slug === r.slug);
+    track('project_viewed', { slug: p.slug, title: p.title, zone: p.zone, client: p.client, source: openSource || (first ? 'landing' : 'link') });
+  }
+  openSource = null;
   applySeo(r);
   body.dataset.theme = page.theme;
   body.dataset.route = r.name;
@@ -193,6 +209,7 @@ async function render(first = false, forcePath = null) {
     window.scrollTo(0, 0);
     wireReveals();
     syncAllToggles();
+    refreshCookieStatus();
     if (!first) pageEl.focus({ preventScroll: true });
   }
   if (r.name === 'home') {
@@ -220,7 +237,8 @@ document.addEventListener('click', (e) => {
   if (u.origin !== location.origin) return;
   e.preventDefault();
   sound.play('click');
-  if (u.pathname === '/contact') { history.pushState({}, '', '/contact'); applySeo({ name: 'contact' }); openContact(); return; }
+  if (u.pathname.startsWith('/projects/')) openSource = a.closest('.lv-link') ? 'list' : a.closest('.rel') ? 'related' : 'link';
+  if (u.pathname === '/contact') { contactTrigger = a.classList.contains('cta') ? 'header' : (a.textContent || '').trim().toLowerCase().slice(0, 40); history.pushState({}, '', '/contact'); applySeo({ name: 'contact' }); openContact(); return; }
   navigate(u.pathname + u.search);
 });
 
@@ -255,7 +273,7 @@ function contactHome() {
       <div class="c-card"><div><p class="mono label-dot">Anything else</p><p class="t">Just saying hi.</p></div>
         <div class="chips"><a class="chip" href="mailto:${CONTACT.email}"><span>Email</span><span>${CONTACT.email}</span></a><a class="chip" href="${CONTACT.wa}" target="_blank" rel="noopener"><span>WhatsApp</span><span>${esc(CONTACT.whatsapp)}</span></a></div></div>
     </div>
-    <p class="c-privacy">FF Dev Studio sets no cookies and runs no analytics on this site. Whatever you send goes to ${CONTACT.email} and nowhere else.<br>${CONTACT.legalName} (${CONTACT.regNo}), ${CONTACT.city}.</p>
+    <p class="c-privacy">Nothing you type here leaves your browser until you send it yourself, and then it goes to ${CONTACT.email} and nowhere else. Analytics only with your consent — <a href="/privacy" data-link>privacy</a> · <button type="button" data-cookie-settings>cookie settings</button>.<br>${CONTACT.legalName} (${CONTACT.regNo}), ${CONTACT.city}.</p>
   </div>`;
 }
 function contactForm() {
@@ -291,15 +309,17 @@ function contactDone(d) {
       <h2 id="contact-title">Nice one!</h2>
       <p>Thank you for sharing. Your brief is ready — send it whichever way suits you and it lands with the person who will build it.</p>
       <p style="opacity:.6">Nothing has been sent yet. This site has no server of its own, so the message goes from your email or WhatsApp, where you can read it first.</p>
-      <div class="row"><a href="${mail}">Send by email</a><a href="${wa}" target="_blank" rel="noopener">Send on WhatsApp</a><button type="button" data-c="finish">Finish</button></div>
+      <div class="row ph-no-capture"><a href="${mail}" data-send="email">Send by email</a><a href="${wa}" target="_blank" rel="noopener" data-send="whatsapp">Send on WhatsApp</a><button type="button" data-c="finish">Finish</button></div>
     </div>
   </div>`;
 }
 const CLOSE = '<button class="c-close" type="button" data-c="close" aria-label="Close"><svg viewBox="0 0 16 16"><path d="M2 2l12 12M14 2 2 14"/></svg></button>';
 let returnFocus = null;
+let contactTrigger = null;
 function openContact(view = 'home') {
   const c = $('#contact');
-  if (c.hidden) { returnFocus = document.activeElement; sound.play('whoosh', 0.6); }
+  if (c.hidden) { returnFocus = document.activeElement; sound.play('whoosh', 0.6); track('contact_opened', { trigger: contactTrigger || 'url', page: state.route?.name || 'home' }); contactTrigger = null; }
+  if (view === 'form') track('brief_started');
   c.innerHTML = CLOSE + (view === 'form' ? contactForm() : contactHome());
   c.hidden = false; body.classList.add('overlay-open');
   if (grid) grid.active = false;
@@ -336,10 +356,22 @@ $('#contact').addEventListener('submit', (e) => {
   const first = Object.keys(errs)[0];
   if (first) { $(`[name="${first}"]`, f).focus(); sound.play('other', 0.5); return; }
   sound.play('project');
+  // what kind of project, never what was written: no name, email, company, note or links
+  track('brief_completed', { kickoff: KICKOFF.indexOf(d.kickoff) + 1, work: d.work, has_note: !!d.note, has_refs: !!d.refs });
   $('#contact').innerHTML = CLOSE + contactDone(d);
   $('#contact').scrollTop = 0;
   $('#contact h2').setAttribute('tabindex', '-1'); $('#contact h2').focus();
 });
+// outbound actions that matter: the brief sent, a direct email/WhatsApp tap, a project's live site
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href]'); if (!a) return;
+  if (a.dataset.send) { track('brief_sent', { channel: a.dataset.send }); return; }
+  const href = a.getAttribute('href');
+  const channel = href.startsWith('mailto:') ? 'email' : href.includes('wa.me/') ? 'whatsapp' : null;
+  if (channel) { track('contact_link_clicked', { channel, place: a.closest('#contact') ? 'contact' : a.closest('.foot') ? 'footer' : a.closest('.studios') ? 'about' : state.route?.name || 'other' }); return; }
+  if (a.classList.contains('p-live')) track('live_site_opened', { slug: state.route?.slug, host: new URL(a.href).host });
+}, true);
+
 // focus trap inside the dialog
 $('#contact').addEventListener('keydown', (e) => {
   if (e.key !== 'Tab') return;
@@ -393,6 +425,7 @@ tick(); setInterval(tick, 10000);
   await intro.finish(() => {
     T.loaderDone = Math.round(performance.now());
     syncAllToggles();
+    showConsent();
     g.then(() => {
       if (!grid) return;
       grid.setProjects(filtered());

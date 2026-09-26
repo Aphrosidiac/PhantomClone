@@ -1,4 +1,5 @@
 // Page templates. Each returns { html, theme }; titles and meta live in seo.js.
+import { PRIVACY, STORAGE, LEGAL_UPDATED } from './legal.js';
 import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -21,6 +22,7 @@ export const footer = () => `
     <div class="c1">${MARK.replace('<svg', '<svg style="width:64px;fill:currentColor"')}</div>
     <div class="c2 mono">FF Dev Studio<br>${esc(CONTACT.city)}<br><span style="opacity:.6">${esc(CONTACT.legalName)} (${esc(CONTACT.regNo)})</span></div>
     <div class="c3 mono">${mail()}<a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="/faq" data-link>Questions</a></div>
+    <div class="c4 mono"><a href="/privacy" data-link>Privacy</a><a href="/cookies" data-link>Cookies</a><button type="button" data-cookie-settings>Cookie settings</button></div>
   </footer>`;
 
 export function project(slug) {
@@ -234,6 +236,81 @@ export function faq() {
         <div class="content terms">
           <p>Anything not answered here, ask directly. WhatsApp ${esc(CONTACT.whatsapp)} or ${mail()}.</p>
           <a class="btn-pill" href="/contact" data-link>Start a project</a>
+        </div>
+      </section>
+      ${footer()}
+    </div>`,
+  };
+}
+
+// /privacy and /cookies — the FAQ's rows: a label in columns 1–3, the section in 4–12
+const legalRow = (s, i) => `
+      <section class="pr-row faq-q" id="${s.id}" aria-labelledby="l-${s.id}">
+        <p class="mono label-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
+        <div class="content">
+          <h2 id="l-${s.id}">${esc(s.h)}</h2>
+          ${(s.p || []).map((t) => `<p>${esc(t).replace(CONTACT.email, `<!--email_off-->${CONTACT.email}<!--/email_off-->`)}</p>`).join('')}
+          ${s.list ? `<ul class="bullets">${s.list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
+          ${s.after ? `<p>${esc(s.after).replace(CONTACT.email, `<!--email_off-->${CONTACT.email}<!--/email_off-->`)}</p>` : ''}
+        </div>
+      </section>`;
+const legalHero = (h1, line) => `
+      <section class="pr-row pr-hero">
+        <h1 class="mono label-dot">${h1}</h1>
+        <div class="content">
+          <p class="big reveal">${split(line)}</p>
+          <p class="mono updated">Last updated ${LEGAL_UPDATED}</p>
+        </div>
+      </section>`;
+
+export function privacy() {
+  return {
+    theme: 'dark',
+    html: `
+    <div class="pricing legal">
+      ${legalHero('Privacy', 'What this site collects, why, who handles it, and what you can do about it.')}
+      ${PRIVACY.map(legalRow).join('')}
+      ${footer()}
+    </div>`,
+  };
+}
+
+export function cookies() {
+  const when = { choice: 'After you choose', accept: 'Only if you accept' };
+  return {
+    theme: 'dark',
+    html: `
+    <div class="pricing legal">
+      ${legalHero('Cookies', 'One strictly necessary item remembers your choice. Everything else is analytics, and only if you accept.')}
+      <section class="pr-row faq-q" id="choice" aria-labelledby="l-choice">
+        <p class="mono label-dot" aria-hidden="true">01</p>
+        <div class="content">
+          <h2 id="l-choice">Your choice</h2>
+          <p data-cookie-status>Not chosen yet — nothing is collected until you choose.</p>
+          <div class="consent-actions"><button type="button" class="btn-pill" data-consent="accept">Accept</button><button type="button" class="btn-pill" data-consent="reject">Reject</button></div>
+        </div>
+      </section>
+      <section class="pr-row faq-q" id="what" aria-labelledby="l-what">
+        <p class="mono label-dot" aria-hidden="true">02</p>
+        <div class="content">
+          <h2 id="l-what">What each choice means</h2>
+          <ul class="bullets">
+            <li>Accept: PostHog analytics runs with a cookie and local storage, so visits can be linked and recorded, with everything you type hidden.</li>
+            <li>Reject: PostHog counts the visit without cookies or storage. There is no recording, and the only identifier is a code calculated on PostHog’s servers that changes every day.</li>
+            <li>Before you choose, nothing is collected or stored.</li>
+          </ul>
+          <p>How the data is used and who handles it is in the <a href="/privacy" data-link>privacy notice</a>.</p>
+        </div>
+      </section>
+      <section class="pr-row faq-q" id="list" aria-labelledby="l-list">
+        <p class="mono label-dot" aria-hidden="true">03</p>
+        <div class="content">
+          <h2 id="l-list">Everything this site stores in your browser</h2>
+          <div class="table-wrap"><table class="storage">
+            <thead><tr><th scope="col">Name</th><th scope="col">Type</th><th scope="col">Purpose</th><th scope="col">Kept for</th><th scope="col">Set</th></tr></thead>
+            <tbody>${STORAGE.map((s) => `<tr><td class="mono" data-l="Name">${esc(s.name)}</td><td data-l="Type">${esc(s.type)}</td><td data-l="Purpose">${esc(s.purpose)}</td><td data-l="Kept for">${esc(s.life)}</td><td data-l="Set">${when[s.when]}</td></tr>`).join('')}</tbody>
+          </table></div>
+          <p>Nothing else: no advertising cookies, no third-party cookies, and the fonts are served from this site.</p>
         </div>
       </section>
       ${footer()}

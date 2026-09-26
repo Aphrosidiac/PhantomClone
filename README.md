@@ -4,7 +4,7 @@ The FF Dev Studio portfolio as an infinite, draggable WebGL work grid seen throu
 FF Dev Studio's own work, words and identity.
 
 - **Stack:** Vite (static SPA) · three.js · GSAP · vanilla JS/CSS — no framework
-- **Routes:** `/` work grid (+ list view, filters) · `/projects/:slug` ×14 · `/about` · `/about/approach` · `/pricing` · `/faq` · `/contact` (overlay) · 404
+- **Routes:** `/` work grid (+ list view, filters) · `/projects/:slug` ×14 · `/about` · `/about/approach` · `/pricing` · `/faq` · `/privacy` · `/cookies` · `/contact` (overlay) · 404
 - **Brand:** `//FF` mark, Instrument Sans, Ink / Bone / Graphite with Signal Lime as a sparse accent — from the FF brand kit
 
 ---
@@ -43,6 +43,9 @@ src/
   pages.js            HTML templates: project, about, pricing, 404, home SEO block
   seo.js              per-route title, meta, canonical, share cards, JSON-LD (prerender + router)
   data.js             the content model: projects, zones, filters, pricing, FAQ, contact
+  analytics.js        PostHog (lazy chunk, consent-aware) + track() — see docs/ANALYTICS.md
+  consent.js          the cookie banner and "Cookie settings"
+  legal.js            /privacy and /cookies content — must match the code
   sound.js            Web Audio UI sounds (lazy-loaded on first enable; disabled for now by SOUND_AVAILABLE)
   style.css           tokens + every component, desktop and phone
 public/
