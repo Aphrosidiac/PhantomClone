@@ -276,7 +276,7 @@ export function privacy() {
 }
 
 export function cookies() {
-  const when = { choice: 'After you choose', accept: 'Only if you accept' };
+  const when = { choice: 'After you choose', accept: 'Only if you accept', internal: 'Only on FF Dev Studio’s devices' };
   return {
     theme: 'dark',
     html: `

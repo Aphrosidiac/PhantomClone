@@ -88,7 +88,8 @@ export const PRIVACY = [
 
 // Every browser storage item the site can create — read from a real browser after Reject and after
 // Accept (2026-09-26, posthog-js 1.434.14, defaults '2026-08-30'). Re-check after a posthog-js upgrade.
-// `when`: 'choice' = after either choice (strictly necessary), 'accept' = only after Accept.
+// `when`: 'choice' = after either choice (strictly necessary), 'accept' = only after Accept,
+// 'internal' = only on FF's own devices (?ff_internal=1).
 const T = 'phc_t6rrEspDXb4Ubvy8KdsVCV9YwVyPjAo34Yg9xC3WgEdN';
 export const STORAGE = [
   { name: `__ph_opt_in_out_${T}`, type: 'Local storage', purpose: 'Remembers your cookie choice, so the banner does not ask again.', life: 'Until you clear it', when: 'choice' },
@@ -97,5 +98,6 @@ export const STORAGE = [
   { name: `ph_${T}_posthog`, type: 'Local storage', purpose: 'PostHog analytics: the same IDs, plus PostHog’s settings for this site.', life: 'Until you clear it', when: 'accept' },
   { name: `ph_${T}_posthog__flags`, type: 'Local storage', purpose: 'PostHog’s feature settings for this site. Holds nothing about you.', life: 'Until you clear it', when: 'accept' },
   { name: `ph_${T}_posthog`, type: 'Session storage', purpose: 'PostHog analytics: details of the current visit in this tab.', life: 'Until the tab is closed', when: 'accept' },
+  { name: 'ff_internal', type: 'Local storage', purpose: 'Marks FF Dev Studio’s own devices, so our own visits are left out of the statistics. Never set for visitors.', life: 'Until removed', when: 'internal' },
   { name: `ph_${T}_window_id`, type: 'Session storage', purpose: 'Tells visits in different tabs apart, so recordings are not mixed up.', life: 'Until the tab is closed', when: 'accept' },
 ];

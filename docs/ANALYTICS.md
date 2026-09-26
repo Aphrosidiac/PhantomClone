@@ -66,6 +66,21 @@ retention (free plan), test-account filter excludes `$host` localhost / 127.0.0.
 config (`/array/<token>/config.js`) reports `sessionRecording: false` and the SDK never starts a
 recording — found and confirmed 2026-09-26. The SDK only runs on ffdev.studio anyway.
 
+## FF's own visits
+
+Open any page once with `?ff_internal=1` on each of your devices and browsers (`?ff_internal=0`
+undoes it). It sets `ff_internal` in that browser's localStorage, `before_send` adds
+`ff_internal: true` to every event from it, and the project's test-account filter (`ff_internal` is
+not set) hides those events from every chart. Works whether you accept or reject cookies.
+
+## Alerts and the weekly email
+
+- **Enquiry alert** — insight "Enquiries (alert)" (hourly `Enquiry` action count), checked hourly;
+  emails the PostHog account (rikaidrawings@gmail.com) when it is above 0. Instant email
+  destinations are a paid PostHog feature; Discord and Slack destinations are free if ever wanted.
+- **Error alert** — insight "Errors (alert)" (hourly `$exception` count), emails when above 5 in an hour.
+- **Weekly email** — the ffdev.studio dashboard, every Monday, to hello@ffdev.studio.
+
 ## Testing it
 
 - Real browser only: posthog-js drops events from headless browsers (bot user agents), so a

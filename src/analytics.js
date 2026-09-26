@@ -20,10 +20,24 @@ const TOKEN = import.meta.env.VITE_POSTHOG_KEY || 'phc_t6rrEspDXb4Ubvy8KdsVCV9Yw
 const HOSTS = /^(ffdev\.studio|localhost|127\.0\.0\.1)$/;
 export const enabled = HOSTS.test(location.hostname) && import.meta.env.VITE_POSTHOG_DISABLED !== '1';
 
+// FF's own devices: open any page with ?ff_internal=1 once (?ff_internal=0 undoes it). The flag lives
+// in this browser's localStorage and every event from it carries ff_internal: true, which the PostHog
+// project's test-account filter hides from every chart. Visitors never get it.
+const INTERNAL_KEY = 'ff_internal';
+function internal() {
+  try {
+    const q = new URLSearchParams(location.search).get(INTERNAL_KEY);
+    if (q === '1') localStorage.setItem(INTERNAL_KEY, '1');
+    if (q === '0') localStorage.removeItem(INTERNAL_KEY);
+    return localStorage.getItem(INTERNAL_KEY) === '1';
+  } catch { return false; }
+}
+
 let ready = null; // Promise<PostHog>
 let ph = null; // the instance, once loaded: calls go straight to it, so events keep the page they happened on
 export function initAnalytics() {
   if (!enabled || ready) return ready;
+  const isInternal = internal();
   ready = import('posthog-js').then(({ default: posthog }) => {
     posthog.init(TOKEN, {
       api_host: '/ingest',
@@ -36,6 +50,8 @@ export function initAnalytics() {
       // left out of recordings and autocapture entirely — the finished brief's mailto:/wa.me links carry
       // what the visitor wrote, so they are marked
       session_recording: { maskAllInputs: true },
+      // tags every event from FF's own devices, whatever the consent state (see internal() above)
+      before_send: (event) => { if (isInternal && event) event.properties = { ...event.properties, ff_internal: true }; return event; },
     });
     window.__ph = ph = posthog; // for debugging from the console
     return posthog;
