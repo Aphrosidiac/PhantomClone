@@ -109,7 +109,7 @@ export function about(tab = 'studio') {
       </div>`).join('')}
     <div class="band" style="margin-top:80px">${['ff-frames', 'ff-shoots', 'ascend-peptides'].map((s) => `<img src="${media(pick(s)).rows.find((r) => r.kind === 'trio').items[0].sm}" alt="" loading="lazy">`).join('')}</div>
     <section class="a-row a-block" style="padding-bottom:40px"><p class="mono">Clients</p><div class="content"><p class="statement reveal">${split('From industrial suppliers to research catalogues and product companies — every one of them talks to the person building their site.')}</p></div></section>
-    <ul class="clients">${['Sunlight Supplies', 'TGS Furnishings', 'Ascend Peptides', 'Lewix.ai'].map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
+    <ul class="clients">${['Sunlight Supplies', 'TGS Furnishings', 'Ascend Peptides', 'LEWIX AI'].map((c) => `<li>${esc(c)}</li>`).join('')}</ul>
     <section class="a-row a-block" style="padding-bottom:0;margin-top:150px"><p class="mono">Our Studio</p><div class="content"><h2 class="sub-title" style="font-size:clamp(2rem,3vw,3rem);text-transform:none">One studio, in Kuala Lumpur</h2></div></section>
     <div class="studios">
       <div class="mark">${MARK}</div>

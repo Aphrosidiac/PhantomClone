@@ -61,7 +61,7 @@ export const PROJECTS = [
     ],
   },
   {
-    slug: 'lewix-ai', title: 'Lewix.ai', client: 'Lewix.ai', zone: 'product', year: 2026, plate: '#2a2466',
+    slug: 'lewix-ai', title: 'LEWIX AI', client: 'LEWIX AI', zone: 'product', year: 2026, plate: '#2a2466',
     features: ['website', 'webgl', 'motion'], stack: ['next', 'three', 'gsap'], url: 'https://lewix.ai/',
     type: 'Company website', role: 'Art direction / Frontend / WebGL',
     statement: 'A one-page site carried by a single generative environment instead of a stack of sections.',
@@ -71,7 +71,7 @@ export const PROJECTS = [
     ],
   },
   {
-    slug: 'smoothsail', title: 'SmoothSail', client: 'Lewix.ai', zone: 'product', year: 2026, plate: '#cfe4da',
+    slug: 'smoothsail', title: 'SmoothSail', client: 'LEWIX AI', zone: 'product', year: 2026, plate: '#cfe4da',
     features: ['platform', 'e-commerce', 'website'], stack: ['next', 'postgres'], url: 'https://smoothsail.my/',
     type: 'Product site & store builder', role: 'Product design / Frontend / Architecture',
     statement: 'A store builder for Malaysian sellers, sold on real interface states rather than a feature list.',
@@ -101,7 +101,7 @@ export const PROJECTS = [
     ],
   },
   {
-    slug: 'lewix-my', title: 'Lewix', client: 'Lewix.ai', zone: 'product', year: 2026, plate: '#c9d0f2',
+    slug: 'lewix-my', title: 'Lewix', client: 'LEWIX AI', zone: 'product', year: 2026, plate: '#c9d0f2',
     features: ['website', 'motion', 'brand'], stack: ['next', 'gsap'], url: 'https://lewix.my/',
     type: 'Company website', role: 'Art direction / Design / Frontend / Motion',
     statement: 'The front door of an AI product studio, built to read as capable before a feature is described.',
