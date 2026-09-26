@@ -365,7 +365,8 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
 .c-close { position: fixed; top: 22px; right: 22px; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.5); display: grid; place-items: center; z-index: 2; transition: background-color .3s, color .3s; }
 .c-close:hover { background: var(--white); color: var(--black); }
 .c-close svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 1.4; }
-.c-inner { width: min(1200px, calc(100% - 2 * var(--margin))); margin: 0 auto; padding: 150px 0 60px; min-height: 100svh; display: flex; flex-direction: column; }
+/* bottom padding clears the fixed bottom nav (2rem + ~57px) so the privacy line never sits under it */
+.c-inner { width: min(1200px, calc(100% - 2 * var(--margin))); margin: 0 auto; padding: 150px 0 calc(2rem + 88px); min-height: 100svh; display: flex; flex-direction: column; }
 .c-inner h2 { font-size: clamp(1.6rem, 2.3vw, 2.2rem); font-weight: 700; letter-spacing: -.03em; margin: 14px 0 36px; }
 .c-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .c-card { position: relative; display: flex; flex-direction: column; justify-content: space-between; min-height: 385px; padding: 20px; border: 1px solid rgba(255,255,255,.1); background: rgba(255,255,255,.03); text-align: left; text-decoration: none; transition: background-color .3s, border-color .3s; }
