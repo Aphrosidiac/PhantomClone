@@ -302,7 +302,7 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
 .team .card { grid-column: 4 / span 3; }
 .team .card .ph { aspect-ratio: 4 / 5; background: var(--black); display: grid; place-items: center; border-radius: 3px; }
 .team .card .ph svg { width: 45%; fill: var(--bone); }
-.team .card h4 { margin: 14px 0 2px; font-size: 18px; }
+.team .card h3 { margin: 14px 0 2px; font-size: 18px; }
 .steps { counter-reset: s; margin: 0 var(--margin); }
 .steps li { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: 22px 0 46px; border-top: 1px solid rgba(255,255,255,.14); }
 .steps li .n { grid-column: 1 / span 3; }
@@ -337,6 +337,13 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
 .terms p { font-size: 18px; line-height: 1.4; max-width: 34em; margin-bottom: 22px; }
 .terms .btn-pill { margin-top: 12px; }
 .pr-hero .btn-pill { margin-top: 0; }
+/* faq — Pricing's rows, one per question */
+.faq-q { padding-bottom: 72px; }
+.faq-q h2 { font-size: clamp(1.5rem, 2.1vw, 2.1rem); font-weight: 700; letter-spacing: -.03em; line-height: 1.08; max-width: 22em; margin-bottom: 22px; }
+.faq-q .content > p { font-size: 18px; line-height: 1.45; max-width: 36em; margin-bottom: 16px; opacity: .88; }
+.faq-q .incl { max-width: 44em; margin: 6px 0 22px; }
+.faq-q .more { display: inline-block; margin-top: 6px; text-decoration: underline; text-underline-offset: 3px; }
+.faq-q .more:hover { color: var(--lime); }
 .btn-pill { display: inline-flex; align-items: center; margin-top: 22px; background: var(--white); color: var(--black); border-radius: 48px; padding: 8px 14px; font-size: 14px; text-decoration: none; transition: background-color .3s; }
 .btn-pill:hover { background: var(--lime); }
 

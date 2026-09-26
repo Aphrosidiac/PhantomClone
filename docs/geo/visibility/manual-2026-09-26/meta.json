@@ -1,0 +1,347 @@
+{
+ "brand": {
+  "name": "FF Dev Studio",
+  "aliases": [
+   "FF Dev Studio"
+  ],
+  "domain": "ffdev.studio"
+ },
+ "competitors": [],
+ "engines": [
+  "chatgpt-ui",
+  "perplexity-ui",
+  "gemini-ui",
+  "aimode-ui"
+ ],
+ "runs": 3,
+ "prompts": "docs/geo/prompts_v1.csv",
+ "models": {
+  "chatgpt-ui": "manual-ui",
+  "perplexity-ui": "manual-ui",
+  "gemini-ui": "manual-ui",
+  "aimode-ui": "manual-ui"
+ },
+ "started": "2026-09-26T19:05:13",
+ "prompt_rows": [
+  {
+   "id": "p001",
+   "text": "how much does a website cost in Malaysia",
+   "stratum": "discovery",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "3"
+  },
+  {
+   "id": "p002",
+   "text": "how much does a custom website cost in Kuala Lumpur",
+   "stratum": "discovery",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "3"
+  },
+  {
+   "id": "p003",
+   "text": "berapa harga buat website untuk business di Malaysia",
+   "stratum": "discovery",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p004",
+   "text": "how long does it take to build a website for a small business",
+   "stratum": "discovery",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p005",
+   "text": "what should be included when paying for a business website",
+   "stratum": "discovery",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p006",
+   "text": "who owns my website when a web designer builds it",
+   "stratum": "discovery",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p007",
+   "text": "best web design studio in Kuala Lumpur",
+   "stratum": "best-for",
+   "persona": "comparison shopper",
+   "locale": "MY",
+   "weight": "3"
+  },
+  {
+   "id": "p008",
+   "text": "best web design agency in Malaysia for small business",
+   "stratum": "best-for",
+   "persona": "comparison shopper",
+   "locale": "MY",
+   "weight": "3"
+  },
+  {
+   "id": "p009",
+   "text": "best freelance web developer in Malaysia",
+   "stratum": "best-for",
+   "persona": "comparison shopper",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p010",
+   "text": "web designer Kuala Lumpur under RM2000",
+   "stratum": "best-for",
+   "persona": "budget-constrained",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p011",
+   "text": "affordable custom website design Malaysia from RM1000",
+   "stratum": "best-for",
+   "persona": "budget-constrained",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p012",
+   "text": "web design company that builds 3D or WebGL websites in Malaysia",
+   "stratum": "best-for",
+   "persona": "specialist",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p013",
+   "text": "creative web studio Malaysia for a premium brand website",
+   "stratum": "best-for",
+   "persona": "specialist",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p014",
+   "text": "who builds e-commerce websites in Malaysia",
+   "stratum": "best-for",
+   "persona": "comparison shopper",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p015",
+   "text": "web designer for a portfolio website Malaysia",
+   "stratum": "best-for",
+   "persona": "comparison shopper",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p016",
+   "text": "web design studio that does bilingual English Bahasa Malaysia websites",
+   "stratum": "best-for",
+   "persona": "specialist",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p017",
+   "text": "landing page designer Malaysia fast delivery",
+   "stratum": "best-for",
+   "persona": "time-constrained",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p018",
+   "text": "website maintenance plan price Malaysia",
+   "stratum": "discovery",
+   "persona": "existing site owner",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p019",
+   "text": "website hosting and maintenance monthly fee Malaysia",
+   "stratum": "discovery",
+   "persona": "existing site owner",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p020",
+   "text": "custom website vs Wix or Shopify for a Malaysian SME",
+   "stratum": "comparison",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p021",
+   "text": "web design agency vs freelancer Malaysia which is better",
+   "stratum": "comparison",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p022",
+   "text": "what is FF Dev Studio",
+   "stratum": "brand",
+   "persona": "any",
+   "locale": "MY",
+   "weight": "3"
+  },
+  {
+   "id": "p023",
+   "text": "FF Dev Studio pricing",
+   "stratum": "brand",
+   "persona": "any",
+   "locale": "MY",
+   "weight": "3"
+  },
+  {
+   "id": "p024",
+   "text": "is FF Dev Studio legit",
+   "stratum": "brand",
+   "persona": "any",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p025",
+   "text": "FF Dev Studio reviews",
+   "stratum": "brand",
+   "persona": "any",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p026",
+   "text": "ffdev.studio",
+   "stratum": "brand",
+   "persona": "any",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p027",
+   "text": "who built smoothsail.my",
+   "stratum": "brand",
+   "persona": "any",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p028",
+   "text": "who designed the Ascend Peptides website",
+   "stratum": "brand",
+   "persona": "any",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p029",
+   "text": "FF Dev Studio vs a web design agency in KL",
+   "stratum": "brand",
+   "persona": "comparison shopper",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p030",
+   "text": "how does FF Dev Studio work with clients",
+   "stratum": "brand",
+   "persona": "any",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p031",
+   "text": "what does a website deposit usually look like in Malaysia",
+   "stratum": "discovery",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p032",
+   "text": "how many revisions should a web designer include",
+   "stratum": "discovery",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p033",
+   "text": "web designer that works over WhatsApp Malaysia",
+   "stratum": "best-for",
+   "persona": "convenience",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p034",
+   "text": "website design for startups in Malaysia",
+   "stratum": "best-for",
+   "persona": "founder",
+   "locale": "MY",
+   "weight": "2"
+  },
+  {
+   "id": "p035",
+   "text": "website for a furniture business Malaysia designer",
+   "stratum": "best-for",
+   "persona": "vertical",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p036",
+   "text": "website for an industrial supplier Malaysia designer",
+   "stratum": "best-for",
+   "persona": "vertical",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p037",
+   "text": "web studio that does motion design and animation Kuala Lumpur",
+   "stratum": "best-for",
+   "persona": "specialist",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p038",
+   "text": "best websites designed in Malaysia 2026",
+   "stratum": "best-for",
+   "persona": "inspiration",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p039",
+   "text": "technical SEO included in website package Malaysia",
+   "stratum": "discovery",
+   "persona": "first-time buyer",
+   "locale": "MY",
+   "weight": "1"
+  },
+  {
+   "id": "p040",
+   "text": "cost to redesign a company website in Malaysia",
+   "stratum": "discovery",
+   "persona": "existing site owner",
+   "locale": "MY",
+   "weight": "2"
+  }
+ ]
+}

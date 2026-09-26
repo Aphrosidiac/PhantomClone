@@ -33,7 +33,7 @@ was removed), so unknown paths return a real 404.
 |---|---|
 | `/`, `/?zone=…&view=list` | `index.html` (200). The filter and list states canonicalise to `/`. |
 | `/projects/<slug>` | `projects/<slug>.html` (200) |
-| `/about`, `/about/approach`, `/pricing`, `/contact` | `about.html`, `about/approach.html`, `pricing.html`, `contact.html` (200) |
+| `/about`, `/about/approach`, `/pricing`, `/faq`, `/contact` | `about.html`, `about/approach.html`, `pricing.html`, `faq.html`, `contact.html` (200) |
 | `/about/`, `/projects/x/`, `/index.html`, `/about.html` | 308 to the canonical URL, without the trailing slash or `.html` |
 | `/<slug>` (the previous ffdev.studio's project URLs) | 301 to `/projects/<slug>` (`_redirects`, written by the prerender from `PROJECTS`) |
 | anything else, including an unknown project | `404.html` (404, `noindex, follow`) |
@@ -50,6 +50,7 @@ To see production routing, run `npx wrangler pages dev dist --port 8788` after a
 | `/about` | About — one studio in Kuala Lumpur | AboutPage + Person |
 | `/about/approach` | Approach — nine steps from brief to launch | WebPage + BreadcrumbList |
 | `/pricing` | Website pricing in Malaysia, from RM1,000 | Service with an OfferCatalog: the three bands as min/max `PriceSpecification`, the care plans as monthly `UnitPriceSpecification`. Figures are parsed from `PRICING` and are never typed by hand. |
+| `/faq` | Website questions: cost, timing, ownership | FAQPage whose Question/Answer text is built from the same `FAQ` entries as the visible page (`src/data.js`). Every answer restates a fact from SERVICE_ARCHITECTURE.md. Linked from every footer. |
 | `/contact` | Start a project — contact FF Dev Studio | ContactPage. The static page carries its own hidden h1, brief and email/WhatsApp links (`contactSeo()` in `pages.js`); the app opens the overlay on top. |
 
 Project descriptions are the project's `statement` plus type and studio, trimmed to 160 characters
@@ -57,13 +58,26 @@ by falling back to shorter forms. Every page has exactly one `<h1>`: on the home
 hidden behind the canvas, next to a hidden list of links to every project, each with its one-line statement. On `/pricing` the "Pricing"
 label is now the `<h1>`, styled exactly as before.
 
+## Other pieces
+
+- **Email:** Cloudflare's Email Obfuscation is on for the zone and rewrites every address in served
+  HTML to `[email protected]`, which crawlers and AI fetchers can't decode. `mail()` in `pages.js`
+  wraps the address in `<!--email_off-->`; use it for any new mailto link.
+- **Sitemap `lastmod`:** per route, the last commit touching the files behind it (`SOURCES` in
+  `prerender.mjs`); uncommitted edits count as today. Never the build date.
+- **IndexNow:** `public/<key>.txt` + `scripts/indexnow.mjs`. `npm run deploy:live` pings every
+  sitemap URL after a production deploy; `node scripts/indexnow.mjs <url>` pings one.
+- **GEO/AEO:** baseline, plan, owner to-do and the measurement prompt set are in `docs/geo/`.
+
 ## Checklist when content changes
 
 - **New or renamed project:** nothing to do for titles, meta, sitemap or JSON-LD, since all of it
   derives from `src/data.js`. Run `node tools/seo-assets.mjs` with the dev server up to render its
   share card.
-- **Price change:** change `PRICING` (from SERVICE_ARCHITECTURE.md) and also update the hand-written
-  pricing description in `seoFor('pricing')`.
+- **Price change:** change `PRICING` (from SERVICE_ARCHITECTURE.md), then the hand-written pricing
+  description in `seoFor('pricing')` and any FAQ answer that states a price in words.
+- **Service change** (languages, ownership, payment, what is included): update the matching `FAQ`
+  entry in `src/data.js` and `docs/geo/facts.md`.
 - **New route:** add it to `match()` in `main.js`, to `seoFor()`, and to `ROUTES` in `prerender.mjs`.
 - **After deploying:** submit `https://<site>/sitemap.xml` in Google Search Console and Bing
   Webmaster Tools. Check a project URL with Google's Rich Results Test.

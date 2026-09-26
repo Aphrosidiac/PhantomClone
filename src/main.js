@@ -149,6 +149,7 @@ function match(path) {
   if (path === '/about' || path === '/about/') return { name: 'about', tab: 'studio' };
   if (path === '/about/approach') return { name: 'about', tab: 'approach' };
   if (path === '/pricing' || path === '/pricing/') return { name: 'pricing' };
+  if (path === '/faq' || path === '/faq/') return { name: 'faq' };
   if (path === '/contact' || path === '/contact/') return { name: 'contact' };
   return { name: '404' };
 }
@@ -172,7 +173,7 @@ async function render(first = false, forcePath = null) {
   closeContact(false);
   const same = state.route && state.route.name === r.name && state.route.slug === r.slug && state.route.tab === r.tab;
   state.route = r;
-  const page = r.name === 'home' ? pages.homeSeo() : r.name === 'project' ? pages.project(r.slug) : r.name === 'about' ? pages.about(r.tab) : r.name === 'pricing' ? pages.pricing() : pages.notFound();
+  const page = r.name === 'home' ? pages.homeSeo() : r.name === 'project' ? pages.project(r.slug) : r.name === 'about' ? pages.about(r.tab) : r.name === 'pricing' ? pages.pricing() : r.name === 'faq' ? pages.faq() : pages.notFound();
   if (r.name === 'project' && page.status === 404) r.name = '404';
   applySeo(r);
   body.dataset.theme = page.theme;

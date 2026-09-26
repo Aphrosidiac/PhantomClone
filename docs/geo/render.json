@@ -1,0 +1,190 @@
+[
+ {
+  "url": "https://ffdev.studio/",
+  "nojs_status": 200,
+  "nojs": {
+   "title": "FF Dev Studio — Custom websites, designed and built in Malaysia",
+   "canonical": [
+    "https://ffdev.studio/"
+   ],
+   "robots": [
+    "index, follow, max-image-preview:large"
+   ],
+   "description": [
+    "Custom websites for founders and small companies across Malaysia, designed and built by FF Dev Studio in Kuala Lumpur. See the work running. From RM1,000."
+   ],
+   "jsonld": [
+    3170
+   ],
+   "h1": [
+    "FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia."
+   ],
+   "links": 20
+  },
+  "rendered_status": 200,
+  "rendered": {
+   "title": "FF Dev Studio — Custom websites, designed and built in Malaysia",
+   "canonical": [
+    "https://ffdev.studio/"
+   ],
+   "robots": [
+    "index, follow, max-image-preview:large"
+   ],
+   "description": [
+    "Custom websites for founders and small companies across Malaysia, designed and built by FF Dev Studio in Kuala Lumpur. See the work running. From RM1,000."
+   ],
+   "jsonld": [
+    3170
+   ],
+   "h1": [
+    "FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia."
+   ],
+   "links": 34
+  },
+  "words_nojs": 40,
+  "words_rendered": 40,
+  "missing_pct": 0,
+  "issues": []
+ },
+ {
+  "url": "https://ffdev.studio/projects/smoothsail",
+  "nojs_status": 200,
+  "nojs": {
+   "title": "SmoothSail — Product site & store builder | FF Dev Studio",
+   "canonical": [
+    "https://ffdev.studio/projects/smoothsail"
+   ],
+   "robots": [
+    "index, follow, max-image-preview:large"
+   ],
+   "description": [
+    "A store builder for Malaysian sellers, sold on real interface states rather than a feature list. Product site & store builder by FF Dev Studio, 2026."
+   ],
+   "jsonld": [
+    2682
+   ],
+   "h1": [
+    "SmoothSail"
+   ],
+   "links": 17
+  },
+  "rendered_status": 200,
+  "rendered": {
+   "title": "SmoothSail — Product site & store builder | FF Dev Studio",
+   "canonical": [
+    "https://ffdev.studio/projects/smoothsail"
+   ],
+   "robots": [
+    "index, follow, max-image-preview:large"
+   ],
+   "description": [
+    "A store builder for Malaysian sellers, sold on real interface states rather than a feature list. Product site & store builder by FF Dev Studio, 2026."
+   ],
+   "jsonld": [
+    2682
+   ],
+   "h1": [
+    "SmoothSail"
+   ],
+   "links": 17
+  },
+  "words_nojs": 104,
+  "words_rendered": 104,
+  "missing_pct": 0,
+  "issues": []
+ },
+ {
+  "url": "https://ffdev.studio/about",
+  "nojs_status": 200,
+  "nojs": {
+   "title": "About — one studio in Kuala Lumpur | FF Dev Studio",
+   "canonical": [
+    "https://ffdev.studio/about"
+   ],
+   "robots": [
+    "index, follow, max-image-preview:large"
+   ],
+   "description": [
+    "FF Dev Studio designs and builds custom websites in Kuala Lumpur: research catalogues, store builders, wedding platforms and AI products across Malaysia."
+   ],
+   "jsonld": [
+    1703
+   ],
+   "h1": [
+    "Custom websites, designed and built end to end"
+   ],
+   "links": 14
+  },
+  "rendered_status": 200,
+  "rendered": {
+   "title": "About — one studio in Kuala Lumpur | FF Dev Studio",
+   "canonical": [
+    "https://ffdev.studio/about"
+   ],
+   "robots": [
+    "index, follow, max-image-preview:large"
+   ],
+   "description": [
+    "FF Dev Studio designs and builds custom websites in Kuala Lumpur: research catalogues, store builders, wedding platforms and AI products across Malaysia."
+   ],
+   "jsonld": [
+    1703
+   ],
+   "h1": [
+    "Custom websites, designed and built end to end"
+   ],
+   "links": 14
+  },
+  "words_nojs": 185,
+  "words_rendered": 185,
+  "missing_pct": 1.6,
+  "issues": []
+ },
+ {
+  "url": "https://ffdev.studio/pricing",
+  "nojs_status": 200,
+  "nojs": {
+   "title": "Website pricing in Malaysia, from RM1,000 | FF Dev Studio",
+   "canonical": [
+    "https://ffdev.studio/pricing"
+   ],
+   "robots": [
+    "index, follow, max-image-preview:large"
+   ],
+   "description": [
+    "Custom websites from RM1,000: focused builds RM1,000–1,999, full brand websites RM2,000–3,499, signature experiences RM3,500–5,000+. Care plans from RM59 a month."
+   ],
+   "jsonld": [
+    4173
+   ],
+   "h1": [
+    "Pricing"
+   ],
+   "links": 10
+  },
+  "rendered_status": 200,
+  "rendered": {
+   "title": "Website pricing in Malaysia, from RM1,000 | FF Dev Studio",
+   "canonical": [
+    "https://ffdev.studio/pricing"
+   ],
+   "robots": [
+    "index, follow, max-image-preview:large"
+   ],
+   "description": [
+    "Custom websites from RM1,000: focused builds RM1,000–1,999, full brand websites RM2,000–3,499, signature experiences RM3,500–5,000+. Care plans from RM59 a month."
+   ],
+   "jsonld": [
+    4173
+   ],
+   "h1": [
+    "Pricing"
+   ],
+   "links": 10
+  },
+  "words_nojs": 229,
+  "words_rendered": 229,
+  "missing_pct": 0,
+  "issues": []
+ }
+]

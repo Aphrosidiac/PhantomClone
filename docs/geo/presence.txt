@@ -1,0 +1,13 @@
+Common Crawl (3 latest indexes):
+  CC-MAIN-2026-39: 0 captures, 0 URLs
+  CC-MAIN-2026-34: 0 captures, 0 URLs
+  CC-MAIN-2026-30: 0 captures, 0 URLs
+  ! not in recent Common Crawl — future open-model training data won't contain the site. Check CCBot is allowed (robots + CDN) and earn links from well-connected sites.
+Wayback first capture: none
+
+Back-mentions on 4 page(s):
+  NONE         200  https://lewix.ai
+  NONE         200  https://smoothsail.my
+  NONE         200  https://ascendpeptides.my
+  NONE         200  https://lewix.my
+  ! 4 page(s) neither name nor link the brand — each is a missed, legitimate mention (e.g. a 'Site by …' credit, a case-study link, a partner listing).

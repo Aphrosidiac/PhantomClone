@@ -15,13 +15,21 @@ const DIST = new URL('../dist/', import.meta.url).pathname;
 const vite = await createServer({ server: { middlewareMode: true }, appType: 'custom', logLevel: 'error' });
 const pages = await vite.ssrLoadModule('/src/pages.js');
 const { seoFor, headTags, SITE_URL } = await vite.ssrLoadModule('/src/seo.js');
-const { PROJECTS, ZONES, PRICING, CONTACT } = await vite.ssrLoadModule('/src/data.js');
+const { PROJECTS, ZONES, PRICING, CONTACT, FAQ } = await vite.ssrLoadModule('/src/data.js');
 await vite.close();
 
 const shell = readFileSync(join(DIST, 'index.html'), 'utf8');
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-let lastmod;
-try { lastmod = execSync('git log -1 --format=%cs', { encoding: 'utf8' }).trim(); } catch { lastmod = new Date().toISOString().slice(0, 10); }
+// sitemap lastmod: the date the files behind a route last changed (uncommitted edits count as today),
+// not the build date — engines learn to ignore a lastmod that moves on every deploy
+const today = new Date().toISOString().slice(0, 10);
+const changed = (paths) => {
+  try {
+    const q = paths.map((x) => `'${x}'`).join(' ');
+    if (execSync(`git status --porcelain -- ${q}`, { encoding: 'utf8' }).trim()) return today;
+    return execSync(`git log -1 --format=%cs -- ${q}`, { encoding: 'utf8' }).trim() || today;
+  } catch { return today; }
+};
 
 const ROUTES = [
   { file: 'index.html', route: { name: 'home' }, page: pages.homeSeo() },
@@ -29,6 +37,7 @@ const ROUTES = [
   { file: 'about.html', route: { name: 'about', tab: 'studio' }, page: pages.about('studio') },
   { file: 'about/approach.html', route: { name: 'about', tab: 'approach' }, page: pages.about('approach') },
   { file: 'pricing.html', route: { name: 'pricing' }, page: pages.pricing() },
+  { file: 'faq.html', route: { name: 'faq' }, page: pages.faq() },
   { file: 'contact.html', route: { name: 'contact' }, page: pages.contactSeo() },
   { file: '404.html', route: { name: '404' }, page: pages.notFound() },
 ];
@@ -56,6 +65,8 @@ for (const r of ROUTES) {
 // sitemap: every indexable route; images are the pages' own captures
 const indexable = ROUTES.filter((r) => r.route.name !== '404');
 const urlFor = (r) => SITE_URL + seoFor(r.route).path;
+const SOURCES = { home: ['src/data.js'], project: ['src/data.js', 'src/shots.json'], about: ['src/pages.js'], pricing: ['src/pages.js', 'src/data.js'], faq: ['src/data.js'], contact: ['src/pages.js'] };
+const lastmodFor = (r) => changed([...SOURCES[r.route.name], ...(r.route.name === 'project' ? [`public/media/${r.route.slug}`] : [])]);
 const imagesFor = (r) => {
   if (r.route.name !== 'project') return [];
   return [...r.page.html.matchAll(/<img src="([^"]+)"[^>]*alt="([^"]*)"/g)].map(([, src]) => src.replace(/-sm\.webp$/, '.webp')).filter((src) => src.startsWith(`/media/${r.route.slug}/`));
@@ -64,7 +75,7 @@ writeFileSync(join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${indexable.map((r) => `  <url>
     <loc>${urlFor(r)}</loc>
-    <lastmod>${lastmod}</lastmod>${imagesFor(r).map((src) => `
+    <lastmod>${lastmodFor(r)}</lastmod>${imagesFor(r).map((src) => `
     <image:image><image:loc>${SITE_URL}${src}</image:loc></image:image>`).join('')}
   </url>`).join('\n')}
 </urlset>
@@ -89,6 +100,7 @@ This site is an index of FF Dev Studio's work, shown as a draggable WebGL grid.
 - [About — Studio](${SITE_URL}/about): who the studio is, its three zones of work and its clients
 - [About — Approach](${SITE_URL}/about/approach): the nine-step process and what every build includes
 - [Pricing](${SITE_URL}/pricing): estimating bands and care plans
+- [Questions](${SITE_URL}/faq): cost, timing, what is included, ownership, languages, hosting and what happens after launch
 - [Contact](${SITE_URL}/contact): a seven-question brief, sent by email or WhatsApp
 
 ## Work
@@ -100,6 +112,10 @@ ${PROJECTS.map((p) => `- [${p.title}](${SITE_URL}/projects/${p.slug}): ${p.type}
 ${PRICING.bands.map((b) => `- ${b.name}: ${b.range}, ${b.days}. ${b.line}`).join('\n')}
 ${PRICING.care.map((c) => `- ${c.name} care plan: ${c.price} (${c.year}). ${c.line}`).join('\n')}
 - Terms: ${PRICING.terms}
+
+## Questions
+
+${FAQ.map((f) => `### ${f.q}\n\n${[...f.a, ...(f.list ? f.list.map((x) => `- ${x}`) : []), ...(f.after ? [f.after] : [])].join('\n')}`).join('\n\n')}
 
 ## Contact
 

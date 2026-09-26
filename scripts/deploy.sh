@@ -27,3 +27,6 @@ npx --yes wrangler@latest pages project list 2>/dev/null | grep -q "│ $PROJECT
   || npx --yes wrangler@latest pages project create "$PROJECT" --production-branch main --force
 
 npx --yes wrangler@latest pages deploy dist --project-name "$PROJECT" --branch "$BRANCH" --commit-dirty=true --force
+
+# the live site only: ping IndexNow so Bing and the others recrawl what changed
+if [ "$PROJECT" = "ffdevstudio" ] && [ "$BRANCH" = "main" ]; then node scripts/indexnow.mjs || echo "! IndexNow ping failed (the deploy itself is fine)"; fi

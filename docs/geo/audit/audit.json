@@ -1,0 +1,1793 @@
+{
+ "site": {
+  "start": "https://ffdev.studio",
+  "home_status": 200,
+  "home_final": "https://ffdev.studio",
+  "home_chain": [],
+  "origin": "https://ffdev.studio",
+  "http_redirect": {
+   "status_chain": [
+    301
+   ],
+   "final": "https://ffdev.studio/"
+  },
+  "alt_host": {
+   "host": "www.ffdev.studio",
+   "status": 200,
+   "final": "https://ffdev.studio/",
+   "error": ""
+  },
+  "robots_status": 200,
+  "robots_sitemaps": [
+   "https://ffdev.studio/sitemap.xml"
+  ],
+  "robots_errors": [],
+  "content_signals": [],
+  "access_matrix": {
+   "Googlebot": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "search"
+   },
+   "Google-Extended": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "control"
+   },
+   "Bingbot": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "search"
+   },
+   "OAI-SearchBot": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "search"
+   },
+   "ChatGPT-User": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "user"
+   },
+   "GPTBot": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "training"
+   },
+   "Claude-SearchBot": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "search"
+   },
+   "Claude-User": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "user"
+   },
+   "ClaudeBot": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "training"
+   },
+   "PerplexityBot": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "search"
+   },
+   "Perplexity-User": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "user"
+   },
+   "Applebot": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "search"
+   },
+   "Applebot-Extended": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "control"
+   },
+   "meta-webindexer": {
+    "allowed": true,
+    "rule": "Allow: /",
+    "named": false,
+    "purpose": "search"
+   }
+  },
+  "llms.txt": {
+   "status": 200,
+   "content_type": "text/plain; charset=utf-8",
+   "bytes": 5418,
+   "h1": true,
+   "links": 19
+  },
+  "llms-full.txt": {
+   "status": 404,
+   "content_type": "text/html; charset=utf-8",
+   "bytes": 15629
+  },
+  "soft404_status": 404,
+  "markdown_negotiation": false,
+  "sitemaps": [
+   {
+    "url": "https://ffdev.studio/sitemap.xml",
+    "status": 200,
+    "urls": 19
+   }
+  ],
+  "sitemap_url_count": 19,
+  "duplicate_clusters": [],
+  "schema_types_seen": [
+   "AboutPage",
+   "CollectionPage",
+   "ContactPage",
+   "ItemPage",
+   "Organization",
+   "Person",
+   "WebPage",
+   "WebSite"
+  ]
+ },
+ "pages": [
+  {
+   "url": "https://ffdev.studio/",
+   "final_url": "https://ffdev.studio/",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 187,
+   "bytes": 22390,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "medium",
+     "category": "content",
+     "message": "Thin server HTML: 66 words",
+     "url": "https://ffdev.studio/",
+     "fix": "Add substantive, self-contained content or noindex/merge",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/",
+     "fix": "",
+     "evidence": ""
+    }
+   ],
+   "type": "home",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/"
+   ],
+   "canonical_abs": "https://ffdev.studio/",
+   "title": "FF Dev Studio \u2014 Custom websites, designed and built in Malaysia",
+   "description": "Custom websites for founders and small companies across Malaysia, designed and built by FF Dev Studio in Kuala Lumpur. See the work running. From RM1,000.",
+   "h1": [
+    "FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia."
+   ],
+   "words": 66,
+   "root_shell": false,
+   "schema_types": [
+    "CollectionPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 0,
+   "question_headings": 0,
+   "subheadings": 2,
+   "numbers_per_500w": 22.7,
+   "outbound_citations": 0,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 18,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/lewix-ai",
+   "final_url": "https://ffdev.studio/projects/lewix-ai",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 235,
+   "bytes": 27523,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "medium",
+     "category": "content",
+     "message": "Thin server HTML: 148 words",
+     "url": "https://ffdev.studio/projects/lewix-ai",
+     "fix": "Add substantive, self-contained content or noindex/merge",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/lewix-ai",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/lewix-ai",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/lewix-ai",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/lewix-ai",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/lewix-ai"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/lewix-ai",
+   "title": "LEWIX AI \u2014 Company website | FF Dev Studio",
+   "description": "A one-page site carried by a single generative environment instead of a stack of sections. Company website by FF Dev Studio, 2026.",
+   "h1": [
+    "LEWIX AI"
+   ],
+   "words": 148,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 6.8,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/about/approach",
+   "final_url": "https://ffdev.studio/about/approach",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 263,
+   "bytes": 22632,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "content",
+     "message": "Heading levels skip (e.g. h2 -> h4); extraction uses the outline",
+     "url": "https://ffdev.studio/about/approach",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/about/approach",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/about/approach",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/about/approach",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebPage could add: about, dateModified, primaryImageOfPage",
+     "url": "https://ffdev.studio/about/approach",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/about/approach",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "about",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/about/approach"
+   ],
+   "canonical_abs": "https://ffdev.studio/about/approach",
+   "title": "Approach \u2014 nine steps from brief to launch | FF Dev Studio",
+   "description": "How FF Dev Studio builds a website: a written proposal before anything starts, three revision rounds, checks on real devices, and a thirty-day defect warranty.",
+   "h1": [
+    "Smallest scope, strongest result"
+   ],
+   "words": 258,
+   "root_shell": false,
+   "schema_types": [
+    "Organization",
+    "Person",
+    "WebPage",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 9,
+   "question_headings": 0,
+   "subheadings": 11,
+   "numbers_per_500w": 3.9,
+   "outbound_citations": 1,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 4,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/pricing",
+   "final_url": "https://ffdev.studio/pricing",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 177,
+   "bytes": 25283,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/pricing",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/pricing",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/pricing",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebPage could add: about, dateModified, primaryImageOfPage",
+     "url": "https://ffdev.studio/pricing",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "high",
+     "category": "schema",
+     "message": "Offer is missing required 'price'",
+     "url": "https://ffdev.studio/pricing",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "high",
+     "category": "schema",
+     "message": "Offer is missing required 'price'",
+     "url": "https://ffdev.studio/pricing",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "high",
+     "category": "schema",
+     "message": "Offer is missing required 'price'",
+     "url": "https://ffdev.studio/pricing",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/pricing",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "service",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/pricing"
+   ],
+   "canonical_abs": "https://ffdev.studio/pricing",
+   "title": "Website pricing in Malaysia, from RM1,000 | FF Dev Studio",
+   "description": "Custom websites from RM1,000: focused builds RM1,000\u20131,999, full brand websites RM2,000\u20133,499, signature experiences RM3,500\u20135,000+. Care plans from RM59 a month.",
+   "h1": [
+    "Pricing"
+   ],
+   "words": 256,
+   "root_shell": false,
+   "schema_types": [
+    "Organization",
+    "Person",
+    "WebPage",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 9,
+   "question_headings": 0,
+   "subheadings": 11,
+   "numbers_per_500w": 46.9,
+   "outbound_citations": 1,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 4,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/contact",
+   "final_url": "https://ffdev.studio/contact",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 192,
+   "bytes": 21072,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/contact",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/contact",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/contact",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "No BreadcrumbList",
+     "url": "https://ffdev.studio/contact",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/contact",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "contact",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/contact"
+   ],
+   "canonical_abs": "https://ffdev.studio/contact",
+   "title": "Start a project \u2014 contact FF Dev Studio",
+   "description": "Tell FF Dev Studio about your website: a seven-question brief, sent by email or WhatsApp. hello@ffdev.studio \u00b7 WhatsApp +60 13 907 8719.",
+   "h1": [
+    "Start a project with FF Dev Studio"
+   ],
+   "words": 77,
+   "root_shell": false,
+   "schema_types": [
+    "ContactPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 0,
+   "question_headings": 0,
+   "subheadings": 2,
+   "numbers_per_500w": 58.4,
+   "outbound_citations": 1,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 18,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/ff-stanzza",
+   "final_url": "https://ffdev.studio/projects/ff-stanzza",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 324,
+   "bytes": 29191,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/ff-stanzza",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/ff-stanzza",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/ff-stanzza",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/ff-stanzza",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/ff-stanzza"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/ff-stanzza",
+   "title": "FF Stanzza \u2014 Design studio landing page, recreation",
+   "description": "A Webflow awards page rebuilt outside Webflow, every scroll timeline and dropdown intact. Design studio landing page, recreation by FF Dev Studio, 2026.",
+   "h1": [
+    "FF Stanzza"
+   ],
+   "words": 164,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 6.1,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/about",
+   "final_url": "https://ffdev.studio/about",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 130,
+   "bytes": 26936,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "content",
+     "message": "Heading levels skip (e.g. h2 -> h4); extraction uses the outline",
+     "url": "https://ffdev.studio/about",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/about",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/about",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/about",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/about",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "about",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/about"
+   ],
+   "canonical_abs": "https://ffdev.studio/about",
+   "title": "About \u2014 one studio in Kuala Lumpur | FF Dev Studio",
+   "description": "FF Dev Studio designs and builds custom websites in Kuala Lumpur: research catalogues, store builders, wedding platforms and AI products across Malaysia.",
+   "h1": [
+    "Custom websites, designed and built end to end"
+   ],
+   "words": 220,
+   "root_shell": false,
+   "schema_types": [
+    "AboutPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 5,
+   "question_headings": 0,
+   "subheadings": 6,
+   "numbers_per_500w": 4.5,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 8,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/smoothsail",
+   "final_url": "https://ffdev.studio/projects/smoothsail",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 324,
+   "bytes": 28464,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "medium",
+     "category": "content",
+     "message": "Thin server HTML: 148 words",
+     "url": "https://ffdev.studio/projects/smoothsail",
+     "fix": "Add substantive, self-contained content or noindex/merge",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/smoothsail",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/smoothsail",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/smoothsail",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/smoothsail",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/smoothsail"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/smoothsail",
+   "title": "SmoothSail \u2014 Product site & store builder | FF Dev Studio",
+   "description": "A store builder for Malaysian sellers, sold on real interface states rather than a feature list. Product site & store builder by FF Dev Studio, 2026.",
+   "h1": [
+    "SmoothSail"
+   ],
+   "words": 148,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 6.8,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/meridian",
+   "final_url": "https://ffdev.studio/projects/meridian",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 354,
+   "bytes": 27337,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/meridian",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/meridian",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/meridian",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/meridian",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/meridian"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/meridian",
+   "title": "Meridian \u2014 WebGL portfolio engine | FF Dev Studio",
+   "description": "The engine ffdev.studio ran on before this one, rebuilt from nothing. No code, no assets and no copy taken from it. By FF Dev Studio, Kuala Lumpur.",
+   "h1": [
+    "Meridian"
+   ],
+   "words": 150,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 10.0,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/ff-search",
+   "final_url": "https://ffdev.studio/projects/ff-search",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 333,
+   "bytes": 28733,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/ff-search",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/ff-search",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/ff-search",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/ff-search",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/ff-search"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/ff-search",
+   "title": "FF Search \u2014 Executive search site, recreation | FF Dev Studio",
+   "description": "A search firm\u2019s site rebuilt to the pixel, then re-cast in the studio\u2019s own words. Executive search site, recreation by FF Dev Studio, 2026.",
+   "h1": [
+    "FF Search"
+   ],
+   "words": 176,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 5.7,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/ff-shoots",
+   "final_url": "https://ffdev.studio/projects/ff-shoots",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 304,
+   "bytes": 26816,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/ff-shoots",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/ff-shoots",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/ff-shoots",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/ff-shoots",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/ff-shoots"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/ff-shoots",
+   "title": "FF Shoots \u2014 WebGL photography portfolio, recreation",
+   "description": "A photographer\u2019s slider rebuilt one to one, fisheye lens and hand gestures included. WebGL photography portfolio, recreation by FF Dev Studio, 2026.",
+   "h1": [
+    "FF Shoots"
+   ],
+   "words": 159,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 6.3,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 12,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/ascend-peptides",
+   "final_url": "https://ffdev.studio/projects/ascend-peptides",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 422,
+   "bytes": 27234,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "medium",
+     "category": "content",
+     "message": "Thin server HTML: 127 words",
+     "url": "https://ffdev.studio/projects/ascend-peptides",
+     "fix": "Add substantive, self-contained content or noindex/merge",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/ascend-peptides",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/ascend-peptides",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/ascend-peptides",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/ascend-peptides",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/ascend-peptides"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/ascend-peptides",
+   "title": "Ascend Peptides \u2014 E-commerce | FF Dev Studio",
+   "description": "A research catalogue where the product needs precision, not persuasion. E-commerce by FF Dev Studio, 2026.",
+   "h1": [
+    "Ascend Peptides"
+   ],
+   "words": 127,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 7.9,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/obys-translation",
+   "final_url": "https://ffdev.studio/projects/obys-translation",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 321,
+   "bytes": 24862,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "medium",
+     "category": "content",
+     "message": "Thin server HTML: 144 words",
+     "url": "https://ffdev.studio/projects/obys-translation",
+     "fix": "Add substantive, self-contained content or noindex/merge",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/obys-translation",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/obys-translation",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/obys-translation",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/obys-translation",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/obys-translation"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/obys-translation",
+   "title": "Obys translation \u2014 Interaction study | FF Dev Studio",
+   "description": "Three layout modes, a flip tumble between them, and a page that never scrolls. Interaction study by FF Dev Studio, 2026.",
+   "h1": [
+    "Obys translation"
+   ],
+   "words": 144,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 6.9,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 10,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/sunlight-supplies",
+   "final_url": "https://ffdev.studio/projects/sunlight-supplies",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 327,
+   "bytes": 28085,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/sunlight-supplies",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/sunlight-supplies",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/sunlight-supplies",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/sunlight-supplies",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/sunlight-supplies"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/sunlight-supplies",
+   "title": "Sunlight Supplies \u2014 Industrial marketing site | FF Dev Studio",
+   "description": "Pallet racking and display fixtures, rendered in three.js rather than photographed. Industrial marketing site by FF Dev Studio, 2026.",
+   "h1": [
+    "Sunlight Supplies"
+   ],
+   "words": 151,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 9.9,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/lewix-my",
+   "final_url": "https://ffdev.studio/projects/lewix-my",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 315,
+   "bytes": 27653,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "medium",
+     "category": "content",
+     "message": "Thin server HTML: 137 words",
+     "url": "https://ffdev.studio/projects/lewix-my",
+     "fix": "Add substantive, self-contained content or noindex/merge",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/lewix-my",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/lewix-my",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/lewix-my",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/lewix-my",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/lewix-my"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/lewix-my",
+   "title": "Lewix \u2014 Company website | FF Dev Studio",
+   "description": "The front door of an AI product studio, built to read as capable before a feature is described. Company website by FF Dev Studio, 2026.",
+   "h1": [
+    "Lewix"
+   ],
+   "words": 137,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 7.3,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/big-brain-furniture",
+   "final_url": "https://ffdev.studio/projects/big-brain-furniture",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 344,
+   "bytes": 28409,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/big-brain-furniture",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/big-brain-furniture",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/big-brain-furniture",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/big-brain-furniture",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/big-brain-furniture"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/big-brain-furniture",
+   "title": "Big Brain Furniture \u2014 Retail website | FF Dev Studio",
+   "description": "Reclaimed teak, presented as a catalogue that treats the material as the whole design. Retail website by FF Dev Studio, 2026.",
+   "h1": [
+    "Big Brain Furniture"
+   ],
+   "words": 159,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 6.3,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/basement-translation",
+   "final_url": "https://ffdev.studio/projects/basement-translation",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 301,
+   "bytes": 26666,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "medium",
+     "category": "content",
+     "message": "Thin server HTML: 148 words",
+     "url": "https://ffdev.studio/projects/basement-translation",
+     "fix": "Add substantive, self-contained content or noindex/merge",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/basement-translation",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/basement-translation",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/basement-translation",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/basement-translation",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/basement-translation"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/basement-translation",
+   "title": "Basement translation \u2014 Interaction study, unfinished",
+   "description": "Pure black, one weight throughout. Unfinished, and shown that way rather than dressed up. Interaction study, unfinished by FF Dev Studio, 2026.",
+   "h1": [
+    "Basement translation"
+   ],
+   "words": 148,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 6.8,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 10,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+   "final_url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 325,
+   "bytes": 28931,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/big-brain-furniture-alt"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/big-brain-furniture-alt",
+   "title": "Big Brain, second direction \u2014 Retail site, alternate structure",
+   "description": "The same brief structured a second way, so the choice could be made by looking, not arguing. Retail site, alternate structure by FF Dev Studio, 2026.",
+   "h1": [
+    "Big Brain, second direction"
+   ],
+   "words": 153,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 6.5,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 10,
+   "alternates": []
+  },
+  {
+   "url": "https://ffdev.studio/projects/ff-frames",
+   "final_url": "https://ffdev.studio/projects/ff-frames",
+   "status": 200,
+   "error": "",
+   "hops": [],
+   "ttfb_ms": 310,
+   "bytes": 28728,
+   "content_type": "text/html; charset=utf-8",
+   "x_robots": "",
+   "last_modified_header": "",
+   "findings": [
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Organization could add: sameAs, contactPoint, legalName",
+     "url": "https://ffdev.studio/projects/ff-frames",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "Person could add: url, sameAs, image, description, knowsAbout",
+     "url": "https://ffdev.studio/projects/ff-frames",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "schema",
+     "message": "WebSite could add: alternateName",
+     "url": "https://ffdev.studio/projects/ff-frames",
+     "fix": "",
+     "evidence": ""
+    },
+    {
+     "severity": "low",
+     "category": "trust",
+     "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
+     "url": "https://ffdev.studio/projects/ff-frames",
+     "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
+     "evidence": ""
+    }
+   ],
+   "type": "page",
+   "robots_meta": "index, follow, max-image-preview:large",
+   "canonical": [
+    "https://ffdev.studio/projects/ff-frames"
+   ],
+   "canonical_abs": "https://ffdev.studio/projects/ff-frames",
+   "title": "FF Frames \u2014 Photography portfolio, recreation | FF Dev Studio",
+   "description": "Twenty-four routes of a photographer\u2019s site, rebuilt one to one, pricing calculator included. Photography portfolio, recreation by FF Dev Studio, 2026.",
+   "h1": [
+    "FF Frames"
+   ],
+   "words": 169,
+   "root_shell": false,
+   "schema_types": [
+    "ItemPage",
+    "Organization",
+    "Person",
+    "WebSite"
+   ],
+   "microdata_types": [],
+   "sections": 1,
+   "question_headings": 0,
+   "subheadings": 3,
+   "numbers_per_500w": 5.9,
+   "outbound_citations": 2,
+   "dates": {
+    "schema": {},
+    "visible": false,
+    "meta_modified": ""
+   },
+   "author": true,
+   "internal_links": 11,
+   "alternates": []
+  }
+ ],
+ "site_findings": [
+  {
+   "severity": "medium",
+   "category": "index",
+   "message": "19/19 sitemap lastmod values are the same day (2026-09-26) \u2014 looks like build time, not content change; engines learn to ignore it",
+   "url": "https://ffdev.studio/sitemap.xml",
+   "fix": "Emit the real content-modified date",
+   "evidence": ""
+  },
+  {
+   "severity": "low",
+   "category": "trust",
+   "message": "No Privacy policy page linked from the sampled pages \u2014 trust pages are how engines and people verify who is behind a site",
+   "url": "https://ffdev.studio",
+   "fix": "",
+   "evidence": ""
+  }
+ ],
+ "scores": {
+  "access": 100,
+  "render": 100,
+  "index": 92,
+  "schema": 91,
+  "content": 97,
+  "trust": 96,
+  "perf": 100,
+  "agent": 100,
+  "intl": 100
+ },
+ "overall": 79,
+ "generated": "2026-09-26T18:58:11",
+ "seconds": 4.0
+}

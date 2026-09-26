@@ -1,5 +1,5 @@
 // Page templates. Each returns { html, theme }; titles and meta live in seo.js.
-import { PROJECTS, ZONES, PRICING, CONTACT, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
+import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const MARK = '<svg viewBox="0 0 194 72" aria-hidden="true"><path d="M0 72 16 0h14L14 72Z"/><path d="M24 72 40 0h14L38 72Z"/><path d="M72 0h54v15H88v13h32v14H88v30H72Z"/><path d="M140 0h54v15h-38v13h32v14h-32v30h-16Z"/></svg>';
@@ -11,13 +11,16 @@ const bar = (m) => `<div class="bar" aria-hidden="true"><i></i><i></i><i></i><sp
 const shot = (m, kind, lazy = true) => `<figure class="shot shot--${kind}"><div class="win${kind === 'trio' ? ' win--phone' : ''}">${kind !== 'trio' ? bar(m) : ''}${img(m, kind, lazy)}</div></figure>`;
 // plate tone decides the window bar: dark plates get a dark browser
 const dark = (hex) => { const n = parseInt(hex.slice(1), 16); return (0.2126 * (n >> 16) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255 < 0.45; };
+// Cloudflare's Email Obfuscation swaps every address in served HTML for a script-decoded placeholder,
+// which crawlers and AI fetchers read as "[email protected]"; email_off opts these links out.
+const mail = () => `<!--email_off--><a href="mailto:${CONTACT.email}">${CONTACT.email}</a><!--/email_off-->`;
 const split = (text) => text.split(' ').map((w, i) => `<span class="w" style="--i:${i}">${esc(w)}</span>`).join(' ');
 
 export const footer = () => `
   <footer class="foot">
     <div class="c1">${MARK.replace('<svg', '<svg style="width:64px;fill:currentColor"')}</div>
     <div class="c2 mono">FF Dev Studio<br>${esc(CONTACT.city)}</div>
-    <div class="c3 mono"><a href="mailto:${CONTACT.email}">${CONTACT.email}</a><a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a></div>
+    <div class="c3 mono">${mail()}<a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="/faq" data-link>Questions</a></div>
   </footer>`;
 
 export function project(slug) {
@@ -40,18 +43,19 @@ export function project(slug) {
       <div class="p-cover">${shot(m.cover, 'full', false)}</div>
       <section class="p-intro"><p class="statement reveal">${split(p.statement)}</p></section>
       <section class="p-about">
-        <p class="mono">About</p>
+        <h2 class="mono">About</h2>
         <div class="body-copy">${p.about.map((t) => `<p>${esc(t)}</p>`).join('')}</div>
         <dl class="p-facts mono">
           <div><dt>Client</dt><dd>${esc(p.client)}</dd></div>
           <div><dt>Type</dt><dd>${esc(p.type)}</dd></div>
           <div><dt>Role</dt><dd>${esc(p.role)}</dd></div>
+          <div><dt>Built with</dt><dd>${p.stack.map((x) => esc(label(x, STACK_LABEL))).join(', ')}</dd></div>
           ${p.reference ? `<div><dt>Reference</dt><dd>${esc(p.reference)}</dd></div>` : ''}
         </dl>
       </section>
       <div class="p-shots">${m.rows.map((r) => `<div class="p-row p-row--${r.kind}">${r.items.map((x) => shot(x, r.kind)).join('')}</div>`).join('')}</div>
       <section class="p-features">
-        <p class="mono">Features</p>
+        <h2 class="mono">Features</h2>
         <div class="pills mono">${p.features.map((f) => `<a class="pill" href="/?feature=${f}" data-link>${esc(label(f))}</a>`).join('')}${p.stack.map((s) => `<span class="pill pill--zone">${esc(label(s, STACK_LABEL))}</span>`).join('')}</div>
       </section>
       <section class="related">
@@ -107,8 +111,8 @@ export function about(tab = 'studio') {
   const studio = `
     <section class="a-row a-hero"><p class="mono" aria-hidden="true">Studio</p><div class="content"><span class="tag mono">Studio</span><h1 class="sub-title">Custom websites, designed and built end to end</h1></div></section>
     <div class="strip">${['lewix-ai', 'ff-stanzza', 'meridian', 'big-brain-furniture'].map((s) => `<img src="${tileUrl(pick(s))}" alt="" loading="lazy">`).join('')}</div>
-    <section class="a-row a-block"><p class="mono">About</p><div class="content"><p class="statement reveal">${split('FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. The person who scopes your site is the person who builds it.')}</p></div></section>
-    <section class="a-row a-block" style="padding-bottom:70px"><p class="mono">Zones</p><div class="content"><p class="statement reveal">${split('Never limited by size or shape, the work falls into three zones — and each one gets its own way of working.')}</p></div></section>
+    <section class="a-row a-block"><h2 class="mono">About</h2><div class="content"><p class="statement reveal">${split('FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. The person who scopes your site is the person who builds it.')}</p></div></section>
+    <section class="a-row a-block" style="padding-bottom:70px"><h2 class="mono">Zones</h2><div class="content"><p class="statement reveal">${split('Never limited by size or shape, the work falls into three zones — and each one gets its own way of working.')}</p></div></section>
     ${ABOUT_ZONES.map(([z, s], i) => `
       <div class="zone-row">
         <span class="ico" aria-hidden="true">${'●'.repeat(i + 1)}</span>
@@ -117,23 +121,23 @@ export function about(tab = 'studio') {
         <div class="im"><img src="${tileUrl(pick(s))}" alt="" loading="lazy"></div>
       </div>`).join('')}
     <div class="band" style="margin-top:80px">${['ff-frames', 'ff-shoots', 'ascend-peptides'].map((s) => `<img src="${media(pick(s)).rows.find((r) => r.kind === 'trio').items[0].sm}" alt="" loading="lazy">`).join('')}</div>
-    <section class="a-row a-block" style="padding-bottom:40px"><p class="mono">Clients</p><div class="content"><p class="statement reveal">${split('Research catalogues, store builders, wedding platforms and AI products — each one designed and built here.')}</p></div></section>
+    <section class="a-row a-block" style="padding-bottom:40px"><h2 class="mono">Clients</h2><div class="content"><p class="statement reveal">${split('Research catalogues, store builders, wedding platforms and AI products — each one designed and built here.')}</p></div></section>
     <ul class="clients">${CLIENTS.map(([name, logo, kind]) => `<li>${logo ? `<img class="client-logo${kind ? ` client-logo--${kind}` : ''}" src="${logo}" alt="${esc(name)}" loading="lazy">` : esc(name)}</li>`).join('')}</ul>
     <section class="a-row a-block" style="padding-bottom:0;margin-top:150px"><p class="mono">Our Studio</p><div class="content"><h2 class="sub-title" style="font-size:clamp(2rem,3vw,3rem);text-transform:none">One studio, in Kuala Lumpur</h2></div></section>
     <div class="studios">
       <div class="mark">${MARK}</div>
       <div class="addr mono">FF Dev Studio<br>Kuala Lumpur<br>Malaysia</div>
-      <div class="links mono"><a href="mailto:${CONTACT.email}">${CONTACT.email}</a><a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="https://ffdev.studio" target="_blank" rel="noopener">ffdev.studio</a></div>
+      <div class="links mono">${mail()}<a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="https://ffdev.studio" target="_blank" rel="noopener">ffdev.studio</a></div>
     </div>
-    <section class="a-row a-block" style="padding-bottom:40px;margin-top:150px"><p class="mono">Team</p><div class="content"><p class="statement reveal">${split('Design, development and motion, made in-house from the first sketch to launch.')}</p></div></section>
+    <section class="a-row a-block" style="padding-bottom:40px;margin-top:150px"><h2 class="mono">Team</h2><div class="content"><p class="statement reveal">${split('Design, development and motion, made in-house from the first sketch to launch.')}</p></div></section>
     <div class="team">
-      <div class="card"><div class="ph">${MARK}</div><h4>Fakhrul</h4><p class="mono" style="opacity:.6">Founder · Design · Development</p></div>
+      <div class="card"><div class="ph">${MARK}</div><h3>Fakhrul</h3><p class="mono" style="opacity:.6">Founder · Design · Development</p></div>
     </div>`;
   const approach = `
     <section class="a-row a-hero"><p class="mono" aria-hidden="true">Approach</p><div class="content"><span class="tag mono">Approach</span><h1 class="sub-title">Smallest scope, strongest result</h1></div></section>
-    <section class="a-row a-block" style="padding-bottom:60px"><p class="mono">Process</p><div class="content"><p class="statement reveal">${split('Nine steps from the first WhatsApp message to launch. Nothing starts without a written proposal, and nothing ships without being checked on real devices.')}</p></div></section>
+    <section class="a-row a-block" style="padding-bottom:60px"><h2 class="mono">Process</h2><div class="content"><p class="statement reveal">${split('Nine steps from the first WhatsApp message to launch. Nothing starts without a written proposal, and nothing ships without being checked on real devices.')}</p></div></section>
     <ol class="steps" style="list-style:none;padding:0">${STEPS.map(([h, t], i) => `<li><span class="n mono">${String(i + 1).padStart(2, '0')}</span><h3>${esc(h)}</h3><p>${esc(t)}</p></li>`).join('')}</ol>
-    <section class="a-row a-block" style="margin-top:120px"><p class="mono">Included</p><div class="content"><ul class="incl">${INCLUDED.map((t) => `<li>${esc(t)}</li>`).join('')}</ul><a class="btn-pill" href="/pricing" data-link>See pricing</a></div></section>`;
+    <section class="a-row a-block" style="margin-top:120px"><h2 class="mono">Included</h2><div class="content"><ul class="incl">${INCLUDED.map((t) => `<li>${esc(t)}</li>`).join('')}</ul><a class="btn-pill" href="/pricing" data-link>See pricing</a></div></section>`;
   return {
     theme: 'dark',
     html: `
@@ -202,6 +206,41 @@ export function pricing() {
   };
 }
 
+// /faq — Pricing's row system: the number in columns 1–3, the question and its answer in 4–12
+export function faq() {
+  return {
+    theme: 'dark',
+    html: `
+    <div class="pricing faq">
+      <section class="pr-row pr-hero">
+        <h1 class="mono label-dot">Questions</h1>
+        <div class="content">
+          <p class="big reveal">${split('Straight answers on price, timing, ownership and what happens after launch.')}</p>
+        </div>
+      </section>
+      ${FAQ.map((f, i) => `
+      <section class="pr-row faq-q" id="${f.id}" aria-labelledby="q-${f.id}">
+        <p class="mono label-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
+        <div class="content">
+          <h2 id="q-${f.id}">${esc(f.q)}</h2>
+          ${f.a.map((t) => `<p>${esc(t)}</p>`).join('')}
+          ${f.list ? `<ul class="incl">${f.list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
+          ${f.after ? `<p>${esc(f.after)}</p>` : ''}
+          ${f.more ? `<a class="more mono" href="${f.more[0]}" data-link>${esc(f.more[1])}</a>` : ''}
+        </div>
+      </section>`).join('')}
+      <section class="pr-row" aria-labelledby="q-ask">
+        <h2 class="mono label-dot" id="q-ask">Ask</h2>
+        <div class="content terms">
+          <p>Anything not answered here, ask directly. WhatsApp ${esc(CONTACT.whatsapp)} or ${mail()}.</p>
+          <a class="btn-pill" href="/contact" data-link>Start a project</a>
+        </div>
+      </section>
+      ${footer()}
+    </div>`,
+  };
+}
+
 export function notFound() {
   return {
     theme: 'dark',
@@ -230,7 +269,7 @@ export function contactSeo() {
     html: `
       <h1 class="sr-only">Start a project with FF Dev Studio</h1>
       <p class="sr-only">Tell us about your website in a seven-question brief, then send it by email or WhatsApp. Projects start from RM1,000; most land between RM1,000 and RM5,000, quoted after one conversation.</p>
-      <p class="sr-only">Email <a href="mailto:${CONTACT.email}">${CONTACT.email}</a> · WhatsApp <a href="${CONTACT.wa}">${esc(CONTACT.whatsapp)}</a> · ${esc(CONTACT.city)}</p>
+      <p class="sr-only">Email ${mail()} · WhatsApp <a href="${CONTACT.wa}">${esc(CONTACT.whatsapp)}</a> · ${esc(CONTACT.city)}</p>
       ${workNav()}`,
   };
 }

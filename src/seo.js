@@ -2,7 +2,7 @@
 // cards and schema.org JSON-LD. The same function feeds the build-time prerender
 // (scripts/prerender.mjs writes it into each route's static HTML) and the client router (which
 // swaps it on navigation), so a crawler and a visitor always see the same head.
-import { PROJECTS, ZONES, PRICING, CONTACT, bySlug, media, label, STACK_LABEL } from './data.js';
+import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, bySlug, media, label, STACK_LABEL } from './data.js';
 
 export const SITE_URL = String(import.meta.env?.VITE_SITE_URL || 'https://ffdev.studio').replace(/\/$/, '');
 export const SITE_NAME = 'FF Dev Studio';
@@ -27,19 +27,30 @@ const org = () => ({
   '@type': 'Organization',
   '@id': ORG,
   name: SITE_NAME,
+  alternateName: ['FF', 'ffdev.studio'],
   url: SITE_URL,
+  slogan: 'Custom websites, designed and built end to end.',
   logo: { '@type': 'ImageObject', url: abs('/logo.png'), width: 512, height: 512 },
   image: abs(DEFAULT_IMAGE.src),
   description: 'A studio in Kuala Lumpur that designs and builds custom websites for founders and small companies across Malaysia.',
   email: CONTACT.email,
   telephone: CONTACT.wa.replace('https://wa.me/', '+'),
+  contactPoint: {
+    '@type': 'ContactPoint', contactType: 'sales', email: CONTACT.email, telephone: CONTACT.wa.replace('https://wa.me/', '+'),
+    url: abs('/contact'), areaServed: 'MY', availableLanguage: ['English', 'Malay'],
+  },
   address: { '@type': 'PostalAddress', addressLocality: 'Kuala Lumpur', addressCountry: 'MY' },
   areaServed: { '@type': 'Country', name: 'Malaysia' },
   founder: { '@id': FOUNDER },
+  knowsLanguage: ['en', 'ms'],
   knowsAbout: ['Web design', 'Web development', 'WebGL', 'Three.js', 'Motion design', 'E-commerce', 'Technical SEO'],
 });
-const founder = () => ({ '@type': 'Person', '@id': FOUNDER, name: 'Fakhrul', jobTitle: 'Founder · Design · Development', worksFor: { '@id': ORG } });
-const website = () => ({ '@type': 'WebSite', '@id': WEBSITE, url: abs('/'), name: SITE_NAME, inLanguage: 'en', publisher: { '@id': ORG } });
+const founder = () => ({
+  '@type': 'Person', '@id': FOUNDER, name: 'Fakhrul', url: abs('/about'), jobTitle: 'Founder · Design · Development',
+  description: 'Founder of FF Dev Studio in Kuala Lumpur; designs and builds its websites.', worksFor: { '@id': ORG },
+  knowsAbout: ['Web design', 'Frontend development', 'WebGL', 'Motion design'],
+});
+const website = () => ({ '@type': 'WebSite', '@id': WEBSITE, url: abs('/'), name: SITE_NAME, alternateName: 'ffdev.studio', inLanguage: 'en', publisher: { '@id': ORG } });
 // every page's graph starts with the same three nodes, so no @id reference dangles
 const core = () => [org(), founder(), website()];
 const crumbs = (items) => ({
@@ -119,7 +130,8 @@ export function seoFor(route) {
         ...PRICING.bands.map((b) => {
           const r = range(b.range);
           return {
-            '@type': 'Offer', name: b.name, description: `${b.line} ${b.days}.`, priceCurrency: 'MYR',
+            '@type': 'AggregateOffer', name: b.name, description: `${b.line} ${b.days}.`, priceCurrency: 'MYR',
+            lowPrice: r.min, ...(r.max ? { highPrice: r.max } : {}),
             priceSpecification: { '@type': 'PriceSpecification', priceCurrency: 'MYR', minPrice: r.min, ...(r.max ? { maxPrice: r.max } : {}) },
           };
         }),
@@ -145,7 +157,21 @@ export function seoFor(route) {
       const path = '/contact';
       const title = 'Start a project — contact FF Dev Studio';
       const description = `Tell FF Dev Studio about your website: a seven-question brief, sent by email or WhatsApp. ${CONTACT.email} · WhatsApp ${CONTACT.whatsapp}.`;
-      return { ...base, path, title, description, graph: [...core(), webpage('ContactPage', path, title, description, { about: { '@id': ORG } })] };
+      return { ...base, path, title, description, graph: [...core(), webpage('ContactPage', path, title, description, { about: { '@id': ORG }, breadcrumb: crumbs([['Contact', path]]) })] };
+    }
+    case 'faq': {
+      const path = '/faq';
+      const title = 'Website questions: cost, timing, ownership | FF Dev Studio';
+      const description = 'What a custom website costs in Malaysia, how long it takes, what is included, who owns it and what happens after launch — answered by FF Dev Studio.';
+      // FAQPage mirrors the visible questions and answers word for word (no rich result is expected; it is the accurate type)
+      const text = (f) => [...f.a, ...(f.list ? [f.list.join('; ') + '.'] : []), ...(f.after ? [f.after] : [])].join(' ');
+      return {
+        ...base, path, title, description,
+        graph: [...core(), webpage('FAQPage', path, title, description, {
+          about: { '@id': ORG }, breadcrumb: crumbs([['Questions', path]]),
+          mainEntity: FAQ.map((f) => ({ '@type': 'Question', '@id': `${abs(path)}#${f.id}`, name: f.q, acceptedAnswer: { '@type': 'Answer', text: text(f) } })),
+        })],
+      };
     }
     default:
       return { ...base, path: null, title: 'Page not found | FF Dev Studio', description: 'This page does not exist. The work, studio and pricing are one click away.', robots: 'noindex, follow', graph: null };

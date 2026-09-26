@@ -1,0 +1,36 @@
+
+https://ffdev.studio
+  baseline (browser UA): 200 · 22390 B · 'FF Dev Studio — Custom websites, designed and built in Malaysia'
+  agent                status     bytes  verdict
+  mobile-browser          200     22390  ok
+  Googlebot-Smartphone    200     22390  ok
+  Googlebot               200     22390  ok
+  Bingbot                 200     22390  ok
+  OAI-SearchBot           200     22390  ok
+  ChatGPT-User            200     22390  ok
+  GPTBot                  200     22390  ok
+  Claude-SearchBot        200     22390  ok
+  Claude-User             200     22390  ok
+  ClaudeBot               200     22390  ok
+  PerplexityBot           200     22390  ok
+  Perplexity-User         200     22390  ok
+  Applebot                200     22390  ok
+  meta-webindexer         200     22390  ok
+
+https://ffdev.studio/pricing
+  baseline (browser UA): 200 · 25283 B · 'Website pricing in Malaysia, from RM1,000 | FF Dev Studio'
+  agent                status     bytes  verdict
+  mobile-browser          200     25283  ok
+  Googlebot-Smartphone    200     25283  ok
+  Googlebot               200     25283  ok
+  Bingbot                 200     25283  ok
+  OAI-SearchBot           200     25283  ok
+  ChatGPT-User            200     25283  ok
+  GPTBot                  200     25283  ok
+  Claude-SearchBot        200     25283  ok
+  Claude-User             200     25283  ok
+  ClaudeBot               200     25283  ok
+  PerplexityBot           200     25283  ok
+  Perplexity-User         200     25283  ok
+  Applebot                200     25283  ok
+  meta-webindexer         200     25283  ok

@@ -199,3 +199,94 @@ export const PRICING = {
   ],
   terms: '50% to begin, 50% before launch. Thirty-day defect warranty.',
 };
+
+// /faq — every answer restates a fact from ffdevstudio/SERVICE_ARCHITECTURE.md (or PRICING / PROJECTS
+// above). Answer first, in a sentence that names FF Dev Studio, so each one stands on its own when
+// quoted. `list` renders as a list under the answer; `more` is the page with the detail.
+const [focused, full, signature] = PRICING.bands;
+export const FAQ = [
+  {
+    id: 'cost', q: 'How much does a custom website cost in Malaysia?',
+    a: [
+      `A custom website from FF Dev Studio starts at RM1,000, and most projects land between RM1,000 and RM5,000. A focused build is ${focused.range}, a full brand website ${full.range}, and a signature experience ${signature.range}.`,
+      'Every project is quoted in writing after one conversation, before any work starts. The bands are for estimating, not quality tiers: a project is quoted above them when its real scope needs it.',
+    ],
+    more: ['/pricing', 'See pricing'],
+  },
+  {
+    id: 'price-factors', q: 'What changes the price of a website?',
+    a: ['FF Dev Studio prices a website on its real scope. These are the things that move the number:'],
+    list: ['How many pages or templates, and how different they are', 'How ready the content is, and how much content work is needed', 'Motion, 3D, WebGL and interaction complexity', 'Whether you need a CMS to edit the site yourself', 'E-commerce catalogue size and payment setup', 'Booking, forms, APIs and other integrations', 'Chinese or other additional languages', 'Migrating an existing site', 'How urgent the launch date is'],
+  },
+  {
+    id: 'timeline', q: 'How long does it take to build a website?',
+    a: [`FF Dev Studio delivers a focused build in ${focused.days.toLowerCase()}, a full brand website in ${full.days.toLowerCase()}, and a signature experience in one week or longer. The clock starts once the deposit and the content needed to start are in.`],
+  },
+  {
+    id: 'types', q: 'What kinds of websites does FF Dev Studio build?',
+    a: ['FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia:'],
+    list: ['Landing and launch pages', 'SME and corporate websites', 'Portfolio and personal-brand websites', 'Campaign and event websites', 'E-commerce websites', 'Booking and enquiry-driven websites', 'Editorial and content-led websites', 'Experimental, motion-led, 3D and WebGL experiences'],
+    after: 'Custom web applications are not taken on for now.',
+    more: ['/', 'See the work'],
+  },
+  {
+    id: 'ecommerce', q: 'Does FF Dev Studio build e-commerce websites?',
+    a: [`Yes. E-commerce sits in the signature experience band, from RM3,500. Ascend Peptides (ascendpeptides.my) is an FF Dev Studio e-commerce build: a research catalogue where purity, form, storage and documentation come before price. The catalogue size and payment setup decide the final quote.`],
+    more: ['/projects/ascend-peptides', 'See Ascend Peptides'],
+  },
+  {
+    id: 'included', q: 'What is included in every website?',
+    a: ['Every FF Dev Studio build includes:'],
+    list: ['Project scoping and a recommended technical approach', 'Custom visual direction for your brand', 'UI design and responsive frontend development', 'Mobile, tablet and desktop adaptation', 'Purposeful motion and interaction', 'Performance, accessibility and technical SEO', 'Contact, enquiry and WhatsApp paths', 'Deployment, SSL and launch configuration', 'Three revision rounds', 'Cross-device launch checks', 'A thirty-day defect warranty'],
+    after: 'Included does not mean unlimited: pages, integrations and complexity follow the agreed scope.',
+    more: ['/about/approach', 'See the approach'],
+  },
+  {
+    id: 'content', q: 'What do I need to provide?',
+    a: [
+      'You supply the final source material: business facts, offer details, existing copy, your logo, photography and any legal information the site needs. FF Dev Studio helps with light content fixes, like tightening headings or correcting short passages, when it is quick and needed.',
+      'Full copywriting, research-heavy or multilingual content, original photography, video, illustration or 3D assets, and large catalogue or migration work are quoted separately.',
+    ],
+  },
+  {
+    id: 'payment', q: 'How does payment work?',
+    a: ['FF Dev Studio takes a 50% deposit to begin and the final 50% before public launch or final handoff. Work starts once the deposit and the content needed to start are in, and the proposal you sign sets out deliverables, exclusions, timeline, ownership, hosting, revision rules and price.'],
+  },
+  {
+    id: 'revisions', q: 'How many revisions do I get?',
+    a: ['Every FF Dev Studio project includes three revision rounds. You consolidate the feedback for each round into one set of changes. Anything that adds new scope is quoted separately rather than squeezed into a round.'],
+  },
+  {
+    id: 'hosting', q: 'Do you offer hosting and maintenance?',
+    a: [
+      `Yes. FF Dev Studio offers three managed-care plans: ${PRICING.care.map((c) => `${c.name} at ${c.price} (${c.year})`).join(', ')}. Hosting with FF is recommended, not required — you can take the site elsewhere at handoff.`,
+      'Care covers managed hosting, SSL and CDN, uptime monitoring, backups, and security and dependency maintenance. Maintain adds up to 60 minutes of small changes a month and priority WhatsApp support. Evolve adds up to three hours of improvements a month and a quarterly recommendation. Unused time does not roll over, and domain fees are billed at cost.',
+    ],
+    more: ['/pricing', 'See the care plans'],
+  },
+  {
+    id: 'ownership', q: 'Who owns the website and the domain?',
+    a: ['You own your domain and the content you supply. Once a project is fully paid, FF Dev Studio hands the deliverables over or migrates them when you ask, and never holds a domain hostage. Third-party licences, fonts, stock media and services stay under their own terms. The exact ownership and handoff terms are written into every proposal.'],
+  },
+  {
+    id: 'language', q: 'Can my website be in Bahasa Malaysia?',
+    a: ['Yes. FF Dev Studio builds English, Bahasa Malaysia and bilingual English–Bahasa Malaysia websites with no language surcharge. Chinese is charged separately, whether it replaces the default languages or is added alongside them. You supply or approve the translations unless translation is written into the quote.'],
+  },
+  {
+    id: 'seo', q: 'Is SEO included?',
+    a: ['Essential technical SEO is part of every FF Dev Studio build, alongside performance and accessibility work: the structure, metadata and speed that search engines read. Copywriting and campaign work are not part of the build and are quoted separately if you need them.'],
+  },
+  {
+    id: 'warranty', q: 'What happens after launch?',
+    a: ['Every FF Dev Studio website comes with a thirty-day defect warranty from launch: defects in the work FF delivered are fixed under the warranty. After that, a care plan covers hosting, maintenance and small changes, or the site is handed over to you.'],
+  },
+  {
+    id: 'location', q: 'Where is FF Dev Studio based?',
+    a: [`FF Dev Studio is a web design studio in Kuala Lumpur, Malaysia, working with founders and small companies across the country. Projects run over WhatsApp and email, so you do not need to be in Kuala Lumpur.`],
+  },
+  {
+    id: 'start', q: 'How do I start a project?',
+    a: [`Send FF Dev Studio a message on WhatsApp (${CONTACT.whatsapp}) or email (${CONTACT.email}) with your business, what the website needs to do, references you like, the functions it needs, how ready your content is, your budget and your target date. You get a recommended scope and a written proposal back.`],
+    more: ['/contact', 'Start a project'],
+  },
+];
