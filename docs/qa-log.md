@@ -41,3 +41,9 @@ Lesson recorded: the first border "fix" was declared done from a still screensho
 - Rebuilt on the About page's row system. Each section is a rule, a mono label in columns 1–3 (now the h2s: Bands, Care, Terms) and content in 4–12. Bands are three panels with the price as the second-largest text. Care plans are rows of name, what's included, and monthly/yearly price. Copy is unchanged.
 - Header between 1024 and 1439px: the blurb's columns overlapped the sound toggle, so grid auto-placement pushed it to a second row, below the 104px blur band and over the page on every route. Now pinned to row 1 with non-overlapping columns. Measured at 1024/1100/1280/1408/1440/1600: all items end ≤ 96px, no horizontal overlap.
 - Checked at 1440, 1100 and 390 (full page) and in real Chrome at 1408. The shared `.btn-pill` rule was dropped in the rewrite and then restored; it is also used by About and 404.
+
+## 2026-09-26 — About page and header blur
+
+- About (Studio and Approach) captured at 1440, 1100 and 390, then scrolled in real Chrome. The layout grid holds at every width. Two defects showed only while scrolling.
+- **Header blur never worked, on every route.** `.header` ran its entrance with `animation-fill-mode: both`, which held a `transform` after the animation ended, and that switched off `backdrop-filter` on the `.header-blur` child. Page text therefore scrolled sharp under the logo, blurb and clocks. Toggled live in Chrome: removing the held transform restored the blur. Fixed with `backwards` fill; the computed header transform after load is now `none`, and the text underneath reads blurred.
+- About footer was followed by a 180px empty band (the page's own padding on top of the footer's). Removed, as on Pricing. The sticky Studio/Approach toggle's tint went from 25% to 45% black so section labels passing behind it don't show through.
