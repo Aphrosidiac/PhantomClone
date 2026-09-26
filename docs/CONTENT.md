@@ -93,7 +93,7 @@ shown on the About page. Adding a zone means adding an entry here and choosing a
 
 `PRICING` is transcribed from `ffdevstudio/SERVICE_ARCHITECTURE.md`, the source of truth for FF's
 prices. Change that document first, then copy the figures here — do not invent tiers, rename plans or
-round numbers. The pricing page's meta description in `src/seo.js` quotes the bands — update it too. Bands render as the three columns on `/pricing`; `care` renders as the plan list.
+round numbers. The pricing page's meta description in `src/seo.js` quotes the bands — update it too. Bands render as the three panels on `/pricing`, and each `care` plan renders as one row (name, `line`, monthly and yearly price), so keep each plan's `line` to one sentence.
 
 ## Contact details
 
@@ -117,3 +117,31 @@ whoosh`). Short, quiet files work best — the grid tick fires on every tile cha
 
 `public/ff-*.svg` are copied verbatim from `ffdevstudio/brand-system/assets/svg/`. The `//FF` mark
 in the header, tiles and footer is the same path data inline. Do not redraw it.
+
+## About: clients strip
+
+`CLIENTS` in `src/pages.js` lists the four brands and their logos in `public/brand/`, all white-on-dark
+for the Graphite ground:
+
+| Brand | File | Source |
+|---|---|---|
+| SmoothSail | `smoothsail-lockup-on-dark.png` | rendered by `tools/client-logos.mjs` from `SmoothSail/brand/lockup.svg` (Hanken Grotesk 600) |
+| Indahnya | `indahnya-lockup-on-dark.png` | rendered by `tools/client-logos.mjs` from Indahnya's `app/ui/components/Logo.vue` (Inter 600) |
+| Ascend MY | `ascend-my-primary-on-dark.svg` | `AscPeps/brand/production/Ascend-MY-Brand-Kit/03_LOGOS_FOR_DARK_BACKGROUNDS/Ascend-MY-Primary-On-Dark.svg`, verbatim (kit v1.1) |
+| LEWIX | `lewix-wordmark-on-dark.svg` | `LewixWeb4/public/brand/lewix-wordmark.svg` (the vector of `LEWIX/LOGO`'s primary logo), with its letters set to white |
+
+- **Use kit files where one exists.** Never redraw a brand's mark. When a kit is versioned (Ascend),
+  copy from its current production folder.
+- **SmoothSail and Indahnya** ship no dark-background file, since each repo draws its logo as a mark
+  plus live text. `node tools/client-logos.mjs` redraws them from the repo's own mark and font, with
+  only the dark ink switched to white. Re-run it if either logo changes.
+- **Sizing:** a mark-plus-name lockup gets `kind: 'lockup'` (the third item in its `CLIENTS` entry),
+  which renders it taller so its name matches the wordmark-only logos.
+- **The line above the strip** ("From research catalogues to store builders and wedding platforms…")
+  describes these four. Rewrite it if the list changes.
+
+## Share images and icons
+
+`node tools/seo-assets.mjs` (dev server running) renders each project's share card
+`public/media/<slug>/og.jpg` from its cover, plus `logo.png`, `apple-touch-icon.png` and
+`favicon-48.png`. Re-run it after adding a project, renaming one or re-capturing a cover.

@@ -74,6 +74,24 @@ darker than inside), i.e. no rim.
 | Wheel fed the drag inertia | moved **1,102 px** (3.7×) | — |
 | Wheel moves 1:1, eased ~0.1 s (current) | **300 px** | **100 px** |
 
+### Production routing (`npm run build` → `npx wrangler pages dev dist --port 8788`)
+
+| Request | Result |
+|---|---|
+| `/`, `/?zone=study`, every `/projects/<slug>`, `/about`, `/about/approach`, `/pricing`, `/contact` | 200, each with its own `<title>` |
+| `/about/`, `/projects/x/`, `/index.html`, `/about.html` | 308 to the canonical URL |
+| `/nothing`, `/projects/nope` | 404 with `404.html` (`noindex`) |
+| every page's JSON-LD | parses, no dangling `@id` references |
+
+### Header (Playwright, `/pricing`, after load)
+
+| Width | Header items' lowest edge | Horizontal overlap |
+|---|---|---|
+| 1024, 1100, 1280, 1408, 1440, 1600 | ≤ 96 px (inside the 104 px blur band) | none |
+
+The header blur itself is checked in real Chrome. Scroll text under the header: it must read blurred.
+`getComputedStyle(document.querySelector('.header')).transform` must be `none` once the entrance ends.
+
 ### Boot (real Chrome, dev server, unfocused window)
 
 | Build | Atlas build | Grid ready | Loader gone |

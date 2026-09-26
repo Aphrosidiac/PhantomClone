@@ -1,314 +1,314 @@
 [
- {
-  "id": "grid-render",
-  "surface": "home",
-  "feature": "Instanced 11\u00d711 wrapping grid, tiles repeat centre-out",
-  "status": "done",
-  "evidence": "capture docs/qa/shots/home.png",
-  "notes": ""
- },
- {
-  "id": "grid-lens",
-  "surface": "home",
-  "feature": "Barrel lens (.88 + d\u00b7r\u00b2, d=-.07\u00b7aspect) + vignette",
-  "status": "done",
-  "evidence": "shader constants from bundle; capture",
-  "notes": ""
- },
- {
-  "id": "grid-labels",
-  "surface": "home",
-  "feature": "Per-tile label: client mark, title, zone+feature pills, year",
-  "status": "done",
-  "evidence": "runtime Canvas2D atlas; capture",
-  "notes": ""
- },
- {
-  "id": "grid-hover",
-  "surface": "home",
-  "feature": "Hover blur background + label .8\u21921, eased 5\u00b7dt",
-  "status": "done",
-  "evidence": "headless capture docs/qa/shots/home-hover.png checked by eye against the reference capture",
-  "notes": ""
- },
- {
-  "id": "grid-drag",
-  "surface": "home",
-  "feature": "Drag with 3px threshold, inertia decay 4\u00b7dt, press zoom-out z+.4",
-  "status": "done",
-  "evidence": "headless capture docs/qa/shots/home-drag.png checked by eye against the reference capture",
-  "notes": ""
- },
- {
-  "id": "grid-keys",
-  "surface": "home",
-  "feature": "Arrows pan, Tab walks spiral, Enter opens",
-  "status": "done",
-  "evidence": "kb.mjs: Tab announced, Enter \u2192 /projects/ff-stanzza",
-  "notes": ""
- },
- {
-  "id": "grid-wheel",
-  "surface": "home",
-  "feature": "Trackpad/wheel pans the grid",
-  "status": "improved",
-  "evidence": "not on reference; added for trackpads",
-  "notes": "not on reference; added for trackpads"
- },
- {
-  "id": "grid-hit",
-  "surface": "home",
-  "feature": "Hit test through the lens",
-  "status": "improved",
-  "evidence": "reference compares NDC to half-scale uv; ours inverts the lens",
-  "notes": "reference compares NDC to half-scale uv; ours inverts the lens"
- },
- {
-  "id": "grid-parallax",
-  "surface": "home",
-  "feature": "Ambient pointer parallax .07",
-  "status": "done",
-  "evidence": "code; observed in captures",
-  "notes": ""
- },
- {
-  "id": "grid-video",
-  "surface": "home",
-  "feature": "Video atlas for moving tiles",
-  "status": "omitted",
-  "evidence": "FF media is stills",
-  "notes": "FF media is stills"
- },
- {
-  "id": "intro",
-  "surface": "home",
-  "feature": "Loader words part, progress bar, grid fades in with lens tween",
-  "status": "done",
-  "evidence": "headless capture docs/qa/shots/intro.jpg frames checked by eye against the reference capture",
-  "notes": ""
- },
- {
-  "id": "intro-mascot",
-  "surface": "home",
-  "feature": "Particle mascot intro",
-  "status": "omitted",
-  "evidence": "Phantom's mascot; //FF mark used instead",
-  "notes": "Phantom's mascot; //FF mark used instead"
- },
- {
-  "id": "list",
-  "surface": "home",
-  "feature": "List view grouped by year, counts, pills, client, row entrance",
-  "status": "done",
-  "evidence": "headless capture docs/qa/shots/list.png checked by eye against the reference capture",
-  "notes": ""
- },
- {
-  "id": "filter",
-  "surface": "home",
-  "feature": "Filter panel: zone / feature / stack / client, AND across groups",
-  "status": "done",
-  "evidence": "filter-active.png; URL /?zone=study&feature=webgl",
-  "notes": ""
- },
- {
-  "id": "filter-url",
-  "surface": "home",
-  "feature": "Filters and view persist in the URL",
-  "status": "improved",
-  "evidence": "reference keeps them in state only",
-  "notes": "reference keeps them in state only"
- },
- {
-  "id": "header",
-  "surface": "global",
-  "feature": "Mark, sound, blurb, two clocks, Let's Talk, gradient blur",
-  "status": "done",
-  "evidence": "headless capture docs/qa/shots/home.png checked by eye against the reference capture",
-  "notes": ""
- },
- {
-  "id": "nav",
-  "surface": "global",
-  "feature": "Pill nav with sliding highlight, toggle easing .93,-.24,.4,1.17",
-  "status": "done",
-  "evidence": "headless capture docs/qa/shots/captures across routes checked by eye against the reference capture",
-  "notes": ""
- },
- {
-  "id": "sound",
-  "surface": "global",
-  "feature": "Sound toggle, UI sounds on click/hover/drag/open",
-  "status": "done",
-  "evidence": "code; files from reference; audio not measured headless",
-  "notes": ""
- },
- {
-  "id": "project",
-  "surface": "project",
-  "feature": "Project page \u00d714: title, meta, live link, cover, statement, about, facts, shots, features, related",
-  "status": "done",
-  "evidence": "project-full.png, 14 routes",
-  "notes": ""
- },
- {
-  "id": "project-pixelate",
-  "surface": "project",
-  "feature": "Pixelate morph route transition",
-  "status": "partial",
-  "evidence": "fade/lift transition instead of WebGL pixel morph",
-  "notes": "fade/lift transition instead of WebGL pixel morph"
- },
- {
-  "id": "about",
-  "surface": "about",
-  "feature": "Studio tab: hero, strip, statements, zones, band, clients, studio, team",
-  "status": "done",
-  "evidence": "headless capture docs/qa/shots/about-full.png checked by eye against the reference capture",
-  "notes": ""
- },
- {
-  "id": "about-approach",
-  "surface": "about",
-  "feature": "Approach tab (process + included)",
-  "status": "done",
-  "evidence": "headless capture docs/qa/shots/approach-full.png checked by eye against the reference capture",
-  "notes": ""
- },
- {
-  "id": "about-video",
-  "surface": "about",
-  "feature": "Autoplay video band",
-  "status": "partial",
-  "evidence": "image band; FF has no studio reel",
-  "notes": "image band; FF has no studio reel"
- },
- {
-  "id": "about-logos",
-  "surface": "about",
-  "feature": "Partner logo wall",
-  "status": "partial",
-  "evidence": "client names typeset; no client logo files on disk",
-  "notes": "client names typeset; no client logo files on disk"
- },
- {
-  "id": "pricing",
-  "surface": "pricing",
-  "feature": "Careers page shape carrying FF bands, care plans and terms",
-  "status": "done",
-  "evidence": "pricing-full.png; figures from SERVICE_ARCHITECTURE.md",
-  "notes": ""
- },
- {
-  "id": "contact",
-  "surface": "contact",
-  "feature": "Overlay with three cards; cold /contact",
-  "status": "done",
-  "evidence": "contact.png, contact-cold.png",
-  "notes": ""
- },
- {
-  "id": "contact-form",
-  "surface": "contact",
-  "feature": "7-step brief form, validation, completion",
-  "status": "done",
-  "evidence": "form-errors.png, form-done.png",
-  "notes": ""
- },
- {
-  "id": "contact-send",
-  "surface": "contact",
-  "feature": "Form submission",
-  "status": "improved",
-  "evidence": "no backend: completion hands a pre-filled email / WhatsApp message to the visitor",
-  "notes": "no backend: completion hands a pre-filled email / WhatsApp message to the visitor"
- },
- {
-  "id": "contact-upload",
-  "surface": "contact",
-  "feature": "File attachments",
-  "status": "omitted",
-  "evidence": "no storage; replaced by a references field",
-  "notes": "no storage; replaced by a references field"
- },
- {
-  "id": "cookies",
-  "surface": "global",
-  "feature": "Cookie banner + analytics",
-  "status": "omitted",
-  "evidence": "site sets no cookies",
-  "notes": "site sets no cookies"
- },
- {
-  "id": "legal",
-  "surface": "global",
-  "feature": "Privacy / modern slavery / AI policy pages",
-  "status": "omitted",
-  "evidence": "not applicable to FF demo; privacy line in contact overlay",
-  "notes": "not applicable to FF demo; privacy line in contact overlay"
- },
- {
-  "id": "404",
-  "surface": "global",
-  "feature": "404 page",
-  "status": "done",
-  "evidence": "headless capture docs/qa/shots/404.png checked by eye against the reference capture",
-  "notes": ""
- },
- {
-  "id": "mobile",
-  "surface": "global",
-  "feature": "Phone layout: header, vertical view toggle, nav, filter, pages",
-  "status": "done",
-  "evidence": "m-*.png; no overflow at 390",
-  "notes": ""
- },
- {
-  "id": "reduced-motion",
-  "surface": "global",
-  "feature": "prefers-reduced-motion",
-  "status": "done",
-  "evidence": "code: no tweens/inertia animation, reveals resting-visible",
-  "notes": ""
- },
- {
-  "id": "a11y-grid",
-  "surface": "home",
-  "feature": "Screen-reader list of every project behind the canvas",
-  "status": "improved",
-  "evidence": "reference canvas has none",
-  "notes": "reference canvas has none"
- },
- {
-  "id": "seo",
-  "surface": "global",
-  "feature": "Per-route titles, meta description, OG",
-  "status": "partial",
-  "evidence": "SPA: titles per route client-side; no per-route prerender",
-  "notes": "SPA: titles per route client-side; no per-route prerender"
- },
- {
-  "id": "grid-borders",
-  "surface": "home",
-  "feature": "Tile borders that stay steady while the grid moves",
-  "status": "improved",
-  "evidence": "flicker-probe in Chrome: 0% swing; 2725/2725 crossings exactly 1px",
-  "notes": "reference draws them as sub-pixel gaps; ours are pixel-snapped in the lens pass"
- },
- {
-  "id": "grid-edges",
-  "surface": "home",
-  "feature": "Picture edges without a bleeding rim",
-  "status": "improved",
-  "evidence": "fringe-probe: 18.8 -> 2.2 with gutter toggled in one session",
-  "notes": "atlas gutter + 1px coverage ramp"
- },
- {
-  "id": "grid-label-res",
-  "surface": "home",
-  "feature": "Sharp tile labels",
-  "status": "done",
-  "evidence": "sharp-probe: acutance 2.94 -> 3.88, crisp edges 13.5 -> 23.6 per 1000px",
-  "notes": "2x label atlas, 1.5x scene target"
- }
+  {
+    "id": "grid-render",
+    "surface": "home",
+    "feature": "Instanced 11×11 wrapping grid, tiles repeat centre-out",
+    "status": "done",
+    "evidence": "capture docs/qa/shots/home.png",
+    "notes": ""
+  },
+  {
+    "id": "grid-lens",
+    "surface": "home",
+    "feature": "Barrel lens (.88 + d·r², d=-.07·aspect) + vignette",
+    "status": "done",
+    "evidence": "shader constants from bundle; capture",
+    "notes": ""
+  },
+  {
+    "id": "grid-labels",
+    "surface": "home",
+    "feature": "Per-tile label: client mark, title, zone+feature pills, year",
+    "status": "done",
+    "evidence": "runtime Canvas2D atlas; capture",
+    "notes": ""
+  },
+  {
+    "id": "grid-hover",
+    "surface": "home",
+    "feature": "Hover blur background + label .8→1, eased 5·dt",
+    "status": "done",
+    "evidence": "headless capture docs/qa/shots/home-hover.png checked by eye against the reference capture",
+    "notes": ""
+  },
+  {
+    "id": "grid-drag",
+    "surface": "home",
+    "feature": "Drag with 3px threshold, inertia decay 4·dt, press zoom-out z+.4",
+    "status": "done",
+    "evidence": "headless capture docs/qa/shots/home-drag.png checked by eye against the reference capture",
+    "notes": ""
+  },
+  {
+    "id": "grid-keys",
+    "surface": "home",
+    "feature": "Arrows pan, Tab walks spiral, Enter opens",
+    "status": "done",
+    "evidence": "kb.mjs: Tab announced, Enter → /projects/ff-stanzza",
+    "notes": ""
+  },
+  {
+    "id": "grid-wheel",
+    "surface": "home",
+    "feature": "Trackpad/wheel pans the grid",
+    "status": "improved",
+    "evidence": "not on reference; added for trackpads",
+    "notes": "not on reference; added for trackpads"
+  },
+  {
+    "id": "grid-hit",
+    "surface": "home",
+    "feature": "Hit test through the lens",
+    "status": "improved",
+    "evidence": "reference compares NDC to half-scale uv; ours inverts the lens",
+    "notes": "reference compares NDC to half-scale uv; ours inverts the lens"
+  },
+  {
+    "id": "grid-parallax",
+    "surface": "home",
+    "feature": "Ambient pointer parallax .07",
+    "status": "done",
+    "evidence": "code; observed in captures",
+    "notes": ""
+  },
+  {
+    "id": "intro",
+    "surface": "home",
+    "feature": "Loader words part, progress bar, grid fades in with lens tween",
+    "status": "done",
+    "evidence": "headless capture docs/qa/shots/intro.jpg frames checked by eye against the reference capture",
+    "notes": ""
+  },
+  {
+    "id": "intro-mascot",
+    "surface": "home",
+    "feature": "Particle mascot intro",
+    "status": "omitted",
+    "evidence": "Phantom's mascot; //FF mark used instead",
+    "notes": "Phantom's mascot; //FF mark used instead"
+  },
+  {
+    "id": "list",
+    "surface": "home",
+    "feature": "List view grouped by year, counts, pills, client, row entrance",
+    "status": "done",
+    "evidence": "headless capture docs/qa/shots/list.png checked by eye against the reference capture",
+    "notes": ""
+  },
+  {
+    "id": "filter",
+    "surface": "home",
+    "feature": "Filter panel: zone / feature / stack / client, AND across groups",
+    "status": "done",
+    "evidence": "filter-active.png; URL /?zone=study&feature=webgl",
+    "notes": ""
+  },
+  {
+    "id": "filter-url",
+    "surface": "home",
+    "feature": "Filters and view persist in the URL",
+    "status": "improved",
+    "evidence": "reference keeps them in state only",
+    "notes": "reference keeps them in state only"
+  },
+  {
+    "id": "header",
+    "surface": "global",
+    "feature": "Mark, sound, blurb, two clocks, Let's Talk, gradient blur",
+    "status": "done",
+    "evidence": "headless capture docs/qa/shots/home.png checked by eye against the reference capture",
+    "notes": ""
+  },
+  {
+    "id": "nav",
+    "surface": "global",
+    "feature": "Pill nav with sliding highlight, toggle easing .93,-.24,.4,1.17",
+    "status": "done",
+    "evidence": "headless capture docs/qa/shots/captures across routes checked by eye against the reference capture",
+    "notes": ""
+  },
+  {
+    "id": "sound",
+    "surface": "global",
+    "feature": "Sound toggle, UI sounds on click/hover/drag/open",
+    "status": "done",
+    "evidence": "code; files from reference; audio not measured headless",
+    "notes": ""
+  },
+  {
+    "id": "project",
+    "surface": "project",
+    "feature": "Project page ×14: title, meta, live link, cover, statement, about, facts, shots, features, related",
+    "status": "done",
+    "evidence": "project-full.png, 14 routes",
+    "notes": ""
+  },
+  {
+    "id": "project-pixelate",
+    "surface": "project",
+    "feature": "Pixelate morph route transition",
+    "status": "partial",
+    "evidence": "fade/lift transition instead of WebGL pixel morph",
+    "notes": "fade/lift transition instead of WebGL pixel morph"
+  },
+  {
+    "id": "about",
+    "surface": "about",
+    "feature": "Studio tab: hero, strip, statements, zones, band, clients, studio, team",
+    "status": "done",
+    "evidence": "headless capture docs/qa/shots/about-full.png checked by eye against the reference capture",
+    "notes": ""
+  },
+  {
+    "id": "about-approach",
+    "surface": "about",
+    "feature": "Approach tab (process + included)",
+    "status": "done",
+    "evidence": "headless capture docs/qa/shots/approach-full.png checked by eye against the reference capture",
+    "notes": ""
+  },
+  {
+    "id": "about-video",
+    "surface": "about",
+    "feature": "Autoplay video band",
+    "status": "partial",
+    "evidence": "image band; FF has no studio reel",
+    "notes": "image band; FF has no studio reel"
+  },
+  {
+    "id": "about-logos",
+    "surface": "about",
+    "feature": "Partner logo wall",
+    "status": "partial",
+    "evidence": "client names typeset; no client logo files on disk",
+    "notes": "client names typeset; no client logo files on disk"
+  },
+  {
+    "id": "pricing",
+    "surface": "pricing",
+    "feature": "Careers page shape carrying FF bands, care plans and terms",
+    "status": "done",
+    "evidence": "pricing-full.png; figures from SERVICE_ARCHITECTURE.md",
+    "notes": ""
+  },
+  {
+    "id": "contact",
+    "surface": "contact",
+    "feature": "Overlay with three cards; cold /contact",
+    "status": "done",
+    "evidence": "contact.png, contact-cold.png",
+    "notes": ""
+  },
+  {
+    "id": "contact-form",
+    "surface": "contact",
+    "feature": "7-step brief form, validation, completion",
+    "status": "done",
+    "evidence": "form-errors.png, form-done.png",
+    "notes": ""
+  },
+  {
+    "id": "contact-send",
+    "surface": "contact",
+    "feature": "Form submission",
+    "status": "improved",
+    "evidence": "no backend: completion hands a pre-filled email / WhatsApp message to the visitor",
+    "notes": "no backend: completion hands a pre-filled email / WhatsApp message to the visitor"
+  },
+  {
+    "id": "contact-upload",
+    "surface": "contact",
+    "feature": "File attachments",
+    "status": "omitted",
+    "evidence": "no storage; replaced by a references field",
+    "notes": "no storage; replaced by a references field"
+  },
+  {
+    "id": "cookies",
+    "surface": "global",
+    "feature": "Cookie banner + analytics",
+    "status": "omitted",
+    "evidence": "site sets no cookies",
+    "notes": "site sets no cookies"
+  },
+  {
+    "id": "legal",
+    "surface": "global",
+    "feature": "Privacy / modern slavery / AI policy pages",
+    "status": "omitted",
+    "evidence": "not applicable to FF demo; privacy line in contact overlay",
+    "notes": "not applicable to FF demo; privacy line in contact overlay"
+  },
+  {
+    "id": "404",
+    "surface": "global",
+    "feature": "404 page",
+    "status": "done",
+    "evidence": "headless capture docs/qa/shots/404.png checked by eye against the reference capture",
+    "notes": ""
+  },
+  {
+    "id": "mobile",
+    "surface": "global",
+    "feature": "Phone layout: header, vertical view toggle, nav, filter, pages",
+    "status": "done",
+    "evidence": "m-*.png; no overflow at 390",
+    "notes": ""
+  },
+  {
+    "id": "reduced-motion",
+    "surface": "global",
+    "feature": "prefers-reduced-motion",
+    "status": "done",
+    "evidence": "code: no tweens/inertia animation, reveals resting-visible",
+    "notes": ""
+  },
+  {
+    "id": "a11y-grid",
+    "surface": "home",
+    "feature": "Screen-reader list of every project behind the canvas",
+    "status": "improved",
+    "evidence": "reference canvas has none",
+    "notes": "reference canvas has none"
+  },
+  {
+    "id": "seo",
+    "surface": "global",
+    "feature": "Per-route titles, meta description, OG",
+    "status": "done",
+    "evidence": "2026-09-26: every route prerendered to its own HTML (scripts/prerender.mjs) with per-route title, description, canonical, OG/Twitter card and JSON-LD (src/seo.js); sitemap.xml, robots.txt, llms.txt; real 404s. Checked through wrangler pages dev + real Chrome; see docs/SEO.md",
+    "notes": ""
+  },
+  {
+    "id": "grid-borders",
+    "surface": "home",
+    "feature": "Tile borders that stay steady while the grid moves",
+    "status": "improved",
+    "evidence": "flicker-probe in Chrome: 0% swing; 2725/2725 crossings exactly 1px",
+    "notes": "reference draws them as sub-pixel gaps; ours are pixel-snapped in the lens pass"
+  },
+  {
+    "id": "grid-edges",
+    "surface": "home",
+    "feature": "Picture edges without a bleeding rim",
+    "status": "improved",
+    "evidence": "fringe-probe: 18.8 -> 2.2 with gutter toggled in one session",
+    "notes": "atlas gutter + 1px coverage ramp"
+  },
+  {
+    "id": "grid-label-res",
+    "surface": "home",
+    "feature": "Sharp tile labels",
+    "status": "done",
+    "evidence": "sharp-probe: acutance 2.94 -> 3.88, crisp edges 13.5 -> 23.6 per 1000px",
+    "notes": "2x label atlas, 1.5x scene target"
+  },
+  {
+    "id": "grid-video",
+    "surface": "home",
+    "feature": "Video atlas: one looping 5 s / 20 fps video behind every moving tile, played while the grid is the page, paused elsewhere; hover glow sampled from the moving frame",
+    "status": "done",
+    "evidence": "2026-09-24: 10 of 14 projects from screen recordings; 16:9 cells (reference: square + alpha); seamless loop and faststart (reference: hard cut, moov at end); still until first frame (reference: black)",
+    "notes": ""
+  }
 ]

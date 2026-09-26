@@ -34,3 +34,13 @@ SITE.
 ## Safety
 - Deploy needs explicit approval; push to GitHub first.
 - Form never sends anything itself; it opens the visitor's mail app / WhatsApp.
+
+## Later additions (Fakhrul, 2026-09-26)
+- **SEO:** every route is prerendered with its own meta, share card and JSON-LD; sitemap, robots and
+  llms.txt; real 404s. See `docs/SEO.md`.
+- **Content:** Lewix.ai is written LEWIX AI throughout. FF's own tiles read `//FF <name>`.
+- **About:** the clients strip is SmoothSail, Indahnya, Ascend MY and LEWIX, each with its own logo.
+  Kit files are used where they exist; see `docs/CONTENT.md`.
+- **Pricing:** rebuilt on About's row system. The header stays on one row at 1024–1439 px, and its
+  blur works on every page.
+- Still deploy only on Fakhrul's word.

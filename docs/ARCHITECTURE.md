@@ -31,7 +31,8 @@ index.html ──► src/main.js ──► router ──► src/pages.js   (HTML
 
 - **Media atlas** — each project's `tile.jpg`, centre-cropped square, one 683 px cell per project.
   Capped at 4096 px (2048 on phones).
-- **Label atlas** — per cell: client wordmark (or the `//FF` mark for studio work) top-left, title in
+- **Label atlas** — per cell: client wordmark top-left (studio work shows the `//FF` mark followed by the
+  project's name, with a leading "FF " dropped: `//FF Search`, `//FF Meridian`), title in
   mono caps top-right, zone pill (outlined) + two feature pills (filled) bottom-left, year bottom-right.
   Drawn at **2×** the media resolution (cap 8192 / 4096 on phones), because a 17 px caption in a
   683 px cell is only ~8 screen pixels tall and would otherwise be sampled from a blurred mip.
@@ -109,17 +110,27 @@ offset and render a deterministic frame.
 
 - `match(path)` → `home | project | about (studio/approach) | pricing | contact | 404`.
 - Internal links carry `data-link`; the delegated click handler pushes state and calls `render()`.
-- `render()` sets title, `data-route` / `data-theme` on `<body>` (drives header colours and which
+- `render()` calls `applySeo()` (`src/seo.js`: title, description, canonical, share card, JSON-LD —
+  see [SEO.md](SEO.md)), sets `data-route` / `data-theme` on `<body>` (drives header colours and which
   controls show), swaps page HTML with a short leave/enter transition, restarts reveal observers
   **per navigation** (a mount-once observer would leave later pages invisible), and tells the grid
   whether it is active.
 - `/contact` is an overlay, not a page: on a cold load the home route renders underneath. Closing it
-  returns to the previous URL.
+  returns to the previous URL (and restores that route's head).
+- Every route also exists as static HTML: `npm run build` runs `scripts/prerender.mjs`, which writes
+  each page's markup and head into its own file (`about.html`, `projects/<slug>.html`, …). The first
+  client render replaces that markup with the identical output of the same template.
 - Home view + filters are mirrored into the query string with `replaceState`, so filtered views are
   shareable and survive reload.
 
 Themes: project pages are **Bone** with Ink type; About is **Graphite**; Pricing, home, list and
 404 are black. The header inverts on light pages.
+
+**About and Pricing share one row system:** each section is a hairline rule, a mono label in columns
+1–3 and content in columns 4–12 (`.a-row` on About, `.pr-row` on Pricing; the Pricing labels are the
+page's h1/h2s). Pricing sections: hero statement → the three bands as panels (price as the second-
+largest text) → care plans as rows (name · what's included · monthly/yearly) → terms. The About
+clients strip shows each brand's own logo from `public/brand/` (see CONTENT.md).
 
 ## 3. Overlays
 
@@ -139,6 +150,15 @@ Tokens on `:root`: FF palette (`--ink --bone --graphite --lime` …), `--sans` (
 Header and page grids are 12 columns (16 at ≥1920 px). Breakpoints: 1024 (phone/tablet layout),
 1440, 1920. Every entrance animation animates **towards** a resting state that is already correct
 in CSS, so reduced motion or a paused tab never leaves content invisible.
+
+**Header.** Fixed, 104 px, with a masked `backdrop-filter` layer (`.header-blur`) so page content
+scrolls under it softly. Two rules keep that working:
+- The entrance animation uses `animation-fill-mode: backwards`, never `both`. A transform held on
+  `.header` after the animation switches off the child's backdrop blur, and page text then scrolls
+  sharp under the logo and clocks.
+- Between 1024 and 1439 px every header item is pinned to `grid-row: 1` with non-overlapping columns.
+  The blurb used to share a column with the sound toggle, and auto-placement dropped it to a second
+  row, below the blur band.
 
 ## 5. Boot sequence
 

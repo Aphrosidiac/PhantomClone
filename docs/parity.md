@@ -1,6 +1,6 @@
 # Parity ledger
 
-**30/39 complete** — 23 done, 4 partial, 5 omitted, 7 improved
+**32/39 complete** — 25 done, 3 partial, 4 omitted, 7 improved
 
 ## about
 
@@ -31,7 +31,7 @@
 | mobile | Phone layout: header, vertical view toggle, nav, filter, pages | done | m-*.png; no overflow at 390 |  |
 | nav | Pill nav with sliding highlight, toggle easing .93,-.24,.4,1.17 | done | headless capture docs/qa/shots/captures across routes checked by eye against the reference capture |  |
 | reduced-motion | prefers-reduced-motion | done | code: no tweens/inertia animation, reveals resting-visible |  |
-| seo | Per-route titles, meta description, OG | partial | SPA: titles per route client-side; no per-route prerender | SPA: titles per route client-side; no per-route prerender |
+| seo | Per-route titles, meta description, OG | done | 2026-09-26: every route prerendered to its own HTML with per-route title, description, canonical, OG/Twitter card and JSON-LD; sitemap, robots, llms.txt; real 404s — docs/SEO.md |  |
 | sound | Sound toggle, UI sounds on click/hover/drag/open | done | code; files from reference; audio not measured headless |  |
 
 ## home
@@ -53,7 +53,6 @@
 | grid-lens | Barrel lens (.88 + d·r², d=-.07·aspect) + vignette | done | shader constants from bundle; capture |  |
 | grid-parallax | Ambient pointer parallax .07 | done | code; observed in captures |  |
 | grid-render | Instanced 11×11 wrapping grid, tiles repeat centre-out | done | capture docs/qa/shots/home.png |  |
-| grid-video | Video atlas for moving tiles | omitted | FF media is stills | FF media is stills |
 | grid-wheel | Trackpad/wheel pans the grid | improved | not on reference; added for trackpads | not on reference; added for trackpads |
 | intro | Loader words part, progress bar, grid fades in with lens tween | done | headless capture docs/qa/shots/intro.jpg frames checked by eye against the reference capture |  |
 | intro-mascot | Particle mascot intro | omitted | Phantom's mascot; //FF mark used instead | Phantom's mascot; //FF mark used instead |
