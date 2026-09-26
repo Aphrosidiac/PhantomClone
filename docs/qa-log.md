@@ -51,3 +51,7 @@ Lesson recorded: the first border "fix" was declared done from a still screensho
 ## 2026-09-26 — Copy: the "one person" line
 
 - The line "you talk to the person who builds it" was said five times across About and Pricing, and most versions were framed as negatives ("no account manager, no junior…") or as an apology ("a studio this size… at a price that makes sense"). It now appears once, in the About intro. The clients line names the range of work, the Team section says what happens in-house and after launch, and the Pricing hero states how quoting works ("in writing, before any work starts", from the nine-step process). The About meta and llms.txt match. The Team placeholder card stays until there is a photo.
+
+## 2026-09-26 — About: Team section
+
+- The Team block was a one-off layout: a tall 4:5 placeholder card with the note pinned to its bottom edge, then a card with a separate bio column. Fakhrul judged both awkward. Rebuilt as a Zones row, the pattern the same page already uses: label "Founder" · name · role and note · the //FF card as the row's 16:9 image, closed by a rule. The one-off `.team` styles are gone. Checked in real Chrome at 1560 and headless at 390.
