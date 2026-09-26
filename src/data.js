@@ -114,10 +114,10 @@ export const PROJECTS = [
     slug: 'meridian', title: 'Meridian', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#a14d33',
     features: ['webgl', 'interaction', 'motion'], stack: ['vite', 'three'], url: 'https://ff-meridian.pages.dev/',
     type: 'WebGL portfolio engine', role: 'WebGL / Interaction engineering / Motion', reference: 'aristidebenoist.com',
-    statement: 'The engine ffdev.studio runs on, rebuilt from nothing. No code, no assets and no copy taken from it.',
+    statement: 'The engine ffdev.studio ran on before this one, rebuilt from nothing. No code, no assets and no copy taken from it.',
     about: [
       'A clean-room WebGL portfolio engine: one build on desktop and phone, sized to the scarce axis, with a flat fallback when WebGL is unavailable.',
-      'It is what the live FF site runs on today.',
+      'It ran the FF site until September 2026.',
     ],
   },
   {

@@ -4,7 +4,7 @@
 // swaps it on navigation), so a crawler and a visitor always see the same head.
 import { PROJECTS, ZONES, PRICING, CONTACT, bySlug, media, label, STACK_LABEL } from './data.js';
 
-export const SITE_URL = String(import.meta.env?.VITE_SITE_URL || 'https://ff-phantom.pages.dev').replace(/\/$/, '');
+export const SITE_URL = String(import.meta.env?.VITE_SITE_URL || 'https://ffdev.studio').replace(/\/$/, '');
 export const SITE_NAME = 'FF Dev Studio';
 const abs = (p) => SITE_URL + p;
 const ORG = `${SITE_URL}/#org`;
@@ -36,7 +36,6 @@ const org = () => ({
   address: { '@type': 'PostalAddress', addressLocality: 'Kuala Lumpur', addressCountry: 'MY' },
   areaServed: { '@type': 'Country', name: 'Malaysia' },
   founder: { '@id': FOUNDER },
-  sameAs: ['https://ffdev.studio'],
   knowsAbout: ['Web design', 'Web development', 'WebGL', 'Three.js', 'Motion design', 'E-commerce', 'Technical SEO'],
 });
 const founder = () => ({ '@type': 'Person', '@id': FOUNDER, name: 'Fakhrul', jobTitle: 'Founder · Design · Development', worksFor: { '@id': ORG } });

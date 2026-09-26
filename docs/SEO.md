@@ -16,9 +16,9 @@ any JavaScript. The app then boots on top and re-renders the same markup.
 | `public/_headers` | Long cache for hashed assets and fonts, a week for media, `nosniff` and a referrer policy. |
 | `public/site.webmanifest` | Name, colours and icons. |
 
-The site origin comes from `VITE_SITE_URL` (default `https://ff-phantom.pages.dev`). Canonicals,
-`og:url`, `og:image`, the sitemap and JSON-LD ids all derive from it. **Set it when the site moves to
-its own domain**, then rebuild:
+The site origin comes from `VITE_SITE_URL` (default `https://ffdev.studio`, the live site). Canonicals,
+`og:url`, `og:image`, the sitemap and JSON-LD ids all derive from it, so the ff-phantom.pages.dev copy
+canonicalises to ffdev.studio too. Override it only for a different domain:
 
 ```bash
 VITE_SITE_URL=https://example.com npm run build
@@ -35,6 +35,7 @@ was removed), so unknown paths return a real 404.
 | `/projects/<slug>` | `projects/<slug>.html` (200) |
 | `/about`, `/about/approach`, `/pricing`, `/contact` | `about.html`, `about/approach.html`, `pricing.html`, `contact.html` (200) |
 | `/about/`, `/projects/x/`, `/index.html`, `/about.html` | 308 to the canonical URL, without the trailing slash or `.html` |
+| `/<slug>` (the previous ffdev.studio's project URLs) | 301 to `/projects/<slug>` (`_redirects`, written by the prerender from `PROJECTS`) |
 | anything else, including an unknown project | `404.html` (404, `noindex, follow`) |
 
 `vite dev` and `vite preview` still fall back to the app for every path, so nothing changes locally.

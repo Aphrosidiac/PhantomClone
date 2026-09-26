@@ -71,15 +71,22 @@ docs/                 architecture, content guide, SEO, verification, QA log
 
 ## Deploy
 
-Static output, one HTML file per route (`about.html` is served at `/about`, and so on); unknown paths get `404.html` with a 404 status. Cloudflare Pages does this natively; on another host, map clean URLs to `.html` files. Set `VITE_SITE_URL` if the site moves off ff-phantom.pages.dev — see [docs/SEO.md](docs/SEO.md).
+**Live at [ffdev.studio](https://ffdev.studio)** (since 2026-09-26). "FF Phantom" / `ff-phantom` is the
+site's codename. Static output, one HTML file per route (`about.html` is served at `/about`, and so on);
+unknown paths get `404.html` with a 404 status, and the previous site's `/<slug>` project URLs 301 to
+`/projects/<slug>`.
 
 ```bash
-npm run deploy                      # Cloudflare Pages project "ff-phantom", production
-FF_BRANCH=preview npm run deploy    # preview alias, production untouched
+npm run deploy:live                     # ffdev.studio — Cloudflare Pages project "ffdevstudio", production
+FF_BRANCH=preview npm run deploy:live   # preview alias, production untouched
+npm run deploy                          # the codename copy at ff-phantom.pages.dev
 ```
 
 `scripts/deploy.sh` reads `CLOUDFLARE_API_TOKEN` / `CLOUDFLARE_ACCOUNT_ID` from `~/Desktop/dev/ffdevstudio/.env`
 (override with `FF_ENV=/path/.env`). Pushing to GitHub deploys nothing — push and deploy are separate acts.
+The previous site (Meridian, `ff-portfolio`) deploys to the same Pages project and now refuses production
+unless `FF_DEPLOY_OLD_SITE=1`. Rollback: promote an earlier deployment in the Pages dashboard; the last
+Meridian production deployment is `c1a36447`.
 
 ## Accessibility & motion
 

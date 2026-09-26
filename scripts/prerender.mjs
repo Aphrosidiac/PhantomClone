@@ -81,7 +81,7 @@ writeFileSync(join(DIST, 'llms.txt'), `# FF Dev Studio
 
 > FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. A studio in Kuala Lumpur where the person who scopes your site is the person who builds it. Projects start from RM1,000.
 
-This site is an index of FF Dev Studio's work, shown as a draggable WebGL grid. The studio's main site is https://ffdev.studio.
+This site is an index of FF Dev Studio's work, shown as a draggable WebGL grid.
 
 ## Pages
 
@@ -107,5 +107,8 @@ ${PRICING.care.map((c) => `- ${c.name} care plan: ${c.price} (${c.year}). ${c.li
 - WhatsApp: ${CONTACT.whatsapp} (${CONTACT.wa})
 - Location: Kuala Lumpur, Malaysia
 `);
+
+// _redirects: the previous ffdev.studio served each project at /<slug>; send those to /projects/<slug>
+writeFileSync(join(DIST, '_redirects'), PROJECTS.map((p) => `/${p.slug} /projects/${p.slug} 301`).join('\n') + '\n');
 
 console.log(`prerender: ${ROUTES.length} routes, sitemap (${indexable.length} URLs), robots.txt, llms.txt → dist/`);

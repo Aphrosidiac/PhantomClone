@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 #
-# Deploy FF Grid to Cloudflare Pages: https://ff-phantom.pages.dev
+# Deploy FF Phantom to Cloudflare Pages.
 #
-#   npm run deploy                      # production
-#   FF_BRANCH=preview npm run deploy    # preview alias, production untouched
+#   npm run deploy:live                 # ffdev.studio (Pages project "ffdevstudio"), production
+#   npm run deploy                      # https://ff-phantom.pages.dev (codename project), production
+#   FF_BRANCH=preview npm run deploy:live   # preview alias, production untouched
 #
 # Same pattern as the other FF portfolio demos: a DIRECT UPLOAD Pages project on the FF Cloudflare
 # account, no git connection — pushing to GitHub deploys nothing. wrangler ≥ 4.13x delegates
@@ -11,7 +12,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-PROJECT="ff-phantom"
+PROJECT="${FF_PROJECT:-ff-phantom}"
 BRANCH="${FF_BRANCH:-main}"
 ENV_FILE="${FF_ENV:-$HOME/Desktop/dev/ffdevstudio/.env}"
 
