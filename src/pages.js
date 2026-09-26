@@ -93,11 +93,12 @@ const INCLUDED = [
   'Contact, enquiry and WhatsApp paths', 'Deployment, SSL and launch configuration', 'Three revision rounds', 'Cross-device launch checks', 'Thirty-day defect warranty',
 ];
 
-// clients strip: the brand's own logo where a kit exists (masters copied verbatim into public/brand/:
-// LEWIX from LewixWeb4's wordmark = LEWIX/LOGO kit, Ascend MY from AscPeps/brand production v1.1)
+// clients strip: each brand's own logo. LEWIX (LewixWeb4's wordmark = LEWIX/LOGO kit) and Ascend MY
+// (AscPeps/brand production v1.1) are kit files copied verbatim; SmoothSail and Indahnya have no
+// dark-ground lockup file, so tools/client-logos.mjs renders their repo marks + wordmark type.
 const CLIENTS = [
-  ['Sunlight Supplies'],
-  ['TGS Furnishings'],
+  ['SmoothSail', '/brand/smoothsail-lockup-on-dark.png', 'lockup'],
+  ['Indahnya', '/brand/indahnya-lockup-on-dark.png', 'lockup'],
   ['Ascend MY', '/brand/ascend-my-primary-on-dark.svg'],
   ['LEWIX', '/brand/lewix-wordmark-on-dark.svg'],
 ];
@@ -117,8 +118,8 @@ export function about(tab = 'studio') {
         <div class="im"><img src="${tileUrl(pick(s))}" alt="" loading="lazy"></div>
       </div>`).join('')}
     <div class="band" style="margin-top:80px">${['ff-frames', 'ff-shoots', 'ascend-peptides'].map((s) => `<img src="${media(pick(s)).rows.find((r) => r.kind === 'trio').items[0].sm}" alt="" loading="lazy">`).join('')}</div>
-    <section class="a-row a-block" style="padding-bottom:40px"><p class="mono">Clients</p><div class="content"><p class="statement reveal">${split('From industrial suppliers to research catalogues and product companies — every one of them talks to the person building their site.')}</p></div></section>
-    <ul class="clients">${CLIENTS.map(([name, logo]) => `<li>${logo ? `<img class="client-logo" src="${logo}" alt="${esc(name)}" loading="lazy">` : esc(name)}</li>`).join('')}</ul>
+    <section class="a-row a-block" style="padding-bottom:40px"><p class="mono">Clients</p><div class="content"><p class="statement reveal">${split('From research catalogues to store builders and wedding platforms — every one of them talks to the person building their site.')}</p></div></section>
+    <ul class="clients">${CLIENTS.map(([name, logo, kind]) => `<li>${logo ? `<img class="client-logo${kind ? ` client-logo--${kind}` : ''}" src="${logo}" alt="${esc(name)}" loading="lazy">` : esc(name)}</li>`).join('')}</ul>
     <section class="a-row a-block" style="padding-bottom:0;margin-top:150px"><p class="mono">Our Studio</p><div class="content"><h2 class="sub-title" style="font-size:clamp(2rem,3vw,3rem);text-transform:none">One studio, in Kuala Lumpur</h2></div></section>
     <div class="studios">
       <div class="mark">${MARK}</div>
