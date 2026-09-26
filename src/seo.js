@@ -109,7 +109,7 @@ export function seoFor(route) {
       }
       const path = '/about';
       const title = 'About — one studio in Kuala Lumpur | FF Dev Studio';
-      const description = 'FF Dev Studio is one person in Kuala Lumpur who scopes, designs and builds every site, for clients from industrial suppliers to product companies across Malaysia.';
+      const description = 'FF Dev Studio designs and builds custom websites in Kuala Lumpur: research catalogues, store builders, wedding platforms and AI products across Malaysia.';
       return { ...base, path, title, description, graph: [...core(), webpage('AboutPage', path, title, description, { about: { '@id': ORG }, breadcrumb: crumbs([['About', path]]) })] };
     }
     case 'pricing': {

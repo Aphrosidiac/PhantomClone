@@ -137,7 +137,7 @@ for the Graphite ground:
   only the dark ink switched to white. Re-run it if either logo changes.
 - **Sizing:** a mark-plus-name lockup gets `kind: 'lockup'` (the third item in its `CLIENTS` entry),
   which renders it taller so its name matches the wordmark-only logos.
-- **The line above the strip** ("From research catalogues to store builders and wedding platforms…")
+- **The line above the strip** ("Research catalogues, store builders, wedding platforms and AI products — each one designed and built here.")
   describes these four. Rewrite it if the list changes.
 
 ## Share images and icons

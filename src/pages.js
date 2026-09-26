@@ -107,7 +107,7 @@ export function about(tab = 'studio') {
   const studio = `
     <section class="a-row a-hero"><p class="mono" aria-hidden="true">Studio</p><div class="content"><span class="tag mono">Studio</span><h1 class="sub-title">Custom websites, designed and built end to end</h1></div></section>
     <div class="strip">${['lewix-ai', 'ff-stanzza', 'meridian', 'big-brain-furniture'].map((s) => `<img src="${tileUrl(pick(s))}" alt="" loading="lazy">`).join('')}</div>
-    <section class="a-row a-block"><p class="mono">About</p><div class="content"><p class="statement reveal">${split('FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. Every site is made by the same person who scopes it, so nothing gets lost between the promise and the build.')}</p></div></section>
+    <section class="a-row a-block"><p class="mono">About</p><div class="content"><p class="statement reveal">${split('FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. The person who scopes your site is the person who builds it.')}</p></div></section>
     <section class="a-row a-block" style="padding-bottom:70px"><p class="mono">Zones</p><div class="content"><p class="statement reveal">${split('Never limited by size or shape, the work falls into three zones — and each one gets its own way of working.')}</p></div></section>
     ${ABOUT_ZONES.map(([z, s], i) => `
       <div class="zone-row">
@@ -117,7 +117,7 @@ export function about(tab = 'studio') {
         <div class="im"><img src="${tileUrl(pick(s))}" alt="" loading="lazy"></div>
       </div>`).join('')}
     <div class="band" style="margin-top:80px">${['ff-frames', 'ff-shoots', 'ascend-peptides'].map((s) => `<img src="${media(pick(s)).rows.find((r) => r.kind === 'trio').items[0].sm}" alt="" loading="lazy">`).join('')}</div>
-    <section class="a-row a-block" style="padding-bottom:40px"><p class="mono">Clients</p><div class="content"><p class="statement reveal">${split('From research catalogues to store builders and wedding platforms — every one of them talks to the person building their site.')}</p></div></section>
+    <section class="a-row a-block" style="padding-bottom:40px"><p class="mono">Clients</p><div class="content"><p class="statement reveal">${split('Research catalogues, store builders, wedding platforms and AI products — each one designed and built here.')}</p></div></section>
     <ul class="clients">${CLIENTS.map(([name, logo, kind]) => `<li>${logo ? `<img class="client-logo${kind ? ` client-logo--${kind}` : ''}" src="${logo}" alt="${esc(name)}" loading="lazy">` : esc(name)}</li>`).join('')}</ul>
     <section class="a-row a-block" style="padding-bottom:0;margin-top:150px"><p class="mono">Our Studio</p><div class="content"><h2 class="sub-title" style="font-size:clamp(2rem,3vw,3rem);text-transform:none">One studio, in Kuala Lumpur</h2></div></section>
     <div class="studios">
@@ -125,10 +125,10 @@ export function about(tab = 'studio') {
       <div class="addr mono">FF Dev Studio<br>Kuala Lumpur<br>Malaysia</div>
       <div class="links mono"><a href="mailto:${CONTACT.email}">${CONTACT.email}</a><a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="https://ffdev.studio" target="_blank" rel="noopener">ffdev.studio</a></div>
     </div>
-    <section class="a-row a-block" style="padding-bottom:40px;margin-top:150px"><p class="mono">Team</p><div class="content"><p class="statement reveal">${split('The work is made in-house by one person, end to end — which is the whole point.')}</p></div></section>
+    <section class="a-row a-block" style="padding-bottom:40px;margin-top:150px"><p class="mono">Team</p><div class="content"><p class="statement reveal">${split('Design, development and motion, made in-house from the first sketch to launch.')}</p></div></section>
     <div class="team">
       <div class="card"><div class="ph">${MARK}</div><h4>Fakhrul</h4><p class="mono" style="opacity:.6">Founder · Design · Development</p></div>
-      <p class="note body-copy">You talk to the person who builds it. No account manager, no hand-off to a junior, no brief lost in translation.</p>
+      <p class="note body-copy">Every project is scoped, designed, built and launched here — and looked after once it is live, on a care plan if you want one.</p>
     </div>`;
   const approach = `
     <section class="a-row a-hero"><p class="mono" aria-hidden="true">Approach</p><div class="content"><span class="tag mono">Approach</span><h1 class="sub-title">Smallest scope, strongest result</h1></div></section>
@@ -159,7 +159,7 @@ export function pricing() {
       <section class="pr-row pr-hero">
         <h1 class="mono label-dot">Pricing</h1>
         <div class="content">
-          <p class="big reveal">${split('Projects start from RM1,000. Most land between RM1,000 and RM5,000, quoted after one conversation. You talk to the person who builds it — which is why a studio this size can do work this detailed at a price that makes sense.')}</p>
+          <p class="big reveal">${split('Projects start from RM1,000. Most land between RM1,000 and RM5,000, quoted after one conversation, in writing, before any work starts.')}</p>
           <a class="btn-pill" href="#bands">View the bands</a>
         </div>
       </section>
