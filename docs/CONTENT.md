@@ -14,7 +14,7 @@ links are generated from it — there is nothing else to update.
 {
   slug: 'my-project',                 // URL: /projects/my-project — must match the media folder
   title: 'My Project',
-  client: 'Client Name',              // 'FF Dev Studio' shows the //FF mark on the tile instead of a name
+  client: 'Client Name',              // 'FF Dev Studio' shows //FF + the title on the tile (a leading 'FF ' is dropped: //FF Search)
   zone: 'client',                     // 'client' | 'product' | 'study'  (see ZONES)
   year: 2026,                         // list view groups by year, newest first
   features: ['website', 'motion'],    // first two appear as pills on the tile; first three in the list

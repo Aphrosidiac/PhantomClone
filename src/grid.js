@@ -47,6 +47,9 @@ function drawLabel(ctx, p, x0, y0) {
     ctx.fill(new Path2D('M0 72 16 0h14L14 72Z')); ctx.fill(new Path2D('M24 72 40 0h14L38 72Z'));
     ctx.fill(new Path2D('M72 0h54v15H88v13h32v14H88v30H72Z')); ctx.fill(new Path2D('M140 0h54v15h-38v13h32v14h-32v30h-16Z'));
     ctx.restore();
+    // …followed by the project's name, so "FF Search" reads //FF Search (not //FF FF Search)
+    ctx.font = '600 26px "Instrument Sans"'; ctx.letterSpacing = '-0.5px';
+    ctx.fillText(p.title.replace(/^FF\s+/, ''), 33 + 194 * 30 / 72 + 10, 66);
   } else {
     ctx.font = '600 26px "Instrument Sans"'; ctx.letterSpacing = '-0.5px';
     ctx.fillText(p.client, 33, 62);
