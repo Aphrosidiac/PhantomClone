@@ -43,4 +43,5 @@ Business Profile, profiles for `sameAs`, Bing Webmaster Tools, and a first visib
 | Date | Change | Commit |
 |---|---|---|
 | 2026-09-26 | Site live on ffdev.studio (FF Phantom) | c35aa00, 44a405d |
-| 2026-09-26 | This plan's repo changes (FAQ page, schema, email_off, outline, lastmod, IndexNow) | see git log |
+| 2026-09-26 | This plan's repo changes (FAQ page, schema, email_off, outline, lastmod, IndexNow) — DEPLOYED 2026-09-26, live audit 79 → 98, IndexNow 200 | 5e111d0 … 135fcc8 |
+| 2026-09-26 | "Site by FF Dev Studio" credit + WebSite `creator` on smoothsail.my and ascendpeptides.my | SmoothSail / AscPeps repos |
