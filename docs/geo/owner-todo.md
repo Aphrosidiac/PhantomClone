@@ -8,8 +8,8 @@ None of these sites names or links FF Dev Studio (`presence.txt`, checked 2026-0
 
 | Site | Footer today | Credit links to | Whose call |
 |---|---|---|---|
-| ascendpeptides.my | Ascend MY disclaimer, shop links | `https://ffdev.studio/projects/ascend-peptides` | Ascend MY (the cleanest case: a separate client) |
-| smoothsail.my | "© 2026 SmoothSail, a Lewix.ai product." | `/projects/smoothsail` | Lewix.ai |
+| ascendpeptides.my | **DONE 2026-09-26** — "Site by FF Dev Studio" after the copyright (AscPeps 0244b74) | `https://ffdev.studio/projects/ascend-peptides` | Ascend MY (the cleanest case: a separate client) |
+| smoothsail.my | **DONE 2026-09-26** — "Site by" / "Website oleh FF Dev Studio" after the ringgit line, EN and BM (SmoothSail 6d20bed) | `/projects/smoothsail` | Lewix.ai |
 | lewix.ai | "© 2026 Lewix AI Sdn Bhd … Engineered in Malaysia" | `/projects/lewix-ai` | Lewix.ai |
 | lewix.my | "Engineered in Malaysia · Est. 2026" | `/projects/lewix-my` | Lewix.ai — LEWIX sells software services itself, so a studio credit may not fit its positioning |
 
