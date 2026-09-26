@@ -4,12 +4,31 @@ Ordered by expected effect. Nothing here has been done on his behalf.
 
 ## 1. Get FF named on the sites it built (biggest single lever)
 
-None of lewix.ai, smoothsail.my, ascendpeptides.my or lewix.my names or links FF Dev Studio
-(`presence.txt`). A "Site by FF Dev Studio" footer credit linking to the project page
-(for example `https://ffdev.studio/projects/smoothsail`) on each is a real, earned mention from
-an established domain. Check with each client first; LEWIX sites are Lewix.ai's call.
+None of these sites names or links FF Dev Studio (`presence.txt`, checked 2026-09-26):
 
-## 2. Profiles that confirm the entity
+| Site | Footer today | Credit links to | Whose call |
+|---|---|---|---|
+| ascendpeptides.my | Ascend MY disclaimer, shop links | `https://ffdev.studio/projects/ascend-peptides` | Ascend MY (the cleanest case: a separate client) |
+| smoothsail.my | "© 2026 SmoothSail, a Lewix.ai product." | `/projects/smoothsail` | Lewix.ai |
+| lewix.ai | "© 2026 Lewix AI Sdn Bhd … Engineered in Malaysia" | `/projects/lewix-ai` | Lewix.ai |
+| lewix.my | "Engineered in Malaysia · Est. 2026" | `/projects/lewix-my` | Lewix.ai — LEWIX sells software services itself, so a studio credit may not fit its positioning |
+
+How to do it:
+- One visible line in the footer, e.g. "Site by FF Dev Studio", linking to that project's page. Readable
+  like the other footer text — not tiny, not faded out, not hidden.
+- Anchor text is the brand name. Never a keyword anchor ("web design Malaysia"): keyword-rich
+  footer links on client sites are a named link scheme in Google's spam policies.
+- A normal link is fine for a genuine credit with a brand anchor.
+- Optional: the site's WebSite JSON-LD gets `"creator": {"@type": "Organization", "name": "FF Dev
+  Studio", "url": "https://ffdev.studio"}` — the same statement for machines.
+- From now on, make the credit a default line in every proposal (the client can opt out).
+
+Verify: `python3 ~/.claude/skills/geo-aeo/scripts/presence.py ffdev.studio --brand "FF Dev Studio"
+--check <site>` shows NAME+LINK; Common Crawl captures of ffdev.studio should follow within a crawl or two.
+
+## 2. Profiles that confirm the entity — PENDING (Fakhrul, 2026-09-26)
+
+Parked until Fakhrul sets them up; `sameAs` stays empty until then.
 
 - **Google Business Profile** as a service-area business (Kuala Lumpur, no public address). It is
   the main source for "web designer near me" and Maps answers.
