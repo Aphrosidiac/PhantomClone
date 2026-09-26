@@ -126,7 +126,7 @@ export function about(tab = 'studio') {
     <section class="a-row a-block" style="padding-bottom:0;margin-top:150px"><p class="mono">Our Studio</p><div class="content"><h2 class="sub-title" style="font-size:clamp(2rem,3vw,3rem);text-transform:none">One studio, in Kuala Lumpur</h2></div></section>
     <div class="studios">
       <div class="mark">${MARK}</div>
-      <div class="addr mono">FF Dev Studio<br>Kuala Lumpur<br>Malaysia</div>
+      <div class="addr mono">FF Dev Studio<br>Kuala Lumpur<br>Malaysia<br><span style="opacity:.6">${esc(CONTACT.legalName)} (${esc(CONTACT.regNo)})</span></div>
       <div class="links mono">${mail()}<a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="https://ffdev.studio" target="_blank" rel="noopener">ffdev.studio</a></div>
     </div>
     <section class="a-row a-block" style="padding-bottom:40px;margin-top:150px"><h2 class="mono">Team</h2><div class="content"><p class="statement reveal">${split('Design, development and motion, made in-house from the first sketch to launch.')}</p></div></section>
@@ -269,7 +269,7 @@ export function contactSeo() {
     html: `
       <h1 class="sr-only">Start a project with FF Dev Studio</h1>
       <p class="sr-only">Tell us about your website in a seven-question brief, then send it by email or WhatsApp. Projects start from RM1,000; most land between RM1,000 and RM5,000, quoted after one conversation.</p>
-      <p class="sr-only">Email ${mail()} · WhatsApp <a href="${CONTACT.wa}">${esc(CONTACT.whatsapp)}</a> · ${esc(CONTACT.city)}</p>
+      <p class="sr-only">Email ${mail()} · WhatsApp <a href="${CONTACT.wa}">${esc(CONTACT.whatsapp)}</a> · ${esc(CONTACT.city)} · ${esc(CONTACT.legalName)} (${esc(CONTACT.regNo)})</p>
       ${workNav()}`,
   };
 }

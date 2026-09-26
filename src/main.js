@@ -255,7 +255,7 @@ function contactHome() {
       <div class="c-card"><div><p class="mono label-dot">Anything else</p><p class="t">Just saying hi.</p></div>
         <div class="chips"><a class="chip" href="mailto:${CONTACT.email}"><span>Email</span><span>${CONTACT.email}</span></a><a class="chip" href="${CONTACT.wa}" target="_blank" rel="noopener"><span>WhatsApp</span><span>${esc(CONTACT.whatsapp)}</span></a></div></div>
     </div>
-    <p class="c-privacy">FF Dev Studio sets no cookies and runs no analytics on this site. Whatever you send goes to ${CONTACT.email} and nowhere else.</p>
+    <p class="c-privacy">FF Dev Studio sets no cookies and runs no analytics on this site. Whatever you send goes to ${CONTACT.email} and nowhere else.<br>${CONTACT.legalName} (${CONTACT.regNo}), ${CONTACT.city}.</p>
   </div>`;
 }
 function contactForm() {

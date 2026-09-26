@@ -90,7 +90,7 @@ Sitemap: ${SITE_URL}/sitemap.xml
 // llms.txt (llmstxt.org): a plain summary for AI assistants and answer engines
 writeFileSync(join(DIST, 'llms.txt'), `# FF Dev Studio
 
-> FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. A studio in Kuala Lumpur where the person who scopes your site is the person who builds it. Projects start from RM1,000.
+> FF Dev Studio (registered as ${CONTACT.legalName}, ${CONTACT.regNo}) designs and builds custom websites for founders and small companies across Malaysia. A studio in Kuala Lumpur where the person who scopes your site is the person who builds it. Projects start from RM1,000.
 
 This site is an index of FF Dev Studio's work, shown as a draggable WebGL grid.
 
@@ -122,6 +122,7 @@ ${FAQ.map((f) => `### ${f.q}\n\n${[...f.a, ...(f.list ? f.list.map((x) => `- ${x
 - Email: ${CONTACT.email}
 - WhatsApp: ${CONTACT.whatsapp} (${CONTACT.wa})
 - Location: Kuala Lumpur, Malaysia
+- Registered business: ${CONTACT.legalName} (SSM ${CONTACT.regNo})
 `);
 
 // _redirects: the previous ffdev.studio served each project at /<slug>; send those to /projects/<slug>
