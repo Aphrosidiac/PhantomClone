@@ -74,7 +74,8 @@ docs/                 architecture, content guide, SEO, verification, QA log
 **Live at [ffdev.studio](https://ffdev.studio)** (since 2026-09-26). "FF Phantom" / `ff-phantom` is the
 site's codename. Static output, one HTML file per route (`about.html` is served at `/about`, and so on);
 unknown paths get `404.html` with a 404 status, and the previous site's `/<slug>` project URLs 301 to
-`/projects/<slug>`.
+`/projects/<slug>`. `www.ffdev.studio` 301s to `ffdev.studio` via `functions/_middleware.js`
+(limited to page routes by `public/_routes.json`).
 
 ```bash
 npm run deploy:live                     # ffdev.studio — Cloudflare Pages project "ffdevstudio", production
