@@ -6,6 +6,7 @@ the source first, then the site, then this file.
 | Fact | Value | Source |
 |---|---|---|
 | Name | FF Dev Studio (also "FF", "ffdev.studio") | brand kit |
+| Registered as | FF DEV STUDIO (202603234793), SSM | Fakhrul, 2026-09-26 |
 | What | Custom websites, designed and built end to end | `ffdevstudio/SERVICE_ARCHITECTURE.md` |
 | For whom | Founders and small companies across Malaysia | site copy (About) |
 | Where | Kuala Lumpur, Malaysia | `CONTACT.city` |

@@ -19,7 +19,7 @@ const split = (text) => text.split(' ').map((w, i) => `<span class="w" style="--
 export const footer = () => `
   <footer class="foot">
     <div class="c1">${MARK.replace('<svg', '<svg style="width:64px;fill:currentColor"')}</div>
-    <div class="c2 mono">FF Dev Studio<br>${esc(CONTACT.city)}</div>
+    <div class="c2 mono">FF Dev Studio<br>${esc(CONTACT.city)}<br><span style="opacity:.6">${esc(CONTACT.legalName)} (${esc(CONTACT.regNo)})</span></div>
     <div class="c3 mono">${mail()}<a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="/faq" data-link>Questions</a></div>
   </footer>`;
 

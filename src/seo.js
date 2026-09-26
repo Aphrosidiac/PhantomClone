@@ -28,6 +28,8 @@ const org = () => ({
   '@id': ORG,
   name: SITE_NAME,
   alternateName: ['FF', 'ffdev.studio'],
+  legalName: CONTACT.legalName,
+  identifier: { '@type': 'PropertyValue', propertyID: 'SSM registration number', value: CONTACT.regNo },
   url: SITE_URL,
   slogan: 'Custom websites, designed and built end to end.',
   logo: { '@type': 'ImageObject', url: abs('/logo.png'), width: 512, height: 512 },

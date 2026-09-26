@@ -40,7 +40,7 @@ Parked until Fakhrul sets them up; `sameAs` stays empty until then.
 
 ## 3. Facts to confirm or supply
 
-- **[NEEDS SOURCE] Registered business name** (SSM) for Organization `legalName`.
+- ~~Registered business name~~ — DONE: FF DEV STUDIO (202603234793), in the footer and as `legalName` + `identifier`.
 - **Confirm:** the FAQ says projects run over WhatsApp and email, so clients do not need to be in
   Kuala Lumpur. That is inferred from the process, not stated in SERVICE_ARCHITECTURE.
 - **Confirm:** the ownership answer uses SERVICE_ARCHITECTURE's "recommended default"; if the

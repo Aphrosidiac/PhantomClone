@@ -182,6 +182,8 @@ export const CONTACT = {
   whatsapp: '+60 13 907 8719',
   wa: 'https://wa.me/60139078719',
   city: 'Kuala Lumpur, MY',
+  // SSM business registration
+  legalName: 'FF DEV STUDIO', regNo: '202603234793',
   tz: 'Asia/Kuala_Lumpur',
 };
 
