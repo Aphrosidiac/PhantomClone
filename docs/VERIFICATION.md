@@ -106,6 +106,25 @@ Filters → `/?zone=study&feature=webgl`; list → project; contact form validat
 correct `mailto:`; Escape restores the previous URL; cold `/contact` renders home underneath; 404;
 no horizontal overflow at 390 px; **zero page errors**.
 
+### Mobile pass (2026-09-29, Playwright iPhone 13 + CDP touch)
+
+Reported: on an iPhone in-app browser, the //FF logo from a project page opened the grid's video atlas in
+the native fullscreen player. Those WKWebViews ignore `playsinline`; the play() inside the tap was allowed.
+iOS WKWebViews (no `Safari/` UA token, 13/13 UAs classified right) now keep stills (`?video=1` forces video),
+and a fullscreen guard drops to stills anywhere else. Same pass, all checked:
+
+- `pointercancel` (edge-swipe back, notification shade) opened a project — now releases only.
+- second finger cancels the press (two-finger tap opened a project); touch slop 10 px (mouse 3).
+- grid sleeps behind inner pages and the list view: 0 draws/s on /faq (was every frame), video paused.
+- filter backdrop closes on `click`: a tap over the logo closed it without navigating or clearing filters.
+- contact X/Finish steps back over its own history entry (back no longer reopens it); body locked on
+  touch; `overscroll-behavior: contain`; the X is sticky (stayed at 22 px with the form scrolled 800 px).
+- back/forward restores scroll (FAQ 900 → project 0 → back 900) and skips the fade when the browser
+  already animated (`hasUAVisualTransition`).
+- hover styles behind `@media (hover: hover)` (20 rules); bottom controls and header clear safe areas.
+- iOS caps atlases at 4096² (the iOS canvas limit; iPad/landscape asked for 5464²) — not device-tested.
+- no overflow at 390 px on 6 routes; zero page errors; desktop hover/click/close unchanged.
+
 ## Known limits of the instruments
 
 - SwiftShader screenshots of the grid are slow and cannot show temporal artefacts — use the GPU probes.

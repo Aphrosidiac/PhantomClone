@@ -19,6 +19,12 @@ const REF_CELL = 340;         // hover-blur cell in texels (2040 / 6); the blur 
 
 
 // ---------------------------------------------------------------- atlas (Canvas2D, runtime)
+// iPadOS reports a Mac UA, so touch points tell it apart
+const isIOS = () => /iPhone|iPad|iPod/.test(navigator.userAgent) || (/Macintosh/.test(navigator.userAgent) && navigator.maxTouchPoints > 1);
+// An app's own WKWebView on iPhone/iPad (no "Safari/" token — Safari, SFSafariViewController, Chrome
+// and Firefox for iOS all carry it)
+const iosWebView = () => isIOS() && !/Safari\//.test(navigator.userAgent);
+
 function roundRect(ctx, x, y, w, h, r) {
   ctx.beginPath();
   ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
@@ -284,7 +290,10 @@ export class WorkGrid {
 
   async load() {
     // phones get a smaller atlas: tiles are ~40% the size on screen
-    const cap = this.renderer.capabilities.maxTextureSize; const phone = innerWidth < 700;
+    // iOS WebKit refuses a canvas over 4096² pixels (an iPad, or a phone opened in landscape, is not
+    // `phone` and asked for a 5464² label atlas), so iOS caps every atlas at 4096
+    const phone = innerWidth < 700;
+    const cap = Math.min(this.renderer.capabilities.maxTextureSize, isIOS() ? 4096 : Infinity);
     const q = new URLSearchParams(location.search); // ?ls= / ?ss= override quality, for A/B probes
     const t0 = performance.now();
     this.atlas = await buildAtlas(this.all, this.tileUrl, {
@@ -339,15 +348,19 @@ export class WorkGrid {
     const c = this.canvas;
     this.onDown = (e) => {
       if (e.button !== 0 || !this.active) return;
+      // a second finger (pinch, two-finger tap) cancels the press instead of taking it over
+      if (this.pressed) { this.onCancel(); return; }
+      this.pid = e.pointerId; this.slop = e.pointerType === 'mouse' ? 3 : 10; // a finger jitters past 3px on a tap
       c.setPointerCapture(e.pointerId);
       this.pressed = true; this.dragging = false; this.pressAt = [e.clientX, e.clientY]; this.last = [e.clientX, e.clientY];
       this.keyboard = false; this.setPointer(e);
       this.zoomTo(PRESS_Z, 0.4); c.style.cursor = 'grabbing';
     };
     this.onMove = (e) => {
+      if (this.pressed && e.pointerId !== this.pid) return;
       this.keyboard = false; this.setPointer(e);
       if (!this.pressed) return;
-      if (!this.dragging && Math.hypot(e.clientX - this.pressAt[0], e.clientY - this.pressAt[1]) > 3) { this.dragging = true; this.emit('dragstart'); }
+      if (!this.dragging && Math.hypot(e.clientX - this.pressAt[0], e.clientY - this.pressAt[1]) > this.slop) { this.dragging = true; this.emit('dragstart'); }
       if (this.dragging) {
         const w = this.pxToWorld(e.clientX - this.last[0], e.clientY - this.last[1]);
         this.dragStep.add(w); this.velocity.copy(w);
@@ -355,11 +368,17 @@ export class WorkGrid {
       this.last = [e.clientX, e.clientY];
     };
     this.onUp = (e) => {
-      if (!this.pressed) return;
+      if (!this.pressed || e.pointerId !== this.pid) return;
       this.pressed = false; c.style.cursor = '';
       if (this.dragging) this.zoomTo(CAM_Z, 0.4);
       else { this.zoomTo(CAM_Z, 0.4); this.setPointer(e); this.pick(); this.open(); }
       this.dragging = false;
+    };
+    // the system took the touch (edge-swipe back, notification shade, pinch): release, never open
+    this.onCancel = (e) => {
+      if (!this.pressed || (e && e.pointerId !== this.pid)) return;
+      this.pressed = false; this.dragging = false; c.style.cursor = '';
+      this.zoomTo(CAM_Z, 0.4);
     };
     this.onLeave = () => { if (!this.pressed) { this.pointerIn = false; } };
     // Wheel / trackpad scroll moves the grid by exactly the distance scrolled, like a page, eased over
@@ -391,7 +410,7 @@ export class WorkGrid {
     c.addEventListener('pointerdown', this.onDown);
     window.addEventListener('pointermove', this.onMove);
     window.addEventListener('pointerup', this.onUp);
-    window.addEventListener('pointercancel', this.onUp);
+    window.addEventListener('pointercancel', this.onCancel);
     c.addEventListener('pointerleave', this.onLeave);
     c.addEventListener('blur', () => { this.kbFocused = false; });
     c.addEventListener('pointerenter', () => { this.pointerIn = true; });
@@ -476,11 +495,17 @@ export class WorkGrid {
   // ------------------------------------------------ video atlas
   // One detached, muted, inline, looping <video> behind every moving tile. Tiles keep their still
   // image until the first frame is decoded, then ease over. Reduced motion and data-saver keep stills.
+  // iOS in-app browsers (Instagram, Threads, LinkedIn…) are WKWebViews that may not allow inline video:
+  // `playsinline` is ignored there, and a play() inside a tap (the //FF logo back to the grid) opened
+  // this atlas in the native fullscreen player. Those webviews keep stills; if any other browser ever
+  // starts presenting it fullscreen, the guard below closes it and drops to stills for good.
   setupVideo() {
     const q = new URLSearchParams(location.search);
     if (this.reduced || navigator.connection?.saveData || q.get('video') === '0' || !Object.keys(VIDEO.cells).length) return;
+    if (q.get('video') !== '1' && iosWebView()) return;
     const v = document.createElement('video');
-    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.setAttribute('playsinline', '');
+    v.muted = true; v.defaultMuted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
+    v.disablePictureInPicture = true; v.disableRemotePlayback = true; v.setAttribute('x-webkit-airplay', 'deny');
     v.loop = true; v.preload = 'auto'; v.crossOrigin = 'anonymous';
     v.src = innerWidth < 700 ? VIDEO.srcPhone : VIDEO.src;
     // loop is set; also rewinds on `ended`, for browsers that drop `loop` on detached video
@@ -491,6 +516,12 @@ export class WorkGrid {
     const shown = () => gsap.to(this.material.uniforms.videoOn, { value: 1, duration: 0.6, ease: 'power1.inOut' });
     if ('requestVideoFrameCallback' in v) v.requestVideoFrameCallback(shown); else v.addEventListener('playing', shown, { once: true });
     document.addEventListener('visibilitychange', () => this.playVideo(this.videoWanted));
+    const escape = () => {
+      if (!v.webkitDisplayingFullscreen && document.fullscreenElement !== v && v.webkitPresentationMode !== 'fullscreen') return;
+      v.webkitExitFullscreen?.(); if (document.fullscreenElement === v) document.exitFullscreen?.();
+      this.dropVideo();
+    };
+    for (const ev of ['webkitbeginfullscreen', 'webkitpresentationmodechanged', 'fullscreenchange', 'webkitfullscreenchange']) v.addEventListener(ev, escape);
     this.video = v;
     this.playVideo(this.videoWanted);
   }
@@ -500,6 +531,24 @@ export class WorkGrid {
     this.videoWanted = on;
     if (!this.video) return;
     if (on && !document.hidden) this.video.play().catch(() => {}); else this.video.pause();
+  }
+
+  // Asleep = hidden behind another page or the list view: the video pauses and, once the dim/pull-back
+  // tweens have played, the loop stops drawing (it drew the 4x-multisampled grid every frame behind
+  // long project pages). The canvas keeps its last frame.
+  setAwake(on) {
+    clearTimeout(this.sleepTimer);
+    if (on) this.frozen = false;
+    else this.sleepTimer = setTimeout(() => { this.frozen = true; }, this.reduced ? 50 : 1150);
+    this.playVideo(on);
+  }
+
+  // back to the stills for the rest of the visit
+  dropVideo() {
+    const v = this.video; if (!v) return;
+    this.video = null; v.pause();
+    gsap.killTweensOf(this.material.uniforms.videoOn); this.material.uniforms.videoOn.value = 0;
+    v.removeAttribute('src'); v.load();
   }
 
   intro() {
@@ -514,7 +563,7 @@ export class WorkGrid {
   // leaving the home page: dim to .3 and pull back; returning: centre and restore
   setActive(on) {
     this.active = on;
-    this.playVideo(on);
+    this.setAwake(on);
     if (!this.material) return;
     gsap.to(this.material.uniforms.opacity, { value: on ? 1 : 0.3, duration: this.reduced ? 0 : 1, ease: 'power1.inOut' });
     this.zoomTo(on ? CAM_Z : AWAY_Z, 1);
@@ -544,6 +593,7 @@ export class WorkGrid {
     const max = this.renderer.capabilities.maxTextureSize;
     this.target.setSize(Math.min(max, Math.round(w * pr * ss)), Math.min(max, Math.round(h * pr * ss)));
     this.updateLens();
+    if (this.frozen && this.mesh) this.draw(); // resizing clears the canvas; repaint the frame it holds
   }
 
   layout() {

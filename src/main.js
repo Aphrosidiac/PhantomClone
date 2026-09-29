@@ -79,6 +79,7 @@ function setView(v, push = true) {
   $$('#viewtoggle button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
   syncToggle($('#viewtoggle'));
   if (grid) grid.active = v === 'grid' && state.route?.name === 'home' && $('#filter').hidden;
+  grid?.setAwake(v === 'grid' && state.route?.name === 'home'); // the list view covers the grid
   if (push) syncQuery();
 }
 $$('#viewtoggle button').forEach((b) => b.addEventListener('click', () => { sound.play('click'); if (state.view !== b.dataset.view) track('view_changed', { view: b.dataset.view }); setView(b.dataset.view); }));
@@ -121,7 +122,8 @@ function setFilterOpen(open) {
 }
 $('#filterbtn').addEventListener('click', () => { sound.play(open() ? 'other' : 'whoosh', 0.6); setFilterOpen(!open()); });
 const open = () => !$('#filter').hidden;
-$('#filter').addEventListener('pointerdown', (e) => { if (e.target === $('#filter')) setFilterOpen(false); });
+// on click, not pointerdown: closing on touchstart let iOS deliver the tap's click to the logo or CTA underneath
+$('#filter').addEventListener('click', (e) => { if (e.target === $('#filter')) setFilterOpen(false); });
 
 // query string mirrors view + filters so a filtered view can be linked (/?zone=study&feature=webgl&view=list)
 function syncQuery() {
@@ -172,7 +174,7 @@ function wireReveals() {
   $$('.reveal', pageEl).forEach((el) => revealObs.observe(el));
 }
 
-async function render(first = false, forcePath = null) {
+async function render(first = false, forcePath = null, pop = null) {
   const r = match(forcePath || location.pathname);
   if (r.name === 'contact') {
     // the contact page is an overlay on whatever was underneath (home, on a cold load)
@@ -202,11 +204,15 @@ async function render(first = false, forcePath = null) {
   syncToggle($('#navtoggle'));
 
   if (!same) {
-    if (!first && !reduced) { pageEl.classList.add('is-leaving'); await new Promise((res) => setTimeout(res, 300)); }
+    // iOS swipe-back / Android predictive back already animated to the page: fading it again flashes
+    const animate = !first && !reduced && !pop?.hasUAVisualTransition;
+    if (animate) { pageEl.classList.add('is-leaving'); await new Promise((res) => setTimeout(res, 300)); }
     pageEl.innerHTML = page.html;
     pageEl.classList.remove('is-leaving');
-    if (!first && r.name !== 'home') { pageEl.classList.add('is-entering'); setTimeout(() => pageEl.classList.remove('is-entering'), 1000); }
-    window.scrollTo(0, 0);
+    if (animate && r.name !== 'home') { pageEl.classList.add('is-entering'); setTimeout(() => pageEl.classList.remove('is-entering'), 1000); }
+    const y = pop ? history.state?.y || 0 : 0; // back/forward returns to where the page was left
+    window.scrollTo(0, y);
+    if (y) requestAnimationFrame(() => window.scrollTo(0, y));
     wireReveals();
     syncAllToggles();
     refreshCookieStatus();
@@ -224,12 +230,15 @@ async function render(first = false, forcePath = null) {
   if (!forcePath) state.lastNonContact = location.pathname + location.search;
 }
 
+history.scrollRestoration = 'manual'; // render() restores it, after the page it belongs to is back
+const saveScroll = () => history.replaceState({ ...history.state, y: scrollY }, '');
 function navigate(url, { replace = false } = {}) {
   if (url === location.pathname + location.search) return;
+  if (!replace) saveScroll();
   history[replace ? 'replaceState' : 'pushState']({}, '', url);
   render();
 }
-addEventListener('popstate', () => render());
+addEventListener('popstate', (e) => render(false, null, e));
 document.addEventListener('click', (e) => {
   const a = e.target.closest('a[data-link]');
   if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
@@ -238,7 +247,7 @@ document.addEventListener('click', (e) => {
   e.preventDefault();
   sound.play('click');
   if (u.pathname.startsWith('/projects/')) openSource = a.closest('.lv-link') ? 'list' : a.closest('.rel') ? 'related' : 'link';
-  if (u.pathname === '/contact') { contactTrigger = a.classList.contains('cta') ? 'header' : (a.textContent || '').trim().toLowerCase().slice(0, 40); history.pushState({}, '', '/contact'); applySeo({ name: 'contact' }); openContact(); return; }
+  if (u.pathname === '/contact') { contactTrigger = a.classList.contains('cta') ? 'header' : (a.textContent || '').trim().toLowerCase().slice(0, 40); saveScroll(); history.pushState({ contact: true }, '', '/contact'); applySeo({ name: 'contact' }); openContact(); return; }
   navigate(u.pathname + u.search);
 });
 
@@ -334,7 +343,10 @@ function closeContact(restore = true) {
 }
 function leaveContact() {
   closeContact();
-  if (location.pathname === '/contact') { history.pushState({}, '', state.lastNonContact || '/'); if (state.route) applySeo(state.route); }
+  if (location.pathname !== '/contact') return;
+  // opened in-site: go back over our own entry, so the phone's back button doesn't reopen the overlay
+  if (history.state?.contact) { history.back(); return; }
+  history.replaceState({}, '', state.lastNonContact || '/'); if (state.route) applySeo(state.route);
 }
 $('#contact').addEventListener('click', (e) => {
   const b = e.target.closest('[data-c]'); if (!b) return;
