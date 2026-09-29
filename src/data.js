@@ -10,6 +10,21 @@ export const ZONES = {
 
 export const PROJECTS = [
   // plate: the backdrop the project page's screenshots sit on (picked from each site's own palette)
+  // flagship: the studio's own open-source product. It sits first (the grid's centre tile, the top of the list)
+  // and is the first pick wherever a subset of the work is shown or promoted (ads, share images, social).
+  // Keep it to one project, and keep its tile like the others — the hint is its place, not a louder tile.
+  {
+    slug: 'hai-awan', title: 'Hai Awan', client: 'FF Dev Studio', zone: 'product', year: 2026, plate: '#91cefa', flagship: true,
+    features: ['open-source', 'ai', 'macos'], stack: ['swift', 'node', 'sqlite', 'vite'], url: 'https://awan.ffdev.studio/',
+    repo: 'https://github.com/Aphrosidiac/HaiAwan', license: 'MIT', platform: 'macOS 14 or later',
+    type: 'macOS app, open source', role: 'Product / macOS app / Server / Website',
+    statement: 'A little cloud that lives in your Mac’s notch. Hold two keys, ask out loud, and it looks at your screen and points at the answer.',
+    about: [
+      'Awan is a native macOS app that sits in the notch. Hold Control and Option and talk: it sees the screen only while the keys are down, answers in a natural voice, and flies a small cursor across the screen to point at the button, cell or word it means.',
+      'Longer jobs go to agents — your Awans — that research, write and work in the background, then tap you when they are done. Dictation types into any text field.',
+      'It is the studio’s own product and fully open source under the MIT licence: the Mac app, the server behind it and its website are public on GitHub, so anyone can read how it works, build it themselves or send a fix.',
+    ],
+  },
   {
     slug: 'ff-search', title: 'FF Search', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#1f1f1f',
     features: ['website', 'motion', 'measurement'], stack: ['vite', 'gsap'], url: 'https://ff-search-b4q.pages.dev/',
@@ -152,8 +167,8 @@ export const PROJECTS = [
   },
 ];
 
-export const FEATURE_LABEL = { '3d': '3D', ai: 'AI', seo: 'SEO', webgl: 'WebGL', 'e-commerce': 'E-commerce' };
-export const STACK_LABEL = { next: 'Next.js', vite: 'Vite', astro: 'Astro', three: 'Three.js', gsap: 'GSAP', lenis: 'Lenis', postgres: 'Postgres' };
+export const FEATURE_LABEL = { '3d': '3D', ai: 'AI', seo: 'SEO', webgl: 'WebGL', 'e-commerce': 'E-commerce', 'open-source': 'Open source', macos: 'macOS' };
+export const STACK_LABEL = { next: 'Next.js', vite: 'Vite', astro: 'Astro', three: 'Three.js', gsap: 'GSAP', lenis: 'Lenis', postgres: 'Postgres', swift: 'Swift', node: 'Node.js', sqlite: 'SQLite' };
 export const label = (k, map = FEATURE_LABEL) => map[k] || k.charAt(0).toUpperCase() + k.slice(1);
 
 const uniq = (a) => [...new Set(a)].sort();

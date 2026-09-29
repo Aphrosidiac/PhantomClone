@@ -107,6 +107,14 @@ async function capture(slug) {
 const ASPECT = { full: [16, 9], pair: [16, 9], trio: [414, 670] }; // pairs are two whole frames: a crop cut text mid-word
 const WIDTHS = { full: [2880, 1440], pair: [1600, 800], trio: [1242, 621] }; // 2880 covers a 1440 CSS px row at 2x
 const ffmpeg = (a) => { const x = spawnSync(FFMPEG, ['-v', 'error', '-y', ...a], { stdio: 'inherit' }); if (x.status !== 0) throw new Error('ffmpeg failed'); };
+// ffmpeg builds without libwebp (Homebrew's) crop/scale to a lossless PNG and hand it to cwebp, same settings
+const HAS_LIBWEBP = spawnSync(FFMPEG, ['-hide_banner', '-encoders'], { encoding: 'utf8' }).stdout?.includes('libwebp');
+const webp = (src, vf, s, out) => {
+  if (HAS_LIBWEBP) return ffmpeg(['-i', src, '-vf', vf, '-c:v', 'libwebp', '-quality', String(s.quality ?? 80), '-compression_level', '6', '-preset', s.preset || 'picture', out]);
+  const png = `${out}.png`; ffmpeg(['-i', src, '-vf', vf, png]);
+  const x = spawnSync(process.env.CWEBP || 'cwebp', ['-quiet', '-preset', s.preset || 'picture', '-q', String(s.quality ?? 80), '-m', '6', png, '-o', out], { stdio: 'inherit' });
+  fs.rmSync(png); if (x.status !== 0) throw new Error('cwebp failed');
+};
 const probe = (f) => { const r = spawnSync(FFMPEG.replace(/ffmpeg(.exe)?$/i, 'ffprobe$1'), ['-v', 'error', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', f], { encoding: 'utf8' }); const [w, h] = r.stdout.trim().split(',').map(Number); return { w, h }; };
 
 function encodeSlug(slug) {
@@ -125,7 +133,7 @@ function encodeSlug(slug) {
     const [big, small] = WIDTHS[kind].map((x) => Math.min(x, cw));
     const name = `s-${id}`;
     for (const [width, suffix] of [[big, ''], [small, '-sm']]) {
-      ffmpeg(['-i', src, '-vf', `crop=${cw}:${ch}:${cx}:${cy},scale=${width}:-2:flags=lanczos`, '-c:v', 'libwebp', '-quality', String(s.quality ?? 80), '-compression_level', '6', '-preset', s.preset || 'picture', path.join(dir, `${name}${suffix}.webp`)]);
+      webp(src, `crop=${cw}:${ch}:${cx}:${cy},scale=${width}:-2:flags=lanczos`, s, path.join(dir, `${name}${suffix}.webp`));
     }
     const u = new URL(s.url || '', r.base); // the address shown in the browser-window frame
     return { src: `/media/${slug}/${name}.webp`, sm: `/media/${slug}/${name}-sm.webp`, w: big, h: Math.round((big * ch) / cw), smw: small, alt: s.alt, page: (u.host + u.pathname).replace(/\/$/, '') };

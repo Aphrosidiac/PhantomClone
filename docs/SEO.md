@@ -45,7 +45,7 @@ To see production routing, run `npx wrangler pages dev dist --port 8788` after a
 
 | Route | Title | Schema |
 |---|---|---|
-| `/` | FF Dev Studio — Custom websites, designed and built in Malaysia | Organization, Person (founder), WebSite, CollectionPage with an ItemList of all 14 projects |
+| `/` | FF Dev Studio — Custom websites, designed and built in Malaysia | Organization, Person (founder), WebSite, CollectionPage with an ItemList of every project |
 | `/projects/<slug>` | `<Title> — <type> \| FF Dev Studio`, shortened to fit about 65 characters | ItemPage + BreadcrumbList, CreativeWork (the site itself: live URL, client, year, keywords, and `isBasedOn` for recreations) |
 | `/about` | About — one studio in Kuala Lumpur | AboutPage + Person |
 | `/about/approach` | Approach — nine steps from brief to launch | WebPage + BreadcrumbList |

@@ -40,7 +40,10 @@ export function project(slug) {
       <hr class="rule" style="margin:0 var(--margin)">
       <div class="p-meta mono">
         <div class="pills"><span>Zone &amp; year</span><a class="pill pill--zone" href="/?zone=${p.zone}" data-link>${ZONES[p.zone].name}</a><span class="pill">${p.year}</span></div>
-        <a class="p-live" href="${p.url}" target="_blank" rel="noopener"><span class="lbl">See it live<span class="host">${esc(new URL(p.url).host)}</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+        <div class="p-links">
+          ${p.repo ? `<a class="p-src" href="${p.repo}" target="_blank" rel="noopener"><span class="lbl">Source code<span class="host">${esc(new URL(p.repo).host)}</span></span><span class="arrow" aria-hidden="true">↗</span></a>` : ''}
+          <a class="p-live" href="${p.url}" target="_blank" rel="noopener"><span class="lbl">See it live<span class="host">${esc(new URL(p.url).host)}</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
       </div>
       <div class="p-cover">${shot(m.cover, 'full', false)}</div>
       <section class="p-intro"><p class="statement reveal">${split(p.statement)}</p></section>
@@ -53,6 +56,7 @@ export function project(slug) {
           <div><dt>Role</dt><dd>${esc(p.role)}</dd></div>
           <div><dt>Built with</dt><dd>${p.stack.map((x) => esc(label(x, STACK_LABEL))).join(', ')}</dd></div>
           ${p.reference ? `<div><dt>Reference</dt><dd>${esc(p.reference)}</dd></div>` : ''}
+          ${p.repo ? `<div><dt>Licence</dt><dd>${esc(p.license)}, <a href="${p.repo}" target="_blank" rel="noopener">open source</a></dd></div>` : ''}
         </dl>
       </section>
       <div class="p-shots">${m.rows.map((r) => `<div class="p-row p-row--${r.kind}">${r.items.map((x) => shot(x, r.kind)).join('')}</div>`).join('')}</div>

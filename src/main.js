@@ -382,6 +382,7 @@ document.addEventListener('click', (e) => {
   const channel = href.startsWith('mailto:') ? 'email' : href.includes('wa.me/') ? 'whatsapp' : null;
   if (channel) { track('contact_link_clicked', { channel, place: a.closest('#contact') ? 'contact' : a.closest('.foot') ? 'footer' : a.closest('.studios') ? 'about' : state.route?.name || 'other' }); return; }
   if (a.classList.contains('p-live')) track('live_site_opened', { slug: state.route?.slug, host: new URL(a.href).host });
+  if (a.classList.contains('p-src')) track('source_opened', { slug: state.route?.slug, host: new URL(a.href).host });
 }, true);
 
 // focus trap inside the dialog

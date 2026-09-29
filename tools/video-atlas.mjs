@@ -7,42 +7,49 @@
 //   - moov at the front (+faststart), so playback can start before the whole file has arrived
 //
 // usage: node tools/video-atlas.mjs [recordings dir]      (FFMPEG=path/to/ffmpeg if not on PATH)
+// The recordings are archived (Git LFS) in the FFAds repo, recordings/desktop/ — the default when it sits
+// next to this checkout.
 // writes public/media/video/atlas.mp4, atlas-phone.mp4 and src/video-atlas.json
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const SRC = process.argv[2] || path.join(process.env.USERPROFILE || process.env.HOME, 'Videos');
+const SRC = process.argv[2] || path.resolve('../FFAds/recordings/desktop');
 const FFMPEG = process.env.FFMPEG || 'ffmpeg';
 
 // Recordings: Chrome at 1920x1080, page viewport 1904x944 at y=87 (tab strip + address bar above,
-// scrollbar right of x=1904) — measured on all ten files. `at` is the source second of the loop's first
+// scrollbar right of x=1904) — measured on all ten screen recordings. `crop: 'page'` marks a file that is
+// already just that viewport (tools/record.mjs). `at` is the source second of the loop's first
 // frame; `speed` (default SPEED) how fast the source plays. Each pick came from a 2 fps pass over the
 // whole recording and a 6-8 fps pass over the candidates, choosing the most eye-catching stretch at
 // tile size (~200 px wide): startup sequences, big type, colour, large motion — not small-text scrolls.
 const CROP = { w: 1904, h: 944, x: 0, y: 87 };
+const PAGE = { w: 1904, h: 944, x: 0, y: 0 };
 const CLIPS = [
   // //FF loader mark → hero reveal → mint blob swirl → BUILT PROPERLY → stats
-  { slug: 'ff-search', file: '2026-09-24 17-16-53.mp4', at: 2.4 },
+  { slug: 'ff-search', file: '2026-09-24_17-16-53_ff-search.mp4', at: 2.4 },
   // collage → sneaker zooms into the lens → teal, orange, cyan, blue circles → collage
-  { slug: 'ff-shoots', file: '2026-09-24 17-18-29.mp4', at: 15.3 },
+  { slug: 'ff-shoots', file: '2026-09-24_17-18-29_ff-shoots.mp4', at: 15.3 },
   // the intro, at its own pace: tiles sharpen, line up, collapse, one grows into the hero (starts
   // after the page reload at ~1.8 s, so the lead-in is all loader and the wrap dissolves cleanly)
-  { slug: 'ff-stanzza', file: '2026-09-24 17-19-40.mp4', at: 2.35, speed: 1 },
+  { slug: 'ff-stanzza', file: '2026-09-24_17-19-40_ff-stanzza.mp4', at: 2.35, speed: 1 },
   // Weddings hero (kite + invitation, blue sky) → photos fly in → ceremony
-  { slug: 'ff-frames', file: '2026-09-24 17-20-47.mp4', at: 7.75 },
+  { slug: 'ff-frames', file: '2026-09-24_17-20-47_ff-frames.mp4', at: 7.75 },
   // "Six stages" rack builds piece by piece → orange/blue warehouse photos
-  { slug: 'sunlight-supplies', file: '2026-09-24 17-21-54.mp4', at: 9.9 },
+  { slug: 'sunlight-supplies', file: '2026-09-24_17-21-54_sunlight-supplies.mp4', at: 9.9 },
   // loader: Lewix mark fills (lead-in is the empty grey loader) → black panel expands → particles form the mountain → LEWIX → fly-over
-  { slug: 'lewix-ai', file: '2026-09-24 17-23-22.mp4', at: 4.5 },
+  { slug: 'lewix-ai', file: '2026-09-24_17-23-22_lewix-ai.mp4', at: 4.5 },
   // "Thirty days" illustration → icon band → page flips to Malay hero → shop mock
-  { slug: 'smoothsail', file: '2026-09-24 17-24-00.mp4', at: 11.6 },
+  { slug: 'smoothsail', file: '2026-09-24_17-24-00_smoothsail.mp4', at: 11.6 },
   // blue gradient card → Software & AI planet → store builder photos → dark code panel
-  { slug: 'lewix-my', file: '2026-09-24 17-25-03.mp4', at: 14.3 },
+  { slug: 'lewix-my', file: '2026-09-24_17-25-03_lewix-my.mp4', at: 14.3 },
   // card strip swinging → giant F SEARCH opening → strip → giant SUN LIGHT opening
-  { slug: 'meridian', file: '2026-09-24 17-25-54.mp4', at: 7.0 },
+  { slug: 'meridian', file: '2026-09-24_17-25-54_ffdev-studio.mp4', at: 7.0 },
   // full-bleed hero → categories → Old Wood, New Life → objects → Storage That Earns Its Wall
-  { slug: 'big-brain-furniture-alt', file: '2026-09-24 17-26-44.mp4', at: 2.7 },
+  { slug: 'big-brain-furniture-alt', file: '2026-09-24_17-26-44_big-brain-furniture-alt.mp4', at: 2.7 },
+  // the hero standing still (recorded with tools/record.mjs): the demo scene below the headline — keys held,
+  // the question types, the cursor flies to week 9, rings it, answers, and an agent starts in the notch
+  { slug: 'hai-awan', file: '2026-09-29_hai-awan_page.mp4', at: 2.9, crop: 'page' },
 ];
 
 const LOOP = 5;       // seconds
@@ -60,8 +67,8 @@ const run = (args, opts = {}) => {
 };
 
 const tmp = fs.mkdtempSync(path.join(process.env.TEMP || '/tmp', 'ff-vatlas-'));
-const cropW = Math.round((CROP.h * 16) / 9 / 2) * 2; // 16:9 out of the viewport, centred
-const cropX = CROP.x + Math.round((CROP.w - cropW) / 2);
+// 16:9 out of the viewport, centred
+const crop = (c) => { const r = c.crop === 'page' ? PAGE : CROP; const w = Math.round((r.h * 16) / 9 / 2) * 2; return `crop=${w}:${r.h}:${r.x + Math.round((r.w - w) / 2)}:${r.y}`; };
 
 // recordings are BT.709; say so explicitly, or browsers guess the matrix and colours shift
 const BT709 = ['-colorspace', 'bt709', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-color_range', 'tv'];
@@ -79,7 +86,7 @@ CLIPS.forEach((c, i) => {
   const speed = c.speed ?? SPEED; const lead = (F / FPS) * speed;
   if (c.at < lead) throw new Error(`${c.slug}: at must be >= ${lead}s (the loop's lead-in comes from before it)`);
   const raw = run(['-ss', String(c.at - lead), '-t', String(((N + F + 2) / FPS) * speed), '-i', src, '-vf',
-    `crop=${cropW}:${CROP.h}:${cropX}:${CROP.y},setpts=(PTS-STARTPTS)/${speed},fps=${FPS},scale=${CELL.w}:${CELL.h}:flags=lanczos`,
+    `${crop(c)},setpts=(PTS-STARTPTS)/${speed},fps=${FPS},scale=${CELL.w}:${CELL.h}:flags=lanczos`,
     '-frames:v', String(N + F), '-an', '-f', 'rawvideo', '-pix_fmt', 'rgb24', '-'], { capture: true });
   if (raw.length < (N + F) * FRAME) throw new Error(`${c.slug}: recording too short after ${c.at}s`);
   const frame = (j) => raw.subarray(j * FRAME, (j + 1) * FRAME);

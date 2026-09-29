@@ -109,7 +109,7 @@ This site is an index of FF Dev Studio's work, shown as a draggable WebGL grid.
 
 ## Work
 
-${PROJECTS.map((p) => `- [${p.title}](${SITE_URL}/projects/${p.slug}): ${p.type} (${ZONES[p.zone].name}, ${p.year}). ${p.statement}${p.client !== 'FF Dev Studio' ? ` Client: ${p.client}.` : ''} Live: ${p.url}`).join('\n')}
+${PROJECTS.map((p) => `- [${p.title}](${SITE_URL}/projects/${p.slug}): ${p.flagship ? 'FF Dev Studio\'s own product. ' : ''}${p.type} (${ZONES[p.zone].name}, ${p.year}). ${p.statement}${p.client !== 'FF Dev Studio' ? ` Client: ${p.client}.` : ''} Live: ${p.url}${p.repo ? ` Source (${p.license} licence): ${p.repo}` : ''}`).join('\n')}
 
 ## Pricing
 

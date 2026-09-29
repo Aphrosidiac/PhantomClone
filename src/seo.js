@@ -9,6 +9,7 @@ export const SITE_URL = String(import.meta.env?.VITE_SITE_URL || 'https://ffdev.
 export const SITE_NAME = 'FF Dev Studio';
 const abs = (p) => SITE_URL + p;
 const ORG = `${SITE_URL}/#org`;
+const LICENSE_URL = { MIT: 'https://opensource.org/license/mit' };
 const WEBSITE = `${SITE_URL}/#website`;
 const FOUNDER = `${SITE_URL}/#fakhrul`;
 const DEFAULT_IMAGE = { src: '/og.jpg', alt: 'FF Dev Studio — an index of work, shown as a draggable grid' };
@@ -97,7 +98,12 @@ export function seoFor(route) {
           primaryImageOfPage: { '@type': 'ImageObject', url: abs(image.src), width: 1200, height: 630 },
           breadcrumb: crumbs([['Work', '/'], [p.title, path]]),
           mainEntity: {
-            '@type': 'CreativeWork',
+            // an open-source product is software with its code in public; everything else is a piece of work
+            ...(p.repo ? {
+              '@type': 'SoftwareApplication', operatingSystem: p.platform, applicationCategory: 'UtilitiesApplication',
+              license: LICENSE_URL[p.license], isAccessibleForFree: true,
+              subjectOf: { '@type': 'SoftwareSourceCode', codeRepository: p.repo, license: LICENSE_URL[p.license], author: { '@id': ORG } },
+            } : { '@type': 'CreativeWork' }),
             name: p.title,
             headline: p.statement,
             description: p.about.join(' '),

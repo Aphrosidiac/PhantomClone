@@ -1870,5 +1870,152 @@
     ]
    }
   ]
+ },
+ "hai-awan": {
+  "cover": {
+   "src": "/media/hai-awan/s-hero.webp",
+   "sm": "/media/hai-awan/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "hai awan: the headline among app screenshots and stickers, the demo below answering about week 9",
+   "page": "awan.ffdev.studio"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/hai-awan/s-demo.webp",
+      "sm": "/media/hai-awan/s-demo-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The demo: Awan has flown to the week 9 bar in a chart, circled it and answered",
+      "page": "awan.ffdev.studio"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/hai-awan/s-learn.webp",
+      "sm": "/media/hai-awan/s-learn-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Finally learn the thing: asked how to total a column, Awan points at the cell and writes the formula",
+      "page": "awan.ffdev.studio"
+     },
+     {
+      "src": "/media/hai-awan/s-context.webp",
+      "sm": "/media/hai-awan/s-context-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Your screen is the context: why won’t this import? — Awan rings the bad date column",
+      "page": "awan.ffdev.studio"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/hai-awan/s-m-hero.webp",
+      "sm": "/media/hai-awan/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "awan.ffdev.studio"
+     },
+     {
+      "src": "/media/hai-awan/s-m-learn.webp",
+      "sm": "/media/hai-awan/s-m-learn-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: Awan pointing at a spreadsheet",
+      "page": "awan.ffdev.studio"
+     },
+     {
+      "src": "/media/hai-awan/s-m-pricing.webp",
+      "sm": "/media/hai-awan/s-m-pricing-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: pricing under the clouds",
+      "page": "awan.ffdev.studio"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/hai-awan/s-agents.webp",
+      "sm": "/media/hai-awan/s-agents-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Hand off work with your voice: an Awan agent starts on the weekly report",
+      "page": "awan.ffdev.studio"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/hai-awan/s-idea.webp",
+      "sm": "/media/hai-awan/s-idea-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The idea, typed out on a note between rainbow arches of little clouds",
+      "page": "awan.ffdev.studio"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/hai-awan/s-pricing.webp",
+      "sm": "/media/hai-awan/s-pricing-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Pricing under a cloudy sky: free, pro and max",
+      "page": "awan.ffdev.studio"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/hai-awan/s-asks.webp",
+      "sm": "/media/hai-awan/s-asks-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Ask it anything: a wall of real questions, and the line that Hai Awan is fully open source",
+      "page": "awan.ffdev.studio"
+     },
+     {
+      "src": "/media/hai-awan/s-faq.webp",
+      "sm": "/media/hai-awan/s-faq-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Frequently asked questions, starting with what Hai Awan is and whether it is open source",
+      "page": "awan.ffdev.studio"
+     }
+    ]
+   }
+  ]
  }
 }

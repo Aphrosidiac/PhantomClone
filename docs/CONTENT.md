@@ -23,10 +23,18 @@ links are generated from it — there is nothing else to update.
   type: 'Company website',
   role: 'Design / Frontend',
   reference: 'somesite.com',          // optional — only for studies/recreations
+  repo: 'https://github.com/…',       // optional — open-source work: adds a "Source code" pill and a Licence fact,
+  license: 'MIT', platform: '…',      //   and the page's structured data becomes SoftwareApplication + SoftwareSourceCode
   statement: 'One sentence that says what it is.',
   about: ['Paragraph one.', 'Paragraph two.'],
 },
 ```
+
+**Order matters.** The first project is the grid's centre tile — the first thing a visitor sees — and heads
+the list view; the grid then spirals outward in array order. The first entry is the studio's flagship,
+**Hai Awan** (`flagship: true`): FF's own open-source product. Its tile is deliberately like every other
+tile (the hints are its place and its OPEN SOURCE pill), but anything that shows or promotes a subset of the
+work — ads, share images, social posts — starts from it. Keep `flagship` on one project.
 
 Filters pick up new features, stack items and clients automatically. Its title, meta, sitemap entry
 and JSON-LD come from this entry too; render its share card with `node tools/seo-assets.mjs` (dev
@@ -58,6 +66,9 @@ SHOT='^pricing' node tools/shots.mjs ff-frames       # re-shoot matching ids onl
 FFMPEG=path/to/ffmpeg node tools/shots.mjs --encode ff-frames   # -> public/media/<slug>/s-*.webp + src/shots.json
 ```
 
+An ffmpeg without libwebp (Homebrew's) is fine: the encode then writes a PNG and hands it to `cwebp` with
+the same settings (`CWEBP=path/to/cwebp` if it is not on PATH).
+
 The encode writes two widths of each (2880/1440 full, 1600/800 pair, 1242/621 phone) and the page
 serves them with `srcset`. Wait for what the frame is for: counters that roll, lazy images (the
 recipe's `init: EAGER` loads them up front), a 3D stage that fills over a second or two.
@@ -71,14 +82,20 @@ slug to its cell; a project without a cell keeps its still `tile.jpg`.
 
 To add or re-cut a clip:
 
-1. Screen-record the site in Chrome at 1920×1080 (the crop assumes Chrome's tab strip and address
-   bar above the page and a scrollbar on the right — re-measure `CROP` if the window differs).
+1. Record the site. Either screen-record it in Chrome at 1920×1080 (the crop assumes Chrome's tab strip
+   and address bar above the page and a scrollbar on the right — re-measure `CROP` if the window differs),
+   or let `node tools/record.mjs <url> <out.mp4> [seconds]` film the page standing still in headless Chrome
+   at the same 1904×944 page viewport, with no browser around it (give that clip `crop: 'page'`). Hai Awan's
+   loop was made this way. Source footage is archived with Git LFS in the FFAds repo,
+   `recordings/desktop/` — put new recordings there too.
 2. Add `{ slug, file, at }` to `CLIPS` in `tools/video-atlas.mjs`; `at` is the loop's first frame.
    The loop plays 7.5 s of source at 1.5× (`speed: 1` for an intro that should keep its own pace).
    The wrap dissolves in from the 0.75 s of source just BEFORE `at` (0.5 s at `speed: 1`), so keep a
    page reload or cut out of that lead-in. Pick for tile size (~200 px wide): startup sequences,
    big type, colour and large motion read; scrolling past small text does not.
-3. `FFMPEG=path/to/ffmpeg node tools/video-atlas.mjs "C:/Users/Fakhrul/Videos"`
+3. `node tools/video-atlas.mjs` (reads `../FFAds/recordings/desktop` by default; pass another folder as the
+   argument, and `FFMPEG=path/to/ffmpeg` if it is not on PATH). The ten older clips rebuild from those archived
+   recordings unchanged (PSNR 37–44 dB against the previous atlas, i.e. encoder noise only).
 
 The still `tile.jpg` still matters: it shows until the video's first frame, and for visitors with
 reduced motion or data-saver on (`?video=0` forces it, for testing).
@@ -145,4 +162,5 @@ for the Graphite ground:
 
 `node tools/seo-assets.mjs` (dev server running) renders each project's share card
 `public/media/<slug>/og.jpg` from its cover, plus `logo.png`, `apple-touch-icon.png` and
-`favicon-48.png`. Re-run it after adding a project, renaming one or re-capturing a cover.
+`favicon-48.png`. Re-run it after adding a project, renaming one or re-capturing a cover. It re-renders every card, and a few come out byte-different
+from render noise alone: commit only the cards that should have changed.

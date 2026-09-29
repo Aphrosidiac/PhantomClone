@@ -13,7 +13,35 @@ const P = 'phone';
 // lazy images: load everything up front so no frame catches a blurred placeholder
 const EAGER = [['eval', () => document.querySelectorAll('img[loading="lazy"]').forEach((i) => { i.loading = 'eager'; })], ['wait', 3500]];
 
+// the scripted demo under the hero loops every ~13 s; wait for the frame where Awan has ringed week 9 and answered
+// (the answer stays up through the agent step, so wait for a fresh cycle first)
+const DEMO_REPLY = [['eval', () => new Promise((done) => {
+  const d = document.querySelector('#demo'); let fresh = false;
+  const t = () => { if (!d.classList.contains('reply')) fresh = true; if (fresh && d.classList.contains('reply')) done(); else setTimeout(t, 40); }; t();
+})], ['wait', 900]];
+
 export const RECIPES = {
+  'hai-awan': {
+    base: 'https://awan.ffdev.studio/', device: 'mid', boot: 2500, settle: 1200,
+    shots: [
+      { id: 'hero', steps: DEMO_REPLY, alt: 'hai awan: the headline among app screenshots and stickers, the demo below answering about week 9' },
+      { id: 'demo', steps: [['to', '#demo', 0.1], ...DEMO_REPLY], alt: 'The demo: Awan has flown to the week 9 bar in a chart, circled it and answered' },
+      { id: 'learn', steps: [['to', '.feat-row >> nth=0', 0.21]], settle: 6500, alt: 'Finally learn the thing: asked how to total a column, Awan points at the cell and writes the formula' },
+      { id: 'context', steps: [['to', '.feat-row >> nth=1', 0.21]], settle: 6500, alt: 'Your screen is the context: why won’t this import? — Awan rings the bad date column' },
+      { id: 'agents', steps: [['to', '.feat-row >> nth=2', 0.21]], settle: 6500, alt: 'Hand off work with your voice: an Awan agent starts on the weekly report' },
+      { id: 'idea', steps: [['to', '#idea', 0.0]], settle: 5000, alt: 'The idea, typed out on a note between rainbow arches of little clouds' },
+      { id: 'asks', steps: [['to', '#asks-title', 0.3]], settle: 2500, alt: 'Ask it anything: a wall of real questions, and the line that Hai Awan is fully open source' },
+      { id: 'pricing', steps: [['to', '#pr-title', 0.1]], settle: 2500, alt: 'Pricing under a cloudy sky: free, pro and max' },
+      { id: 'faq', steps: [['to', '#faq-title', 0.2]], alt: 'Frequently asked questions, starting with what Hai Awan is and whether it is open source' },
+      { id: 'footer', steps: [['y', 99999]], settle: 2500, alt: 'The footer: the Hai Awan wordmark drawn in little clouds' },
+      { id: 'm-hero', device: P, steps: DEMO_REPLY, alt: 'Phone: the hero' },
+      { id: 'm-learn', device: P, steps: [['to', '.feat-row >> nth=0', 0.12]], settle: 6500, alt: 'Phone: Awan pointing at a spreadsheet' },
+      { id: 'm-pricing', device: P, steps: [['to', '#pr-title', 0.08]], settle: 2500, alt: 'Phone: pricing under the clouds' },
+    ],
+    cover: 'hero',
+    rows: [['full', 'demo'], ['pair', 'learn', 'context'], ['trio', 'm-hero', 'm-learn', 'm-pricing'], ['full', 'agents'], ['full', 'idea'], ['full', 'pricing'], ['pair', 'asks', 'faq']],
+  },
+
   'ff-search': {
     base: 'https://ff-search-b4q.pages.dev/', device: 'mid', boot: 6000,
     shots: [

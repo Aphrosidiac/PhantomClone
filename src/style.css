@@ -215,6 +215,21 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
 .p-live:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 @keyframes live-pulse { 0% { box-shadow: 0 0 0 0 rgba(243,239,228,.55); } 70%, 100% { box-shadow: 0 0 0 12px rgba(243,239,228,0); } }
 @media (prefers-reduced-motion: reduce) { .p-live span.arrow::after { animation: none; } }
+/* an open-source project's second action: the same pill, outlined, so the live site stays the one to press */
+.p-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.p-src { display: inline-flex; align-items: center; gap: 18px; padding: 7px 7px 7px 24px; border-radius: 999px; color: var(--ink); text-decoration: none; box-shadow: inset 0 0 0 1px rgba(11,11,10,.3); transition: box-shadow .45s var(--ease-out), transform .45s var(--ease-out); }
+.p-src .lbl { display: grid; gap: 5px; font-size: .78rem; letter-spacing: .02em; }
+.p-src .host { font-size: .62rem; opacity: .55; text-transform: none; letter-spacing: 0; }
+.p-src span.arrow { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(11,11,10,.06); font-family: var(--sans); font-size: 18px; transition: transform .45s var(--ease-out); }
+@media (hover: hover) { .p-src:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 1px var(--ink); } .p-src:hover span.arrow { transform: rotate(45deg) scale(1.06); } }
+.p-src:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.p-facts dd a { color: inherit; }
+/* phones: the two actions stack full width, the live site first */
+@media (max-width: 600px) {
+  .p-links:has(.p-src) { flex: 1 1 100%; flex-direction: column; align-items: stretch; }
+  .p-links:has(.p-src) > a { justify-content: space-between; }
+  .p-links .p-src { order: 1; }
+}
 .p-cover { margin: 24px var(--margin) 0; }
 .p-intro { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: 140px var(--margin) 120px; }
 .p-intro .statement { grid-column: 4 / span 8; font-size: clamp(1.8rem, 3.4vw, 3.4rem); }
