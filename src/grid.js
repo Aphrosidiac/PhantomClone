@@ -48,8 +48,11 @@ function drawLabel(ctx, p, x0, y0) {
   ctx.fillStyle = '#fff'; ctx.textBaseline = 'alphabetic';
   // client wordmark, top-left (FF work carries the //FF mark; a named product of its own shows its name)
   if (p.wordmark) {
-    ctx.font = '600 26px "Instrument Sans"'; ctx.letterSpacing = '-0.5px';
-    ctx.fillText(p.wordmark, 33, 62);
+    // as big as the //FF mark it replaces: capitals 30px tall, on the mark's baseline
+    ctx.font = '700 40px "Instrument Sans"';
+    const size = (40 * 30) / ctx.measureText('H').actualBoundingBoxAscent;
+    ctx.font = `700 ${size.toFixed(2)}px "Instrument Sans"`; ctx.letterSpacing = `${(-0.025 * size).toFixed(2)}px`;
+    ctx.fillText(p.wordmark, 33, 66);
   } else if (p.client === 'FF Dev Studio') {
     ctx.save(); ctx.translate(33, 36); ctx.scale(30 / 72, 30 / 72);
     ctx.fill(new Path2D('M0 72 16 0h14L14 72Z')); ctx.fill(new Path2D('M24 72 40 0h14L38 72Z'));
@@ -90,7 +93,7 @@ function drawMedia(ctx, img, x0, y0) {
 }
 
 async function buildAtlas(projects, tileUrl, { mediaMax, labelMax, labelScale }) {
-  await Promise.all([document.fonts.load('600 26px "Instrument Sans"'), document.fonts.load('400 17px "DM Mono"')]);
+  await Promise.all([document.fonts.load('600 26px "Instrument Sans"'), document.fonts.load('700 40px "Instrument Sans"'), document.fonts.load('400 17px "DM Mono"')]);
   const cols = Math.ceil(Math.sqrt(projects.length));
   const make = (k, max) => {
     const size = Math.min(max, Math.round(cols * CELL * k)); const c = document.createElement('canvas'); c.width = c.height = size;
