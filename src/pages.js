@@ -34,6 +34,8 @@ export function project(slug) {
   return {
     theme: 'light',
     client: p.client,
+    // the header lockup's other name: the client for client work, the work itself for FF's own ("FF Search" → Search)
+    partner: p.client === 'FF Dev Studio' ? p.title.replace(/^FF\s+/, '') : p.client,
     html: `
     <article class="project" data-slug="${p.slug}" style="--plate:${p.plate}"${dark(p.plate) ? ' data-plate="dark"' : ''}>
       <header class="p-hero"><h1 class="large-title">${esc(p.title)}</h1></header>

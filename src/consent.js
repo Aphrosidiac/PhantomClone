@@ -20,12 +20,11 @@ export async function showConsent(force = false) {
   el.setAttribute('role', 'region');
   el.setAttribute('aria-label', 'Cookie choice');
   el.innerHTML = `
-    <p class="mono label-dot">Cookies</p>
+    <div class="head"><p class="mono label-dot">Cookies</p><a class="mono" href="/cookies" data-link>Details</a></div>
     <p class="t">${TEXT[status] || TEXT.pending}</p>
     <div class="row">
       <button type="button" class="btn-pill" data-consent="accept">Accept</button>
       <button type="button" class="btn-pill" data-consent="reject">Reject</button>
-      <a class="mono" href="/cookies" data-link>Details</a>
     </div>`;
   document.body.append(el);
   if (force) el.querySelector('[data-consent]').focus({ preventScroll: true });

@@ -39,6 +39,44 @@ function syncToggle(root) {
 const syncAllToggles = () => $$('.toggle').forEach(syncToggle);
 addEventListener('resize', syncAllToggles);
 
+// ------------------------------------------------------------------ header lockup: //FF × <name>
+// On a project the × draws itself and the name rises in letter by letter; project to project the old
+// name rolls out upward as the new one rolls in, like a departures board. The name is set as big as
+// the //FF mark (the grid tile's wordmark rule) and shrinks only when the header runs out of room.
+const lockup = $('.logo'), lockName = $('.logo-client');
+function lockupWord(name) {
+  const w = document.createElement('span');
+  w.className = 'lk-word';
+  [...name].forEach((ch, i) => {
+    const c = document.createElement('span');
+    c.className = 'lk-ch'; c.textContent = ch; c.style.setProperty('--i', i);
+    w.append(c);
+  });
+  return w;
+}
+function fitLockup() {
+  const w = $('.lk-word:not(.out)', lockName); if (!w) return;
+  w.style.fontSize = ''; // sized per word, so a name rolling out keeps its own size
+  const left = lockName.getBoundingClientRect().left;
+  const next = $$('.header-grid > *').filter((el) => el !== lockup && el.offsetWidth).map((el) => el.getBoundingClientRect().left).filter((x) => x > left);
+  const room = Math.min(...next, innerWidth) - left - 20;
+  if (w.offsetWidth > room) w.style.fontSize = `${Math.max(12, (parseFloat(getComputedStyle(w).fontSize) * room) / w.offsetWidth).toFixed(2)}px`;
+}
+function setLockup(name = '') {
+  if ((lockName.dataset.name || '') === name) return;
+  lockName.dataset.name = name;
+  lockup.setAttribute('aria-label', name ? `FF Dev Studio × ${name} — back to the work` : 'FF Dev Studio — work');
+  $$('.lk-word:not(.out)', lockName).forEach((w) => { w.classList.add('out'); setTimeout(() => w.remove(), 900); });
+  lockup.classList.toggle('has-partner', !!name);
+  if (!name) return;
+  const w = lockupWord(name);
+  lockName.append(w);
+  fitLockup();
+  requestAnimationFrame(() => requestAnimationFrame(() => w.classList.add('in')));
+}
+addEventListener('resize', fitLockup);
+document.fonts.ready.then(fitLockup);
+
 // ------------------------------------------------------------------ grid
 let grid = null;
 const stage = $('#stage');
@@ -197,7 +235,7 @@ async function render(first = false, forcePath = null, pop = null) {
   body.dataset.theme = page.theme;
   body.dataset.route = r.name;
   $('meta[name="theme-color"]').content = page.theme === 'light' ? '#f3efe4' : r.name === 'about' ? '#242421' : '#000000';
-  $('.logo-client').textContent = page.client && page.client !== 'FF Dev Studio' ? page.client : '';
+  setLockup(r.name === 'project' ? page.partner : '');
   $$('#navtoggle a').forEach((a) => a.toggleAttribute('aria-current', false));
   const nav = { home: 'home', project: 'home', about: 'about', pricing: 'pricing' }[r.name];
   if (nav) $(`#navtoggle a[data-nav="${nav}"]`).setAttribute('aria-current', 'page');
