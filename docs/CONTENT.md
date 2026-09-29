@@ -96,6 +96,8 @@ To add or re-cut a clip:
 3. `node tools/video-atlas.mjs` (reads `../FFAds/recordings/desktop` by default; pass another folder as the
    argument, and `FFMPEG=path/to/ffmpeg` if it is not on PATH). The ten older clips rebuild from those archived
    recordings unchanged (PSNR 37–44 dB against the previous atlas, i.e. encoder noise only).
+   The manifest's atlas URLs carry a content hash (`atlas.mp4?v=…`): `/media` is cached for a week, at
+   Cloudflare's edge too, so a rebuilt atlas at an unchanged URL keeps serving the old cells.
 
 The still `tile.jpg` still matters: it shows until the video's first frame, and for visitors with
 reduced motion or data-saver on (`?video=0` forces it, for testing).

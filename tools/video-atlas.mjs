@@ -11,6 +11,7 @@
 // next to this checkout.
 // writes public/media/video/atlas.mp4, atlas-phone.mp4 and src/video-atlas.json
 import { spawnSync } from 'node:child_process';
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -118,6 +119,9 @@ enc(`${W / 2}:${H / 2}`, 24, 'atlas-phone.mp4');
 
 // 3. manifest: each project's rectangle in the atlas, in pixels (top-left origin)
 const cells = Object.fromEntries(CLIPS.map((c, i) => [c.slug, [(i % COLS) * CELL.w, Math.floor(i / COLS) * CELL.h, CELL.w, CELL.h]]));
-fs.writeFileSync('src/video-atlas.json', JSON.stringify({ src: '/media/video/atlas.mp4', srcPhone: '/media/video/atlas-phone.mp4', width: W, height: H, aspect: CELL.w / CELL.h, cells }, null, 2) + '\n');
+// the URLs carry a content hash: /media is cached for a week (and at Cloudflare's edge), so a rebuilt atlas
+// under the same URL kept serving the old cells to returning visitors
+const ver = (f) => crypto.createHash('sha256').update(fs.readFileSync(path.join(out, f))).digest('hex').slice(0, 10);
+fs.writeFileSync('src/video-atlas.json', JSON.stringify({ src: `/media/video/atlas.mp4?v=${ver('atlas.mp4')}`, srcPhone: `/media/video/atlas-phone.mp4?v=${ver('atlas-phone.mp4')}`, width: W, height: H, aspect: CELL.w / CELL.h, cells }, null, 2) + '\n');
 fs.rmSync(tmp, { recursive: true, force: true });
 for (const f of ['atlas.mp4', 'atlas-phone.mp4']) console.log(f, (fs.statSync(path.join(out, f)).size / 1e6).toFixed(2), 'MB');
