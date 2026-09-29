@@ -46,8 +46,11 @@ function drawLabel(ctx, p, x0, y0) {
   const S = CELL;
   ctx.save(); ctx.translate(x0, y0);
   ctx.fillStyle = '#fff'; ctx.textBaseline = 'alphabetic';
-  // client wordmark, top-left (FF work carries the //FF mark)
-  if (p.client === 'FF Dev Studio') {
+  // client wordmark, top-left (FF work carries the //FF mark; a named product of its own shows its name)
+  if (p.wordmark) {
+    ctx.font = '600 26px "Instrument Sans"'; ctx.letterSpacing = '-0.5px';
+    ctx.fillText(p.wordmark, 33, 62);
+  } else if (p.client === 'FF Dev Studio') {
     ctx.save(); ctx.translate(33, 36); ctx.scale(30 / 72, 30 / 72);
     ctx.fill(new Path2D('M0 72 16 0h14L14 72Z')); ctx.fill(new Path2D('M24 72 40 0h14L38 72Z'));
     ctx.fill(new Path2D('M72 0h54v15H88v13h32v14H88v30H72Z')); ctx.fill(new Path2D('M140 0h54v15h-38v13h32v14h-32v30h-16Z'));

@@ -185,6 +185,9 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
 .wrap { padding: 0 var(--margin); }
 .rule { border: 0; border-top: 1px solid currentColor; opacity: .2; margin: 0; }
 .large-title { font-size: clamp(3rem, 12vw, 15.6rem); font-weight: 700; font-stretch: 92%; letter-spacing: -.0425em; line-height: .9; text-transform: uppercase; text-wrap: balance; }
+/* the tight tracking and 92% width shrink the word space too, and HAI AWAN read as one word ("haiwan").
+   Only this title: any wider space breaks BIG BRAIN, SECOND DIRECTION onto a third line. */
+.project[data-slug="hai-awan"] .p-hero .large-title { word-spacing: .16em; }
 .sub-title { font-size: clamp(2.2rem, 5.2vw, 5.6rem); font-weight: 700; letter-spacing: -.03em; line-height: .92; text-transform: uppercase; }
 .statement { font-size: clamp(1.6rem, 2.6vw, 2.6rem); font-weight: 600; letter-spacing: -.025em; line-height: 1.05; text-wrap: pretty; }
 .body-copy { font-size: 18px; line-height: 1.45; font-weight: 500; max-width: 38em; }

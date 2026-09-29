@@ -14,7 +14,7 @@ export const PROJECTS = [
   // and is the first pick wherever a subset of the work is shown or promoted (ads, share images, social).
   // Keep it to one project, and keep its tile like the others — the hint is its place, not a louder tile.
   {
-    slug: 'hai-awan', title: 'Hai Awan', client: 'FF Dev Studio', zone: 'product', year: 2026, plate: '#91cefa', flagship: true,
+    slug: 'hai-awan', title: 'Hai Awan', client: 'FF Dev Studio', zone: 'product', year: 2026, plate: '#91cefa', flagship: true, wordmark: 'Hai Awan',
     features: ['open-source', 'ai', 'macos'], stack: ['swift', 'node', 'sqlite', 'vite'], url: 'https://awan.ffdev.studio/',
     repo: 'https://github.com/Aphrosidiac/HaiAwan', license: 'MIT', platform: 'macOS 14 or later',
     type: 'macOS app, open source', role: 'Product / macOS app / Server / Website',

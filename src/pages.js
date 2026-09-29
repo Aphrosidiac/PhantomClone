@@ -35,7 +35,7 @@ export function project(slug) {
     theme: 'light',
     client: p.client,
     html: `
-    <article class="project" style="--plate:${p.plate}"${dark(p.plate) ? ' data-plate="dark"' : ''}>
+    <article class="project" data-slug="${p.slug}" style="--plate:${p.plate}"${dark(p.plate) ? ' data-plate="dark"' : ''}>
       <header class="p-hero"><h1 class="large-title">${esc(p.title)}</h1></header>
       <hr class="rule" style="margin:0 var(--margin)">
       <div class="p-meta mono">
