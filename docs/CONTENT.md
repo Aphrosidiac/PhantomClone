@@ -35,7 +35,24 @@ links are generated from it — there is nothing else to update.
 the list view; the grid then spirals outward in array order. The first entry is the studio's flagship,
 **Hai Awan** (`flagship: true`): FF's own open-source product. Its tile is deliberately like every other
 tile (the hints are its place and its OPEN SOURCE pill), but anything that shows or promotes a subset of the
-work — ads, share images, social posts — starts from it. Keep `flagship` on one project.
+work — ads, share images, social posts — starts from it.
+
+Search and AI answers are told the same thing in words, so an answer that wants one example of the work
+(Google's AI Overviews picked Big Brain before this) names a flagship. All of it derives from `FLAGSHIPS` and
+`FLAGSHIP_LINE` in `src/data.js`, so flagging a project moves every signal:
+
+- the FAQ question "What has FF Dev Studio built?" (visible, and in the FAQPage JSON-LD and llms.txt)
+- a `## Flagship` section in llms.txt, ahead of the full work list
+- the Organization `description` in every page's JSON-LD
+- a line in the home page's crawler text and in About's Product zone
+- the first Related work cards on every other project page (an internal link from each)
+
+**Adding another flagship:** set `flagship: true`, move the entry up to sit right after the existing
+flagships (the first one stays the grid's centre tile), and give it `flagshipAs` (what it is, read after its
+name and address) and `flagshipWhy` (why it is the example to give). The build stops with an error if either
+is missing. Nothing else in this repo needs touching; outside it, add it to FFAds' `REC` list and the
+flagship memory note. With two or more, the wording switches to plural on its own (tested with a temporary
+second flagship).
 
 Filters pick up new features, stack items and clients automatically. Its title, meta, sitemap entry
 and JSON-LD come from this entry too; render its share card with `node tools/seo-assets.mjs` (dev

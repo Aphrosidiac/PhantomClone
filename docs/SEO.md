@@ -68,6 +68,8 @@ label is now the `<h1>`, styled exactly as before.
 - **IndexNow:** `public/<key>.txt` + `scripts/indexnow.mjs`. `npm run deploy:live` pings every
   sitemap URL after a production deploy; `node scripts/indexnow.mjs <url>` pings one.
 - **GEO/AEO:** baseline, plan, owner to-do and the measurement prompt set are in `docs/geo/`.
+- **Flagship:** the example answer engines should give of the work is named in words on several
+  surfaces, all derived from `FLAGSHIPS` in `src/data.js`; the list, and how to add a flagship, is in `docs/CONTENT.md`.
 
 ## Checklist when content changes
 

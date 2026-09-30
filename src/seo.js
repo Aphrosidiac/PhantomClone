@@ -3,7 +3,7 @@
 // (scripts/prerender.mjs writes it into each route's static HTML) and the client router (which
 // swaps it on navigation), so a crawler and a visitor always see the same head.
 import { LEGAL_UPDATED_ISO } from './legal.js';
-import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, bySlug, media, label, STACK_LABEL } from './data.js';
+import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, FLAGSHIP_LINE, bySlug, media, label, STACK_LABEL } from './data.js';
 
 export const SITE_URL = String(import.meta.env?.VITE_SITE_URL || 'https://ffdev.studio').replace(/\/$/, '');
 export const SITE_NAME = 'FF Dev Studio';
@@ -36,7 +36,7 @@ const org = () => ({
   slogan: 'Custom websites, designed and built end to end.',
   logo: { '@type': 'ImageObject', url: abs('/logo.png'), width: 512, height: 512 },
   image: abs(DEFAULT_IMAGE.src),
-  description: 'A studio in Kuala Lumpur that designs and builds custom websites for founders and small companies across Malaysia.',
+  description: `A studio in Kuala Lumpur that designs and builds custom websites for founders and small companies across Malaysia. ${FLAGSHIP_LINE}`,
   email: CONTACT.email,
   telephone: CONTACT.wa.replace('https://wa.me/', '+'),
   contactPoint: {

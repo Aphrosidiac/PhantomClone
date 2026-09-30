@@ -1,6 +1,6 @@
 // Page templates. Each returns { html, theme }; titles and meta live in seo.js.
 import { PRIVACY, STORAGE, LEGAL_UPDATED } from './legal.js';
-import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
+import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, FLAGSHIPS, FLAGSHIP_LINE, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const MARK = '<svg viewBox="0 0 194 72" aria-hidden="true"><path d="M0 72 16 0h14L14 72Z"/><path d="M24 72 40 0h14L38 72Z"/><path d="M72 0h54v15H88v13h32v14H88v30H72Z"/><path d="M140 0h54v15h-38v13h32v14h-32v30h-16Z"/></svg>';
@@ -29,7 +29,8 @@ export function project(slug) {
   const p = bySlug(slug);
   if (!p) return notFound();
   const i = PROJECTS.indexOf(p);
-  const related = [1, 2, 3].map((k) => PROJECTS[(i + k * 4) % PROJECTS.length]);
+  // the flagships lead Related work on every other project: a link from each page, and the examples crawlers meet most
+  const related = [...FLAGSHIPS.filter((f) => f !== p), ...[1, 2, 3].map((k) => PROJECTS[(i + k * 4) % PROJECTS.length]).filter((r) => !r.flagship)].slice(0, 3);
   const m = media(p);
   return {
     theme: 'light',
@@ -82,7 +83,7 @@ export function project(slug) {
 
 const ABOUT_ZONES = [
   ['client', 'sunlight-supplies'],
-  ['product', 'smoothsail'],
+  ['product', 'hai-awan'],
   ['study', 'ff-shoots'],
 ];
 
@@ -125,7 +126,7 @@ export function about(tab = 'studio') {
       <div class="zone-row">
         <span class="ico" aria-hidden="true">${'●'.repeat(i + 1)}</span>
         <h3>${ZONES[z].name}</h3>
-        <div class="txt"><p>${esc(ZONES[z].blurb)}</p><p>${esc(ZONES[z].line)}</p><a class="mono" href="/?zone=${z}" data-link>View our ${ZONES[z].name.toLowerCase()} work</a></div>
+        <div class="txt"><p>${esc(ZONES[z].blurb)}</p><p>${esc(ZONES[z].line)}</p>${FLAGSHIPS.filter((f) => f.zone === z).map((f) => `<p>Flagship: <a href="/projects/${f.slug}" data-link>${esc(f.title)}</a>, ${esc(f.flagshipAs)}.</p>`).join('')}<a class="mono" href="/?zone=${z}" data-link>View our ${ZONES[z].name.toLowerCase()} work</a></div>
         <div class="im"><img src="${tileUrl(pick(s))}" alt="" loading="lazy"></div>
       </div>`).join('')}
     <div class="band" style="margin-top:80px">${['ff-frames', 'ff-shoots', 'ascend-peptides'].map((s) => `<img src="${media(pick(s)).rows.find((r) => r.kind === 'trio').items[0].sm}" alt="" loading="lazy">`).join('')}</div>
@@ -338,6 +339,7 @@ export function homeSeo() {
     html: `
       <h1 class="sr-only">FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia.</h1>
       <p class="sr-only">Drag the grid to explore the work, use the arrow keys to move it, or switch to the list view. Projects start from RM1,000.</p>
+      <p class="sr-only">${esc(FLAGSHIP_LINE)} ${FLAGSHIPS.map((f) => `<a href="/projects/${f.slug}" data-link>See ${esc(f.title)}</a>`).join(' ')}</p>
       ${workNav()}`,
   };
 }

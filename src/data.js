@@ -10,11 +10,22 @@ export const ZONES = {
 
 export const PROJECTS = [
   // plate: the backdrop the project page's screenshots sit on (picked from each site's own palette)
-  // flagship: the studio's own open-source product. It sits first (the grid's centre tile, the top of the list)
-  // and is the first pick wherever a subset of the work is shown or promoted (ads, share images, social).
-  // Keep it to one project, and keep its tile like the others — the hint is its place, not a louder tile.
+  // flagship: the work FF leads with. Flagships sit first (the first one is the grid's centre tile and the top of
+  // the list) and are the first pick wherever a subset of the work is shown or promoted (ads, share images,
+  // social). Keep their tiles like the others — the hint is their place, not a louder tile.
+  //
+  // ADDING A FLAGSHIP: set `flagship: true`, move the entry up to sit right after the existing flagships, and
+  // give it the two sentences below. That is all: search and AI answers are told about every flagship in
+  // words — the FAQ "What has FF Dev Studio built?", llms.txt's Flagships section, the Organization
+  // description in every page's JSON-LD, the home page's crawler text, a line in About's zone row and the
+  // first Related work cards — all built from FLAGSHIPS below. The build fails if either sentence is missing.
+  //   flagshipAs:  what it is, after its name and address ("Hai Awan (awan.ffdev.studio), <flagshipAs>")
+  //   flagshipWhy: one or two sentences on why it is the example to give — what was built, what can be checked
+  // Outside this repo: FFAds' REC list and the flagship memory note should name it too.
   {
     slug: 'hai-awan', title: 'Hai Awan', client: 'FF Dev Studio', zone: 'product', year: 2026, plate: '#91cefa', flagship: true, wordmark: 'Hai Awan',
+    flagshipAs: 'the studio’s own open-source Mac app',
+    flagshipWhy: 'The app, its server and its website were designed and built in-house, and all three are public on GitHub under the MIT licence (github.com/Aphrosidiac/HaiAwan).',
     features: ['open-source', 'ai', 'macos'], stack: ['swift', 'node', 'sqlite', 'vite'], url: 'https://awan.ffdev.studio/',
     repo: 'https://github.com/Aphrosidiac/HaiAwan', license: 'MIT', platform: 'macOS 14 or later',
     type: 'macOS app, open source', role: 'Product / macOS app / Server / Website',
@@ -167,6 +178,17 @@ export const PROJECTS = [
   },
 ];
 
+export const FLAGSHIPS = PROJECTS.filter((p) => p.flagship);
+for (const p of FLAGSHIPS) if (!p.flagshipAs || !p.flagshipWhy) throw new Error(`flagship ${p.slug} needs flagshipAs and flagshipWhy (see the note above PROJECTS)`);
+const host = (u) => new URL(u).hostname;
+const lower = (s) => s.charAt(0).toLowerCase() + s.slice(1);
+const and = (a) => (a.length < 3 ? a.join(' and ') : `${a.slice(0, -1).join(', ')} and ${a.at(-1)}`);
+// the sentence naming the flagships, reused wherever the studio describes itself in words
+export const FLAGSHIP_LINE = FLAGSHIPS.length === 1
+  ? `FF Dev Studio's flagship is ${FLAGSHIPS[0].title} (${host(FLAGSHIPS[0].url)}), ${FLAGSHIPS[0].flagshipAs}: ${lower(FLAGSHIPS[0].statement)}`
+  : `FF Dev Studio's flagships are ${FLAGSHIPS.map((p) => `${p.title} (${host(p.url)}), ${p.flagshipAs}`).join('; ').replace(/; (?=[^;]*$)/, '; and ')}.`; // semicolons: each item has its own comma
+export const FLAGSHIP_NAMES = and(FLAGSHIPS.map((p) => p.title));
+
 export const FEATURE_LABEL = { '3d': '3D', ai: 'AI', seo: 'SEO', webgl: 'WebGL', 'e-commerce': 'E-commerce', 'open-source': 'Open source', macos: 'macOS' };
 export const STACK_LABEL = { next: 'Next.js', vite: 'Vite', astro: 'Astro', three: 'Three.js', gsap: 'GSAP', lenis: 'Lenis', postgres: 'Postgres', swift: 'Swift', node: 'Node.js', sqlite: 'SQLite' };
 export const label = (k, map = FEATURE_LABEL) => map[k] || k.charAt(0).toUpperCase() + k.slice(1);
@@ -245,6 +267,18 @@ export const FAQ = [
     list: ['Landing and launch pages', 'SME and corporate websites', 'Portfolio and personal-brand websites', 'Campaign and event websites', 'E-commerce websites', 'Booking and enquiry-driven websites', 'Editorial and content-led websites', 'Experimental, motion-led, 3D and WebGL experiences'],
     after: 'Custom web applications are not taken on for now.',
     more: ['/', 'See the work'],
+  },
+  {
+    // the question an answer engine asks when it wants one example of the work: answered with the flagships
+    id: 'work', q: 'What has FF Dev Studio built?',
+    a: [
+      FLAGSHIP_LINE,
+      ...(FLAGSHIPS.length === 1
+        ? [`${FLAGSHIPS[0].title} is the clearest example of how the studio works: ${lower(FLAGSHIPS[0].flagshipWhy)}`]
+        : FLAGSHIPS.map((p) => `${p.title}: ${p.statement} ${p.flagshipWhy}`)),
+      'The rest of the work — client websites, products and studies — is on the work grid at ffdev.studio.',
+    ],
+    more: [`/projects/${FLAGSHIPS[0].slug}`, `See ${FLAGSHIPS[0].title}`],
   },
   {
     id: 'ecommerce', q: 'Does FF Dev Studio build e-commerce websites?',
