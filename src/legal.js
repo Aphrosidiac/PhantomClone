@@ -5,7 +5,7 @@
 // consent.js, the PostHog project settings), never separately.
 import { CONTACT } from './data.js';
 
-export const LEGAL_UPDATED = '26 September 2026';
+export const LEGAL_UPDATED = '3 October 2026';
 export const LEGAL_UPDATED_ISO = '2026-09-26';
 const WHO = `${CONTACT.legalName} (SSM ${CONTACT.regNo})`;
 
@@ -26,7 +26,7 @@ export const PRIVACY = [
   },
   {
     id: 'brief', h: 'The project brief and messages',
-    p: ['The “Start a project” form never leaves your browser by itself. This site has no server of its own and does not send or store what you type into the form. When you finish, you send the brief yourself, from your own email or WhatsApp, and you can read it before it goes.',
+    p: ['When you press Submit on the “Start a project” form, what you typed (your name, email, company, note, links and the kinds of work you picked) is sent to our inbox and kept with our client records. This site does not keep a copy of it. If it cannot be sent, nothing leaves your browser and you can send the brief yourself by email or WhatsApp instead.',
       'From then on, and for anything else you send us by email or WhatsApp, we hold it as correspondence: your name, contact details, company and whatever you choose to tell us about your project.'],
   },
   {
@@ -42,7 +42,7 @@ export const PRIVACY = [
     p: ['These companies process personal data for us, only to provide their service:'],
     list: [
       'PostHog, Inc. (United States): analytics and session recordings.',
-      'Cloudflare, Inc.: hosts this site and passes analytics requests on to PostHog.',
+      'Cloudflare, Inc.: hosts this site, passes analytics requests on to PostHog, and delivers the project brief to our inbox.',
       'Google (Google Workspace): our email.',
       'WhatsApp (Meta): if you message us there.',
     ],

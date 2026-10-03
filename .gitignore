@@ -6,3 +6,4 @@ docs/reference/
 .claude/
 .shots-raw/
 .wrangler/
+.dev.vars

@@ -320,7 +320,7 @@ function contactHome() {
       <div class="c-card"><div><p class="mono label-dot">Anything else</p><p class="t">Just saying hi.</p></div>
         <div class="chips"><a class="chip" href="mailto:${CONTACT.email}"><span>Email</span><span>${CONTACT.email}</span></a><a class="chip" href="${CONTACT.wa}" target="_blank" rel="noopener"><span>WhatsApp</span><span>${esc(CONTACT.whatsapp)}</span></a></div></div>
     </div>
-    <p class="c-privacy">Nothing you type here leaves your browser until you send it yourself, and then it goes to ${CONTACT.email} and nowhere else. Analytics only with your consent — <a href="/privacy" data-link>privacy</a> · <button type="button" data-cookie-settings>cookie settings</button>.<br>${CONTACT.legalName} (${CONTACT.regNo}), ${CONTACT.city}.</p>
+    <p class="c-privacy">What you send here goes to ${CONTACT.email} and our own client records, and nowhere else. Analytics only with your consent — <a href="/privacy" data-link>privacy</a> · <button type="button" data-cookie-settings>cookie settings</button>.<br>${CONTACT.legalName} (${CONTACT.regNo}), ${CONTACT.city}.</p>
   </div>`;
 }
 function contactForm() {
@@ -337,25 +337,47 @@ function contactForm() {
       <div class="q"><span class="mono">05</span><div><label class="l" for="f-note">Drop a note — what should the site do for you?</label><textarea id="f-note" name="note"></textarea></div></div>
       <div class="q"><span class="mono">06</span><div><label class="l" for="f-refs">Any links or references you like? One per line.</label><textarea id="f-refs" name="refs" placeholder="https://"></textarea></div></div>
       <div class="q"><span class="mono">07</span><fieldset><legend>If there are specific kinds of work you have in mind, select them here.</legend><div class="opts opts--small">${WORK.map((t) => `<label class="opt"><input type="checkbox" name="work" value="${esc(t)}"><span>${esc(t)}</span></label>`).join('')}</div></fieldset></div>
+      <label class="sr-only" aria-hidden="true">Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+      <p class="err c-send-err" data-for="_send" role="alert"></p>
       <button class="c-submit" type="submit">Submit</button>
     </form>
   </div>`;
 }
-function contactDone(d) {
+function briefLinks(d) {
   const lines = [`${d.kickoff}`, '', `Name: ${d.name}`, `Email: ${d.email}`, `Company: ${d.company}`];
   if (d.work.length) lines.push(`Interested in: ${d.work.join(', ')}`);
   if (d.note) lines.push('', d.note);
   if (d.refs) lines.push('', 'References:', d.refs);
   const text = lines.join('\n');
-  const mail = `mailto:${CONTACT.email}?subject=${encodeURIComponent(`New project — ${d.company}`)}&body=${encodeURIComponent(text)}`;
-  const wa = `${CONTACT.wa}?text=${encodeURIComponent(text)}`;
+  return {
+    mail: `mailto:${CONTACT.email}?subject=${encodeURIComponent(`New project — ${d.company}`)}&body=${encodeURIComponent(text)}`,
+    wa: `${CONTACT.wa}?text=${encodeURIComponent(text)}`,
+  };
+}
+// sent: the brief is already with the studio; WhatsApp stays as an optional nudge
+function contactSent(d) {
+  const { wa } = briefLinks(d);
   return `
   <div class="c-inner">
     <p class="mono label-dot">Complete</p>
     <div class="c-done">
       <h2 id="contact-title">Nice one!</h2>
-      <p>Thank you for sharing. Your brief is ready — send it whichever way suits you and it lands with the person who will build it.</p>
-      <p style="opacity:.6">Nothing has been sent yet. This site has no server of its own, so the message goes from your email or WhatsApp, where you can read it first.</p>
+      <p>Your brief is in. It goes straight to the person who will build it, and the reply comes to ${esc(d.email)}.</p>
+      <p style="opacity:.6">In a hurry? Send the same brief on WhatsApp too.</p>
+      <div class="row ph-no-capture"><a href="${wa}" target="_blank" rel="noopener" data-send="whatsapp">Send on WhatsApp</a><button type="button" data-c="finish">Finish</button></div>
+    </div>
+  </div>`;
+}
+// not delivered (offline, or the server refused it): nothing is lost, the visitor sends it themselves
+function contactDone(d) {
+  const { mail, wa } = briefLinks(d);
+  return `
+  <div class="c-inner">
+    <p class="mono label-dot">Almost there</p>
+    <div class="c-done">
+      <h2 id="contact-title">One more tap.</h2>
+      <p>Your brief couldn't be sent from here just now. It's written up and ready — send it by email or WhatsApp and it lands with the person who will build it.</p>
+      <p style="opacity:.6">Nothing has been sent yet. You can read the message before it goes.</p>
       <div class="row ph-no-capture"><a href="${mail}" data-send="email">Send by email</a><a href="${wa}" target="_blank" rel="noopener" data-send="whatsapp">Send on WhatsApp</a><button type="button" data-c="finish">Finish</button></div>
     </div>
   </div>`;
@@ -393,7 +415,7 @@ $('#contact').addEventListener('click', (e) => {
   if (c === 'close' || c === 'finish') leaveContact();
   else openContact(c);
 });
-$('#contact').addEventListener('submit', (e) => {
+$('#contact').addEventListener('submit', async (e) => {
   e.preventDefault();
   const f = e.target; const fd = new FormData(f);
   const d = { kickoff: fd.get('kickoff'), name: String(fd.get('name') || '').trim(), email: String(fd.get('email') || '').trim(), company: String(fd.get('company') || '').trim(), note: String(fd.get('note') || '').trim(), refs: String(fd.get('refs') || '').trim(), work: fd.getAll('work') };
@@ -405,13 +427,36 @@ $('#contact').addEventListener('submit', (e) => {
   $$('input[name="name"], input[name="email"], input[name="company"]', f).forEach((i) => i.setAttribute('aria-invalid', String(!!errs[i.name])));
   const first = Object.keys(errs)[0];
   if (first) { $(`[name="${first}"]`, f).focus(); sound.play('other', 0.5); return; }
-  sound.play('project');
   // what kind of project, never what was written: no name, email, company, note or links
   track('brief_completed', { kickoff: KICKOFF.indexOf(d.kickoff) + 1, work: d.work, has_note: !!d.note, has_refs: !!d.refs });
-  $('#contact').innerHTML = CLOSE + contactDone(d);
+  if (f.dataset.sending) return;
+  f.dataset.sending = '1';
+  const btn = $('.c-submit', f); btn.disabled = true; btn.textContent = 'Sending…';
+  $('.c-send-err', f).textContent = '';
+  const sent = await sendBrief({ ...d, _gotcha: fd.get('_gotcha') || '', page: location.href.split(/[?#]/)[0] });
+  if (!$('#contact').contains(f)) return; // closed while sending
+  if (sent.fields) { // the server disagreed with a field: show it on the form, like the local check
+    $$('.err', f).forEach((p) => { p.textContent = sent.fields[p.dataset.for] || ''; });
+    btn.disabled = false; btn.textContent = 'Submit'; delete f.dataset.sending;
+    $(`[name="${Object.keys(sent.fields)[0]}"]`, f)?.focus(); sound.play('other', 0.5); return;
+  }
+  sound.play('project');
+  if (sent.ok) track('brief_sent', { channel: 'form', delivered: sent.channels });
+  else track('brief_send_failed', { reason: sent.error });
+  $('#contact').innerHTML = CLOSE + (sent.ok ? contactSent(d) : contactDone(d));
   $('#contact').scrollTop = 0;
   $('#contact h2').setAttribute('tabindex', '-1'); $('#contact h2').focus();
 });
+async function sendBrief(payload) {
+  try {
+    const ctl = new AbortController(); const t = setTimeout(() => ctl.abort(), 15000);
+    const r = await fetch('/api/brief', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload), signal: ctl.signal });
+    clearTimeout(t);
+    const b = await r.json().catch(() => ({}));
+    if (r.status === 422 && b.fields) return { ok: false, fields: b.fields };
+    return r.ok && b.ok ? { ok: true, channels: b.channels || [] } : { ok: false, error: b.error || `http_${r.status}` };
+  } catch (e) { return { ok: false, error: e.name === 'AbortError' ? 'timeout' : 'network' }; }
+}
 // outbound actions that matter: the brief sent, a direct email/WhatsApp tap, a project's live site
 document.addEventListener('click', (e) => {
   const a = e.target.closest('a[href]'); if (!a) return;

@@ -41,7 +41,8 @@ from PostHog. Custom events (`track()` in `src/main.js`):
 | `contact_opened` | Let's Talk overlay opens | `trigger` (`header`, link text, or `url`), `page` |
 | `brief_started` | the 7-question form opens | — |
 | `brief_completed` | the form validates | `kickoff` (1–3), `work` (kinds picked), `has_note`, `has_refs` |
-| `brief_sent` | "Send by email / on WhatsApp" | `channel` |
+| `brief_sent` | the brief delivered by Submit (`channel: form`, `delivered`: `email`/`ffops`), or a "Send by email / on WhatsApp" tap | `channel`, `delivered` |
+| `brief_send_failed` | Submit couldn't deliver it; the visitor is shown the email/WhatsApp buttons | `reason` |
 | `contact_link_clicked` | any direct mailto: / wa.me link | `channel, place` |
 | `view_changed` | grid ↔ list | `view` |
 | `filter_changed` | a filter toggled | `group, value, on, active_filters, results` |
@@ -51,7 +52,7 @@ from PostHog. Custom events (`track()` in `src/main.js`):
 brief's send links carry that text in their `href`, so their container has `ph-no-capture` (left
 out of autocapture and replay). Checked: a test brief's text appears in no event.
 
-Action **Enquiry** = `brief_sent` or `contact_link_clicked` — use it as the conversion goal in Web
+Action **Enquiry** = `brief_sent` or `contact_link_clicked` (only `brief_sent` with `channel: form` is a brief that certainly reached the studio — see docs/BRIEF.md) — use it as the conversion goal in Web
 analytics. The built-in channel type **AI** covers ChatGPT, Claude, Gemini, Perplexity and Copilot.
 
 ## PostHog project settings (set 2026-09-26)

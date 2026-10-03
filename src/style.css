@@ -471,7 +471,9 @@ body.overlay-open .consent { display: none; } /* the contact overlay has its own
 .opts--small .opt span { min-height: 30px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; padding: 0 12px; }
 .err { color: #ff8a7a; font-size: 13px; margin-top: 8px; min-height: 1em; }
 .c-submit { justify-self: start; margin: 30px 0 0 72px; background: var(--white); color: var(--black); border-radius: 48px; padding: 16px 28px; font-size: 1.12rem; transition: background-color .3s; }
-@media (hover: hover) { .c-submit:hover { background: var(--lime); } }
+@media (hover: hover) { .c-submit:not(:disabled):hover { background: var(--lime); } }
+.c-submit:disabled { opacity: .6; cursor: progress; }
+.c-send-err { margin: 24px 0 0 72px; min-height: 0; }
 .c-done { max-width: 640px; }
 .c-done h2 { font-size: clamp(2.4rem, 5vw, 4.6rem); letter-spacing: -.04em; margin-bottom: 20px; }
 .c-done p { font-size: 18px; margin-bottom: 14px; }
@@ -559,7 +561,7 @@ body.overlay-open .consent { display: none; } /* the contact overlay has its own
   .c-card { min-height: 170px; }
   .c-inner { padding-top: 110px; }
   .q { grid-template-columns: 1fr; gap: 4px; }
-  .c-submit { margin-left: 0; }
+  .c-submit, .c-send-err { margin-left: 0; }
   .body-copy { font-size: 17px; }
 }
 @media (min-width: 1920px) {

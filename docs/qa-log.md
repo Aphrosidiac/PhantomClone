@@ -16,7 +16,7 @@ Instruments: headless Chromium via Playwright (`tools/states.mjs`, `tools/shot.m
 | Project ×14 | title, meta, cover, statement, about, facts, shots, features, related | click from list, full-page capture | ok (lazy images blank in full-page captures — capture artefact) |
 | About | Studio/Approach routes, sticky toggle, hero alignment | capture pair | hero was offset and margin-collapse let the grid show through → aligned + `flow-root` |
 | Pricing | bands, care plans, terms, figures | read against `ffdevstudio/SERVICE_ARCHITECTURE.md` | care plan names were invented at first (Care Plus/Pro) → corrected to Care / Maintain / Evolve |
-| Contact | cold `/contact`, overlay over current page, form validation, done state, mailto/WhatsApp bodies, Esc restores URL, focus trap | Playwright | ok; nothing is sent by the site |
+| Contact | cold `/contact`, overlay over current page, form validation, done state, mailto/WhatsApp bodies, Esc restores URL, focus trap | Playwright | ok; since 2026-10-03 Submit delivers via /api/brief (docs/BRIEF.md) |
 | 404 | unknown path | capture | ok |
 | Mobile | overflow at 390 | `scrollWidth` | 390, no horizontal scroll |
 | Console | all flows | pageerror + console.error collection | none |
