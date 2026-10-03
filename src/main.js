@@ -206,6 +206,14 @@ function match(path) {
 let openSource = null;
 
 let revealObs;
+// page effects that only some pages carry, loaded on first use and torn down when the page changes
+let fxCleanup = null;
+function wireFx() {
+  fxCleanup?.(); fxCleanup = null;
+  const st = $('.sticker', pageEl);
+  if (st) import('./fx/peel.js').then((m) => { if (st.isConnected) fxCleanup = m.mountPeel(st); });
+}
+
 function wireReveals() {
   revealObs?.disconnect();
   revealObs = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } }), { rootMargin: '0px 0px -10% 0px' });
@@ -252,6 +260,7 @@ async function render(first = false, forcePath = null, pop = null) {
     window.scrollTo(0, y);
     if (y) requestAnimationFrame(() => window.scrollTo(0, y));
     wireReveals();
+    wireFx();
     syncAllToggles();
     refreshCookieStatus();
     if (!first) pageEl.focus({ preventScroll: true });

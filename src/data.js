@@ -28,6 +28,7 @@ export const PROJECTS = [
     flagshipWhy: 'The app, its server and its website were designed and built in-house, and all three are public on GitHub under the MIT licence (github.com/Aphrosidiac/HaiAwan).',
     features: ['open-source', 'ai', 'macos'], stack: ['swift', 'node', 'sqlite', 'vite'], url: 'https://awan.ffdev.studio/',
     repo: 'https://github.com/Aphrosidiac/HaiAwan', license: 'MIT', platform: 'macOS 14 or later',
+    sticker: 'Open source · MIT',
     type: 'macOS app, open source', role: 'Product / macOS app / Server / Website',
     statement: 'A little cloud that lives in your Mac’s notch. Hold two keys, ask out loud, and it looks at your screen and points at the answer.',
     about: [

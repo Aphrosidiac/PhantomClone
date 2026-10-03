@@ -247,6 +247,102 @@ body[data-route='home'] .page { pointer-events: none; position: fixed; inset: 0;
   .p-links .p-src { order: 1; }
 }
 .p-cover { margin: 24px var(--margin) 0; }
+.p-cover--sticker { position: relative; container-type: inline-size; }
+/* holo vinyl sticker on a cover (Hai Awan): slapped over the browser window's top-right corner, sized off the
+   cover's width (cqw) so it sits on the same spot at every size. Peel logic: src/fx/peel.js */
+.sticker {
+  --S: clamp(92px, 13cqw, 188px); --tilt: -9deg; --mx: 30; --my: 20; --pad-y: 6.5cqw; --pad-x: 9cqw;
+  position: absolute; z-index: 2; width: var(--S); height: var(--S);
+  top: calc(var(--pad-y) - var(--S) * .5); right: calc(var(--pad-x) - var(--S) * .38);
+  transform: rotate(var(--tilt));
+  filter: drop-shadow(0 1px 1px rgba(11,11,10,.22)) drop-shadow(0 6px 10px rgba(11,11,10,.12));
+  user-select: none; -webkit-user-select: none;
+}
+.sticker.is-waiting { opacity: 0; }
+.sticker.is-slap { animation: stk-slap .5s var(--ease-out) both; }
+@keyframes stk-slap {
+  0% { opacity: 0; transform: rotate(calc(var(--tilt) - 14deg)) scale(1.5); }
+  55% { opacity: 1; transform: rotate(var(--tilt)) scale(.96); }
+  100% { opacity: 1; transform: rotate(var(--tilt)) scale(1); }
+}
+/* the hover press tips this wrapper a few degrees (peel.js); the light stays fixed, so the reflection moves */
+.stk-tilt { position: absolute; inset: 0; }
+.stk-front { position: absolute; inset: 0; border-radius: 50%; background: var(--white); cursor: grab; }
+/* the whole square takes the press (peel.js filters to the disc), so a finger on the curl never scrolls the page */
+.sticker { touch-action: none; cursor: grab; }
+.sticker.is-held { cursor: grabbing; }
+.sticker.is-held .stk-front { cursor: grabbing; }
+.stk-art { position: absolute; inset: 4.5%; border-radius: 50%; overflow: hidden; isolation: isolate; color: var(--ink);
+  /* metallised vinyl: cool silver with fine spun tracks, brighter toward the top-left */
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0) 0 1.6px, rgba(255,255,255,.22) 1.6px 2.2px),
+    radial-gradient(circle at 34% 28%, #eef0f4 0%, #c3c8d1 30%, #9da3af 68%, #b3b8c2 100%); }
+.stk-ring { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.stk-ring text { font: 500 17px var(--mono); fill: var(--ink); }
+.stk-mark { position: absolute; z-index: 1; inset: 0; display: grid; place-items: center; }
+.stk-mark svg { width: 44%; fill: var(--ink); }
+.stk-foil, .stk-lines, .stk-glit, .stk-glare { position: absolute; inset: 0; pointer-events: none; }
+/* the holo answers --la (the light's bearing) and --mx/--my (the hot spot). The silver is mid-grey so
+   color-dodge has room to show colour (a bright base clips to white). Ink stays ink: dodging black
+   would still tint it, so the print is layered above the foil */
+/* print sits above the foil layers (z-index 1), the gloss above the print */
+.stk-glare { z-index: 2; }
+/* 1. two opposite rainbow wedges, the way a CD throws light: they turn with the light */
+.stk-foil { mix-blend-mode: color-dodge; filter: saturate(1.6) brightness(.9);
+  background: conic-gradient(from calc(var(--la, 0) * 1deg + 20deg) at 50% 50%,
+    transparent 0deg, #ff5e8a 10deg, #ffc65c 22deg, #8dff6a 34deg, #5ee6ff 46deg, #7a6cff 58deg, #e46bff 70deg, transparent 86deg,
+    transparent 180deg, #ff5e8a 190deg, #ffc65c 202deg, #8dff6a 214deg, #5ee6ff 226deg, #7a6cff 238deg, #e46bff 250deg, transparent 266deg, transparent 360deg); }
+/* 2. diffraction lines: fine rainbow ruling that slides across as the light moves */
+.stk-lines { mix-blend-mode: color-dodge; opacity: .6; filter: brightness(.5) saturate(1.6);
+  background: repeating-linear-gradient(calc(var(--la, 0) * 1deg + 90deg), #ff6b8f 0 3px, #ffd36b 3px 6px, #86ff79 6px 9px, #6be3ff 9px 12px, #8a74ff 12px 15px, #ff6b8f 15px 18px);
+  background-size: 140% 140%; background-position: calc(var(--mx) * .5%) calc(var(--my) * .5%);
+  -webkit-mask: radial-gradient(circle at calc(var(--mx) * 1%) calc(var(--my) * 1%), #000 0 18%, transparent 62%);
+          mask: radial-gradient(circle at calc(var(--mx) * 1%) calc(var(--my) * 1%), #000 0 18%, transparent 62%); }
+/* 3. glitter: two sparse sparkle fields drifting against each other, so points wink on and off */
+.stk-glit { mix-blend-mode: color-dodge; opacity: .95;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.3' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 10 0 0 0 -6.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='70' height='70'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .95 0 0 0 0 1 10 0 0 0 -6.4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-position: calc(var(--mx) * .4px) calc(var(--my) * .4px), calc(var(--mx) * -.3px) calc(var(--my) * -.3px);
+  -webkit-mask: radial-gradient(circle at calc(var(--mx) * 1%) calc(var(--my) * 1%), #000 0 22%, rgba(0,0,0,.25) 55%, transparent 80%);
+          mask: radial-gradient(circle at calc(var(--mx) * 1%) calc(var(--my) * 1%), #000 0 22%, rgba(0,0,0,.25) 55%, transparent 80%); }
+/* 4. the laminate's gloss: a tight specular spot and a soft sheen band through it */
+.stk-glare { mix-blend-mode: screen; opacity: .75;
+  background:
+    radial-gradient(circle at calc(var(--mx) * 1%) calc(var(--my) * 1%), rgba(255,255,255,.95) 0 3%, rgba(255,255,255,.35) 9%, rgba(255,255,255,0) 22%),
+    linear-gradient(calc(var(--la, 0) * 1deg + 90deg), rgba(255,255,255,0) 35%, rgba(255,255,255,.22) 50%, rgba(255,255,255,0) 65%); }
+.stk-flapwrap { position: absolute; inset: 0; pointer-events: none; filter: drop-shadow(0 8px 9px rgba(11,11,10,.24)) drop-shadow(0 1px 1px rgba(11,11,10,.25)); }
+.stk-back { position: absolute; left: 0; top: 0; width: 100%; height: 100%; border-radius: 50%; transform-origin: 0 0; background-color: #eceef1; overflow: hidden; display: none; }
+/* the back print: laid out as seen from behind, mirrored here so the fold's own mirror puts it right
+   (in the free body the back face's rotateX already mirrors, so there it is turned instead — see .stk-face--back) */
+.stk-print { position: absolute; inset: 0; border-radius: 50%; overflow: hidden; color: var(--ink); transform: scaleX(-1);
+  background: radial-gradient(circle, rgba(11,11,10,.07) 0 .6px, transparent .9px) 0 0 / 7px 7px, radial-gradient(circle at 60% 30%, #f7f8fa, #e6e8ec 70%); }
+.stk-psst { position: absolute; left: 20%; top: 14%; font: 500 calc(var(--S) * .05) / 1 var(--mono); text-transform: uppercase; letter-spacing: .12em; opacity: .5; }
+.stk-nosy { position: absolute; left: 19%; top: 20%; font: 700 calc(var(--S) * .14) / .95 var(--sans); letter-spacing: -.03em; }
+.stk-quip { position: absolute; left: 20%; top: 52.5%; font: 500 calc(var(--S) * .038) / 1.36 var(--mono); text-transform: uppercase; letter-spacing: .03em; opacity: .62; }
+.stk-cta { position: absolute; left: 11%; top: 74.5%; display: inline-flex; align-items: center; gap: .35em; padding: .55em .9em .55em .75em; border-radius: 99px;
+  background: var(--lime); color: var(--ink); text-decoration: none; white-space: nowrap; font: 600 calc(var(--S) * .06) / 1 var(--sans);
+  box-shadow: 0 1px 0 rgba(11,11,10,.18); pointer-events: none; }
+.stk-cta span { font-size: 1.15em; }
+/* lying back-up on the page after a drop: the pitch is readable and the pill works */
+.stk-loose-back { position: absolute; z-index: 11; width: var(--S); height: var(--S); border-radius: 50%; background: var(--white); cursor: grab; touch-action: none;
+  transform: rotate(var(--rho)); filter: drop-shadow(0 1px 1px rgba(11,11,10,.22)) drop-shadow(0 6px 10px rgba(11,11,10,.12)); user-select: none; -webkit-user-select: none; }
+.stk-loose-back .stk-print { transform: none; }
+.stk-loose-back.is-land { animation: stk-land-back .3s var(--ease-out) both; }
+@keyframes stk-land-back { 0% { transform: rotate(var(--rho)) scale(1.045); } 100% { transform: rotate(var(--rho)) scale(1); } }
+.stk-loose-back .stk-cta { pointer-events: auto; cursor: pointer; }
+@media (hover: hover) { .stk-loose-back .stk-cta:hover { background: var(--ink); color: var(--lime); } }
+/* the crease light painted over the print (peel.js sets the gradient) */
+.stk-shade { position: absolute; inset: 0; border-radius: 50%; }
+/* in your fingers and in the air: a fixed layer over the page (under header and overlays) */
+.stk-free { position: fixed; inset: 0; z-index: 900; pointer-events: none; }
+.stk-free-body, .stk-free-shadow { position: absolute; left: 0; top: 0; width: var(--S); height: var(--S); border-radius: 50%; will-change: transform; }
+.stk-free-body { transform-style: preserve-3d; }
+.stk-free-shadow { background: rgba(11,11,10,.7); }
+.stk-face { position: absolute; inset: 0; border-radius: 50%; background: var(--white); -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.stk-face--back .stk-print { transform: rotate(180deg); }
+.stk-face--back { transform: rotateX(180deg); background: radial-gradient(circle at 40% 30%, #f6f7f9, #e4e6ea 55%, #d6d8de); box-shadow: inset 0 0 0 1px rgba(11,11,10,.06); }
+@media (prefers-reduced-motion: reduce) { .sticker.is-slap, .stk-loose-back { animation: none; } }
 .p-intro { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: 140px var(--margin) 120px; }
 .p-intro .statement { grid-column: 4 / span 8; font-size: clamp(1.8rem, 3.4vw, 3.4rem); }
 .p-about { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: var(--gap); padding: 0 var(--margin) 100px; }
@@ -526,6 +622,7 @@ body.overlay-open .consent { display: none; } /* the contact overlay has its own
   .p-intro > *, .p-about > *, .p-features > *, .a-row > *, .zone-row > *, .studios > *, .team > *, .pr-row > *, .foot > *, .steps li > * { grid-column: 1 / -1 !important; }
   .p-intro { padding: 80px var(--margin); }
   .shot--full { padding: 5% 5.5%; }
+  .sticker { --pad-y: 5cqw; --pad-x: 5.5cqw; --S: clamp(84px, 19cqw, 140px); }
   .p-row--pair { grid-template-columns: 1fr; }
   .shot--pair { padding: 5% 5.5%; }
   .p-row--trio { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 56%; column-gap: 6%; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; scrollbar-width: none; padding: 9% 8%; scroll-padding: 0 8%; }

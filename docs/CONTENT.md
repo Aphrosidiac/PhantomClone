@@ -26,6 +26,7 @@ links are generated from it — there is nothing else to update.
   reference: 'somesite.com',          // optional — only for studies/recreations
   repo: 'https://github.com/…',       // optional — open-source work: adds a "Source code" pill and a Licence fact,
   license: 'MIT', platform: '…',      //   and the page's structured data becomes SoftwareApplication + SoftwareSourceCode
+  sticker: 'Open source · MIT',       // optional — a peelable holo sticker on the cover with these words round its rim (docs/STICKER.md)
   statement: 'One sentence that says what it is.',
   about: ['Paragraph one.', 'Paragraph two.'],
 },
@@ -144,6 +145,9 @@ clock. The contact form's kick-off options and work types are `KICKOFF` and `WOR
 - About (Studio + Approach), Pricing, 404, footer, home screen-reader copy: `src/pages.js`
   (`STEPS` and `INCLUDED` mirror the process and inclusions in SERVICE_ARCHITECTURE.md)
 - Contact overlay copy: `src/main.js` (`contactHome`, `contactForm`, `contactDone`)
+- Cover sticker: rim words per project (`sticker` in `src/data.js`); the back's pitch and pill, shared by every
+  sticker: `STICKER_BACK` in `src/pages.js`. Keep the pill where the resting curl uncovers its arrow — see
+  [STICKER.md](STICKER.md#content).
 
 ## Sounds
 

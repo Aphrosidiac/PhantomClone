@@ -8,6 +8,7 @@ index.html ──► src/main.js ──► router ──► src/pages.js   (HTML
                     │
                     ├──► src/grid.js  WorkGrid (canvas in #stage, lives for the whole session)
                     ├──► list view / filter panel / contact overlay (DOM in index.html)
+                    ├──► src/fx/peel.js  cover sticker (import() only on pages that carry one)
                     └──► src/sound.js
              src/data.js ◄── everything above reads content from here
 ```
@@ -112,8 +113,9 @@ offset and render a deterministic frame.
 - `render()` calls `applySeo()` (`src/seo.js`: title, description, canonical, share card, JSON-LD —
   see [SEO.md](SEO.md)), sets `data-route` / `data-theme` on `<body>` (drives header colours and which
   controls show), swaps page HTML with a short leave/enter transition, restarts reveal observers
-  **per navigation** (a mount-once observer would leave later pages invisible), and tells the grid
-  whether it is active.
+  **per navigation** (a mount-once observer would leave later pages invisible), runs `wireFx()` (tears
+  down the previous page's effects, lazy-loads `src/fx/peel.js` if the new page has a `.sticker`), and
+  tells the grid whether it is active.
 - `/contact` is an overlay, not a page: on a cold load the home route renders underneath. Closing it
   returns to the previous URL (and restores that route's head).
 - Every route also exists as static HTML: `npm run build` runs `scripts/prerender.mjs`, which writes
@@ -178,3 +180,12 @@ loads or plays. The files stay in `public/sounds/`; set it to `true` to bring so
 Off by default. The first enable creates an `AudioContext` and decodes the eight files. Events:
 click (UI), grid (hover, rate-limited to one per 90 ms), swipe (drag start), project (open / submit),
 whoosh (overlays), other (close / error), load (loader).
+
+## 7. Page effects — `src/fx/`
+
+Effects that only some pages carry live in `src/fx/` and are never in the main bundle: `wireFx()` in
+`main.js` imports one only when its element is on the rendered page, and calls the cleanup it returns on
+the next render (route change), which also removes anything the effect added to `<body>`.
+
+- `peel.js` — the cover sticker on projects with a `sticker` field (Hai Awan). Peel, carry, throw, land,
+  pick-up, a fixed-light holo, and a back whose pill opens contact. Full write-up: [STICKER.md](STICKER.md).

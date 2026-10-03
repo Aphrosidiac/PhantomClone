@@ -10,6 +10,17 @@ const SIZES = { full: 'calc((100vw - 2 * var(--margin)) * .82)', pair: '(max-wid
 const img = (m, kind, lazy) => `<img src="${m.sm}" srcset="${m.sm} ${m.smw}w, ${m.src} ${m.w}w" sizes="${SIZES[kind]}" alt="${esc(m.alt)}" width="${m.w}" height="${m.h}" ${lazy ? 'loading="lazy" decoding="async"' : 'fetchpriority="high"'}>`;
 const bar = (m) => `<div class="bar" aria-hidden="true"><i></i><i></i><i></i><span>${esc(m.page)}</span></div>`;
 const shot = (m, kind, lazy = true) => `<figure class="shot shot--${kind}"><div class="win${kind === 'trio' ? ' win--phone' : ''}">${kind !== 'trio' ? bar(m) : ''}${img(m, kind, lazy)}</div></figure>`;
+// the sticker's back: a pitch that follows from what the visitor just did (played with a sticker — the
+// kind of thing the studio builds; "sticky" is the web's word for a site people stay on), laid out as seen from behind (.stk-print is mirrored in CSS so
+// the fold's own mirror puts it right). The lime pill sits under the resting curl, so its arrow peeks out
+// — the reason to peel. Dropped back-up on the page, the pill opens the contact overlay (peel.js).
+const STICKER_BACK = `<div class="stk-print"><span class="stk-psst">psst.</span><b class="stk-nosy">Sticky,<br>huh?</b><span class="stk-quip">we build sites people<br>can’t keep their<br>hands off.</span><a class="stk-cta" href="/contact" data-link tabindex="-1"><span>→</span> make mine sticky</a></div>`;
+// a round holo vinyl sticker slapped on a cover (data.js `sticker`: the words that run round its rim).
+// Decorative: the same facts are in the page as text. src/fx/peel.js makes it peelable.
+const sticker = (words) => `<div class="sticker" aria-hidden="true"><div class="stk-tilt"><div class="stk-front"><div class="stk-art">
+  <svg class="stk-ring" viewBox="0 0 200 200"><path id="stk-rim" d="M100 100m-75 0a75 75 0 1 1 150 0a75 75 0 1 1-150 0" fill="none"/><text><textPath href="#stk-rim" textLength="468" lengthAdjust="spacing">${esc(`${words} ✦ ${words} ✦`.toUpperCase())}</textPath></text></svg>
+  <span class="stk-mark">${MARK}</span><i class="stk-foil"></i><i class="stk-lines"></i><i class="stk-glit"></i><i class="stk-glare"></i></div></div>
+  <div class="stk-flapwrap"><div class="stk-back">${STICKER_BACK}<i class="stk-shade"></i></div></div></div></div>`;
 // plate tone decides the window bar: dark plates get a dark browser
 const dark = (hex) => { const n = parseInt(hex.slice(1), 16); return (0.2126 * (n >> 16) + 0.7152 * ((n >> 8) & 255) + 0.0722 * (n & 255)) / 255 < 0.45; };
 // Cloudflare's Email Obfuscation swaps every address in served HTML for a script-decoded placeholder,
@@ -48,7 +59,7 @@ export function project(slug) {
           <a class="p-live" href="${p.url}" target="_blank" rel="noopener"><span class="lbl">See it live<span class="host">${esc(new URL(p.url).host)}</span></span><span class="arrow" aria-hidden="true">↗</span></a>
         </div>
       </div>
-      <div class="p-cover">${shot(m.cover, 'full', false)}</div>
+      <div class="p-cover${p.sticker ? ' p-cover--sticker' : ''}">${shot(m.cover, 'full', false)}${p.sticker ? sticker(p.sticker) : ''}</div>
       <section class="p-intro"><p class="statement reveal">${split(p.statement)}</p></section>
       <section class="p-about">
         <h2 class="mono">About</h2>

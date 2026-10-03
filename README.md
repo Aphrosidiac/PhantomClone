@@ -28,9 +28,10 @@ Requires Node 20+. WebGL2 is required for the grid; browsers without it are sent
 | **List view** | Toggle bottom-left. Every project grouped by year with zone / feature pills and client. |
 | **Filter** | Bottom-right. Zone (single), Feature, Stack, Client (multi, AND across groups). Drives grid and list together; state lives in the URL, e.g. `/?zone=study&feature=webgl&view=list`. |
 | **Project pages** | Giant title, zone/year, live link, cover, statement, about, facts (client / type / role / reference), screens, features + stack, three related projects. |
+| **Cover sticker** | Hai Awan's cover carries a holo //FF sticker: peel it, carry it, throw it, drop it on the page — its back pitches "→ make mine sticky", which opens contact. See [docs/STICKER.md](docs/STICKER.md). |
 | **About** | Studio tab (hero, zones, clients strip with each brand's own logo, the studio, the team) and Approach tab (nine-step process, what every build includes). |
 | **Pricing** | The three estimating bands as panels, managed-care plans as rows and terms, laid out on About's row system. Transcribed from FF's `SERVICE_ARCHITECTURE.md`, never invented. |
-| **Contact** | Overlay from "Let's Talk" or `/contact`. A 7-question brief form; on completion the visitor sends it themselves by **email or WhatsApp** (pre-filled). The site has no backend and sends nothing on its own. |
+| **Contact** | Overlay from "Let's Talk" or `/contact`. A 7-question brief form; Submit delivers it through `/api/brief` (email to the studio + an FF Ops lead), and falls back to pre-filled **email / WhatsApp** buttons only when delivery fails — see [docs/BRIEF.md](docs/BRIEF.md). |
 | **Header** | Mark, sound toggle (currently disabled: hidden, see `SOUND_AVAILABLE` in `src/sound.js`), studio line, Kuala Lumpur clock + the visitor's own time, Let's Talk. |
 
 ## Project layout
@@ -48,6 +49,7 @@ src/
   legal.js            /privacy and /cookies content — must match the code
   sound.js            Web Audio UI sounds (lazy-loaded on first enable; disabled for now by SOUND_AVAILABLE)
   style.css           tokens + every component, desktop and phone
+  fx/peel.js          the cover sticker (peel, carry, throw, light) — lazy-loaded only where a .sticker exists
 public/
   media/<slug>/       tile.jpg (grid) + s-*.webp (project page, from tools/shots.mjs) per project
   fonts/              Instrument Sans (variable, subset) + DM Mono — both SIL OFL
@@ -55,11 +57,11 @@ public/
   ff-*.svg, og.jpg    brand marks, favicon, social image; logo.png + touch icons + site.webmanifest
   brand/              client logos for the About strip (kit files + rendered lockups)
   _headers            Cloudflare Pages cache + security headers
-tools/                verification instruments (Playwright captures + in-page GPU probes); seo-assets.mjs
+tools/                verification instruments (Playwright captures + in-page GPU probes, sticker-probe.mjs); seo-assets.mjs
                       (share cards, icons) and client-logos.mjs (About strip lockups)
 scripts/prerender.mjs static HTML per route + sitemap.xml, robots.txt, llms.txt (runs in npm run build)
 scripts/deploy.sh     Cloudflare Pages direct upload
-docs/                 architecture, content guide, SEO, verification, QA log
+docs/                 architecture, content guide, SEO, sticker, verification, QA log
 ```
 
 ## Documentation
@@ -68,6 +70,7 @@ docs/                 architecture, content guide, SEO, verification, QA log
 |---|---|
 | [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | How the grid engine, router, overlays and styling fit together; every tuned constant and why |
 | [docs/CONTENT.md](docs/CONTENT.md) | Adding or editing a project, pricing, copy, filters, sounds |
+| [docs/STICKER.md](docs/STICKER.md) | The cover sticker: behaviour, the maths of each phase (peel, pop, carry, throw, land), light model, tuning knobs, traps, probe results |
 | [docs/SEO.md](docs/SEO.md) | Prerendered routes, meta and JSON-LD per route, URLs and status codes, sitemap, what to redo when content changes |
 | [docs/VERIFICATION.md](docs/VERIFICATION.md) | The instruments in `tools/`, how to run them, and the recorded results |
 | [docs/qa-log.md](docs/qa-log.md) | What was checked, how, and what it caught |

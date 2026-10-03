@@ -51,3 +51,14 @@ Lesson recorded: the first border "fix" was declared done from a still screensho
 ## 2026-09-26 — Copy: the "one person" line
 
 - The line "you talk to the person who builds it" was said five times across About and Pricing, and most versions were framed as negatives ("no account manager, no junior…") or as an apology ("a studio this size… at a price that makes sense"). It now appears once, in the About intro. The clients line names the range of work, the Team section says what happens in-house and after launch, and the Pricing hero states how quoting works ("in writing, before any work starts", from the nine-step process). The About meta and llms.txt match. The Team placeholder card stays until there is a photo.
+
+## 2026-10-03 — Cover sticker (Hai Awan)
+
+- Built in a scratch lab first (holo foil, emboss, peel, tear), then the peel was brought to Hai Awan's cover. Every behaviour is checked by `tools/sticker-probe.mjs` (16/16 PASS) and by hand in real Chrome; the full write-up is [STICKER.md](STICKER.md).
+- **The reflection followed the cursor across the whole page** — a spotlight glued to the mouse. Fakhrul asked why; there was no good answer. Now one fixed light: scroll and a hover press move the reflection, the cursor elsewhere changes nothing (three far pointer positions, identical values).
+- **Hover flicker loop**: hit-testing the tilting face let the tilt slide its edge out from under a still pointer. Hover is read on the root's unmoved square; six samples under a still pointer are identical.
+- **The curl could not be grabbed** — its layer ignores the pointer, and the press fell through to the cover image. It is the first thing people grab. Presses now land on the root's square, filtered to the disc.
+- **Flicks never spun**: the 45 px/frame threshold (2.7 px/ms) was set on paper. Logged release speed of a real flick: 1.5 px/ms. Now 1 turn above 20 px/frame, 2 above 60, measured frame by frame (π → −π).
+- **Desktop: a thrown sticker followed the screen.** The in-flight layer is `position: fixed`; a wheel/trackpad scroll right after a throw (impossible on a phone) left it hanging and landed it wherever the screen was. It now rides the scroll: a 300 px scroll mid-flight, released at page y 632, landed at 631.
+- Copy: the back first carried Awan's cloud, then "Nosy. Peel-happy people make great clients." — both rejected. It now follows from the act: "Sticky, huh? / we build sites people can't keep their hands off. / → make mine sticky".
+- Instrument traps: the intro loader swallowed the probe's first presses (it now waits for the sticker to be the element under its centre); `browser.mjs`'s SwiftShader runs this page at a few fps, so the probe uses plain headless Chromium.

@@ -18,6 +18,7 @@ Start the dev server first: `npm run dev` (port 3175).
 |---|---|
 | `node tools/states.mjs [base] [outDir]` | `docs/qa/shots/*.png` — home, hover, drag, list, filter (open/active), filtered grid + list, project (+ full page), about, approach, pricing, contact, form errors, form done, 404, cold `/contact`, and the phone set `m-*.png`. Prints URLs at each step, horizontal overflow at 390 px, and any page errors. |
 | `node tools/shot.mjs <url> <out.png> [WxH] [waitMs] [js]` | one screenshot; optional expression evaluated first and printed |
+| `node tools/sticker-probe.mjs [base]` | the cover sticker end to end on `/projects/hai-awan` with a real mouse: light vs cursor/scroll/press, curl grab, pop, drop, scroll-anchoring, pill → contact, pick-up + flick, mid-flight scroll. PASS/FAIL per check, exit 1 on any FAIL. Plain headless Chromium (not `browser.mjs`'s SwiftShader). |
 
 ## GPU probes (run in a real browser on `/`)
 
@@ -124,6 +125,12 @@ and a fullscreen guard drops to stills anywhere else. Same pass, all checked:
 - hover styles behind `@media (hover: hover)` (20 rules); bottom controls and header clear safe areas.
 - iOS caps atlases at 4096² (the iOS canvas limit; iPad/landscape asked for 5464²) — not device-tested.
 - no overflow at 390 px on 6 routes; zero page errors; desktop hover/click/close unchanged.
+
+### Cover sticker (2026-10-03, `sticker-probe.mjs`)
+
+16/16 PASS — numbers and what each check means in [STICKER.md](STICKER.md#verification). Peel, carry,
+drop, pick-up and a wheel scroll with a sticker lying were also done by hand in real Chrome at 1920 × 907;
+not yet with a finger on a real phone.
 
 ## Known limits of the instruments
 
