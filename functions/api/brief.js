@@ -1,13 +1,12 @@
 // POST /api/brief — the "Start a project" form, delivered. The brief is emailed to the studio
-// (Cloudflare Email Sending, REST API: Pages Functions have no send_email binding) and, once FF Ops
+// (Resend — Cloudflare Email Sending needs the paid Workers plan) and, once FF Ops
 // is live, filed there as a WEBSITE lead through its public lead-form endpoint. Either one landing
 // counts as delivered; if neither does the visitor is told, and offered email/WhatsApp instead.
 //
 // Settings (Pages project → Settings → Variables and Secrets; locally .dev.vars):
-//   CF_ACCOUNT_ID      FF's Cloudflare account
-//   CF_EMAIL_TOKEN     secret, API token with Email Sending: Edit
+//   RESEND_API_KEY     secret, Resend key with "Sending access" for ffdev.studio
 //   BRIEF_TO           optional, default hello@ffdev.studio
-//   BRIEF_FROM         optional, default brief@ffdev.studio (domain must be onboarded to Email Sending)
+//   BRIEF_FROM         optional, default brief@ffdev.studio (domain verified in Resend)
 //   FFOPS_LEAD_URL     optional, https://ops.ffdev.studio/api/public/leads/lf_… (FF Ops → Leads → Forms)
 // Never logged: what the visitor wrote. Logs carry which channel failed and why, nothing else.
 
@@ -67,9 +66,9 @@ function briefText(d) {
   return lines.join('\n');
 }
 
-// resolves true when sent, false when not configured, throws when Cloudflare refuses it
+// resolves true when sent, false when not configured, throws when Resend refuses it
 async function sendEmail(d, env) {
-  if (!env.CF_ACCOUNT_ID || !env.CF_EMAIL_TOKEN) return false;
+  if (!env.RESEND_API_KEY) return false;
   const text = `${briefText(d)}\n\n—\nSent from the brief form on ${d.page || 'ffdev.studio'}. Reply to this email to answer ${d.name}.`;
   const row = (k, v) => `<tr><td style="padding:4px 16px 4px 0;color:#777;vertical-align:top">${k}</td><td style="padding:4px 0">${v}</td></tr>`;
   const html = `<div style="font:15px/1.55 -apple-system,Segoe UI,Helvetica,Arial,sans-serif;color:#111;max-width:620px">
@@ -79,20 +78,21 @@ ${d.note ? `<p style="white-space:pre-wrap;margin:0 0 18px">${esc(d.note)}</p>` 
 ${d.refs ? `<p style="margin:0 0 4px;color:#777;font-size:13px">References</p><p style="white-space:pre-wrap;margin:0 0 18px">${esc(d.refs)}</p>` : ''}
 <p style="margin:24px 0 0;font-size:12px;color:#999">Sent from the brief form on ${esc(d.page || 'ffdev.studio')}. Reply to answer ${esc(d.name)}.</p></div>`;
 
-  const r = await fetch(`https://api.cloudflare.com/client/v4/accounts/${env.CF_ACCOUNT_ID}/email/sending/send`, {
+  const r = await fetch('https://api.resend.com/emails', {
     method: 'POST',
-    headers: { authorization: `Bearer ${env.CF_EMAIL_TOKEN}`, 'content-type': 'application/json' },
+    headers: { authorization: `Bearer ${env.RESEND_API_KEY}`, 'content-type': 'application/json' },
     body: JSON.stringify({
-      to: env.BRIEF_TO || 'hello@ffdev.studio',
-      from: { address: env.BRIEF_FROM || 'brief@ffdev.studio', name: 'ffdev.studio brief' },
-      reply_to: { address: d.email, name: d.name },
+      from: `ffdev.studio brief <${env.BRIEF_FROM || 'brief@ffdev.studio'}>`,
+      to: [env.BRIEF_TO || 'hello@ffdev.studio'],
+      reply_to: d.email,
       subject: `New project — ${d.company}`,
       text, html,
     }),
   });
-  const body = await r.json().catch(() => ({}));
-  if (!r.ok || body.success === false) throw new Error(`HTTP ${r.status} ${(body.errors || []).map((e) => e.code).join(',')}`);
-  if (body.result?.permanent_bounces?.length) throw new Error('permanent bounce');
+  if (!r.ok) {
+    const b = await r.json().catch(() => ({}));
+    throw new Error(`HTTP ${r.status} ${b.name || ''}`);
+  }
   return true;
 }
 

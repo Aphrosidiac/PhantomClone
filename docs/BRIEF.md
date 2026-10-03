@@ -3,9 +3,9 @@
 Submit on the "Start a project" form posts the brief to `/api/brief`
 (`functions/api/brief.js`, a Pages Function). It is delivered two ways, in parallel:
 
-1. **Email** to `hello@ffdev.studio` from `brief@ffdev.studio` through Cloudflare Email Sending
-   (REST API; Pages Functions have no `send_email` binding). Reply-To is the visitor, so replying
-   answers them.
+1. **Email** to `hello@ffdev.studio` from `brief@ffdev.studio` through Resend (free plan:
+   3,000/month, 100/day). Cloudflare Email Sending was the first choice but needs the paid
+   Workers plan. Reply-To is the visitor, so replying answers them.
 2. **FF Ops lead** (source WEBSITE) through FF Ops' public lead-form endpoint, when
    `FFOPS_LEAD_URL` is set.
 
@@ -21,14 +21,14 @@ visitor wrote — only which channel failed and the HTTP status.
 
 | Name | Kind | Value |
 |---|---|---|
-| `CF_ACCOUNT_ID` | variable | FF's Cloudflare account id |
-| `CF_EMAIL_TOKEN` | secret | API token, permission **Email Sending: Edit** (account) |
+| `RESEND_API_KEY` | secret | Resend API key, **Sending access**, domain `ffdev.studio` |
 | `BRIEF_TO` | optional | default `hello@ffdev.studio` |
 | `BRIEF_FROM` | optional | default `brief@ffdev.studio` |
 | `FFOPS_LEAD_URL` | optional | `https://ops.ffdev.studio/api/public/leads/lf_…` (FF Ops → Leads → Forms) |
 
-One-time: onboard `ffdev.studio` in Cloudflare → Email Service → Email Sending (adds the
-sending SPF/DKIM records; Google Workspace MX and SPF stay as they are).
+One-time: `ffdev.studio` is added in Resend (account rikaidrawings) and verified by DNS records
+in Cloudflare: DKIM `resend._domainkey` TXT, and MX + SPF TXT on `send.ffdev.studio` (the bounce
+subdomain). Google Workspace's apex MX and SPF are untouched.
 
 With nothing configured every Submit falls back to the email/WhatsApp buttons — the same
 behaviour as before this function existed.
@@ -41,4 +41,4 @@ printf 'FFOPS_LEAD_URL=http://127.0.0.1:3250/api/public/leads/lf_demo_ffdevstudi
 npx wrangler pages dev dist --port 8788
 ```
 
-`.dev.vars` is git-ignored. Add `CF_ACCOUNT_ID` / `CF_EMAIL_TOKEN` there to send a real email.
+`.dev.vars` is git-ignored. Add `RESEND_API_KEY` there to send a real email.
