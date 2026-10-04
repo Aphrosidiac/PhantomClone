@@ -5,6 +5,9 @@
 // The HTTP cache is warmed first so the film shows the site's own entrance, not the network.
 //
 // usage: node tools/record.mjs <url> <out.mp4> [seconds=16]
+// SCROLL=start,px,dur also scrolls it while filming: from `start` s after navigation, wheel down `px` CSS px
+// over `dur` s in even steps (wheel, so smooth-scroll libraries and scrubbed timelines run as for a visitor).
+// Indahnya's hero loop was filmed this way.
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -23,6 +26,13 @@ const ctx = await browser.newContext({ viewport: VIEW, deviceScaleFactor: 1 });
 const warm = await ctx.newPage();
 await warm.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
 await warm.waitForTimeout(2000);
+if (process.env.SCROLL) { // load what the scroll will reveal, so the film shows the animation, not images arriving
+  const [, px] = process.env.SCROLL.split(',').map(Number);
+  await warm.mouse.move(VIEW.width / 2, VIEW.height / 2);
+  for (let y = 0; y < px + VIEW.height; y += 400) { await warm.mouse.wheel(0, 400); await warm.waitForTimeout(120); }
+  await warm.waitForLoadState('networkidle').catch(() => {});
+  await warm.waitForTimeout(2000);
+}
 await warm.evaluate(() => { try { localStorage.clear(); sessionStorage.clear(); } catch {} });
 await warm.close();
 
@@ -37,7 +47,16 @@ cdp.on('Page.screencastFrame', ({ data, metadata, sessionId }) => {
 await cdp.send('Page.startScreencast', { format: 'jpeg', quality: 95, maxWidth: VIEW.width, maxHeight: VIEW.height, everyNthFrame: 1 });
 const tNav = Date.now() / 1000;
 await page.goto(url, { waitUntil: 'commit', timeout: 60000 });
+const scroll = (async () => {
+  if (!process.env.SCROLL) return;
+  const [start, px, dur] = process.env.SCROLL.split(',').map(Number);
+  await page.waitForTimeout(start * 1000);
+  await page.mouse.move(VIEW.width / 2, VIEW.height / 2);
+  const n = Math.max(1, Math.round(dur / 0.05));
+  for (let i = 0; i < n; i++) { await page.mouse.wheel(0, px / n); await page.waitForTimeout(50); }
+})();
 await page.waitForTimeout(REC * 1000);
+await scroll;
 await cdp.send('Page.stopScreencast');
 await browser.close();
 

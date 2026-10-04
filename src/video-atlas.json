@@ -1,8 +1,8 @@
 {
-  "src": "/media/video/atlas.mp4?v=2ad39988f8",
-  "srcPhone": "/media/video/atlas-phone.mp4?v=8629d4d5eb",
+  "src": "/media/video/atlas.mp4?v=3a362c04d5",
+  "srcPhone": "/media/video/atlas-phone.mp4?v=640d7b49a4",
   "width": 1920,
-  "height": 1440,
+  "height": 1800,
   "aspect": 1.7777777777777777,
   "cells": {
     "ff-search": [
@@ -74,6 +74,12 @@
     "ff-member": [
       1280,
       1080,
+      640,
+      360
+    ],
+    "indahnya": [
+      0,
+      1440,
       640,
       360
     ]

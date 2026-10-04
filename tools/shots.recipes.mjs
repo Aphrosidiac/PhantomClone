@@ -47,6 +47,33 @@ export const RECIPES = {
     rows: [['full', 'demo'], ['pair', 'learn', 'context'], ['trio', 'm-hero', 'm-learn', 'm-pricing'], ['full', 'agents'], ['full', 'idea'], ['full', 'pricing'], ['pair', 'asks', 'faq']],
   },
 
+  // the hero is a 440vh scrubbed scroll: the table card's QR scatters, its modules become a mosaic of the photos,
+  // then the real gallery resolves. Offsets are at 1440x810 (the hero's scrub has to settle before each frame).
+  'indahnya': {
+    base: 'https://indahnya-86v.pages.dev/', device: 'mid', boot: 5000, settle: 2200, init: EAGER,
+    shots: [
+      { id: 'hero', steps: [['wait', 3000]], alt: 'Semua gambar majlis. Satu QR. — the table card with its QR among floating polaroids, guests’ uploads arriving below' },
+      { id: 'scatter', steps: [['y', 1215]], settle: 2800, alt: 'The hero scrolling: the QR’s modules breaking away from the code' },
+      { id: 'mosaic', steps: [['y', 1900]], settle: 2800, alt: 'The modules land as a mosaic, each taking the colour of its spot in a guest’s photo' },
+      { id: 'gallery', steps: [['y', 2835]], settle: 2800, alt: 'The real gallery resolves: the majlis photos, with Aina & Hakim’s gallery bar' },
+      { id: 'story', steps: [['y', 3700]], alt: 'Makcik snap dari meja empat — the apps and group chats it replaces, struck through' },
+      { id: 'how', steps: [['y', 4860]], settle: 2800, alt: 'Tiga langkah: a guest scans the table card and uploads from the phone' },
+      { id: 'dewan', steps: [['y', 7695]], settle: 3000, alt: 'Lampu malap. Gambar naik. — the page dims like the dewan and the slideshow fills the TV' },
+      { id: 'kad', steps: [['to', '#kad', 0.0]], settle: 2500, alt: 'Kad jemputan yang orang betul-betul buka: the e-kad on a phone, with its template picker' },
+      { id: 'guests', steps: [['y', 10125]], alt: 'Sebelum majlis, tetamu dah tahu semua: RSVP count and the seat finder on a floor plan' },
+      { id: 'host', steps: [['y', 11450]], settle: 3000, alt: 'Dari atas pelamin pun boleh urus: the host filters photos before they reach the screen' },
+      { id: 'pricing', steps: [['to', '#harga', 0.0]], settle: 2500, alt: 'Bayar sekali. Untuk satu majlis. — Percuma, RM59 and RM99, one time' },
+      { id: 'faq', steps: [['to', '#soalan', 0.0]], alt: 'Yang orang selalu tanya: the FAQ' },
+      { id: 'footer', steps: [['y', 99999]], settle: 3000, alt: 'The footer: the indahnya wordmark filled with majlis photos, the vine’s roots under it' },
+      { id: 'sample', url: 'aina-hakim/gambar', steps: [['wait', 3000]], alt: 'The sample majlis: Aina & Hakim’s guest gallery' },
+      { id: 'm-gallery', device: P, steps: [['y', 1900]], settle: 2800, alt: 'Phone: the gallery the QR turns into' },
+      { id: 'm-pricing', device: P, steps: [['y', 13300]], settle: 2500, alt: 'Phone: one-time pricing, RM59 most picked' },
+      { id: 'm-kad', device: P, steps: [['y', 7420]], settle: 2500, alt: 'Phone: the e-kad' },
+    ],
+    cover: 'hero',
+    rows: [['full', 'gallery'], ['pair', 'scatter', 'mosaic'], ['trio', 'm-gallery', 'm-kad', 'm-pricing'], ['full', 'how'], ['full', 'dewan'], ['pair', 'story', 'kad'], ['pair', 'guests', 'host'], ['full', 'pricing'], ['pair', 'sample', 'footer']],
+  },
+
   // the intro issues the member card and covers every load (full on the first visit, a quick "Welcome back" after),
   // so the first shot in each context catches it mid-issue and the later pages boot long enough for it to hand off
   'ff-member': {

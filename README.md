@@ -4,7 +4,7 @@ The FF Dev Studio portfolio as an infinite, draggable WebGL work grid seen throu
 FF Dev Studio's own work, words and identity.
 
 - **Stack:** Vite (static SPA) · three.js · GSAP · vanilla JS/CSS — no framework
-- **Routes:** `/` work grid (+ list view, filters) · `/projects/:slug` ×16 · `/about` · `/about/approach` · `/pricing` · `/faq` · `/privacy` · `/cookies` · `/contact` (overlay) · 404
+- **Routes:** `/` work grid (+ list view, filters) · `/projects/:slug` ×17 · `/about` · `/about/approach` · `/pricing` · `/faq` · `/privacy` · `/cookies` · `/contact` (overlay) · 404
 - **Brand:** `//FF` mark, Instrument Sans, Ink / Bone / Graphite with Signal Lime as a sparse accent — from the FF brand kit
 
 ---

@@ -2187,5 +2187,198 @@
     ]
    }
   ]
+ },
+ "indahnya": {
+  "cover": {
+   "src": "/media/indahnya/s-hero.webp",
+   "sm": "/media/indahnya/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Semua gambar majlis. Satu QR. — the table card with its QR among floating polaroids, guests’ uploads arriving below",
+   "page": "indahnya-86v.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/indahnya/s-gallery.webp",
+      "sm": "/media/indahnya/s-gallery-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The real gallery resolves: the majlis photos, with Aina & Hakim’s gallery bar",
+      "page": "indahnya-86v.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/indahnya/s-scatter.webp",
+      "sm": "/media/indahnya/s-scatter-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The hero scrolling: the QR’s modules breaking away from the code",
+      "page": "indahnya-86v.pages.dev"
+     },
+     {
+      "src": "/media/indahnya/s-mosaic.webp",
+      "sm": "/media/indahnya/s-mosaic-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The modules land as a mosaic, each taking the colour of its spot in a guest’s photo",
+      "page": "indahnya-86v.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/indahnya/s-m-gallery.webp",
+      "sm": "/media/indahnya/s-m-gallery-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the gallery the QR turns into",
+      "page": "indahnya-86v.pages.dev"
+     },
+     {
+      "src": "/media/indahnya/s-m-kad.webp",
+      "sm": "/media/indahnya/s-m-kad-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the e-kad",
+      "page": "indahnya-86v.pages.dev"
+     },
+     {
+      "src": "/media/indahnya/s-m-pricing.webp",
+      "sm": "/media/indahnya/s-m-pricing-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: one-time pricing, RM59 most picked",
+      "page": "indahnya-86v.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/indahnya/s-how.webp",
+      "sm": "/media/indahnya/s-how-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Tiga langkah: a guest scans the table card and uploads from the phone",
+      "page": "indahnya-86v.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/indahnya/s-dewan.webp",
+      "sm": "/media/indahnya/s-dewan-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Lampu malap. Gambar naik. — the page dims like the dewan and the slideshow fills the TV",
+      "page": "indahnya-86v.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/indahnya/s-story.webp",
+      "sm": "/media/indahnya/s-story-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Makcik snap dari meja empat — the apps and group chats it replaces, struck through",
+      "page": "indahnya-86v.pages.dev"
+     },
+     {
+      "src": "/media/indahnya/s-kad.webp",
+      "sm": "/media/indahnya/s-kad-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Kad jemputan yang orang betul-betul buka: the e-kad on a phone, with its template picker",
+      "page": "indahnya-86v.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/indahnya/s-guests.webp",
+      "sm": "/media/indahnya/s-guests-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Sebelum majlis, tetamu dah tahu semua: RSVP count and the seat finder on a floor plan",
+      "page": "indahnya-86v.pages.dev"
+     },
+     {
+      "src": "/media/indahnya/s-host.webp",
+      "sm": "/media/indahnya/s-host-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Dari atas pelamin pun boleh urus: the host filters photos before they reach the screen",
+      "page": "indahnya-86v.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/indahnya/s-pricing.webp",
+      "sm": "/media/indahnya/s-pricing-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Bayar sekali. Untuk satu majlis. — Percuma, RM59 and RM99, one time",
+      "page": "indahnya-86v.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/indahnya/s-sample.webp",
+      "sm": "/media/indahnya/s-sample-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The sample majlis: Aina & Hakim’s guest gallery",
+      "page": "indahnya-86v.pages.dev/aina-hakim/gambar"
+     },
+     {
+      "src": "/media/indahnya/s-footer.webp",
+      "sm": "/media/indahnya/s-footer-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The footer: the indahnya wordmark filled with majlis photos, the vine’s roots under it",
+      "page": "indahnya-86v.pages.dev"
+     }
+    ]
+   }
+  ]
  }
 }

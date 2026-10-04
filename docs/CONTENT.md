@@ -62,8 +62,9 @@ server running) — see `docs/SEO.md`.
  Labels are title-cased unless
 listed in `FEATURE_LABEL` / `STACK_LABEL` (e.g. `'3d': '3D'`, `next: 'Next.js'`).
 
-The grid atlas is laid out as a square of `ceil(√n)` cells; up to 16 projects fit the current atlas
-caps at full resolution, beyond that cells are scaled down automatically.
+The grid atlas is laid out as a square of `ceil(√n)` cells of 683 px; on desktop up to 25 projects (5 columns)
+fit the 4096 px cap at full resolution, beyond that cells are scaled down automatically. Phones always use a
+smaller atlas (2048 px media, 4096 px labels).
 
 ## Project page media
 
@@ -108,7 +109,9 @@ To add or re-cut a clip:
    and address bar above the page and a scrollbar on the right — re-measure `CROP` if the window differs),
    or let `node tools/record.mjs <url> <out.mp4> [seconds]` film the page standing still in headless Chrome
    at the same 1904×944 page viewport, with no browser around it (give that clip `crop: 'page'`). Hai Awan's
-   loop was made this way. Source footage is archived with Git LFS in the FFAds repo,
+   loop was made this way. For a scroll-driven hero, `SCROLL=start,px,dur` wheels the page down `px` CSS px over
+   `dur` s starting `start` s in (the warm-up visit scrolls the same way first, so images are cached): Indahnya's
+   loop is `SCROLL=3,3210,5 node tools/record.mjs <url> <out.mp4> 13`, cut at 2.1× to fit the whole sequence. Source footage is archived with Git LFS in the FFAds repo,
    `recordings/desktop/` — put new recordings there too.
 2. Add `{ slug, file, at }` to `CLIPS` in `tools/video-atlas.mjs`; `at` is the loop's first frame.
    The loop plays 7.5 s of source at 1.5× (`speed: 1` for an intro that should keep its own pace).
