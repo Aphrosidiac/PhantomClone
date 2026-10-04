@@ -38,6 +38,16 @@ export const PROJECTS = [
     ],
   },
   {
+    slug: 'ff-member', title: 'FF Member', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#f3efe4',
+    features: ['webgl', '3d', 'motion'], stack: ['vite', 'three', 'gsap', 'lenis'], url: 'https://ff-member.pages.dev/',
+    type: 'Membership one-pager, study', role: 'Art direction / WebGL / Motion', reference: 'moto-card.com',
+    statement: 'The studio’s care plans sold as a membership, with a black member card issued on every visit.',
+    about: [
+      'Care, Maintain and Evolve, presented the way a premium card is. Every load opens on the member card being issued: it polishes in the dark while a counter runs through what membership covers, then flies onto a chrome plinth in front of a lit rock wall.',
+      'A pinned WebGL globe, the card turning inside a tube of the studio’s own work and plan figures that scrub past on scroll carry the rest. The motion was measured against a luxury card site in the same genre; every word, image and line of code is the studio’s own, and the globe is NASA imagery.',
+    ],
+  },
+  {
     slug: 'ff-search', title: 'FF Search', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#1f1f1f',
     features: ['website', 'motion', 'measurement'], stack: ['vite', 'gsap'], url: 'https://ff-search-b4q.pages.dev/',
     type: 'Executive search site, recreation', role: 'Frontend / Motion / Measurement', reference: 'aspensearch.com',

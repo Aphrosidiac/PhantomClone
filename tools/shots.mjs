@@ -28,6 +28,8 @@ export const DEVICES = {
   },
 };
 
+// the real GPU backend for this OS: an unknown one (d3d11 on a Mac) drops Chrome to software GL, which stalls WebGL sites
+const ANGLE = { win32: 'd3d11', darwin: 'metal' }[process.platform] || 'default';
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const scrollY = (p) => p.evaluate(() => Math.round(window.scrollY || document.scrollingElement.scrollTop));
 
@@ -73,7 +75,7 @@ async function step(p, s, vp) {
 async function capture(slug) {
   const r = RECIPES[slug];
   const out = path.join(RAW, slug); fs.mkdirSync(out, { recursive: true });
-  const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--enable-gpu', '--use-angle=d3d11', '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required', '--hide-scrollbars'] });
+  const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--enable-gpu', `--use-angle=${ANGLE}`, '--ignore-gpu-blocklist', '--autoplay-policy=no-user-gesture-required', '--hide-scrollbars'] });
   const ctxs = {};
   let page = null, pageKey = '';
   for (const shot of r.shots) {

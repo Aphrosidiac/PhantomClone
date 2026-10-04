@@ -85,6 +85,9 @@ SHOT='^pricing' node tools/shots.mjs ff-frames       # re-shoot matching ids onl
 FFMPEG=path/to/ffmpeg node tools/shots.mjs --encode ff-frames   # -> public/media/<slug>/s-*.webp + src/shots.json
 ```
 
+Captures run in headless Chrome on the real GPU (ANGLE d3d11 on Windows, Metal on macOS). A WebGL site such as FF
+Member stalls on software GL, so a screenshot that times out usually means the GPU backend did not start.
+
 An ffmpeg without libwebp (Homebrew's) is fine: the encode then writes a PNG and hands it to `cwebp` with
 the same settings (`CWEBP=path/to/cwebp` if it is not on PATH).
 

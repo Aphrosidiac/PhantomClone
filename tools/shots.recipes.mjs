@@ -20,6 +20,11 @@ const DEMO_REPLY = [['eval', () => new Promise((done) => {
   const t = () => { if (!d.classList.contains('reply')) fresh = true; if (fresh && d.classList.contains('reply')) done(); else setTimeout(t, 40); }; t();
 })], ['wait', 900]];
 
+// FF Member's intro: catch the card mid-issue, the counter past halfway and a status line up
+const INTRO_MID = [['eval', () => new Promise((done) => {
+  const t = () => { const c = document.querySelector('[data-intro-count]'); if (!c || +c.textContent >= 70) done(); else setTimeout(t, 20); }; t();
+})]];
+
 export const RECIPES = {
   'hai-awan': {
     base: 'https://awan.ffdev.studio/', device: 'mid', boot: 2500, settle: 1200,
@@ -40,6 +45,30 @@ export const RECIPES = {
     ],
     cover: 'hero',
     rows: [['full', 'demo'], ['pair', 'learn', 'context'], ['trio', 'm-hero', 'm-learn', 'm-pricing'], ['full', 'agents'], ['full', 'idea'], ['full', 'pricing'], ['pair', 'asks', 'faq']],
+  },
+
+  // the intro issues the member card and covers every load (full on the first visit, a quick "Welcome back" after),
+  // so the first shot in each context catches it mid-issue and the later pages boot long enough for it to hand off
+  'ff-member': {
+    base: 'https://ff-member.pages.dev/', device: 'mid', boot: 9000, settle: 1800,
+    shots: [
+      { id: 'intro', boot: 0, steps: INTRO_MID, settle: 0, alt: 'The intro: the member card being issued in the dark, a status line ticking through what membership covers' },
+      { id: 'hero', fresh: true, steps: [], alt: 'Built by us. Looked after by us. — the black member card on a chrome plinth against a lit rock wall' },
+      { id: 'globe', steps: [['y', 800]], settle: 4500, alt: 'Built in Kuala Lumpur. Kept online everywhere. — the night side of the globe, with backups, SSL and security updates landing' },
+      { id: 'tube', steps: [['y', 2835]], settle: 2500, alt: 'One card for every site we look after: the card inside a turning tube of the studio’s work' },
+      { id: 'figures', steps: [['y', 4455]], settle: 1200, alt: 'Plain terms, written down: the plan figures scrubbing past on bone' },
+      { id: 'support', steps: [['y', 5950]], settle: 2500, alt: 'Priority support. A person, not a ticket. — over a tilted screen of SmoothSail' },
+      { id: 'covers', steps: [['to', '#covers-title', 0.12]], settle: 2500, alt: 'Made for the sites we already built: hosting, monitoring, backups, security, changes and advice' },
+      { id: 'banner', steps: [['to', '#banner-title', 0.3]], settle: 3500, alt: 'Three plans. One standard. — over a Big Brain Furniture interior' },
+      { id: 'plans', device: 'wide', steps: [['to', '#plans-title', 0.1]], settle: 2500, alt: 'Choose how much we carry: Care RM59, Maintain RM149 and Evolve RM299 a month' },
+      { id: 'join', steps: [['y', 0], ['click', '[data-join] >> nth=0']], settle: 1500, alt: 'The Become a member dialog: name, email, website and plan' },
+      { id: 'footer', fresh: true, steps: [['y', 99999]], settle: 2500, alt: 'Launch is day one — the footer under the //FF mark' },
+      { id: 'm-hero', device: P, boot: 10000, steps: [], alt: 'Phone: the member card on its plinth' },
+      { id: 'm-tube', device: P, steps: [['to', '#tube-title', 0.55]], settle: 2500, alt: 'Phone: the card in the tube of work' },
+      { id: 'm-plans', device: P, steps: [['to', '.plans .h3 >> nth=1', 0.2]], settle: 2500, alt: 'Phone: the Maintain plan' },
+    ],
+    cover: 'hero',
+    rows: [['full', 'intro'], ['pair', 'globe', 'tube'], ['trio', 'm-hero', 'm-tube', 'm-plans'], ['full', 'figures'], ['full', 'support'], ['pair', 'covers', 'banner'], ['full', 'plans'], ['pair', 'join', 'footer']],
   },
 
   'ff-search': {

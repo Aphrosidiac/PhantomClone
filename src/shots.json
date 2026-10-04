@@ -2017,5 +2017,175 @@
     ]
    }
   ]
+ },
+ "ff-member": {
+  "cover": {
+   "src": "/media/ff-member/s-hero.webp",
+   "sm": "/media/ff-member/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Built by us. Looked after by us. — the black member card on a chrome plinth against a lit rock wall",
+   "page": "ff-member.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-member/s-intro.webp",
+      "sm": "/media/ff-member/s-intro-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The intro: the member card being issued in the dark, a status line ticking through what membership covers",
+      "page": "ff-member.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-member/s-globe.webp",
+      "sm": "/media/ff-member/s-globe-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Built in Kuala Lumpur. Kept online everywhere. — the night side of the globe, with backups, SSL and security updates landing",
+      "page": "ff-member.pages.dev"
+     },
+     {
+      "src": "/media/ff-member/s-tube.webp",
+      "sm": "/media/ff-member/s-tube-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "One card for every site we look after: the card inside a turning tube of the studio’s work",
+      "page": "ff-member.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ff-member/s-m-hero.webp",
+      "sm": "/media/ff-member/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the member card on its plinth",
+      "page": "ff-member.pages.dev"
+     },
+     {
+      "src": "/media/ff-member/s-m-tube.webp",
+      "sm": "/media/ff-member/s-m-tube-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the card in the tube of work",
+      "page": "ff-member.pages.dev"
+     },
+     {
+      "src": "/media/ff-member/s-m-plans.webp",
+      "sm": "/media/ff-member/s-m-plans-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the Maintain plan",
+      "page": "ff-member.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-member/s-figures.webp",
+      "sm": "/media/ff-member/s-figures-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Plain terms, written down: the plan figures scrubbing past on bone",
+      "page": "ff-member.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-member/s-support.webp",
+      "sm": "/media/ff-member/s-support-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Priority support. A person, not a ticket. — over a tilted screen of SmoothSail",
+      "page": "ff-member.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-member/s-covers.webp",
+      "sm": "/media/ff-member/s-covers-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Made for the sites we already built: hosting, monitoring, backups, security, changes and advice",
+      "page": "ff-member.pages.dev"
+     },
+     {
+      "src": "/media/ff-member/s-banner.webp",
+      "sm": "/media/ff-member/s-banner-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Three plans. One standard. — over a Big Brain Furniture interior",
+      "page": "ff-member.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-member/s-plans.webp",
+      "sm": "/media/ff-member/s-plans-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Choose how much we carry: Care RM59, Maintain RM149 and Evolve RM299 a month",
+      "page": "ff-member.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-member/s-join.webp",
+      "sm": "/media/ff-member/s-join-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The Become a member dialog: name, email, website and plan",
+      "page": "ff-member.pages.dev"
+     },
+     {
+      "src": "/media/ff-member/s-footer.webp",
+      "sm": "/media/ff-member/s-footer-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Launch is day one — the footer under the //FF mark",
+      "page": "ff-member.pages.dev"
+     }
+    ]
+   }
+  ]
  }
 }

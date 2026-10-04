@@ -1,6 +1,6 @@
 {
-  "src": "/media/video/atlas.mp4?v=a00d935196",
-  "srcPhone": "/media/video/atlas-phone.mp4?v=cd2a50bb0c",
+  "src": "/media/video/atlas.mp4?v=2ad39988f8",
+  "srcPhone": "/media/video/atlas-phone.mp4?v=8629d4d5eb",
   "width": 1920,
   "height": 1440,
   "aspect": 1.7777777777777777,
@@ -67,6 +67,12 @@
     ],
     "hai-awan": [
       640,
+      1080,
+      640,
+      360
+    ],
+    "ff-member": [
+      1280,
       1080,
       640,
       360

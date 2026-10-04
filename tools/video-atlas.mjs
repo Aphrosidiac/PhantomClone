@@ -51,6 +51,9 @@ const CLIPS = [
   // the hero standing still (recorded with tools/record.mjs): the demo scene below the headline — keys held,
   // the question types, the cursor flies to week 9, rings it, answers, and an agent starts in the notch
   { slug: 'hai-awan', file: '2026-09-29_hai-awan_page.mp4', at: 2.9, crop: 'page' },
+  // the intro's second half at its own pace (recorded with tools/record.mjs): the counter runs
+  // to 100, the card flies onto its plinth and the rock wall lights up behind it (lead-in is the dark card)
+  { slug: 'ff-member', file: '2026-10-04_ff-member_page.mp4', at: 2.4, speed: 1, crop: 'page' },
 ];
 
 const LOOP = 5;       // seconds
