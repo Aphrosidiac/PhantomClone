@@ -2240,6 +2240,15 @@
     "kind": "trio",
     "items": [
      {
+      "src": "/media/indahnya/s-m-hero.webp",
+      "sm": "/media/indahnya/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero, the table card waiting under the buttons",
+      "page": "indahnya-86v.pages.dev"
+     },
+     {
       "src": "/media/indahnya/s-m-gallery.webp",
       "sm": "/media/indahnya/s-m-gallery-sm.webp",
       "w": 1242,
@@ -2255,15 +2264,6 @@
       "h": 2010,
       "smw": 621,
       "alt": "Phone: the e-kad",
-      "page": "indahnya-86v.pages.dev"
-     },
-     {
-      "src": "/media/indahnya/s-m-pricing.webp",
-      "sm": "/media/indahnya/s-m-pricing-sm.webp",
-      "w": 1242,
-      "h": 2010,
-      "smw": 621,
-      "alt": "Phone: one-time pricing, RM59 most picked",
       "page": "indahnya-86v.pages.dev"
      }
     ]
