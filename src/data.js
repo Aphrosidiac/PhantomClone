@@ -48,16 +48,6 @@ export const PROJECTS = [
     ],
   },
   {
-    slug: 'indahnya', title: 'Indahnya', client: 'FF Dev Studio', zone: 'product', year: 2026, plate: '#e6f3e1', wordmark: 'Indahnya',
-    features: ['platform', 'motion', 'website'], stack: ['nuxt', 'postgres', 'gsap', 'lenis'], url: 'https://indahnya-86v.pages.dev/',
-    type: 'Majlis photo platform', role: 'Product / Design / Full stack / Motion',
-    statement: 'Every photo from a majlis in one gallery. Guests scan the QR on the table, snap and upload: no app, no login.',
-    about: [
-      'Indahnya is the studio’s own product for Malaysian weddings, aqiqah and family majlis. One QR on each table sends guests to the gallery from their phone browser, every photo lands at its original quality, and the slideshow plays live on the dewan’s TV. The same link carries the e-kad, RSVP, a seat finder on the hall’s floor plan and written or voice ucapan.',
-      'The landing tells it in one scroll: the table card’s QR breaks into its modules, they settle into a mosaic in the colours of the guests’ photos, and the real gallery resolves. Bahasa Malaysia first, with English, priced once per majlis rather than by subscription. It is open as a preview for now, with a sample majlis you can click through end to end.',
-    ],
-  },
-  {
     slug: 'ff-search', title: 'FF Search', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#1f1f1f',
     features: ['website', 'motion', 'measurement'], stack: ['vite', 'gsap'], url: 'https://ff-search-b4q.pages.dev/',
     type: 'Executive search site, recreation', role: 'Frontend / Motion / Measurement', reference: 'aspensearch.com',
@@ -65,6 +55,16 @@ export const PROJECTS = [
     about: [
       'An executive-search website measured from the reference rather than eyeballed: type scale, spacing rhythm and every easing curve extracted from the live page, then rebuilt in our own code.',
       'The copy was rewritten for FF throughout, and the team and testimonials are fictional — the point of the study was the craft of the page, not borrowing anyone’s credentials.',
+    ],
+  },
+  {
+    slug: 'indahnya', title: 'Indahnya', client: 'FF Dev Studio', zone: 'product', year: 2026, plate: '#e6f3e1', wordmark: 'Indahnya',
+    features: ['platform', 'motion', 'website'], stack: ['nuxt', 'postgres', 'gsap', 'lenis'], url: 'https://indahnya-86v.pages.dev/',
+    type: 'Majlis photo platform', role: 'Product / Design / Full stack / Motion',
+    statement: 'Every photo from a majlis in one gallery. Guests scan the QR on the table, snap and upload: no app, no login.',
+    about: [
+      'Indahnya is the studio’s own product for Malaysian weddings, aqiqah and family majlis. One QR on each table sends guests to the gallery from their phone browser, every photo lands at its original quality, and the slideshow plays live on the dewan’s TV. The same link carries the e-kad, RSVP, a seat finder on the hall’s floor plan and written or voice ucapan.',
+      'The landing tells it in one scroll: the table card’s QR breaks into its modules, they settle into a mosaic in the colours of the guests’ photos, and the real gallery resolves. Bahasa Malaysia first, with English, priced once per majlis rather than by subscription. It is open as a preview for now, with a sample majlis you can click through end to end.',
     ],
   },
   {
