@@ -97,7 +97,7 @@ const flips = []; for (let i = 0; i < 6; i++) { await sleep(40); const f = await
 await sleep(1500);
 st = await state();
 check('a flick spins it', flips.some((f) => Math.abs(f - Math.PI) > 0.3), flips.map((f) => f.toFixed(2)).join(' '));
-check('a flick off the screen leaves nothing behind', st.free === 0 && st.lying.length === 0);
+check('a flick off the screen leaves nothing behind', st.free === 0 && st.lying.length === 0, `free ${st.free}, lying ${st.lying.length}`);
 
 // 8. a scroll mid-flight: it still lands where it was thrown (the in-flight layer rides the page)
 await sleep(1500); // the cover gets a fresh sticker
@@ -112,6 +112,28 @@ await p.mouse.up(); await sleep(60);
 await p.evaluate(() => window.scrollBy(0, 300)); await sleep(1600);
 const landed = await p.evaluate(() => { const el = document.querySelector('.stk-loose-back'); const r = el.getBoundingClientRect(); return r.top + r.height / 2 + scrollY; });
 check('a scroll mid-flight lands it where it was thrown', Math.abs(landed - atRelease) < 40, `released at page y ${atRelease.toFixed(0)}, landed ${landed.toFixed(0)}`);
+
+// 9. a quick tap on a lying sticker: picked up in one frame, let go in the next, it still comes back down.
+// Chrome hands input over at the start of a frame, after the frame's timestamp is taken, so the body's
+// first step sees a `now` earlier than the clock it was made with. That step sank the lift below 0 and the
+// release that followed computed a NaN landing: the sticker hung frozen over the page where the pointer
+// was. Recreated here exactly: the pick-up's clock runs ahead of the next frame's timestamp, and the release
+// runs in that frame right after the body's first step. Then the same dead on the centre (an arm of 0).
+const tap = (dx) => p.evaluate((dx) => new Promise((done) => requestAnimationFrame(() => {
+  const el = document.querySelector('.stk-loose-back');
+  if (!el) return done();
+  const r = el.getBoundingClientRect();
+  const o = { pointerId: 1, pointerType: 'mouse', isPrimary: true, button: 0, buttons: 1, bubbles: true, cancelable: true, clientX: r.left + r.width / 2 + dx, clientY: r.top + r.height / 2 };
+  const now = performance.now; performance.now = () => now.call(performance) + 200;
+  el.querySelector('.stk-quip').dispatchEvent(new PointerEvent('pointerdown', o));
+  performance.now = now;
+  requestAnimationFrame(() => { el.dispatchEvent(new PointerEvent('pointerup', { ...o, buttons: 0 })); done(); });
+})), dx);
+for (const [name, dx] of [['off-centre', 30], ['dead centre', 0]]) {
+  await tap(dx); await sleep(2000);
+  st = await state();
+  check(`a same-frame tap (${name}) lands it again`, st.free === 0 && st.lying.length === 1, `free ${st.free}, lying ${st.lying.length}`);
+}
 
 check('no page errors', errors.length === 0, errors.join(' | '));
 await b.close();

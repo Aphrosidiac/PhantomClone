@@ -10,7 +10,7 @@ module; no WebGL, no images, no dependencies.
 | Code | `src/fx/peel.js` (all behaviour), sticker styles in `src/style.css` (search `sticker`), markup in `src/pages.js` (`sticker()`, `STICKER_BACK`) |
 | Content | `sticker:` on a project in `src/data.js` — the words round the rim |
 | Hook | `wireFx()` in `src/main.js`, after `wireReveals()` on every render |
-| Probe | `node tools/sticker-probe.mjs [base]` — 16 checks, see [Verification](#verification) |
+| Probe | `node tools/sticker-probe.mjs [base]` — 18 checks, see [Verification](#verification) |
 
 ## What a visitor gets
 
@@ -170,13 +170,20 @@ and the gloss above them, like a laminate.
 - **Fixed layers don't scroll.** The in-flight sticker hung on screen during a desktop scroll — see above.
 - **`color-dodge` on a bright base** clips to white (the holo vanished on near-white silver), and **on ink**
   still tints it — mid-grey base, ink above the foil.
+- **A quick click froze it over the page.** A frame's timestamp is taken *before* that frame's input is
+  handled, so a body made in a pointer handler stepped first with `now` earlier than its own clock: negative
+  `dt`, the lift sank below 0, and a release in the next frame took the √ of a negative air time. `NaN`
+  landing → every later `transform` was invalid, so the browser kept the last frame: a sticker hanging over
+  the page where the pointer was, ungrabbable (`pointer-events: none`). Reported 2026-10-04 as "tear it off,
+  quickly tap it, it gets stuck on my cursor". `step()` now skips a frame whose `now ≤ last`; a pick-up dead
+  on the centre (arm 0, the torque divides by arm²) is held to a 1 px arm. Probe check 9 recreates both.
 - **The pop must not jump**: the free body's transform is derived from the flap's mirror (β above), and the
   back print's mirror differs on the two sides. Change one, re-check frames just before and after the pop.
 
 ## Verification
 
 `node tools/sticker-probe.mjs` (dev server on :3175) drives a real mouse in headless Chromium on
-`/projects/hai-awan`. Recorded 2026-10-03, all 16 PASS:
+`/projects/hai-awan`. Recorded 2026-10-03, all 16 PASS; the tap checks added 2026-10-04 (18 PASS on a clean run):
 
 | Check | Result |
 |---|---|
@@ -188,6 +195,7 @@ and the gloss above them, like a laminate.
 | the pill opens `/contact`; Escape returns with the sticker still lying | ok |
 | pick-up + flick spins and leaves the screen, nothing left behind | flip 2.04 → −2.43 rad mid-air |
 | a 300 px scroll mid-flight lands it where it was thrown | released at page y 632, landed 631 |
+| a tap on a lying sticker (picked up in one frame, let go in the next), off-centre and dead centre, lands again | free 0, lying 1 (before the 2026-10-04 fix: free 1 — frozen) |
 | page errors | none |
 
 Also checked by hand in real Chrome (1920 × 907): peel, carry, drop, pick-up, wheel scroll with a sticker
@@ -197,4 +205,6 @@ scroll as the viewing angle) and the layout was checked at 375 px, but feel need
 Instrument notes: the probe uses plain headless Chromium (the shared `browser.mjs` forces SwiftShader GL,
 which runs this page at a few frames a second); headless delivers mouse moves ~33 ms apart, so its
 "flicks" are slower than a hand's; the intro loader covers the page for a few seconds and swallows presses
-(the probe waits until the sticker is the element under its own centre).
+(the probe waits until the sticker is the element under its own centre). The two flick checks are flaky
+headless (2026-10-04: 2 of 4 runs the flick was too slow to leave the screen and landed, and the scroll
+check then measured that sticker) — a re-run passes; nothing is left frozen when they fail.

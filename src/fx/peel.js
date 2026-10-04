@@ -309,6 +309,8 @@ function freeBody({ S, template, x, y, theta, arm, beta }) {
   document.body.append(layer);
   const body = layer.querySelector('.stk-free-body'), shadow = layer.querySelector('.stk-free-shadow');
 
+  // a pick-up dead on the centre has no arm: the torque below divides by arm²
+  arm = Math.max(1, arm);
   const P = { x, y }, prev = { x, y }, vs = { x: 0, y: 0 };
   let th = theta, w = 0, h = 0, flip = Math.PI, phase = 'held', raf = 0, last = performance.now();
   // back-up (π) while held and when it lands; a throw adds whole turns in the air (1 above 20 px/frame, 2 above 60)
@@ -334,9 +336,14 @@ function freeBody({ S, template, x, y, theta, arm, beta }) {
   }
 
   function step(now) {
+    // a frame's timestamp is when the frame began, so the first one can predate the performance.now() taken
+    // when the body was made: skip it rather than step backwards. A negative dt sank the lift below 0, and a
+    // release inside that frame took the √ of a negative air time — NaN, so it never landed and hung frozen
+    // over the page where the pointer had been.
+    if (now <= last) { raf = requestAnimationFrame(step); return; }
     const dt = Math.min(3, (now - last) / 16.667); last = now;
     // a hard throw turns over once about the grab→centre axis, easing flat (back-up) before it lands
-    const k = Math.min(1, (now - turn.t0) / turn.ms);
+    const k = Math.max(0, Math.min(1, (now - turn.t0) / turn.ms));
     flip = lerp(turn.from, turn.to, k * (2 - k));
     if (phase === 'held') {
       vs.x = lerp(vs.x, (P.x - prev.x) / dt, 0.45); vs.y = lerp(vs.y, (P.y - prev.y) / dt, 0.45);
