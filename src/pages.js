@@ -1,5 +1,5 @@
 // Page templates. Each returns { html, theme }; titles and meta live in seo.js.
-import { PRIVACY, STORAGE, LEGAL_UPDATED } from './legal.js';
+import { PRIVACY, STORAGE, LEGAL_UPDATED, TERMS, REFUNDS, TERMS_UPDATED } from './legal.js';
 import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, FLAGSHIPS, FLAGSHIP_LINE, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -33,7 +33,7 @@ export const footer = () => `
     <div class="c1">${MARK.replace('<svg', '<svg style="width:64px;fill:currentColor"')}</div>
     <div class="c2 mono">FF Dev Studio<br>${esc(CONTACT.city)}<br><span style="opacity:.6">${esc(CONTACT.legalName)} (${esc(CONTACT.regNo)})</span></div>
     <div class="c3 mono">${mail()}<a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="/faq" data-link>Questions</a></div>
-    <div class="c4 mono"><a href="/privacy" data-link>Privacy</a><a href="/cookies" data-link>Cookies</a><button type="button" data-cookie-settings>Cookie settings</button></div>
+    <div class="c4 mono"><a href="/terms" data-link>Terms</a><a href="/refunds" data-link>Refunds</a><a href="/privacy" data-link>Privacy</a><a href="/cookies" data-link>Cookies</a><button type="button" data-cookie-settings>Cookie settings</button></div>
   </footer>`;
 
 export function project(slug) {
@@ -261,23 +261,24 @@ export function faq() {
   };
 }
 
-// /privacy and /cookies — the FAQ's rows: a label in columns 1–3, the section in 4–12
+// /privacy, /cookies, /terms and /refunds — the FAQ's rows: a label in columns 1–3, the section in 4–12
+const legalText = (t) => esc(t).replace(CONTACT.email, `<!--email_off-->${CONTACT.email}<!--/email_off-->`).replace('the refunds page', '<a href="/refunds" data-link>the refunds page</a>');
 const legalRow = (s, i) => `
       <section class="pr-row faq-q" id="${s.id}" aria-labelledby="l-${s.id}">
         <p class="mono label-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
         <div class="content">
           <h2 id="l-${s.id}">${esc(s.h)}</h2>
-          ${(s.p || []).map((t) => `<p>${esc(t).replace(CONTACT.email, `<!--email_off-->${CONTACT.email}<!--/email_off-->`)}</p>`).join('')}
-          ${s.list ? `<ul class="bullets">${s.list.map((t) => `<li>${esc(t)}</li>`).join('')}</ul>` : ''}
-          ${s.after ? `<p>${esc(s.after).replace(CONTACT.email, `<!--email_off-->${CONTACT.email}<!--/email_off-->`)}</p>` : ''}
+          ${(s.p || []).map((t) => `<p>${legalText(t)}</p>`).join('')}
+          ${s.list ? `<ul class="bullets">${s.list.map((t) => `<li>${legalText(t)}</li>`).join('')}</ul>` : ''}
+          ${s.after ? `<p>${legalText(s.after)}</p>` : ''}
         </div>
       </section>`;
-const legalHero = (h1, line) => `
+const legalHero = (h1, line, updated = LEGAL_UPDATED) => `
       <section class="pr-row pr-hero">
         <h1 class="mono label-dot">${h1}</h1>
         <div class="content">
           <p class="big reveal">${split(line)}</p>
-          <p class="mono updated">Last updated ${LEGAL_UPDATED}</p>
+          <p class="mono updated">Last updated ${updated}</p>
         </div>
       </section>`;
 
@@ -288,6 +289,30 @@ export function privacy() {
     <div class="pricing legal">
       ${legalHero('Privacy', 'What this site collects, why, who handles it, and what you can do about it.')}
       ${PRIVACY.map(legalRow).join('')}
+      ${footer()}
+    </div>`,
+  };
+}
+
+export function terms() {
+  return {
+    theme: 'dark',
+    html: `
+    <div class="pricing legal">
+      ${legalHero('Terms', 'How projects and care plans work: what you pay, when, and how to stop.', TERMS_UPDATED)}
+      ${TERMS.map(legalRow).join('')}
+      ${footer()}
+    </div>`,
+  };
+}
+
+export function refunds() {
+  return {
+    theme: 'dark',
+    html: `
+    <div class="pricing legal">
+      ${legalHero('Refunds', 'When money comes back, how to ask for it, and how long it takes.', TERMS_UPDATED)}
+      ${REFUNDS.map(legalRow).join('')}
       ${footer()}
     </div>`,
   };

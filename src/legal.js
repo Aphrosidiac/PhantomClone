@@ -7,6 +7,9 @@ import { CONTACT } from './data.js';
 
 export const LEGAL_UPDATED = '3 October 2026';
 export const LEGAL_UPDATED_ISO = '2026-09-26';
+// /terms and /refunds: dated on their own, so a change there does not re-date the privacy notice
+export const TERMS_UPDATED = '13 October 2026';
+export const TERMS_UPDATED_ISO = '2026-10-13';
 const WHO = `${CONTACT.legalName} (SSM ${CONTACT.regNo})`;
 
 export const PRIVACY = [
@@ -100,4 +103,135 @@ export const STORAGE = [
   { name: `ph_${T}_posthog`, type: 'Session storage', purpose: 'PostHog analytics: details of the current visit in this tab.', life: 'Until the tab is closed', when: 'accept' },
   { name: 'ff_internal', type: 'Local storage', purpose: 'Marks FF Dev Studio’s own devices, so our own visits are left out of the statistics. Never set for visitors.', life: 'Until removed', when: 'internal' },
   { name: `ph_${T}_window_id`, type: 'Session storage', purpose: 'Tells visits in different tabs apart, so recordings are not mixed up.', life: 'Until the tab is closed', when: 'accept' },
+];
+
+// /terms and /refunds. Every statement must stay true of how FF actually works: the service model is
+// ffdevstudio/SERVICE_ARCHITECTURE.md, care-plan billing is FF Ops (apps/api/src/modules/billing/
+// service.ts + jobs.ts: auto-pay renewals, retries on day 3 and day 7, cancel at period end, MANUAL plans
+// invoiced each period, PREPAID plans lapse). Fakhrul's rulings 2026-10-13: deposit refundable until work
+// starts; no partial care refunds (runs to period end); unpaid care pauses, hosting may be suspended after
+// 30 days overdue with notice. No street address (Fakhrul 2026-10-13): the Consumer Protection (Electronic
+// Trade Transactions) Regulations 2012 Schedule item 3 asks for email AND telephone, OR address — both are shown.
+// Change these with the code and with him, never separately.
+export const TERMS = [
+  {
+    id: 'who', h: 'Who we are',
+    p: [`FF Dev Studio (“FF Dev Studio”, “we”) is ${WHO}, a sole proprietorship registered in Malaysia, working from Kuala Lumpur.`,
+      `These terms apply to website projects and care plans bought from FF Dev Studio. Contact: ${CONTACT.email} or WhatsApp ${CONTACT.whatsapp}.`],
+  },
+  {
+    id: 'proposal', h: 'Every project starts with a written proposal',
+    p: ['Before any work starts, you receive a written proposal with the deliverables, what is not included, the timeline, ownership and hosting, the revision rules and the price. The proposal and these terms together are the agreement. Where they differ, the proposal wins.',
+      'Prices are in Malaysian ringgit (MYR). The bands on the pricing page are for estimating; the price you pay is the one in your proposal.'],
+  },
+  {
+    id: 'payment', h: 'Paying for a project',
+    list: [
+      '50% deposit: work begins once the deposit and the content needed to start are in.',
+      '50% final payment: due before the site goes public or is handed over.',
+      'Each payment is invoiced. Pay online through the link on the invoice (processed by CHIP, a Malaysian payment gateway: online banking (FPX), card or the other methods shown on the payment page) or by bank transfer to the account on the invoice, by the due date shown on it.',
+      'Card details are entered on CHIP’s payment page. FF Dev Studio never sees or stores your full card number.',
+    ],
+  },
+  {
+    id: 'work', h: 'Revisions, content and launch',
+    list: [
+      'Three revision rounds are included. Feedback for each round comes together from you in one set. New scope is quoted separately.',
+      'You supply the final content: business facts, offer details, copy, logo, photography and any legal information the site must show. Full copywriting, photography, video and other content production are quoted separately.',
+      'Timelines start once the deposit and the content needed to start are in, and move if content or feedback arrives late.',
+      'After launch, defects in the work we delivered are fixed free of charge for thirty days.',
+    ],
+  },
+  {
+    id: 'ownership', h: 'Ownership',
+    list: [
+      'Your domain and the content you supply are always yours. We may manage hosting, DNS and deployment for you, but we never hold your domain back.',
+      'Once a project is fully paid, its deliverables can be handed over or moved to another host when you ask.',
+      'Third-party licences, subscriptions, fonts, stock media and services stay under their own terms and costs. Domain fees are billed at cost.',
+    ],
+    after: 'The exact ownership and handoff terms for a project are written into its proposal.',
+  },
+  {
+    id: 'care', h: 'Care plans',
+    p: ['A care plan keeps a site we host and maintain looked after after launch:'],
+    list: [
+      'Care: RM59 a month or RM590 a year. Managed hosting, SSL and CDN, uptime monitoring, backups, security and dependency maintenance, and fixes for defects in our work.',
+      'Maintain: RM149 a month or RM1,490 a year. Everything in Care, plus up to 60 minutes of small content or visual changes a month and priority WhatsApp support.',
+      'Evolve: RM299 a month or RM2,990 a year. Everything in Maintain, plus up to three hours of improvements a month and a quarterly improvement recommendation.',
+    ],
+    after: 'Included time does not roll over to the next month. New pages, redesigns, new features and third-party usage costs are quoted separately. A plan is optional: a site can also be handed over to be hosted elsewhere.',
+  },
+  {
+    id: 'auto-pay', h: 'Care plans on card auto-pay',
+    p: ['If you choose auto-pay, the plan renews automatically until you cancel it:'],
+    list: [
+      'You pay the first month or year on CHIP’s payment page and agree to save the card there for the renewals. CHIP keeps the card; we keep only its brand and last four digits.',
+      'On the day each paid period ends, we charge the saved card for the next one, at the price your plan started at. If your plan started with a discount, it renews at the normal price once the discount has run out, as shown when you signed up. Every charge comes with an invoice and receipt by email.',
+      'If a charge is declined, we email you and try the card again 3 days later, then once more 4 days after that. After that there are no more automatic attempts: you can pay the invoice online or by bank transfer, or add a new card in the client portal.',
+      'You can change the card, or cancel, at any time in the client portal, or by asking us by email or WhatsApp.',
+    ],
+  },
+  {
+    id: 'transfer', h: 'Care plans paid by bank transfer',
+    list: [
+      'If you prefer not to save a card, each month or year is invoiced at the start of the period and emailed to you. Pay it by bank transfer, or online through the link on the invoice, by the due date shown on it.',
+      'Nothing is charged automatically. The plan carries on, one invoice per period, until you cancel it.',
+      'A prepaid plan (several months paid up front) ends on its last day and does not renew by itself. We remind you before it ends, with the option to continue.',
+    ],
+  },
+  {
+    id: 'cancel', h: 'Cancelling a care plan',
+    list: [
+      'Cancel at any time, in the client portal or by email or WhatsApp. There is no minimum term and no cancellation fee.',
+      'The plan keeps running until the end of the month or year already paid, and nothing more is charged or invoiced after that. You can undo the cancellation before that date.',
+      'When a plan ends, we can hand the site over or move it to another host for you.',
+    ],
+    after: 'How refunds work for care plans is on the refunds page.',
+  },
+  {
+    id: 'unpaid', h: 'If a care plan goes unpaid',
+    p: ['While a care-plan invoice is overdue, changes and support under the plan pause. If it is still unpaid 30 days after the due date, we may suspend hosting of the site after telling you in writing first. It is restored as soon as the invoice is paid. Your domain and content stay yours throughout.'],
+  },
+  {
+    id: 'law', h: 'Law and changes',
+    p: ['These terms are governed by the laws of Malaysia.',
+      `When these terms change, the new version is published here with a new date. A change never alters a proposal you have already accepted or a period you have already paid for. Last updated ${TERMS_UPDATED}.`],
+  },
+];
+
+export const REFUNDS = [
+  {
+    id: 'deposit', h: 'Project deposits',
+    list: [
+      'If you cancel a project before we start work on it, the 50% deposit is refunded in full.',
+      'Once work has started (the direction, design or build), the deposit is not refundable.',
+      'The final 50% is only due before launch or handover. If a project is cancelled before then, the final payment is not owed.',
+    ],
+  },
+  {
+    id: 'care', h: 'Care plans',
+    list: [
+      'Cancel at any time. The plan runs until the end of the month or year already paid and is not charged again.',
+      'Periods already paid are not refunded in part, whether the plan is monthly or yearly.',
+      'A prepaid plan is not refunded in part either; it simply ends on its last day.',
+    ],
+  },
+  {
+    id: 'mistakes', h: 'Charged in error',
+    p: ['If you were charged twice, charged after cancelling, or charged an amount that does not match your invoice, tell us and the wrong charge is refunded in full.'],
+  },
+  {
+    id: 'defects', h: 'Defects',
+    p: ['A defect in work we delivered is fixed, not refunded: free of charge within thirty days of launch, and at any time while the site is on a care plan.'],
+  },
+  {
+    id: 'how', h: 'How to ask, and how refunds are paid',
+    list: [
+      `Email ${CONTACT.email} or WhatsApp ${CONTACT.whatsapp} with the invoice number and what happened.`,
+      'We reply within 3 working days.',
+      'Card, online banking and e-wallet payments are refunded through CHIP to the same card or account. Bank transfers are refunded to the account they came from.',
+      'An approved refund is sent within 7 working days. A card refund can take a further 5 to 14 working days to show on your statement, depending on your bank.',
+    ],
+    after: 'This policy does not affect your rights under the Consumer Protection Act 1999 or other Malaysian law.',
+  },
 ];

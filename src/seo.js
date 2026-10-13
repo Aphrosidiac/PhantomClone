@@ -2,7 +2,7 @@
 // cards and schema.org JSON-LD. The same function feeds the build-time prerender
 // (scripts/prerender.mjs writes it into each route's static HTML) and the client router (which
 // swaps it on navigation), so a crawler and a visitor always see the same head.
-import { LEGAL_UPDATED_ISO } from './legal.js';
+import { LEGAL_UPDATED_ISO, TERMS_UPDATED_ISO } from './legal.js';
 import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, FLAGSHIP_LINE, bySlug, media, label, STACK_LABEL } from './data.js';
 
 export const SITE_URL = String(import.meta.env?.VITE_SITE_URL || 'https://ffdev.studio').replace(/\/$/, '');
@@ -175,6 +175,14 @@ export function seoFor(route) {
         ? ['Privacy notice | FF Dev Studio', 'What ffdev.studio collects, why, who handles it and your rights under Malaysia’s Personal Data Protection Act 2010. Run by FF DEV STUDIO (SSM 202603234793).', 'Privacy']
         : ['Cookies | FF Dev Studio', 'The cookies and browser storage ffdev.studio uses, what each is for and how long it is kept. Analytics only with your consent; change your choice here.', 'Cookies'];
       return { ...base, path, title, description, graph: [...core(), webpage('WebPage', path, title, description, { about: { '@id': ORG }, dateModified: LEGAL_UPDATED_ISO, breadcrumb: crumbs([[name, path]]) })] };
+    }
+    case 'terms':
+    case 'refunds': {
+      const path = `/${route.name}`;
+      const [title, description, name] = route.name === 'terms'
+        ? ['Terms | FF Dev Studio', 'How FF Dev Studio projects and care plans work: written proposals, 50% deposit, payments by CHIP or bank transfer, care-plan auto-renewal and cancellation. FF DEV STUDIO (SSM 202603234793).', 'Terms']
+        : ['Refunds and cancellations | FF Dev Studio', 'FF Dev Studio refund policy: project deposits, care-plan cancellations, charges made in error, and how and when refunds are paid.', 'Refunds'];
+      return { ...base, path, title, description, graph: [...core(), webpage('WebPage', path, title, description, { about: { '@id': ORG }, dateModified: TERMS_UPDATED_ISO, breadcrumb: crumbs([[name, path]]) })] };
     }
     case 'faq': {
       const path = '/faq';
