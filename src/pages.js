@@ -1,6 +1,6 @@
 // Page templates. Each returns { html, theme }; titles and meta live in seo.js.
-import { PRIVACY, STORAGE, LEGAL_UPDATED, TERMS, REFUNDS, TERMS_UPDATED } from './legal.js';
-import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, FLAGSHIPS, FLAGSHIP_LINE, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
+import { PRIVACY, STORAGE, LEGAL_UPDATED, TERMS, REFUNDS, DELIVERY, TERMS_UPDATED } from './legal.js';
+import { PROJECTS, ZONES, PRICING, CONTACT, FAQ, FLAGSHIPS, FLAGSHIP_LINE, PRODUCTS, bySlug, tileUrl, media, label, STACK_LABEL } from './data.js';
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const MARK = '<svg viewBox="0 0 194 72" aria-hidden="true"><path d="M0 72 16 0h14L14 72Z"/><path d="M24 72 40 0h14L38 72Z"/><path d="M72 0h54v15H88v13h32v14H88v30H72Z"/><path d="M140 0h54v15h-38v13h32v14h-32v30h-16Z"/></svg>';
@@ -31,9 +31,9 @@ const split = (text) => text.split(' ').map((w, i) => `<span class="w" style="--
 export const footer = () => `
   <footer class="foot">
     <div class="c1">${MARK.replace('<svg', '<svg style="width:64px;fill:currentColor"')}</div>
-    <div class="c2 mono">FF Dev Studio<br>${esc(CONTACT.city)}<br><span style="opacity:.6">${esc(CONTACT.legalName)} (${esc(CONTACT.regNo)})</span></div>
-    <div class="c3 mono">${mail()}<a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="/faq" data-link>Questions</a></div>
-    <div class="c4 mono"><a href="/terms" data-link>Terms</a><a href="/refunds" data-link>Refunds</a><a href="/privacy" data-link>Privacy</a><a href="/cookies" data-link>Cookies</a><button type="button" data-cookie-settings>Cookie settings</button></div>
+    <div class="c2 mono">FF Dev Studio<br>${CONTACT.address.map(esc).join('<br>')}<br><span style="opacity:.6">${esc(CONTACT.legalName)} (${esc(CONTACT.regNo)})</span></div>
+    <div class="c3 mono">${mail()}<a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="/faq" data-link>Questions</a><span class="foot-label">Our products</span>${PRODUCTS.map((p) => `<a href="${p.url}" target="_blank" rel="noopener">${esc(p.name)} (${esc(p.host)})</a>`).join('')}</div>
+    <div class="c4 mono"><a href="/terms" data-link>Terms</a><a href="/refunds" data-link>Refunds</a><a href="/delivery" data-link>Shipping &amp; delivery</a><a href="/privacy" data-link>Privacy</a><a href="/cookies" data-link>Cookies</a><button type="button" data-cookie-settings>Cookie settings</button></div>
   </footer>`;
 
 export function project(slug) {
@@ -146,7 +146,7 @@ export function about(tab = 'studio') {
     <section class="a-row a-block" style="padding-bottom:0;margin-top:150px"><p class="mono">Our Studio</p><div class="content"><h2 class="sub-title" style="font-size:clamp(2rem,3vw,3rem);text-transform:none">One studio, in Kuala Lumpur</h2></div></section>
     <div class="studios">
       <div class="mark">${MARK}</div>
-      <div class="addr mono">FF Dev Studio<br>Kuala Lumpur<br>Malaysia<br><span style="opacity:.6">${esc(CONTACT.legalName)} (${esc(CONTACT.regNo)})</span></div>
+      <div class="addr mono">FF Dev Studio<br>${CONTACT.address.map(esc).join('<br>')}<br><span style="opacity:.6">${esc(CONTACT.legalName)} (${esc(CONTACT.regNo)})</span></div>
       <div class="links mono">${mail()}<a href="${CONTACT.wa}" target="_blank" rel="noopener">WhatsApp ${esc(CONTACT.whatsapp)}</a><a href="https://ffdev.studio" target="_blank" rel="noopener">ffdev.studio</a></div>
     </div>
     <section class="a-row a-block" style="padding-bottom:40px;margin-top:150px"><h2 class="mono">Team</h2><div class="content"><p class="statement reveal">${split('Design, development and motion, made in-house from the first sketch to launch.')}</p></div></section>
@@ -262,7 +262,7 @@ export function faq() {
 }
 
 // /privacy, /cookies, /terms and /refunds — the FAQ's rows: a label in columns 1–3, the section in 4–12
-const legalText = (t) => esc(t).replace(CONTACT.email, `<!--email_off-->${CONTACT.email}<!--/email_off-->`).replace('the refunds page', '<a href="/refunds" data-link>the refunds page</a>');
+const legalText = (t) => esc(t).replace(CONTACT.email, `<!--email_off-->${CONTACT.email}<!--/email_off-->`).replace('the refunds page', '<a href="/refunds" data-link>the refunds page</a>').replace('the delivery page', '<a href="/delivery" data-link>the delivery page</a>');
 const legalRow = (s, i) => `
       <section class="pr-row faq-q" id="${s.id}" aria-labelledby="l-${s.id}">
         <p class="mono label-dot" aria-hidden="true">${String(i + 1).padStart(2, '0')}</p>
@@ -313,6 +313,18 @@ export function refunds() {
     <div class="pricing legal">
       ${legalHero('Refunds', 'When money comes back, how to ask for it, and how long it takes.', TERMS_UPDATED)}
       ${REFUNDS.map(legalRow).join('')}
+      ${footer()}
+    </div>`,
+  };
+}
+
+export function delivery() {
+  return {
+    theme: 'dark',
+    html: `
+    <div class="pricing legal">
+      ${legalHero('Delivery', 'Everything we sell is digital: how and when it reaches you, and why nothing is shipped.', TERMS_UPDATED)}
+      ${DELIVERY.map(legalRow).join('')}
       ${footer()}
     </div>`,
   };

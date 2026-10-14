@@ -42,6 +42,7 @@ const ROUTES = [
   { file: 'cookies.html', route: { name: 'cookies' }, page: pages.cookies() },
   { file: 'terms.html', route: { name: 'terms' }, page: pages.terms() },
   { file: 'refunds.html', route: { name: 'refunds' }, page: pages.refunds() },
+  { file: 'delivery.html', route: { name: 'delivery' }, page: pages.delivery() },
   { file: 'contact.html', route: { name: 'contact' }, page: pages.contactSeo() },
   { file: '404.html', route: { name: '404' }, page: pages.notFound() },
 ];
@@ -69,7 +70,7 @@ for (const r of ROUTES) {
 // sitemap: every indexable route; images are the pages' own captures
 const indexable = ROUTES.filter((r) => r.route.name !== '404');
 const urlFor = (r) => SITE_URL + seoFor(r.route).path;
-const SOURCES = { home: ['src/data.js'], project: ['src/data.js', 'src/shots.json'], about: ['src/pages.js'], pricing: ['src/pages.js', 'src/data.js'], faq: ['src/data.js'], privacy: ['src/legal.js'], cookies: ['src/legal.js'], terms: ['src/legal.js'], refunds: ['src/legal.js'], contact: ['src/pages.js'] };
+const SOURCES = { home: ['src/data.js'], project: ['src/data.js', 'src/shots.json'], about: ['src/pages.js'], pricing: ['src/pages.js', 'src/data.js'], faq: ['src/data.js'], privacy: ['src/legal.js'], cookies: ['src/legal.js'], terms: ['src/legal.js'], refunds: ['src/legal.js'], delivery: ['src/legal.js', 'src/data.js'], contact: ['src/pages.js'] };
 const lastmodFor = (r) => changed([...SOURCES[r.route.name], ...(r.route.name === 'project' ? [`public/media/${r.route.slug}`] : [])]);
 const imagesFor = (r) => {
   if (r.route.name !== 'project') return [];
@@ -109,6 +110,7 @@ This site is an index of FF Dev Studio's work, shown as a draggable WebGL grid.
 - [Cookies](${SITE_URL}/cookies): browser storage, analytics only with consent
 - [Terms](${SITE_URL}/terms): how projects and care plans work, payments, auto-renewal and cancellation
 - [Refunds](${SITE_URL}/refunds): deposits, care-plan cancellations and how refunds are paid
+- [Delivery](${SITE_URL}/delivery): everything is digital and delivered online; nothing is shipped
 - [Contact](${SITE_URL}/contact): a seven-question brief, sent by email or WhatsApp
 
 ## ${FLAGSHIPS.length === 1 ? 'Flagship' : 'Flagships'}
