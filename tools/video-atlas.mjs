@@ -57,6 +57,9 @@ const CLIPS = [
   // the hero's whole scroll (record.mjs with SCROLL=3,3210,5): the table card's QR grows to fill the screen, its
   // modules scatter, settle into a mosaic in the photos' colours, and the real gallery resolves; 2.1x to fit it in 5 s
   { slug: 'indahnya', file: '2026-10-04_indahnya_hero-scroll.mp4', at: 3.0, speed: 2.1, crop: 'page' },
+  // the hero standing still (record.mjs): the headline beside the fan of fifteen network marks, which fires a post
+  // down every line and fills the marks in turn, about once every four seconds
+  { slug: 'siar', file: '2026-10-14_siar_page.mp4', at: 3.0, crop: 'page' },
 ];
 
 const LOOP = 5;       // seconds

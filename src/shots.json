@@ -2380,5 +2380,175 @@
     ]
    }
   ]
+ },
+ "siar": {
+  "cover": {
+   "src": "/media/siar/s-hero.webp",
+   "sm": "/media/siar/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Write it once. Siar it everywhere. — the Siar mark fanning out to fifteen network marks",
+   "page": "siaran.my"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/siar/s-dashboard.webp",
+      "sm": "/media/siar/s-dashboard-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The dashboard’s Posts list beside the request that made them: one POST, and each network’s delivery going out",
+      "page": "siaran.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/siar/s-tour.webp",
+      "sm": "/media/siar/s-tour-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The product tour: the composer, in a real recording of the dashboard, one post written once for every network",
+      "page": "siaran.my"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/siar/s-m-hero.webp",
+      "sm": "/media/siar/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "siaran.my"
+     },
+     {
+      "src": "/media/siar/s-m-nets.webp",
+      "sm": "/media/siar/s-m-nets-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the fifteen networks",
+      "page": "siaran.my"
+     },
+     {
+      "src": "/media/siar/s-m-price.webp",
+      "sm": "/media/siar/s-m-price-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: one price, unlimited accounts",
+      "page": "siaran.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/siar/s-nets.webp",
+      "sm": "/media/siar/s-nets-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "One request. 15 networks. — each network with what it publishes: video, reel, story, thread, link post",
+      "page": "siaran.my"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/siar/s-break.webp",
+      "sm": "/media/siar/s-break-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The parts that break are ours now: a live event log of retries, token refreshes and posts claimed once",
+      "page": "siaran.my"
+     },
+     {
+      "src": "/media/siar/s-dev.webp",
+      "sm": "/media/siar/s-dev-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "First post in five minutes: three steps beside the curl request, and the MCP line that gives an agent the keys",
+      "page": "siaran.my"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/siar/s-price.webp",
+      "sm": "/media/siar/s-price-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Unlimited accounts. One price. — the calculator: forty brands, six networks each, still one plan",
+      "page": "siaran.my"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/siar/s-docs.webp",
+      "sm": "/media/siar/s-docs-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The documentation: quickstart, data model, connecting accounts and posting guides",
+      "page": "siaran.my/docs"
+     },
+     {
+      "src": "/media/siar/s-api.webp",
+      "sm": "/media/siar/s-api-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The API reference: the Posts API’s nine operations, generated from one OpenAPI document",
+      "page": "siaran.my/docs/api/post"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/siar/s-for.webp",
+      "sm": "/media/siar/s-for-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Built for people who post for a living: SaaS products, agencies and AI agents",
+      "page": "siaran.my"
+     },
+     {
+      "src": "/media/siar/s-footer.webp",
+      "sm": "/media/siar/s-footer-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The footer: the siar wordmark across the ink",
+      "page": "siaran.my"
+     }
+    ]
+   }
+  ]
  }
 }

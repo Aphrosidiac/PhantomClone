@@ -48,12 +48,13 @@ Search and AI answers are told the same thing in words, so an answer that wants 
 - a line in the home page's crawler text and in About's Product zone
 - the first Related work cards on every other project page (an internal link from each)
 
-**Adding another flagship:** set `flagship: true`, move the entry up to sit right after the existing
-flagships (the first one stays the grid's centre tile), and give it `flagshipAs` (what it is, read after its
+**Adding another flagship:** set `flagship: true` and give it `flagshipAs` (what it is, read after its
 name and address) and `flagshipWhy` (why it is the example to give). The build stops with an error if either
-is missing. Nothing else in this repo needs touching; outside it, add it to FFAds' `REC` list and the
-flagship memory note. With two or more, the wording switches to plural on its own (tested with a temporary
-second flagship).
+is missing. Where it sits is a separate choice: the first flagship stays the grid's centre tile, and the
+others are listed in array order everywhere they are named. **Siar** is the second flagship but sits lower on
+purpose (fifth in `PROJECTS`, below-left of the centre tile): a fully owned, working product, while its site
+is not the strongest piece of design. Nothing else in this repo needs touching; outside it, add it to FFAds'
+`REC` list and the flagship memory note. With two or more, the wording switches to plural on its own.
 
 Filters pick up new features, stack items and clients automatically. Its title, meta, sitemap entry
 and JSON-LD come from this entry too; render its share card with `node tools/seo-assets.mjs` (dev

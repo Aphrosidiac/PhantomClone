@@ -10,12 +10,12 @@ export const ZONES = {
 
 export const PROJECTS = [
   // plate: the backdrop the project page's screenshots sit on (picked from each site's own palette)
-  // flagship: the work FF leads with. Flagships sit first (the first one is the grid's centre tile and the top of
-  // the list) and are the first pick wherever a subset of the work is shown or promoted (ads, share images,
+  // flagship: the work FF leads with. The first flagship is the grid's centre tile and the top of the list; others
+  // may sit lower (Siar). Flagships are the first pick wherever a subset of the work is shown or promoted (ads, share images,
   // social). Keep their tiles like the others — the hint is their place, not a louder tile.
   //
-  // ADDING A FLAGSHIP: set `flagship: true`, move the entry up to sit right after the existing flagships, and
-  // give it the two sentences below. That is all: search and AI answers are told about every flagship in
+  // ADDING A FLAGSHIP: set `flagship: true`, place the entry (after the first flagship, as high as it should
+  // show), and give it the two sentences below. That is all: search and AI answers are told about every flagship in
   // words — the FAQ "What has FF Dev Studio built?", llms.txt's Flagships section, the Organization
   // description in every page's JSON-LD, the home page's crawler text, a line in About's zone row and the
   // first Related work cards — all built from FLAGSHIPS below. The build fails if either sentence is missing.
@@ -65,6 +65,20 @@ export const PROJECTS = [
     about: [
       'Indahnya is the studio’s own product for Malaysian weddings, aqiqah and family majlis. One QR on each table sends guests to the gallery from their phone browser, every photo lands at its original quality, and the slideshow plays live on the dewan’s TV. The same link carries the e-kad, RSVP, a seat finder on the hall’s floor plan and written or voice ucapan.',
       'The landing tells it in one scroll: the table card’s QR breaks into its modules, they settle into a mosaic in the colours of the guests’ photos, and the real gallery resolves. Bahasa Malaysia first, with English, priced once per majlis rather than by subscription. It is open as a preview for now, with a sample majlis you can click through end to end.',
+    ],
+  },
+  // a flagship placed lower than Hai Awan (Fakhrul 2026-10-14): below-left of the centre tile, second in FLAGSHIPS
+  {
+    slug: 'siar', title: 'Siar', client: 'FF Dev Studio', zone: 'product', year: 2026, plate: '#0b0b0a', flagship: true, wordmark: 'Siar',
+    flagshipAs: 'the studio’s own social media API and dashboard',
+    flagshipWhy: 'One API and one dashboard publish, schedule, reply and measure across 15 social networks; the API, dashboard, documentation and billing were designed and built in-house, and it runs live at siaran.my on the studio’s own server.',
+    features: ['api', 'platform', 'saas'], stack: ['fastify', 'postgres', 'vue', 'astro'], url: 'https://siaran.my/',
+    type: 'Social media API and dashboard', role: 'Product / API / Full stack / Website',
+    statement: 'Write it once, Siar it everywhere: one API and one dashboard that publish, schedule, reply and measure across 15 social networks.',
+    about: [
+      'Siar is the studio’s own product: a unified social media API. One request publishes to TikTok, YouTube, Instagram, Facebook, X, Threads, LinkedIn and the rest, with each network’s text, media and options checked against its rules before anything leaves. Comments and DMs from every network land in one inbox, and analytics come back per network.',
+      'Everything the API does, a team can click: a composer, calendar, inbox, analytics, hosted connect links for customers and link-in-bio pages. Developers get a TypeScript SDK, a CLI, signed webhooks and an MCP server, so AI agents can draft and schedule posts too. One price per organization, however many accounts are connected, billed in ringgit or dollars.',
+      'The API, the dashboard, the documentation and the billing were designed and built in-house, and Siar runs on the studio’s own server. FF Dev Studio uses it for its own channels too.',
     ],
   },
   {
@@ -210,7 +224,7 @@ export const FLAGSHIP_LINE = FLAGSHIPS.length === 1
   : `FF Dev Studio's flagships are ${FLAGSHIPS.map((p) => `${p.title} (${host(p.url)}), ${p.flagshipAs}`).join('; ').replace(/; (?=[^;]*$)/, '; and ')}.`; // semicolons: each item has its own comma
 export const FLAGSHIP_NAMES = and(FLAGSHIPS.map((p) => p.title));
 
-export const FEATURE_LABEL = { '3d': '3D', ai: 'AI', seo: 'SEO', webgl: 'WebGL', 'e-commerce': 'E-commerce', 'open-source': 'Open source', macos: 'macOS' };
+export const FEATURE_LABEL = { '3d': '3D', ai: 'AI', seo: 'SEO', webgl: 'WebGL', 'e-commerce': 'E-commerce', 'open-source': 'Open source', macos: 'macOS', api: 'API', saas: 'SaaS' };
 export const STACK_LABEL = { next: 'Next.js', vite: 'Vite', astro: 'Astro', three: 'Three.js', gsap: 'GSAP', lenis: 'Lenis', postgres: 'Postgres', swift: 'Swift', node: 'Node.js', sqlite: 'SQLite', nuxt: 'Nuxt' };
 export const label = (k, map = FEATURE_LABEL) => map[k] || k.charAt(0).toUpperCase() + k.slice(1);
 

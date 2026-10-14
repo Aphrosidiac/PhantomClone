@@ -1,6 +1,6 @@
 {
-  "src": "/media/video/atlas.mp4?v=3a362c04d5",
-  "srcPhone": "/media/video/atlas-phone.mp4?v=640d7b49a4",
+  "src": "/media/video/atlas.mp4?v=b47d342cfb",
+  "srcPhone": "/media/video/atlas-phone.mp4?v=22aabf4930",
   "width": 1920,
   "height": 1800,
   "aspect": 1.7777777777777777,
@@ -79,6 +79,12 @@
     ],
     "indahnya": [
       0,
+      1440,
+      640,
+      360
+    ],
+    "siar": [
+      640,
       1440,
       640,
       360
