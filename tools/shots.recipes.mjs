@@ -25,6 +25,12 @@ const INTRO_MID = [['eval', () => new Promise((done) => {
   const t = () => { const c = document.querySelector('[data-intro-count]'); if (!c || +c.textContent >= 70) done(); else setTimeout(t, 20); }; t();
 })]];
 
+// Siar's tour: open the "Write once" step, then wait until its recording is a few seconds in (past the crossfade)
+const SIAR_TOUR = [['click', '[data-player] [data-tab="1"]'], ['eval', () => new Promise((done) => {
+  const t0 = Date.now();
+  const t = () => { const v = [...document.querySelectorAll('[data-player] video')].find((x) => !x.paused); if ((v && v.currentTime > 3.5) || Date.now() - t0 > 15000) done(); else setTimeout(t, 50); }; t();
+})]];
+
 export const RECIPES = {
   'hai-awan': {
     base: 'https://awan.ffdev.studio/', device: 'mid', boot: 2500, settle: 1200,
@@ -73,6 +79,34 @@ export const RECIPES = {
     ],
     cover: 'hero',
     rows: [['full', 'gallery'], ['pair', 'scatter', 'mosaic'], ['trio', 'm-hero', 'm-gallery', 'm-kad'], ['full', 'how'], ['full', 'dewan'], ['pair', 'story', 'kad'], ['pair', 'guests', 'host'], ['full', 'pricing'], ['pair', 'sample', 'footer']],
+  },
+
+  // Siar's marketing site (Astro), light cream with one ink pricing band. The tour plays real dashboard
+  // recordings and advances on each clip's end, so its frames wait for the clip to be well in.
+  'siar': {
+    base: 'https://siaran.my/', device: 'mid', boot: 3000, settle: 1500, init: EAGER,
+    shots: [
+      { id: 'hero', steps: [['wait', 2500]], alt: 'Write it once. Siar it everywhere. — the Siar mark fanning out to fifteen network marks' },
+      { id: 'dashboard', steps: [['y', 700]], alt: 'The dashboard’s Posts list beside the request that made them: one POST, and each network’s delivery going out' },
+      { id: 'stats', steps: [['to', '.stats', 0.1]], alt: '15 networks behind one request, 265 API operations, 16 signed webhook events, $0 per connected account' },
+      { id: 'nets', steps: [['to', '.nets .grid15', 0.1]], alt: 'One request. 15 networks. — each network with what it publishes: video, reel, story, thread, link post' },
+      { id: 'tour', steps: [['to', '.tour .player', 0.08], ...SIAR_TOUR], settle: 300, alt: 'The product tour: the composer, in a real recording of the dashboard, one post written once for every network' },
+      { id: 'price', steps: [['to', '.price', 0.02]], alt: 'Unlimited accounts. One price. — the calculator: forty brands, six networks each, still one plan' },
+      { id: 'break', steps: [['to', '.break', 0.02]], alt: 'The parts that break are ours now: a live event log of retries, token refreshes and posts claimed once' },
+      { id: 'dev', steps: [['to', '.dev', 0.02]], alt: 'First post in five minutes: three steps beside the curl request, and the MCP line that gives an agent the keys' },
+      { id: 'for', steps: [['to', '.for', 0.02]], alt: 'Built for people who post for a living: SaaS products, agencies and AI agents' },
+      { id: 'faqs', steps: [['to', '.faqs', 0.02]], alt: 'Questions, answered straight' },
+      { id: 'footer', steps: [['y', 99999]], alt: 'The footer: the siar wordmark across the ink' },
+      { id: 'docs', url: 'docs', steps: [['wait', 1500]], alt: 'The documentation: quickstart, data model, connecting accounts and posting guides' },
+      { id: 'api', url: 'docs/api/post', steps: [['wait', 1500]], alt: 'The API reference: the Posts API’s nine operations, generated from one OpenAPI document' },
+      { id: 'netpage', url: 'instagram-api', steps: [['wait', 1500]], alt: 'A network page: the Instagram API through Siar' },
+      { id: 'm-hero', device: P, steps: [['wait', 2500]], alt: 'Phone: the hero' },
+      { id: 'm-nets', device: P, steps: [['to', '.nets', 0.02]], alt: 'Phone: the fifteen networks' },
+      { id: 'm-price', device: P, steps: [['to', '.price', 0.02]], alt: 'Phone: one price, unlimited accounts' },
+      { id: 'm-dev', device: P, steps: [['to', '.dev', 0.02]], alt: 'Phone: first post in five minutes' },
+    ],
+    cover: 'hero',
+    rows: [['full', 'dashboard'], ['full', 'tour'], ['trio', 'm-hero', 'm-nets', 'm-price'], ['full', 'nets'], ['pair', 'break', 'dev'], ['full', 'price'], ['pair', 'docs', 'api'], ['pair', 'for', 'footer']],
   },
 
   // the intro issues the member card and covers every load (full on the first visit, a quick "Welcome back" after),
