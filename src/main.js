@@ -200,6 +200,7 @@ function match(path) {
   if (path === '/cookies' || path === '/cookies/') return { name: 'cookies' };
   if (path === '/terms' || path === '/terms/') return { name: 'terms' };
   if (path === '/refunds' || path === '/refunds/') return { name: 'refunds' };
+  if (path === '/delivery' || path === '/delivery/') return { name: 'delivery' };
   if (path === '/contact' || path === '/contact/') return { name: 'contact' };
   return { name: '404' };
 }
@@ -234,7 +235,7 @@ async function render(first = false, forcePath = null, pop = null) {
   closeContact(false);
   const same = state.route && state.route.name === r.name && state.route.slug === r.slug && state.route.tab === r.tab;
   state.route = r;
-  const page = r.name === 'home' ? pages.homeSeo() : r.name === 'project' ? pages.project(r.slug) : r.name === 'about' ? pages.about(r.tab) : r.name === 'pricing' ? pages.pricing() : r.name === 'faq' ? pages.faq() : r.name === 'privacy' ? pages.privacy() : r.name === 'cookies' ? pages.cookies() : r.name === 'terms' ? pages.terms() : r.name === 'refunds' ? pages.refunds() : pages.notFound();
+  const page = r.name === 'home' ? pages.homeSeo() : r.name === 'project' ? pages.project(r.slug) : r.name === 'about' ? pages.about(r.tab) : r.name === 'pricing' ? pages.pricing() : r.name === 'faq' ? pages.faq() : r.name === 'privacy' ? pages.privacy() : r.name === 'cookies' ? pages.cookies() : r.name === 'terms' ? pages.terms() : r.name === 'refunds' ? pages.refunds() : r.name === 'delivery' ? pages.delivery() : pages.notFound();
   if (r.name === 'project' && page.status === 404) r.name = '404';
   if (r.name === 'project' && !same) {
     const p = PROJECTS.find((x) => x.slug === r.slug);

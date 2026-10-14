@@ -3,19 +3,20 @@
 // abroad, retention, and the rights to access, correct, withdraw consent and port data.
 // Every statement here must stay true of the running site — change it with the code (analytics.js,
 // consent.js, the PostHog project settings), never separately.
-import { CONTACT } from './data.js';
+import { CONTACT, PRODUCTS } from './data.js';
 
-export const LEGAL_UPDATED = '3 October 2026';
-export const LEGAL_UPDATED_ISO = '2026-09-26';
+export const LEGAL_UPDATED = '14 October 2026';
+export const LEGAL_UPDATED_ISO = '2026-10-14';
 // /terms and /refunds: dated on their own, so a change there does not re-date the privacy notice
-export const TERMS_UPDATED = '13 October 2026';
-export const TERMS_UPDATED_ISO = '2026-10-13';
+export const TERMS_UPDATED = '14 October 2026';
+export const TERMS_UPDATED_ISO = '2026-10-14';
 const WHO = `${CONTACT.legalName} (SSM ${CONTACT.regNo})`;
+const ADDRESS = CONTACT.address.join(', ');
 
 export const PRIVACY = [
   {
     id: 'who', h: 'Who is responsible',
-    p: [`This website, ffdev.studio, is run by ${WHO}, a web design studio in Kuala Lumpur, Malaysia (“FF Dev Studio”, “we”). FF Dev Studio decides how the personal data described here is used and is responsible for it.`,
+    p: [`This website, ffdev.studio, is run by ${WHO}, a web design studio registered at ${ADDRESS} (“FF Dev Studio”, “we”). FF Dev Studio decides how the personal data described here is used and is responsible for it.`,
       `Questions and requests about your data: ${CONTACT.email} or WhatsApp ${CONTACT.whatsapp}.`],
   },
   {
@@ -110,14 +111,20 @@ export const STORAGE = [
 // service.ts + jobs.ts: auto-pay renewals, retries on day 3 and day 7, cancel at period end, MANUAL plans
 // invoiced each period, PREPAID plans lapse). Fakhrul's rulings 2026-10-13: deposit refundable until work
 // starts; no partial care refunds (runs to period end); unpaid care pauses, hosting may be suspended after
-// 30 days overdue with notice. No street address (Fakhrul 2026-10-13): the Consumer Protection (Electronic
-// Trade Transactions) Regulations 2012 Schedule item 3 asks for email AND telephone, OR address — both are shown.
+// 30 days overdue with notice. The SSM registered address is shown (Fakhrul 2026-10-14, for CHIP's card review,
+// which asks for the business address in the footer), alongside email and telephone.
 // Change these with the code and with him, never separately.
 export const TERMS = [
   {
     id: 'who', h: 'Who we are',
-    p: [`FF Dev Studio (“FF Dev Studio”, “we”) is ${WHO}, a sole proprietorship registered in Malaysia, working from Kuala Lumpur.`,
+    p: [`FF Dev Studio (“FF Dev Studio”, “we”) is ${WHO}, a sole proprietorship registered in Malaysia. Registered address: ${ADDRESS}.`,
       `These terms apply to website projects and care plans bought from FF Dev Studio. Contact: ${CONTACT.email} or WhatsApp ${CONTACT.whatsapp}.`],
+  },
+  {
+    id: 'products', h: 'Our software products',
+    p: ['FF Dev Studio also builds and sells its own software online:'],
+    list: PRODUCTS.map((p) => `${p.name} (${p.host}): ${p.line}.`),
+    after: 'Each product is sold on its own website, under its own terms, privacy notice and refund policy, with payments processed by CHIP. Where a product’s own terms differ from these, the product’s terms apply to it.',
   },
   {
     id: 'proposal', h: 'Every project starts with a written proposal',
@@ -233,5 +240,34 @@ export const REFUNDS = [
       'An approved refund is sent within 7 working days. A card refund can take a further 5 to 14 working days to show on your statement, depending on your bank.',
     ],
     after: 'This policy does not affect your rights under the Consumer Protection Act 1999 or other Malaysian law.',
+  },
+];
+
+// /delivery: CHIP's review asks for a shipping/return policy. Nothing FF sells is physical; every statement
+// here must match /terms (deposit → work starts, launch after the final payment, care plans from payment).
+export const DELIVERY = [
+  {
+    id: 'digital', h: 'Nothing is shipped',
+    p: ['Everything FF Dev Studio sells is a digital service, delivered online. No physical goods are shipped, so there are no shipping fees, courier tracking or returns of goods. Questions about getting your money back are answered on the refunds page.'],
+  },
+  {
+    id: 'projects', h: 'Website projects',
+    list: [
+      'Work starts once the 50% deposit and the content needed to start are in. The timeline in your proposal counts from then.',
+      'Progress is shared online as a private preview link, with each revision round delivered the same way.',
+      'After the final payment, the site is published to your domain, or handed over (files, code and access) to you or your host, as agreed in the proposal.',
+    ],
+  },
+  {
+    id: 'care', h: 'Care plans',
+    p: ['A care plan starts on the day its first payment clears. Hosting, monitoring, backups and maintenance run from then; changes and support are requested by email or WhatsApp and delivered on the live site. An invoice and receipt for every payment is sent by email.'],
+  },
+  {
+    id: 'products', h: 'Software products',
+    p: [`${PRODUCTS.map((p) => `${p.name} (${p.host})`).join(' and ')} are delivered online: access is given in your account as soon as the payment is confirmed, and a receipt is sent by email. Each product’s own website sets out exactly what is included.`],
+  },
+  {
+    id: 'problems', h: 'If something has not arrived',
+    p: [`If you have paid and do not have access, a preview, a handover or a receipt you expected, email ${CONTACT.email} or WhatsApp ${CONTACT.whatsapp} with the invoice number. We reply within 3 working days.`],
   },
 ];

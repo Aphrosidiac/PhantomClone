@@ -240,10 +240,18 @@ export const CONTACT = {
   whatsapp: '+60 13 907 8719',
   wa: 'https://wa.me/60139078719',
   city: 'Kuala Lumpur, MY',
+  // registered business address (SSM), shown in the footer, About and the legal pages
+  address: ['No 15982 B, Kampung Selamat', 'Sungai Tong, 21500 Setiu', 'Terengganu, Malaysia'],
   // SSM business registration
   legalName: 'FF DEV STUDIO', regNo: '202603234793',
   tz: 'Asia/Kuala_Lumpur',
 };
+
+// FF Dev Studio's own software, sold on their own sites (footer, /terms, /delivery)
+export const PRODUCTS = [
+  { name: 'Indahnya', url: 'https://indahnya.my', host: 'indahnya.my', line: 'digital wedding cards (e-kad), RSVP and QR photo galleries for Malaysian weddings' },
+  { name: 'Siar', url: 'https://siaran.my', host: 'siaran.my', line: 'a social media API for publishing and scheduling posts across social networks, on a monthly or yearly plan' },
+];
 
 // From ffdevstudio/SERVICE_ARCHITECTURE.md — do not invent tiers or figures.
 export const PRICING = {

@@ -43,7 +43,7 @@ const org = () => ({
     '@type': 'ContactPoint', contactType: 'sales', email: CONTACT.email, telephone: CONTACT.wa.replace('https://wa.me/', '+'),
     url: abs('/contact'), areaServed: 'MY', availableLanguage: ['English', 'Malay'],
   },
-  address: { '@type': 'PostalAddress', addressLocality: 'Kuala Lumpur', addressCountry: 'MY' },
+  address: { '@type': 'PostalAddress', streetAddress: 'No 15982 B, Kampung Selamat, Sungai Tong', postalCode: '21500', addressLocality: 'Setiu', addressRegion: 'Terengganu', addressCountry: 'MY' },
   areaServed: { '@type': 'Country', name: 'Malaysia' },
   founder: { '@id': FOUNDER },
   knowsLanguage: ['en', 'ms'],
@@ -177,11 +177,14 @@ export function seoFor(route) {
       return { ...base, path, title, description, graph: [...core(), webpage('WebPage', path, title, description, { about: { '@id': ORG }, dateModified: LEGAL_UPDATED_ISO, breadcrumb: crumbs([[name, path]]) })] };
     }
     case 'terms':
-    case 'refunds': {
+    case 'refunds':
+    case 'delivery': {
       const path = `/${route.name}`;
       const [title, description, name] = route.name === 'terms'
         ? ['Terms | FF Dev Studio', 'How FF Dev Studio projects and care plans work: written proposals, 50% deposit, payments by CHIP or bank transfer, care-plan auto-renewal and cancellation. FF DEV STUDIO (SSM 202603234793).', 'Terms']
-        : ['Refunds and cancellations | FF Dev Studio', 'FF Dev Studio refund policy: project deposits, care-plan cancellations, charges made in error, and how and when refunds are paid.', 'Refunds'];
+        : route.name === 'refunds'
+          ? ['Refunds and cancellations | FF Dev Studio', 'FF Dev Studio refund policy: project deposits, care-plan cancellations, charges made in error, and how and when refunds are paid.', 'Refunds']
+          : ['Shipping and delivery | FF Dev Studio', 'FF Dev Studio sells digital services only: how websites, care plans and its software products are delivered online. Nothing is shipped.', 'Delivery'];
       return { ...base, path, title, description, graph: [...core(), webpage('WebPage', path, title, description, { about: { '@id': ORG }, dateModified: TERMS_UPDATED_ISO, breadcrumb: crumbs([[name, path]]) })] };
     }
     case 'faq': {
