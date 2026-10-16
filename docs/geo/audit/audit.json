@@ -1434,8 +1434,8 @@
    "alternates": []
   },
   {
-   "url": "https://ffdev.studio/projects/big-brain-furniture",
-   "final_url": "https://ffdev.studio/projects/big-brain-furniture",
+   "url": "https://ffdev.studio/projects/ff-furniture",
+   "final_url": "https://ffdev.studio/projects/ff-furniture",
    "status": 200,
    "error": "",
    "hops": [],
@@ -1449,7 +1449,7 @@
      "severity": "low",
      "category": "schema",
      "message": "Organization could add: sameAs, contactPoint, legalName",
-     "url": "https://ffdev.studio/projects/big-brain-furniture",
+     "url": "https://ffdev.studio/projects/ff-furniture",
      "fix": "",
      "evidence": ""
     },
@@ -1457,7 +1457,7 @@
      "severity": "low",
      "category": "schema",
      "message": "Person could add: url, sameAs, image, description, knowsAbout",
-     "url": "https://ffdev.studio/projects/big-brain-furniture",
+     "url": "https://ffdev.studio/projects/ff-furniture",
      "fix": "",
      "evidence": ""
     },
@@ -1465,7 +1465,7 @@
      "severity": "low",
      "category": "schema",
      "message": "WebSite could add: alternateName",
-     "url": "https://ffdev.studio/projects/big-brain-furniture",
+     "url": "https://ffdev.studio/projects/ff-furniture",
      "fix": "",
      "evidence": ""
     },
@@ -1473,7 +1473,7 @@
      "severity": "low",
      "category": "trust",
      "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
-     "url": "https://ffdev.studio/projects/big-brain-furniture",
+     "url": "https://ffdev.studio/projects/ff-furniture",
      "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
      "evidence": ""
     }
@@ -1481,13 +1481,13 @@
    "type": "page",
    "robots_meta": "index, follow, max-image-preview:large",
    "canonical": [
-    "https://ffdev.studio/projects/big-brain-furniture"
+    "https://ffdev.studio/projects/ff-furniture"
    ],
-   "canonical_abs": "https://ffdev.studio/projects/big-brain-furniture",
-   "title": "Big Brain Furniture \u2014 Retail website | FF Dev Studio",
+   "canonical_abs": "https://ffdev.studio/projects/ff-furniture",
+   "title": "FF Furniture \u2014 Retail website | FF Dev Studio",
    "description": "Reclaimed teak, presented as a catalogue that treats the material as the whole design. Retail website by FF Dev Studio, 2026.",
    "h1": [
-    "Big Brain Furniture"
+    "FF Furniture"
    ],
    "words": 159,
    "root_shell": false,
@@ -1600,8 +1600,8 @@
    "alternates": []
   },
   {
-   "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
-   "final_url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+   "url": "https://ffdev.studio/projects/ff-furniture-alt",
+   "final_url": "https://ffdev.studio/projects/ff-furniture-alt",
    "status": 200,
    "error": "",
    "hops": [],
@@ -1615,7 +1615,7 @@
      "severity": "low",
      "category": "schema",
      "message": "Organization could add: sameAs, contactPoint, legalName",
-     "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+     "url": "https://ffdev.studio/projects/ff-furniture-alt",
      "fix": "",
      "evidence": ""
     },
@@ -1623,7 +1623,7 @@
      "severity": "low",
      "category": "schema",
      "message": "Person could add: url, sameAs, image, description, knowsAbout",
-     "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+     "url": "https://ffdev.studio/projects/ff-furniture-alt",
      "fix": "",
      "evidence": ""
     },
@@ -1631,7 +1631,7 @@
      "severity": "low",
      "category": "schema",
      "message": "WebSite could add: alternateName",
-     "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+     "url": "https://ffdev.studio/projects/ff-furniture-alt",
      "fix": "",
      "evidence": ""
     },
@@ -1639,7 +1639,7 @@
      "severity": "low",
      "category": "trust",
      "message": "Email address hidden from crawlers by Cloudflare Email Obfuscation \u2014 live AI fetchers can't read the contact email",
-     "url": "https://ffdev.studio/projects/big-brain-furniture-alt",
+     "url": "https://ffdev.studio/projects/ff-furniture-alt",
      "fix": "Turn off Email Obfuscation (Scrape Shield) or also show the address as plain text on the Contact/About page",
      "evidence": ""
     }
@@ -1647,13 +1647,13 @@
    "type": "page",
    "robots_meta": "index, follow, max-image-preview:large",
    "canonical": [
-    "https://ffdev.studio/projects/big-brain-furniture-alt"
+    "https://ffdev.studio/projects/ff-furniture-alt"
    ],
-   "canonical_abs": "https://ffdev.studio/projects/big-brain-furniture-alt",
-   "title": "Big Brain, second direction \u2014 Retail site, alternate structure",
+   "canonical_abs": "https://ffdev.studio/projects/ff-furniture-alt",
+   "title": "FF Furniture, second direction \u2014 Retail site, alternate structure",
    "description": "The same brief structured a second way, so the choice could be made by looking, not arguing. Retail site, alternate structure by FF Dev Studio, 2026.",
    "h1": [
-    "Big Brain, second direction"
+    "FF Furniture, second direction"
    ],
    "words": 153,
    "root_shell": false,

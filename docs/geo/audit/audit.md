@@ -84,9 +84,9 @@ robots.txt is only the first gate: a CDN/WAF can still 403 these bots. Run `bot_
 | https://ffdev.studio/projects/obys-translation | page | 200 | 144 | 3 | ItemPage, Organization, Person, WebSite | 0 | ✓ |  | 5 |
 | https://ffdev.studio/projects/sunlight-supplies | page | 200 | 151 | 3 | ItemPage, Organization, Person, WebSite | 0 | ✓ |  | 4 |
 | https://ffdev.studio/projects/lewix-my | page | 200 | 137 | 3 | ItemPage, Organization, Person, WebSite | 0 | ✓ |  | 5 |
-| https://ffdev.studio/projects/big-brain-furniture | page | 200 | 159 | 3 | ItemPage, Organization, Person, WebSite | 0 | ✓ |  | 4 |
+| https://ffdev.studio/projects/ff-furniture | page | 200 | 159 | 3 | ItemPage, Organization, Person, WebSite | 0 | ✓ |  | 4 |
 | https://ffdev.studio/projects/basement-translation | page | 200 | 148 | 3 | ItemPage, Organization, Person, WebSite | 0 | ✓ |  | 5 |
-| https://ffdev.studio/projects/big-brain-furniture-alt | page | 200 | 153 | 3 | ItemPage, Organization, Person, WebSite | 0 | ✓ |  | 4 |
+| https://ffdev.studio/projects/ff-furniture-alt | page | 200 | 153 | 3 | ItemPage, Organization, Person, WebSite | 0 | ✓ |  | 4 |
 | https://ffdev.studio/projects/ff-frames | page | 200 | 169 | 3 | ItemPage, Organization, Person, WebSite | 0 | ✓ |  | 4 |
 
 ## Site facts

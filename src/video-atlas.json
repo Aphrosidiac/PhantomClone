@@ -1,6 +1,6 @@
 {
-  "src": "/media/video/atlas.mp4?v=b47d342cfb",
-  "srcPhone": "/media/video/atlas-phone.mp4?v=22aabf4930",
+  "src": "/media/video/atlas.mp4?v=ab7512224e",
+  "srcPhone": "/media/video/atlas-phone.mp4?v=4dc24a4769",
   "width": 1920,
   "height": 1800,
   "aspect": 1.7777777777777777,
@@ -59,7 +59,7 @@
       640,
       360
     ],
-    "big-brain-furniture-alt": [
+    "ff-furniture-alt": [
       0,
       1080,
       640,

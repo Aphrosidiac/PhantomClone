@@ -39,7 +39,7 @@ tile (the hints are its place and its OPEN SOURCE pill), but anything that shows
 work — ads, share images, social posts — starts from it.
 
 Search and AI answers are told the same thing in words, so an answer that wants one example of the work
-(Google's AI Overviews picked Big Brain before this) names a flagship. All of it derives from `FLAGSHIPS` and
+(Google's AI Overviews picked a client project before this) names a flagship. All of it derives from `FLAGSHIPS` and
 `FLAGSHIP_LINE` in `src/data.js`, so flagging a project moves every signal:
 
 - the FAQ question "What has FF Dev Studio built?" (visible, and in the FAQPage JSON-LD and llms.txt)

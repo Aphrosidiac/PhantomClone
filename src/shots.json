@@ -744,310 +744,6 @@
    }
   ]
  },
- "big-brain-furniture": {
-  "cover": {
-   "src": "/media/big-brain-furniture/s-hero.webp",
-   "sm": "/media/big-brain-furniture/s-hero-sm.webp",
-   "w": 2880,
-   "h": 1620,
-   "smw": 1440,
-   "alt": "Old Wood, New Life — the hero",
-   "page": "bbf.lewix.ai"
-  },
-  "rows": [
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture/s-danga.webp",
-      "sm": "/media/big-brain-furniture/s-danga-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "Project spotlight: Danga Sutera",
-      "page": "bbf.lewix.ai"
-     }
-    ]
-   },
-   {
-    "kind": "pair",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture/s-product.webp",
-      "sm": "/media/big-brain-furniture/s-product-sm.webp",
-      "w": 1600,
-      "h": 900,
-      "smw": 800,
-      "alt": "A product page",
-      "page": "bbf.lewix.ai/products/lauren-reclaimed-teakwood-plate.html"
-     },
-     {
-      "src": "/media/big-brain-furniture/s-materials.webp",
-      "sm": "/media/big-brain-furniture/s-materials-sm.webp",
-      "w": 1600,
-      "h": 900,
-      "smw": 800,
-      "alt": "The material index",
-      "page": "bbf.lewix.ai/materials.html"
-     }
-    ]
-   },
-   {
-    "kind": "trio",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture/s-m-hero.webp",
-      "sm": "/media/big-brain-furniture/s-m-hero-sm.webp",
-      "w": 1242,
-      "h": 2010,
-      "smw": 621,
-      "alt": "Phone: the hero",
-      "page": "bbf.lewix.ai"
-     },
-     {
-      "src": "/media/big-brain-furniture/s-m-danga.webp",
-      "sm": "/media/big-brain-furniture/s-m-danga-sm.webp",
-      "w": 1242,
-      "h": 2010,
-      "smw": 621,
-      "alt": "Phone: Danga Sutera",
-      "page": "bbf.lewix.ai"
-     },
-     {
-      "src": "/media/big-brain-furniture/s-m-categories.webp",
-      "sm": "/media/big-brain-furniture/s-m-categories-sm.webp",
-      "w": 1242,
-      "h": 2010,
-      "smw": 621,
-      "alt": "Phone: categories",
-      "page": "bbf.lewix.ai"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture/s-collection.webp",
-      "sm": "/media/big-brain-furniture/s-collection-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "A collection page: dining",
-      "page": "bbf.lewix.ai/collections/dining.html"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture/s-categories.webp",
-      "sm": "/media/big-brain-furniture/s-categories-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "Explore all categories",
-      "page": "bbf.lewix.ai"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture/s-journal.webp",
-      "sm": "/media/big-brain-furniture/s-journal-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "From the journal",
-      "page": "bbf.lewix.ai"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture/s-dining.webp",
-      "sm": "/media/big-brain-furniture/s-dining-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "The reclaimed teak dining room",
-      "page": "bbf.lewix.ai"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture/s-projects.webp",
-      "sm": "/media/big-brain-furniture/s-projects-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "The projects index",
-      "page": "bbf.lewix.ai/projects.html"
-     }
-    ]
-   }
-  ]
- },
- "big-brain-furniture-alt": {
-  "cover": {
-   "src": "/media/big-brain-furniture-alt/s-hero.webp",
-   "sm": "/media/big-brain-furniture-alt/s-hero-sm.webp",
-   "w": 2880,
-   "h": 1620,
-   "smw": 1440,
-   "alt": "Crafted for Moments, Made for Gathering — the split hero",
-   "page": "ff-bbf-alt.pages.dev"
-  },
-  "rows": [
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture-alt/s-categories.webp",
-      "sm": "/media/big-brain-furniture-alt/s-categories-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "Categories as tall photographs",
-      "page": "ff-bbf-alt.pages.dev"
-     }
-    ]
-   },
-   {
-    "kind": "pair",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture-alt/s-product.webp",
-      "sm": "/media/big-brain-furniture-alt/s-product-sm.webp",
-      "w": 1600,
-      "h": 900,
-      "smw": 800,
-      "alt": "A product page",
-      "page": "ff-bbf-alt.pages.dev/products/giselle-tray.html"
-     },
-     {
-      "src": "/media/big-brain-furniture-alt/s-imperfection.webp",
-      "sm": "/media/big-brain-furniture-alt/s-imperfection-sm.webp",
-      "w": 1600,
-      "h": 900,
-      "smw": 800,
-      "alt": "Guided by Imperfection",
-      "page": "ff-bbf-alt.pages.dev"
-     }
-    ]
-   },
-   {
-    "kind": "trio",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture-alt/s-m-hero.webp",
-      "sm": "/media/big-brain-furniture-alt/s-m-hero-sm.webp",
-      "w": 1242,
-      "h": 2010,
-      "smw": 621,
-      "alt": "Phone: the hero",
-      "page": "ff-bbf-alt.pages.dev"
-     },
-     {
-      "src": "/media/big-brain-furniture-alt/s-m-1.webp",
-      "sm": "/media/big-brain-furniture-alt/s-m-1-sm.webp",
-      "w": 1242,
-      "h": 2010,
-      "smw": 621,
-      "alt": "Phone: Old Wood, New Life over a slab of reclaimed teak",
-      "page": "ff-bbf-alt.pages.dev"
-     },
-     {
-      "src": "/media/big-brain-furniture-alt/s-m-4.webp",
-      "sm": "/media/big-brain-furniture-alt/s-m-4-sm.webp",
-      "w": 1242,
-      "h": 2010,
-      "smw": 621,
-      "alt": "Phone: Guided by Imperfection",
-      "page": "ff-bbf-alt.pages.dev"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture-alt/s-oldwood.webp",
-      "sm": "/media/big-brain-furniture-alt/s-oldwood-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "Old Wood, New Life beside a slab of reclaimed teak",
-      "page": "ff-bbf-alt.pages.dev"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture-alt/s-table.webp",
-      "sm": "/media/big-brain-furniture-alt/s-table-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "On the Table: reclaimed teak serving pieces",
-      "page": "ff-bbf-alt.pages.dev"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture-alt/s-storage.webp",
-      "sm": "/media/big-brain-furniture-alt/s-storage-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "Storage That Earns Its Wall",
-      "page": "ff-bbf-alt.pages.dev"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture-alt/s-collection.webp",
-      "sm": "/media/big-brain-furniture-alt/s-collection-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "A collection page: sofas",
-      "page": "ff-bbf-alt.pages.dev/collections/sofa.html"
-     }
-    ]
-   },
-   {
-    "kind": "full",
-    "items": [
-     {
-      "src": "/media/big-brain-furniture-alt/s-rooms.webp",
-      "sm": "/media/big-brain-furniture-alt/s-rooms-sm.webp",
-      "w": 2880,
-      "h": 1620,
-      "smw": 1440,
-      "alt": "Shop by room",
-      "page": "ff-bbf-alt.pages.dev"
-     }
-    ]
-   }
-  ]
- },
  "ascend-peptides": {
   "cover": {
    "src": "/media/ascend-peptides/s-hero.webp",
@@ -2144,7 +1840,7 @@
       "w": 1600,
       "h": 900,
       "smw": 800,
-      "alt": "Three plans. One standard. — over a Big Brain Furniture interior",
+      "alt": "Three plans. One standard. — over a furniture interior",
       "page": "ff-member.pages.dev"
      }
     ]
@@ -2546,6 +2242,310 @@
       "smw": 800,
       "alt": "The footer: the siar wordmark across the ink",
       "page": "siaran.my"
+     }
+    ]
+   }
+  ]
+ },
+ "ff-furniture": {
+  "cover": {
+   "src": "/media/ff-furniture/s-hero.webp",
+   "sm": "/media/ff-furniture/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "The hero slideshow",
+   "page": "ff-furniture.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture/s-spotlight.webp",
+      "sm": "/media/ff-furniture/s-spotlight-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Project spotlight with hot spots: The Dark Dining Room",
+      "page": "ff-furniture.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-furniture/s-product.webp",
+      "sm": "/media/ff-furniture/s-product-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "A product page",
+      "page": "ff-furniture.pages.dev/products/pierced-teak-bowl.html"
+     },
+     {
+      "src": "/media/ff-furniture/s-materials.webp",
+      "sm": "/media/ff-furniture/s-materials-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The material index",
+      "page": "ff-furniture.pages.dev/materials.html"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ff-furniture/s-m-hero.webp",
+      "sm": "/media/ff-furniture/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "ff-furniture.pages.dev"
+     },
+     {
+      "src": "/media/ff-furniture/s-m-spotlight.webp",
+      "sm": "/media/ff-furniture/s-m-spotlight-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the project spotlight",
+      "page": "ff-furniture.pages.dev"
+     },
+     {
+      "src": "/media/ff-furniture/s-m-categories.webp",
+      "sm": "/media/ff-furniture/s-m-categories-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: categories",
+      "page": "ff-furniture.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture/s-collection.webp",
+      "sm": "/media/ff-furniture/s-collection-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A collection page: dining tables",
+      "page": "ff-furniture.pages.dev/collections/dining.html"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture/s-categories.webp",
+      "sm": "/media/ff-furniture/s-categories-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Explore all categories",
+      "page": "ff-furniture.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture/s-journal.webp",
+      "sm": "/media/ff-furniture/s-journal-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "From the journal",
+      "page": "ff-furniture.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture/s-dining.webp",
+      "sm": "/media/ff-furniture/s-dining-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Shop the look: a teak dining room",
+      "page": "ff-furniture.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture/s-projects.webp",
+      "sm": "/media/ff-furniture/s-projects-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The projects index",
+      "page": "ff-furniture.pages.dev/projects.html"
+     }
+    ]
+   }
+  ]
+ },
+ "ff-furniture-alt": {
+  "cover": {
+   "src": "/media/ff-furniture-alt/s-hero.webp",
+   "sm": "/media/ff-furniture-alt/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "Warm Wood, Quiet Rooms — the split hero",
+   "page": "ff-furniture-alt.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture-alt/s-categories.webp",
+      "sm": "/media/ff-furniture-alt/s-categories-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Categories as tall photographs",
+      "page": "ff-furniture-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-furniture-alt/s-product.webp",
+      "sm": "/media/ff-furniture-alt/s-product-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "A product page",
+      "page": "ff-furniture-alt.pages.dev/products/teak-tray.html"
+     },
+     {
+      "src": "/media/ff-furniture-alt/s-s5.webp",
+      "sm": "/media/ff-furniture-alt/s-s5-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Imperfect by Design",
+      "page": "ff-furniture-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ff-furniture-alt/s-m-hero.webp",
+      "sm": "/media/ff-furniture-alt/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "ff-furniture-alt.pages.dev"
+     },
+     {
+      "src": "/media/ff-furniture-alt/s-m-1.webp",
+      "sm": "/media/ff-furniture-alt/s-m-1-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: Made from Teak",
+      "page": "ff-furniture-alt.pages.dev"
+     },
+     {
+      "src": "/media/ff-furniture-alt/s-m-4.webp",
+      "sm": "/media/ff-furniture-alt/s-m-4-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: Imperfect by Design",
+      "page": "ff-furniture-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture-alt/s-s2.webp",
+      "sm": "/media/ff-furniture-alt/s-s2-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Made from Teak, beside a slab of teak",
+      "page": "ff-furniture-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture-alt/s-s3.webp",
+      "sm": "/media/ff-furniture-alt/s-s3-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "On the Table: teak serving pieces",
+      "page": "ff-furniture-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture-alt/s-s4.webp",
+      "sm": "/media/ff-furniture-alt/s-s4-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Storage for Every Wall",
+      "page": "ff-furniture-alt.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture-alt/s-collection.webp",
+      "sm": "/media/ff-furniture-alt/s-collection-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A collection page: sofas",
+      "page": "ff-furniture-alt.pages.dev/collections/sofa.html"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-furniture-alt/s-rooms.webp",
+      "sm": "/media/ff-furniture-alt/s-rooms-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Shop by room",
+      "page": "ff-furniture-alt.pages.dev"
      }
     ]
    }

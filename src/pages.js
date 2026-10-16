@@ -130,7 +130,7 @@ export function about(tab = 'studio') {
   const pick = (s) => bySlug(s);
   const studio = `
     <section class="a-row a-hero"><p class="mono" aria-hidden="true">Studio</p><div class="content"><span class="tag mono">Studio</span><h1 class="sub-title">Custom websites, designed and built end to end</h1></div></section>
-    <div class="strip">${['lewix-ai', 'ff-stanzza', 'meridian', 'big-brain-furniture'].map((s) => `<img src="${tileUrl(pick(s))}" alt="" loading="lazy">`).join('')}</div>
+    <div class="strip">${['lewix-ai', 'ff-stanzza', 'meridian', 'ff-furniture'].map((s) => `<img src="${tileUrl(pick(s))}" alt="" loading="lazy">`).join('')}</div>
     <section class="a-row a-block"><h2 class="mono">About</h2><div class="content"><p class="statement reveal">${split('FF Dev Studio designs and builds custom websites for founders and small companies across Malaysia. The person who scopes your site is the person who builds it.')}</p></div></section>
     <section class="a-row a-block" style="padding-bottom:70px"><h2 class="mono">Zones</h2><div class="content"><p class="statement reveal">${split('Never limited by size or shape, the work falls into three zones — and each one gets its own way of working.')}</p></div></section>
     ${ABOUT_ZONES.map(([z, s], i) => `
