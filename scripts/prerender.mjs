@@ -143,7 +143,19 @@ ${FAQ.map((f) => `### ${f.q}\n\n${[...f.a, ...(f.list ? f.list.map((x) => `- ${x
 - Registered business: ${CONTACT.legalName} (SSM ${CONTACT.regNo})
 `);
 
-// _redirects: the previous ffdev.studio served each project at /<slug>; send those to /projects/<slug>
-writeFileSync(join(DIST, '_redirects'), PROJECTS.map((p) => `/${p.slug} /projects/${p.slug} 301`).join('\n') + '\n');
+// _redirects: the previous ffdev.studio served each project at /<slug>, and the one before it at
+// /work/<slug>/ with /studio and /month pages (Search Console still reports those as 404s). Send each
+// to its page here. Projects that no longer exist get no line, so their old URLs stay 404.
+const OLD = [
+  ...PROJECTS.flatMap((p) => [
+    `/${p.slug} /projects/${p.slug} 301`,
+    `/work/${p.slug} /projects/${p.slug} 301`,
+    `/work/${p.slug}/ /projects/${p.slug} 301`,
+  ]),
+  '/work / 301', '/work/ / 301',
+  '/studio /about 301', '/studio/ /about 301',
+  '/month /pricing 301', '/month/ /pricing 301',
+];
+writeFileSync(join(DIST, '_redirects'), OLD.join('\n') + '\n');
 
 console.log(`prerender: ${ROUTES.length} routes, sitemap (${indexable.length} URLs), robots.txt, llms.txt → dist/`);
