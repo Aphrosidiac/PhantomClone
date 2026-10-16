@@ -46,8 +46,8 @@ const CLIPS = [
   { slug: 'lewix-my', file: '2026-09-24_17-25-03_lewix-my.mp4', at: 14.3 },
   // card strip swinging → giant F SEARCH opening → strip → giant SUN LIGHT opening
   { slug: 'meridian', file: '2026-09-24_17-25-54_ffdev-studio.mp4', at: 7.0 },
-  // full-bleed hero → categories → Old Wood, New Life → objects → Storage That Earns Its Wall
-  { slug: 'big-brain-furniture-alt', file: '2026-09-24_17-26-44_big-brain-furniture-alt.mp4', at: 2.7 },
+  // split hero → categories → Made from Teak → On the Table → Storage for Every Wall (record.mjs with SCROLL=3,3200,6)
+  { slug: 'ff-furniture-alt', file: '2026-10-17_ff-furniture-alt_hero-scroll.mp4', at: 3.0, crop: 'page' },
   // the hero standing still (recorded with tools/record.mjs): the demo scene below the headline — keys held,
   // the question types, the cursor flies to week 9, rings it, answers, and an agent starts in the notch
   { slug: 'hai-awan', file: '2026-09-29_hai-awan_page.mp4', at: 2.9, crop: 'page' },

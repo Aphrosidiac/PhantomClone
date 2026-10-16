@@ -142,13 +142,13 @@ export const PROJECTS = [
     ],
   },
   {
-    slug: 'big-brain-furniture', title: 'Big Brain Furniture', client: 'TGS Furnishings', zone: 'client', year: 2026, plate: '#3a2f26',
-    features: ['website', 'e-commerce', 'brand'], stack: ['next'], url: 'https://bbf.lewix.ai/',
-    type: 'Retail website', role: 'Art direction / Design system / Frontend',
-    statement: 'Reclaimed teak, presented as a catalogue that treats the material as the whole design.',
+    slug: 'ff-furniture', title: 'FF Furniture', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#3a2f26',
+    features: ['website', 'e-commerce', 'motion'], stack: ['vite'], url: 'https://ff-furniture.pages.dev/',
+    type: 'Furniture store, demo', role: 'Design system / Frontend / Motion', reference: 'districteight.com',
+    statement: 'A furniture store built as a demo: collections, project stories, showrooms and a cart that checks out to WhatsApp.',
     about: [
-      'Warm grounds, generous crops and a catalogue structure that lets the grain of each piece do the selling.',
-      'Built on a small design system so the team can add ranges without the site drifting.',
+      'A complete retail site for a furniture brand — collections, product pages, project write-ups, showroom pages and a working cart. Names, prices and addresses are placeholders.',
+      'Its structure and motion follow districteight.com, measured in the browser rather than eyeballed, on a small design system so new ranges can be added without the site drifting.',
     ],
   },
   {
@@ -182,13 +182,13 @@ export const PROJECTS = [
     ],
   },
   {
-    slug: 'big-brain-furniture-alt', title: 'Big Brain, second direction', client: 'TGS Furnishings', zone: 'client', year: 2026, plate: '#d9c9b3',
-    features: ['website', 'strategy'], stack: ['next'], url: 'https://ff-bbf-alt.pages.dev/',
-    type: 'Retail site, alternate structure', role: 'Art direction / Information architecture',
-    statement: 'The same brief structured a second way, so the choice could be made by looking, not arguing.',
+    slug: 'ff-furniture-alt', title: 'FF Furniture, second direction', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#d9c9b3',
+    features: ['website', 'e-commerce', 'strategy'], stack: ['vite'], url: 'https://ff-furniture-alt.pages.dev/',
+    type: 'Furniture store, alternate structure', role: 'Art direction / Information architecture / Frontend', reference: 'fermliving.com',
+    statement: 'The same furniture store structured a second way, so two directions can be compared by looking, not arguing.',
     about: [
-      'Rather than debate two directions in a meeting, both were built. The client chose with the real thing open in two tabs.',
-      'Cheaper than it sounds when the design system is shared.',
+      'Rather than debate two directions in a meeting, both were built on the same content. This one follows fermliving.com: a dense catalogue, shop-by-room pages, a lookbook and a wishlist.',
+      'Cheaper than it sounds when the content and photography are shared.',
     ],
   },
   {
