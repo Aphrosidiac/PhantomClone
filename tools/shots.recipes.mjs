@@ -430,6 +430,56 @@ export const RECIPES = {
     rows: [['full', 'home-w'], ['pair', 'engagements', 'exchange'], ['trio', 'm-home', 'm-weddings', 'm-exchange'], ['full', 'exchange2'], ['full', 'commercial'], ['full', 'stories2'], ['full', 'weddings3'], ['full', 'about'], ['full', 'pricing']],
   },
 
+  // the entry film shows ENTER at 3.5 s and sets a 1 h cookie once passed; later pages skip it (no button, nothing clicked).
+  // The film roll and the slider move one film per arrow key. /contact is left out: it still carries the reference's phone number.
+  'ff-siena': {
+    base: 'https://ff-siena.pages.dev/', device: 'wide', boot: 6000, settle: 2500,
+    // the home roll's "hold and drag" tutorial card rises 2 s after ENTER over the middle of the frame: close it (it slides out in 1.8 s)
+    init: [['eval', () => document.querySelector('[data-preloader="btn"]')?.click()], ['wait', 3000],
+      ['eval', () => document.querySelector("[data-tutorial='close']")?.click()], ['wait', 2200]],
+    shots: [
+      { id: 'home', steps: [['wait', 500]], alt: 'The film roll settled on My Project X, its reviews and stills around the frame' },
+      { id: 'home2', steps: [['key', 'ArrowDown'], ['wait', 1500]], alt: 'The roll moved on to the next film' },
+      { id: 'work', url: '/work', steps: [['wait', 500]], alt: 'Work: the films on a horizontal WebGL slider, the centre one sharp and the sides blurred' },
+      { id: 'work2', url: '/work', steps: [['key', 'ArrowRight'], ['wait', 1500]], alt: 'Work: the slider one film along' },
+      { id: 'about', url: '/about', steps: [['wait', 500]], alt: 'About: film production house, between two arched portraits' },
+      { id: 'about2', url: '/about', steps: [['wheel', 270, 3]], alt: 'About: television, documentary and films as one statement' },
+      { id: 'sphere', url: '/about', steps: [['y', 2430]], alt: 'About: a sphere of stills from every film' },
+      { id: 'savoy', url: '/films/savoy', steps: [['wait', 500]], alt: 'Savoy: the case page opening on a full-bleed still' },
+      { id: 'trailer', url: '/films/savoy', steps: [['wheel', 270, 3]], alt: 'Savoy: the trailer card, Watch trailer over the frame' },
+      { id: 'credits', url: '/films/savoy', steps: [['wheel', 270, 6]], alt: 'Savoy: the credits laid out as a type grid' },
+      { id: 'kafka', url: '/films/kafkas-last-trial', steps: [['wait', 500]], alt: 'Kafka’s Last Trial: the case page opening' },
+      { id: 'gallery', url: '/films/kafkas-last-trial', steps: [['y', 2430]], alt: 'Kafka’s Last Trial: stills strips running in two directions' },
+      { id: 'm-home', device: P, steps: [['wait', 500]], alt: 'Phone: the film roll' },
+      { id: 'm-savoy', device: P, url: '/films/savoy', steps: [['wait', 500]], alt: 'Phone: Savoy' },
+      { id: 'm-about', device: P, url: '/about', steps: [['wait', 500]], alt: 'Phone: about' },
+    ],
+    cover: 'home',
+    rows: [['full', 'work'], ['pair', 'savoy', 'kafka'], ['trio', 'm-home', 'm-savoy', 'm-about'], ['full', 'about'], ['full', 'sphere'], ['pair', 'trailer', 'credits'], ['full', 'gallery'], ['full', 'home2']],
+  },
+
+  // the office boots as a wireframe and swaps to the baked, textured scene ~15 s in: wait it out on every page.
+  // Each route moves the camera to its own corner of the office; the HTML page scrolls up over it.
+  'ff-cellar': {
+    base: 'https://ff-cellar.pages.dev/', device: 'wide', boot: 20000, settle: 2500,
+    shots: [
+      { id: 'home', steps: [['wait', 500]], alt: 'The office at the top of the home page: posters, a desk lamp and the stair' },
+      { id: 'intro', steps: [['to', 'text=An independent studio', 0.25]], alt: 'An independent studio and brand shop, and the wall of studios it works with' },
+      { id: 'featured', steps: [['to', 'text=Featured Projects', 0.35]], alt: 'Featured projects, a particle stream under the first' },
+      { id: 'services', url: '/services', steps: [['wait', 500]], alt: 'Services: the camera turns to the wood-panelled corner' },
+      { id: 'showcase', url: '/showcase', steps: [['wait', 500]], alt: 'Showcase: the shelves of objects, one per project' },
+      { id: 'showcase-list', url: '/showcase', steps: [['wheel', 300, 6]], alt: 'Showcase: project cards for Morrow, Sable Studios and Shop Bolt' },
+      { id: 'people', url: '/people', steps: [['wait', 500]], alt: 'People: the long room of desks under a ribbon light' },
+      { id: 'lab', url: '/lab', steps: [['wait', 500]], alt: 'Lab: the experiments listed on an orange CRT' },
+      { id: 'blog', url: '/blog', steps: [['wheel', 300, 3]], alt: 'Blog: posts on baking the office and the blinking links' },
+      { id: 'm-home', device: P, steps: [['wait', 500]], alt: 'Phone: the office' },
+      { id: 'm-people', device: P, url: '/people', steps: [['wait', 500]], alt: 'Phone: the desks' },
+      { id: 'm-lab', device: P, url: '/lab', steps: [['wait', 500]], alt: 'Phone: the lab' },
+    ],
+    cover: 'home',
+    rows: [['full', 'intro'], ['pair', 'lab', 'people'], ['trio', 'm-home', 'm-people', 'm-lab'], ['full', 'showcase'], ['full', 'showcase-list'], ['pair', 'services', 'blog'], ['full', 'featured']],
+  },
+
   meridian: {
     // shot on ffdev.studio, the engine in production with FF's own work (ff-meridian.pages.dev is the placeholder reference build)
     base: 'https://ffdev.studio/', device: 'wide', boot: 9000,

@@ -27,6 +27,8 @@ links are generated from it — there is nothing else to update.
   repo: 'https://github.com/…',       // optional — open-source work: adds a "Source code" pill and a Licence fact,
   license: 'MIT', platform: '…',      //   and the page's structured data becomes SoftwareApplication + SoftwareSourceCode
   sticker: 'Open source · MIT',       // optional — a peelable holo sticker on the cover with these words round its rim (docs/STICKER.md)
+  disclaimer: 'Owner’s site, rebuilt …', // optional — a recreation that ships the reference's media or design: one line under the
+                                      //   cover with a "Demo recreation" pill. Name the owner, say what is theirs and "Not affiliated"
   statement: 'One sentence that says what it is.',
   about: ['Paragraph one.', 'Paragraph two.'],
 },

@@ -60,6 +60,7 @@ export function project(slug) {
         </div>
       </div>
       <div class="p-cover${p.sticker ? ' p-cover--sticker' : ''}">${shot(m.cover, 'full', false)}${p.sticker ? sticker(p.sticker) : ''}</div>
+      ${p.disclaimer ? `<p class="p-note"><span class="pill mono">Demo recreation</span><span>${esc(p.disclaimer)}</span></p>` : ''}
       <section class="p-intro"><p class="statement reveal">${split(p.statement)}</p></section>
       <section class="p-about">
         <h2 class="mono">About</h2>

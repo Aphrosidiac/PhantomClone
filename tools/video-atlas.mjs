@@ -60,6 +60,12 @@ const CLIPS = [
   // the hero standing still (record.mjs): the headline beside the fan of fifteen network marks, which fires a post
   // down every line and fills the marks in turn, about once every four seconds
   { slug: 'siar', file: '2026-10-14_siar_page.mp4', at: 3.0, crop: 'page' },
+  // the home page after the entry screen (record.mjs with COOKIE=preloader_shown=<now>): the film roll spins in with
+  // its speed blur and settles on My Project X, whose title flickers
+  { slug: 'ff-siena', file: '2026-10-22_ff-siena_page.mp4', at: 1.0, crop: 'page' },
+  // the office booting (record.mjs with SCROLL=3.5,900,4): wireframe, the baked room fading in, then the headline
+  // scrolling up over it as the camera drifts; the wrap dissolves back into the wireframe
+  { slug: 'ff-cellar', file: '2026-10-22_ff-cellar_page.mp4', at: 1.0, crop: 'page' },
 ];
 
 const LOOP = 5;       // seconds

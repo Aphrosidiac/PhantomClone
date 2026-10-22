@@ -91,6 +91,29 @@ export const PROJECTS = [
       'The camera gesture mode runs MediaPipe hand tracking in the browser, so a visitor can swipe through the work without touching anything.',
     ],
   },
+  // disclaimer: a recreation that ships the reference's own media says whose it is, in one line under the cover
+  {
+    slug: 'ff-siena', title: 'FF Siena', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#ff0f00',
+    features: ['webgl', 'motion', 'film'], stack: ['vite', 'ogl', 'gsap', 'lenis'], url: 'https://ff-siena.pages.dev/',
+    type: 'Film studio site, recreation', role: 'WebGL / Motion / Interaction engineering', reference: 'siena.film',
+    disclaimer: 'Siena Film Foundation’s site, rebuilt one to one by FF Dev Studio with its own films, stills, trailers and words. All of them belong to Siena Film Foundation and its filmmakers. Not affiliated, and not their live site.',
+    statement: 'A film foundation’s site rebuilt one to one: the WebGL film roll, the slider and every page transition.',
+    about: [
+      'Eight films on a vertical WebGL roll that spins in on entry and snaps film by film to the wheel, a drag or the arrow keys, with a horizontal slider on Work that keeps the centre film sharp and blurs the rest. Each film opens into a case page with its trailer, credits, reviews and stills strips that run against the scroll.',
+      'Every page was rebuilt from the reference, its behaviour ported module by module and its timings measured, then checked against it frame by frame in the browser. Pages change without a reload, and the WebGL scene is cleaned up between them, where the original leaks.',
+    ],
+  },
+  {
+    slug: 'ff-cellar', title: 'FF Cellar', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#ff4d00',
+    features: ['webgl', '3d', 'motion'], stack: ['next', 'three', 'blender'], url: 'https://ff-cellar.pages.dev/',
+    type: 'Studio site with a 3D office, recreation', role: 'WebGL / 3D / Frontend', reference: 'basement.studio',
+    disclaimer: 'basement.studio’s site, rebuilt one to one by FF Dev Studio. The layout, type and motion are basement’s design. The 3D office and the words were made here. Not affiliated, and not their live site.',
+    statement: 'A studio site with its whole office in 3D behind the page, and a camera that walks to a new corner on every route.',
+    about: [
+      'One WebGL scene stays alive across the whole site. Home, Services, Showcase, People, Blog and Lab each move the camera to their own part of the office, the page scrolls up over it, and objects in the room are hotspots that open the page they stand for. There is a basketball hoop with real physics, too.',
+      'The office was modelled here in Blender from measurements of the reference, then its light baked in Cycles into eight texture atlases, so the room looks rendered while the browser draws it in real time. The layout, type scale and motion follow basement.studio’s design to the pixel. The copy was written here.',
+    ],
+  },
   {
     slug: 'ff-stanzza', title: 'FF Stanzza', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#5f6b3b',
     features: ['website', 'motion', 'interaction'], stack: ['vite', 'gsap', 'lenis'], url: 'https://ff-stanzza.pages.dev/',
@@ -225,7 +248,7 @@ export const FLAGSHIP_LINE = FLAGSHIPS.length === 1
 export const FLAGSHIP_NAMES = and(FLAGSHIPS.map((p) => p.title));
 
 export const FEATURE_LABEL = { '3d': '3D', ai: 'AI', seo: 'SEO', webgl: 'WebGL', 'e-commerce': 'E-commerce', 'open-source': 'Open source', macos: 'macOS', api: 'API', saas: 'SaaS' };
-export const STACK_LABEL = { next: 'Next.js', vite: 'Vite', astro: 'Astro', three: 'Three.js', gsap: 'GSAP', lenis: 'Lenis', postgres: 'Postgres', swift: 'Swift', node: 'Node.js', sqlite: 'SQLite', nuxt: 'Nuxt' };
+export const STACK_LABEL = { next: 'Next.js', vite: 'Vite', astro: 'Astro', three: 'Three.js', gsap: 'GSAP', lenis: 'Lenis', postgres: 'Postgres', swift: 'Swift', node: 'Node.js', sqlite: 'SQLite', nuxt: 'Nuxt', ogl: 'OGL' };
 export const label = (k, map = FEATURE_LABEL) => map[k] || k.charAt(0).toUpperCase() + k.slice(1);
 
 const uniq = (a) => [...new Set(a)].sort();

@@ -7,7 +7,7 @@
 // usage: node tools/record.mjs <url> <out.mp4> [seconds=16]
 // SCROLL=start,px,dur also scrolls it while filming: from `start` s after navigation, wheel down `px` CSS px
 // over `dur` s in even steps (wheel, so smooth-scroll libraries and scrubbed timelines run as for a visitor).
-// Indahnya's hero loop was filmed this way.
+// Indahnya's hero loop was filmed this way. COOKIE=name=value sets a cookie on the site before either visit.
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -23,6 +23,8 @@ const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'ff-record-'));
 
 const browser = await chromium.launch({ channel: 'chrome', headless: true, args: ['--hide-scrollbars', '--enable-gpu', '--ignore-gpu-blocklist'] });
 const ctx = await browser.newContext({ viewport: VIEW, deviceScaleFactor: 1 });
+// COOKIE=name=value is set on the site first, e.g. to skip an entry screen (FF Siena: preloader_shown=<ms timestamp>)
+if (process.env.COOKIE) { const [name, ...v] = process.env.COOKIE.split('='); await ctx.addCookies([{ name, value: v.join('='), url }]); }
 const warm = await ctx.newPage();
 await warm.goto(url, { waitUntil: 'networkidle', timeout: 60000 });
 await warm.waitForTimeout(2000);
