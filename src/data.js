@@ -277,7 +277,7 @@ export const CONTACT = {
   whatsapp: '+60 13 907 8719',
   wa: 'https://wa.me/60139078719',
   city: 'Kuala Lumpur, MY',
-  // registered business address (SSM), shown in the footer, About and the legal pages
+  // where the studio is based, shown in the footer, About and the legal pages (city only, no street address)
   address: ['Kuala Terengganu', 'Terengganu, Malaysia'],
   // SSM business registration
   legalName: 'FF DEV STUDIO', regNo: '202603234793',

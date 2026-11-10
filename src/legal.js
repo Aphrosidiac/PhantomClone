@@ -111,13 +111,13 @@ export const STORAGE = [
 // service.ts + jobs.ts: auto-pay renewals, retries on day 3 and day 7, cancel at period end, MANUAL plans
 // invoiced each period, PREPAID plans lapse). Fakhrul's rulings 2026-10-13: deposit refundable until work
 // starts; no partial care refunds (runs to period end); unpaid care pauses, hosting may be suspended after
-// 30 days overdue with notice. The SSM registered address is shown (Fakhrul 2026-10-14, for CHIP's card review,
-// which asks for the business address in the footer), alongside email and telephone.
+// 30 days overdue with notice. The business location is shown as the city only, Kuala Terengganu (Fakhrul 2026-11-11;
+// no street address anywhere on the site), alongside email and telephone.
 // Change these with the code and with him, never separately.
 export const TERMS = [
   {
     id: 'who', h: 'Who we are',
-    p: [`FF Dev Studio (“FF Dev Studio”, “we”) is ${WHO}, a sole proprietorship registered in Malaysia. Registered address: ${ADDRESS}.`,
+    p: [`FF Dev Studio (“FF Dev Studio”, “we”) is ${WHO}, a sole proprietorship registered in Malaysia, based in ${ADDRESS}.`,
       `These terms apply to website projects and care plans bought from FF Dev Studio. Contact: ${CONTACT.email} or WhatsApp ${CONTACT.whatsapp}.`],
   },
   {
