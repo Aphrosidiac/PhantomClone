@@ -66,6 +66,9 @@ const CLIPS = [
   // the office booting (record.mjs with SCROLL=3.5,900,4): wireframe, the baked room fading in, then the headline
   // scrolling up over it as the camera drifts; the wrap dissolves back into the wireframe
   { slug: 'ff-cellar', file: '2026-10-22_ff-cellar_page.mp4', at: 1.0, crop: 'page' },
+  // the home page (record.mjs with SCROLL=3,3000,7): the lit lamps on their plinths, then TERAS, OMBAK and LIPAT
+  // in their arches sliding past, side to side; the wrap dissolves from LIPAT back into the hero
+  { slug: 'bayang', file: '2026-11-11_bayang_home-scroll.mp4', at: 2.5, speed: 1.6, crop: 'page' },
 ];
 
 const LOOP = 5;       // seconds

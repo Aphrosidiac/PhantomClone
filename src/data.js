@@ -81,6 +81,21 @@ export const PROJECTS = [
       'The API, the dashboard, the documentation and the billing were designed and built in-house, and Siar runs on the studio’s own server. FF Dev Studio uses it for its own channels too.',
     ],
   },
+  // the third flagship, the e-commerce one (Fakhrul 2026-11-11): sixth in PROJECTS = directly left of the centre tile,
+  // mirroring FF Member on the right, without moving FF Member, Indahnya or Siar from the places he chose
+  {
+    slug: 'bayang', title: 'BAYANG by FF', client: 'FF Dev Studio', zone: 'client', year: 2026, plate: '#3155d9', flagship: true, wordmark: 'BAYANG',
+    flagshipAs: 'the studio’s own e-commerce site and shop system, for its 3D-printed lamp brand',
+    flagshipWhy: 'The storefront, the API, the admin and the checkout were designed and built in-house, and it sells live at bayangbyff.com: fifteen lamps, structured data on every product, and a publish step that will not put a page live until it passes the site’s SEO checks.',
+    features: ['e-commerce', 'seo', 'brand'], stack: ['astro', 'cloudflare', 'fastify', 'postgres', 'vue', 'blender'], url: 'https://bayangbyff.com/',
+    type: 'E-commerce site and shop system', role: 'Brand / Design / Full stack / Commerce / SEO / 3D',
+    statement: 'The online shop for the studio’s own lamp brand: sculptural table lamps designed around the shadows they throw, 3D-printed to order in Malaysia.',
+    about: [
+      'BAYANG by FF is a brand of FF Dev Studio, and bayangbyff.com is where it sells: fifteen lamps in five collections, each made to order and shipped within seven days. Every lamp has its own page with a gallery, a story, the details at a glance and a floating bar that keeps the price and Add to cart in reach; a cart drawer on every page leads to a one-page checkout paid through Billplz.',
+      'Every lamp photograph is a 3D render made in Blender to the lamp’s true size, never AI-generated. A journal and buying guides sit beside the shop, and each product page carries structured data for its price, shipping and returns, so search engines and AI answers can read what is for sale.',
+      'The whole system was designed and built in-house: the storefront in Astro on Cloudflare Workers, an API on Fastify and Postgres on the studio’s own server, and an admin for products, orders, customers, journal posts and discounts. Changes go live through a gated publish that refuses any page that breaks the SEO rules.',
+    ],
+  },
   {
     slug: 'ff-shoots', title: 'FF Shoots', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#8f1d17',
     features: ['webgl', 'motion', 'ai', 'gesture'], stack: ['next', 'three', 'gsap'], url: 'https://ff-shoots.pages.dev/',

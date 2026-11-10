@@ -1,6 +1,6 @@
 {
-  "src": "/media/video/atlas.mp4?v=605c3655c3",
-  "srcPhone": "/media/video/atlas-phone.mp4?v=f9eac4504b",
+  "src": "/media/video/atlas.mp4?v=3b1474b2fb",
+  "srcPhone": "/media/video/atlas-phone.mp4?v=ea28831d53",
   "width": 1920,
   "height": 2160,
   "aspect": 1.7777777777777777,
@@ -97,6 +97,12 @@
     ],
     "ff-cellar": [
       0,
+      1800,
+      640,
+      360
+    ],
+    "bayang": [
+      640,
       1800,
       640,
       360

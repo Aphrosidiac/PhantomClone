@@ -109,6 +109,34 @@ export const RECIPES = {
     rows: [['full', 'dashboard'], ['full', 'tour'], ['trio', 'm-hero', 'm-nets', 'm-price'], ['full', 'nets'], ['pair', 'break', 'dev'], ['full', 'price'], ['pair', 'docs', 'api'], ['pair', 'for', 'footer']],
   },
 
+  // BAYANG by FF's shop (Astro on Cloudflare), one Cream scheme with a Blue footer. Every lamp photograph is a
+  // Blender render; the rails and the PDP floating bar are scroll-driven, so frames wait on the section, not a pixel.
+  'bayang': {
+    base: 'https://bayangbyff.com/', device: 'mid', boot: 3000, settle: 1500, init: EAGER,
+    shots: [
+      { id: 'hero', steps: [['wait', 2500]], alt: 'No form exists alone. — four BAYANG lamps lit on plinths under the shop’s header' },
+      { id: 'story', steps: [['to', '.story--flip', 0.06]], alt: 'OMBAK in its arch: the wavy flared shade, its price and three more views of the lamp' },
+      { id: 'lamps', steps: [['to', '#lamps-h', 0.2]], alt: 'Sculptural lamps, designed around the shadows they throw. — the rail of lamps, each lit in a room' },
+      { id: 'cols', steps: [['to', '.moments', 0.02]], alt: '5 collections. 15 lamps. — MERDEKA, INSTRUMENT and STRATA on the dark band' },
+      { id: 'made', steps: [['to', '[aria-labelledby="made-h"]', 0.02]], alt: 'Made to order in Malaysia: how a lamp goes from a parametric model to a dark-room check' },
+      { id: 'drops', steps: [['to', '.feature', 0.0]], alt: 'Drops: new lamps come in small numbered runs, and the list hears first' },
+      { id: 'footer', steps: [['y', 99999]], alt: 'The footer: the bayang by FF wordmark across Bayang Blue' },
+      { id: 'pdp', url: 'products/ombak', steps: [['wait', 2000]], alt: 'A product page: OMBAK Table Lamp, its gallery, colour, price and Add to cart' },
+      { id: 'pdp-story', url: 'products/ombak', steps: [['to', '#story', 0.1]], alt: 'Where it comes from: OMBAK’s story, with the floating bar that keeps the price and Add to cart in reach' },
+      { id: 'pdp-facts', url: 'products/ombak', steps: [['to', '.facts', 0.2]], alt: 'At a glance: made in Malaysia, ships within 7 days, runs from USB' },
+      { id: 'shop', url: 'categories/table-lamps', steps: [['to', '.grid', 0.1]], alt: 'The shop: all fifteen table lamps, with filters for cordless, plug-in and USB' },
+      { id: 'compare', url: 'categories/table-lamps', steps: [['to', '.compare', 0.08]], alt: 'How do our table lamps compare? — every lamp’s power, size, light, price and dispatch time in one table' },
+      { id: 'guide', url: 'guides/is-a-3d-printed-lamp-safe', steps: [['wait', 1500]], alt: 'A guide: Is a 3D-Printed Lamp Safe?' },
+      { id: 'journal', url: 'journal/lentur-design-story', steps: [['wait', 1500]], alt: 'The journal: LENTUR, one printed wall bent into a wave, a fold and a wrap' },
+      { id: 'm-hero', device: P, steps: [['wait', 2500]], alt: 'Phone: the hero' },
+      { id: 'm-story', device: P, steps: [['to', '.story--flip', 0.04]], alt: 'Phone: OMBAK in its arch' },
+      { id: 'm-cols', device: P, steps: [['to', '.moments', 0.02]], alt: 'Phone: 5 collections, 15 lamps' },
+      { id: 'm-pdp', device: P, url: 'products/ombak', steps: [['wait', 2000]], alt: 'Phone: OMBAK’s product page' },
+    ],
+    cover: 'hero',
+    rows: [['full', 'story'], ['full', 'pdp'], ['trio', 'm-hero', 'm-story', 'm-pdp'], ['full', 'cols'], ['pair', 'lamps', 'made'], ['full', 'shop'], ['pair', 'pdp-story', 'pdp-facts'], ['full', 'compare'], ['pair', 'guide', 'journal'], ['pair', 'drops', 'footer']],
+  },
+
   // the intro issues the member card and covers every load (full on the first visit, a quick "Welcome back" after),
   // so the first shot in each context catches it mid-issue and the later pages boot long enough for it to hand off
   'ff-member': {

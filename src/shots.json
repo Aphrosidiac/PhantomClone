@@ -2858,5 +2858,212 @@
     ]
    }
   ]
+ },
+ "bayang": {
+  "cover": {
+   "src": "/media/bayang/s-hero.webp",
+   "sm": "/media/bayang/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "No form exists alone. — four BAYANG lamps lit on plinths under the shop’s header",
+   "page": "bayangbyff.com"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/bayang/s-story.webp",
+      "sm": "/media/bayang/s-story-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "OMBAK in its arch: the wavy flared shade, its price and three more views of the lamp",
+      "page": "bayangbyff.com"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/bayang/s-pdp.webp",
+      "sm": "/media/bayang/s-pdp-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "A product page: OMBAK Table Lamp, its gallery, colour, price and Add to cart",
+      "page": "bayangbyff.com/products/ombak"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/bayang/s-m-hero.webp",
+      "sm": "/media/bayang/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the hero",
+      "page": "bayangbyff.com"
+     },
+     {
+      "src": "/media/bayang/s-m-story.webp",
+      "sm": "/media/bayang/s-m-story-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: OMBAK in its arch",
+      "page": "bayangbyff.com"
+     },
+     {
+      "src": "/media/bayang/s-m-pdp.webp",
+      "sm": "/media/bayang/s-m-pdp-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: OMBAK’s product page",
+      "page": "bayangbyff.com/products/ombak"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/bayang/s-cols.webp",
+      "sm": "/media/bayang/s-cols-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "5 collections. 15 lamps. — MERDEKA, INSTRUMENT and STRATA on the dark band",
+      "page": "bayangbyff.com"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/bayang/s-lamps.webp",
+      "sm": "/media/bayang/s-lamps-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Sculptural lamps, designed around the shadows they throw. — the rail of lamps, each lit in a room",
+      "page": "bayangbyff.com"
+     },
+     {
+      "src": "/media/bayang/s-made.webp",
+      "sm": "/media/bayang/s-made-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Made to order in Malaysia: how a lamp goes from a parametric model to a dark-room check",
+      "page": "bayangbyff.com"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/bayang/s-shop.webp",
+      "sm": "/media/bayang/s-shop-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The shop: all fifteen table lamps, with filters for cordless, plug-in and USB",
+      "page": "bayangbyff.com/categories/table-lamps"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/bayang/s-pdp-story.webp",
+      "sm": "/media/bayang/s-pdp-story-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Where it comes from: OMBAK’s story, with the floating bar that keeps the price and Add to cart in reach",
+      "page": "bayangbyff.com/products/ombak"
+     },
+     {
+      "src": "/media/bayang/s-pdp-facts.webp",
+      "sm": "/media/bayang/s-pdp-facts-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "At a glance: made in Malaysia, ships within 7 days, runs from USB",
+      "page": "bayangbyff.com/products/ombak"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/bayang/s-compare.webp",
+      "sm": "/media/bayang/s-compare-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "How do our table lamps compare? — every lamp’s power, size, light, price and dispatch time in one table",
+      "page": "bayangbyff.com/categories/table-lamps"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/bayang/s-guide.webp",
+      "sm": "/media/bayang/s-guide-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "A guide: Is a 3D-Printed Lamp Safe?",
+      "page": "bayangbyff.com/guides/is-a-3d-printed-lamp-safe"
+     },
+     {
+      "src": "/media/bayang/s-journal.webp",
+      "sm": "/media/bayang/s-journal-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The journal: LENTUR, one printed wall bent into a wave, a fold and a wrap",
+      "page": "bayangbyff.com/journal/lentur-design-story"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/bayang/s-drops.webp",
+      "sm": "/media/bayang/s-drops-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "Drops: new lamps come in small numbered runs, and the list hears first",
+      "page": "bayangbyff.com"
+     },
+     {
+      "src": "/media/bayang/s-footer.webp",
+      "sm": "/media/bayang/s-footer-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The footer: the bayang by FF wordmark across Bayang Blue",
+      "page": "bayangbyff.com"
+     }
+    ]
+   }
+  ]
  }
 }

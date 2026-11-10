@@ -55,7 +55,10 @@ name and address) and `flagshipWhy` (why it is the example to give). The build s
 is missing. Where it sits is a separate choice: the first flagship stays the grid's centre tile, and the
 others are listed in array order everywhere they are named. **Siar** is the second flagship but sits lower on
 purpose (fifth in `PROJECTS`, below-left of the centre tile): a fully owned, working product, while its site
-is not the strongest piece of design. Nothing else in this repo needs touching; outside it, add it to FFAds'
+is not the strongest piece of design. **BAYANG by FF** is the third, the e-commerce one (the shop and shop system for
+FF's own lamp brand): sixth in `PROJECTS`, directly left of the centre tile, mirroring FF Member on the right,
+so FF Member, Indahnya and Siar keep the places chosen for them. A flagship with a `wordmark` uses it as the header
+lockup's name too (`//FF × BAYANG`, not the full title). Nothing else in this repo needs touching; outside it, add it to FFAds'
 `REC` list and the flagship memory note. With two or more, the wording switches to plural on its own.
 
 Filters pick up new features, stack items and clients automatically. Its title, meta, sitemap entry
