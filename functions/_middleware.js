@@ -3,9 +3,11 @@
 // function to page routes, so images, video and fonts never pass through it.
 // Retired project pages answer 410 Gone from here, before the asset layer: Pages kept serving a stale
 // copy of one (s-maxage a week) that no zone purge could reach, and 410 also drops them from Google sooner.
+import { pagesMiddleware } from './ff-analytics.js';
+
 const GONE = new Set(['/projects/big-brain-furniture', '/projects/big-brain-furniture-alt']);
 
-export async function onRequest({ request, next, env }) {
+async function site({ request, next, env }) {
   const url = new URL(request.url);
   if (url.hostname.startsWith('www.')) {
     url.hostname = url.hostname.slice(4);
@@ -17,3 +19,9 @@ export async function onRequest({ request, next, env }) {
   }
   return next();
 }
+
+// FF Analytics (FF Ops) runs first, so it sees every response this function returns (redirects and 410s included):
+// it answers /_e, adds the beacon to HTML and forwards page lines after the response. Settings on the Pages project:
+// FF_ANALYTICS_URL and FF_ANALYTICS_KEY (secrets). Off when they are missing.
+export const onRequest = [pagesMiddleware, site];
+
