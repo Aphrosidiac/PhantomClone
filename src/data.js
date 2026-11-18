@@ -37,14 +37,16 @@ export const PROJECTS = [
       'It is the studio’s own product and fully open source under the MIT licence: the Mac app, the server behind it and its website are public on GitHub, so anyone can read how it works, build it themselves or send a fix.',
     ],
   },
+  // second in PROJECTS = directly right of the centre tile (Fakhrul 2026-11-18: swapped with FF Member)
   {
-    slug: 'ff-member', title: 'FF Member', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#f3efe4',
-    features: ['webgl', '3d', 'motion'], stack: ['vite', 'three', 'gsap', 'lenis'], url: 'https://ff-member.pages.dev/',
-    type: 'Membership one-pager, study', role: 'Art direction / WebGL / Motion', reference: 'moto-card.com',
-    statement: 'The studio’s care plans sold as a membership, with a black member card issued on every visit.',
+    slug: 'ff-formo', title: 'FF Formo', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#2f63b0',
+    features: ['website', 'motion', 'interaction'], stack: ['vite', 'gsap', 'lenis'], url: 'https://ff-formo.pages.dev/',
+    type: 'Cycling coaching landing page, recreation', role: 'Frontend / Motion / Image direction', reference: 'threads.com/@bee_ui.ux',
+    disclaimer: 'A landing-page concept by @bee_ui.ux, rebuilt one to one by FF Dev Studio from five screenshots. The design is theirs; Formo Club is a fictional club and every photo was generated for the demo. Not affiliated.',
+    statement: 'A cycling-club landing page that existed only as five phone screenshots, built into a working site.',
     about: [
-      'Care, Maintain and Evolve, presented the way a premium card is. Every load opens on the member card being issued: it polishes in the dark while a counter runs through what membership covers, then flies onto a chrome plinth in front of a lit rock wall.',
-      'A pinned WebGL globe, the card turning inside a tube of the studio’s own work and plan figures that scrub past on scroll carry the rest. The motion was measured against a luxury card site in the same genre; every word, image and line of code is the studio’s own, and the globe is NASA imagery.',
+      'The concept had no live site to read, so every measure came from the screenshots: the tabbed hero card with its notched arrows, the session cards, the programme accordion and the blue booking band. The hero turns over three headlines, and a cut-out of each rider is placed from the photo’s own outline so the rider passes in front of the type.',
+      'Above 960 px the whole layout scales with the window, so it fills a 1920 screen as it does a laptop. Sections reveal on scroll to FF’s motion standard and settle at once when reduced motion is on.',
     ],
   },
   {
@@ -82,7 +84,7 @@ export const PROJECTS = [
     ],
   },
   // the third flagship, the e-commerce one (Fakhrul 2026-11-11): sixth in PROJECTS = directly left of the centre tile,
-  // mirroring FF Member on the right, without moving FF Member, Indahnya or Siar from the places he chose
+  // mirroring FF Formo on the right (FF Member until 2026-11-18), without moving Indahnya or Siar from the places he chose
   {
     slug: 'bayang', title: 'BAYANG by FF', client: 'FF Dev Studio', zone: 'client', year: 2026, plate: '#3155d9', flagship: true, wordmark: 'BAYANG',
     flagshipAs: 'the studio’s own e-commerce site and shop system, for its 3D-printed lamp brand',
@@ -249,16 +251,15 @@ export const PROJECTS = [
       'Left unfinished on purpose — the parts that work are the point, and the parts that do not are labelled.',
     ],
   },
-  // low priority (Fakhrul 2026-11-18): last in PROJECTS, so it sits on the grid's outer ring and ends the list
+  // last in PROJECTS = the grid's outer ring and the end of the list (Fakhrul 2026-11-18: swapped with FF Formo)
   {
-    slug: 'ff-formo', title: 'FF Formo', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#2f63b0',
-    features: ['website', 'motion', 'interaction'], stack: ['vite', 'gsap', 'lenis'], url: 'https://ff-formo.pages.dev/',
-    type: 'Cycling coaching landing page, recreation', role: 'Frontend / Motion / Image direction', reference: 'threads.com/@bee_ui.ux',
-    disclaimer: 'A landing-page concept by @bee_ui.ux, rebuilt one to one by FF Dev Studio from five screenshots. The design is theirs; Formo Club is a fictional club and every photo was generated for the demo. Not affiliated.',
-    statement: 'A cycling-club landing page that existed only as five phone screenshots, built into a working site.',
+    slug: 'ff-member', title: 'FF Member', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#f3efe4',
+    features: ['webgl', '3d', 'motion'], stack: ['vite', 'three', 'gsap', 'lenis'], url: 'https://ff-member.pages.dev/',
+    type: 'Membership one-pager, study', role: 'Art direction / WebGL / Motion', reference: 'moto-card.com',
+    statement: 'The studio’s care plans sold as a membership, with a black member card issued on every visit.',
     about: [
-      'The concept had no live site to read, so every measure came from the screenshots: the tabbed hero card with its notched arrows, the session cards, the programme accordion and the blue booking band. The hero turns over three headlines, and a cut-out of each rider is placed from the photo’s own outline so the rider passes in front of the type.',
-      'Above 960 px the whole layout scales with the window, so it fills a 1920 screen as it does a laptop. Sections reveal on scroll to FF’s motion standard and settle at once when reduced motion is on.',
+      'Care, Maintain and Evolve, presented the way a premium card is. Every load opens on the member card being issued: it polishes in the dark while a counter runs through what membership covers, then flies onto a chrome plinth in front of a lit rock wall.',
+      'A pinned WebGL globe, the card turning inside a tube of the studio’s own work and plan figures that scrub past on scroll carry the rest. The motion was measured against a luxury card site in the same genre; every word, image and line of code is the studio’s own, and the globe is NASA imagery.',
     ],
   },
 ];

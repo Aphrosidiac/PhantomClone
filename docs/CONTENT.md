@@ -56,8 +56,8 @@ is missing. Where it sits is a separate choice: the first flagship stays the gri
 others are listed in array order everywhere they are named. **Siar** is the second flagship but sits lower on
 purpose (fifth in `PROJECTS`, below-left of the centre tile): a fully owned, working product, while its site
 is not the strongest piece of design. **BAYANG by FF** is the third, the e-commerce one (the shop and shop system for
-FF's own lamp brand): sixth in `PROJECTS`, directly left of the centre tile, mirroring FF Member on the right,
-so FF Member, Indahnya and Siar keep the places chosen for them. A flagship with a `wordmark` uses it as the header
+FF's own lamp brand): sixth in `PROJECTS`, directly left of the centre tile, mirroring the project on the right
+(FF Formo since 2026-11-18, swapped with FF Member, which is now last), so Indahnya and Siar keep the places chosen for them. A flagship with a `wordmark` uses it as the header
 lockup's name too (`//FF × BAYANG`, not the full title). Nothing else in this repo needs touching; outside it, add it to FFAds'
 `REC` list and the flagship memory note. With two or more, the wording switches to plural on its own.
 
