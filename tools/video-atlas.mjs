@@ -69,6 +69,9 @@ const CLIPS = [
   // the home page (record.mjs with SCROLL=3,3000,7): the lit lamps on their plinths, then TERAS, OMBAK and LIPAT
   // in their arches sliding past, side to side; the wrap dissolves from LIPAT back into the hero
   { slug: 'bayang', file: '2026-11-11_bayang_home-scroll.mp4', at: 2.5, speed: 1.6, crop: 'page' },
+  // the hero's side arrow clicked every 2.5 s (record.mjs with CLICK='[data-hero-next]@4,6.5,9'): OWN THE COURT rolls
+  // out to CLIMB, MILES and back to COURT over the rider; COURT is at rest on both ends, so the wrap is seamless
+  { slug: 'ff-formo', file: '2026-11-18_ff-formo_hero-slides.mp4', at: 3.6, crop: 'page' },
 ];
 
 const LOOP = 5;       // seconds

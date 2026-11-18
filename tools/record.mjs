@@ -8,6 +8,8 @@
 // SCROLL=start,px,dur also scrolls it while filming: from `start` s after navigation, wheel down `px` CSS px
 // over `dur` s in even steps (wheel, so smooth-scroll libraries and scrubbed timelines run as for a visitor).
 // Indahnya's hero loop was filmed this way. COOKIE=name=value sets a cookie on the site before either visit.
+// CLICK=selector@t1,t2,… clicks that element at each time (s after navigation), e.g. a slider's next arrow
+// (FF Formo: CLICK='[data-hero-next]@4,6.5,9' swaps the hero headline COURT → CLIMB → MILES → COURT).
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 import os from 'node:os';
@@ -57,8 +59,18 @@ const scroll = (async () => {
   const n = Math.max(1, Math.round(dur / 0.05));
   for (let i = 0; i < n; i++) { await page.mouse.wheel(0, px / n); await page.waitForTimeout(50); }
 })();
+const clicks = (async () => {
+  if (!process.env.CLICK) return;
+  const at = process.env.CLICK.lastIndexOf('@');
+  const sel = process.env.CLICK.slice(0, at);
+  for (const t of process.env.CLICK.slice(at + 1).split(',').map(Number)) {
+    await page.waitForTimeout(Math.max(0, tNav + t - Date.now() / 1000) * 1000);
+    await page.locator(sel).first().click({ timeout: 5000 }).catch((e) => console.warn('CLICK', t, e.message));
+  }
+})();
 await page.waitForTimeout(REC * 1000);
 await scroll;
+await clicks;
 await cdp.send('Page.stopScreencast');
 await browser.close();
 

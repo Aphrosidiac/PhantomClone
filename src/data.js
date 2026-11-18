@@ -249,6 +249,18 @@ export const PROJECTS = [
       'Left unfinished on purpose — the parts that work are the point, and the parts that do not are labelled.',
     ],
   },
+  // low priority (Fakhrul 2026-11-18): last in PROJECTS, so it sits on the grid's outer ring and ends the list
+  {
+    slug: 'ff-formo', title: 'FF Formo', client: 'FF Dev Studio', zone: 'study', year: 2026, plate: '#2f63b0',
+    features: ['website', 'motion', 'interaction'], stack: ['vite', 'gsap', 'lenis'], url: 'https://ff-formo.pages.dev/',
+    type: 'Cycling coaching landing page, recreation', role: 'Frontend / Motion / Image direction', reference: 'threads.com/@bee_ui.ux',
+    disclaimer: 'A landing-page concept by @bee_ui.ux, rebuilt one to one by FF Dev Studio from five screenshots. The design is theirs; Formo Club is a fictional club and every photo was generated for the demo. Not affiliated.',
+    statement: 'A cycling-club landing page that existed only as five phone screenshots, built into a working site.',
+    about: [
+      'The concept had no live site to read, so every measure came from the screenshots: the tabbed hero card with its notched arrows, the session cards, the programme accordion and the blue booking band. The hero turns over three headlines, and a cut-out of each rider is placed from the photo’s own outline so the rider passes in front of the type.',
+      'Above 960 px the whole layout scales with the window, so it fills a 1920 screen as it does a laptop. Sections reveal on scroll to FF’s motion standard and settle at once when reduced motion is on.',
+    ],
+  },
 ];
 
 export const FLAGSHIPS = PROJECTS.filter((p) => p.flagship);

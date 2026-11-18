@@ -3065,5 +3065,143 @@
     ]
    }
   ]
+ },
+ "ff-formo": {
+  "cover": {
+   "src": "/media/ff-formo/s-hero.webp",
+   "sm": "/media/ff-formo/s-hero-sm.webp",
+   "w": 2880,
+   "h": 1620,
+   "smw": 1440,
+   "alt": "OWN THE COURT in white over a rider on a white road bike against a blue sky, the Formo Club tab cut into the card",
+   "page": "ff-formo.pages.dev"
+  },
+  "rows": [
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-formo/s-train.webp",
+      "sm": "/media/ff-formo/s-train-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Train smarter. Ride stronger. — two session cards with coach, times and spots left, beside a rider on a coast road",
+      "page": "ff-formo.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-formo/s-about.webp",
+      "sm": "/media/ff-formo/s-about-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Build the strength, endurance, and confidence to ride further: a road bike against a stone wall, and the club’s numbers",
+      "page": "ff-formo.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "trio",
+    "items": [
+     {
+      "src": "/media/ff-formo/s-m-hero.webp",
+      "sm": "/media/ff-formo/s-m-hero-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: OWN THE COURT stacked over the rider",
+      "page": "ff-formo.pages.dev"
+     },
+     {
+      "src": "/media/ff-formo/s-m-train.webp",
+      "sm": "/media/ff-formo/s-m-train-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the two session cards side by side",
+      "page": "ff-formo.pages.dev"
+     },
+     {
+      "src": "/media/ff-formo/s-m-band.webp",
+      "sm": "/media/ff-formo/s-m-band-sm.webp",
+      "w": 1242,
+      "h": 2010,
+      "smw": 621,
+      "alt": "Phone: the booking card",
+      "page": "ff-formo.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-formo/s-plans.webp",
+      "sm": "/media/ff-formo/s-plans-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "Choose your ride: the programmes as an accordion, Performance Programs open on its weeks, rides and plan",
+      "page": "ff-formo.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-formo/s-band.webp",
+      "sm": "/media/ff-formo/s-band-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "RIDE STRONGER over a rider in the mist, and the booking card with its checklist and a member’s quote",
+      "page": "ff-formo.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "pair",
+    "items": [
+     {
+      "src": "/media/ff-formo/s-plans2.webp",
+      "sm": "/media/ff-formo/s-plans2-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The accordion with Speed & Performance Coaching opened instead",
+      "page": "ff-formo.pages.dev"
+     },
+     {
+      "src": "/media/ff-formo/s-climb.webp",
+      "sm": "/media/ff-formo/s-climb-sm.webp",
+      "w": 1600,
+      "h": 900,
+      "smw": 800,
+      "alt": "The hero one slide on: OWN THE CLIMB, the headline and rider swapped together",
+      "page": "ff-formo.pages.dev"
+     }
+    ]
+   },
+   {
+    "kind": "full",
+    "items": [
+     {
+      "src": "/media/ff-formo/s-footer.webp",
+      "sm": "/media/ff-formo/s-footer-sm.webp",
+      "w": 2880,
+      "h": 1620,
+      "smw": 1440,
+      "alt": "The footer: links, a bike-frame close-up and FORMO CLUB across the bottom",
+      "page": "ff-formo.pages.dev"
+     }
+    ]
+   }
+  ]
  }
 }

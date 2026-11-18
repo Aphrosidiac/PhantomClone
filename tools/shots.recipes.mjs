@@ -533,6 +533,30 @@ export const RECIPES = {
     rows: [['full', 'strip-hover'], ['pair', 'about', 'pricing'], ['trio', 'm-strip', 'm-project', 'm-about'], ['full', 'shoots'], ['full', 'stanzza'], ['full', 'strip4']],
   },
 
+  // Formo Club, a cycling-coaching landing page concept by @bee_ui.ux rebuilt one to one (one page, Vite + GSAP + Lenis).
+  // The hero swaps headline, photo and rider cutout on its side arrows (COURT → CLIMB → MILES); sections reveal on
+  // scroll, so every frame waits ~1.6 s after it arrives. Shots share one page in order: climb and miles each click once.
+  // The three hero photos are the same rider in near-identical poses, so only one alternate slide (climb) is shown. Layout is fluid above 960 px (1rem = 100vw/144).
+  'ff-formo': {
+    base: 'https://ff-formo.pages.dev/', device: 'mid', boot: 3500, settle: 1600, init: EAGER,
+    shots: [
+      { id: 'hero', steps: [['wait', 500]], alt: 'OWN THE COURT in white over a rider on a white road bike against a blue sky, the Formo Club tab cut into the card' },
+      { id: 'climb', steps: [['click', '[data-hero-next]'], ['wait', 1800]], alt: 'The hero one slide on: OWN THE CLIMB, the headline and rider swapped together' },
+      { id: 'miles', steps: [['click', '[data-hero-next]'], ['wait', 1800]], alt: 'The third slide: OWN THE MILES' },
+      { id: 'about', steps: [['to', '.about__aside', 0.22]], alt: 'Build the strength, endurance, and confidence to ride further: a road bike against a stone wall, and the club’s numbers' },
+      { id: 'train', steps: [['to', '#coaching', 0.1]], alt: 'Train smarter. Ride stronger. — two session cards with coach, times and spots left, beside a rider on a coast road' },
+      { id: 'plans', steps: [['to', '#programs', 0.1]], alt: 'Choose your ride: the programmes as an accordion, Performance Programs open on its weeks, rides and plan' },
+      { id: 'plans2', steps: [['to', '#programs', 0.1], ['click', '#acc-3-h'], ['wait', 1200]], alt: 'The accordion with Speed & Performance Coaching opened instead' },
+      { id: 'band', steps: [['to', '#book', 0.04]], alt: 'RIDE STRONGER over a rider in the mist, and the booking card with its checklist and a member’s quote' },
+      { id: 'footer', steps: [['y', 99999]], alt: 'The footer: links, a bike-frame close-up and FORMO CLUB across the bottom' },
+      { id: 'm-hero', device: P, steps: [['wait', 500]], alt: 'Phone: OWN THE COURT stacked over the rider' },
+      { id: 'm-train', device: P, steps: [['to', '.sessions', 0.12]], alt: 'Phone: the two session cards side by side' },
+      { id: 'm-band', device: P, steps: [['to', '.band__card', 0.06]], alt: 'Phone: the booking card' },
+    ],
+    cover: 'hero',
+    rows: [['full', 'train'], ['full', 'about'], ['trio', 'm-hero', 'm-train', 'm-band'], ['full', 'plans'], ['full', 'band'], ['pair', 'plans2', 'climb'], ['full', 'footer']],
+  },
+
   'obys-translation': {
     base: 'https://ff-concepts.pages.dev/concepts/02/', device: 'mid', boot: 5000,
     shots: [

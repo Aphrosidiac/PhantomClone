@@ -117,7 +117,9 @@ To add or re-cut a clip:
    at the same 1904×944 page viewport, with no browser around it (give that clip `crop: 'page'`). Hai Awan's
    loop was made this way. For a scroll-driven hero, `SCROLL=start,px,dur` wheels the page down `px` CSS px over
    `dur` s starting `start` s in (the warm-up visit scrolls the same way first, so images are cached): Indahnya's
-   loop is `SCROLL=3,3210,5 node tools/record.mjs <url> <out.mp4> 13`, cut at 2.1× to fit the whole sequence. Source footage is archived with Git LFS in the FFAds repo,
+   loop is `SCROLL=3,3210,5 node tools/record.mjs <url> <out.mp4> 13`, cut at 2.1× to fit the whole sequence. For a slider, `CLICK=selector@t1,t2,…` clicks that element at each time
+   (seconds after navigation): FF Formo's loop is `CLICK='[data-hero-next]@4,6.5,9' node tools/record.mjs <url> <out.mp4> 13`,
+   the hero headline turning COURT → CLIMB → MILES → COURT so the loop starts and ends on the same slide. Source footage is archived with Git LFS in the FFAds repo,
    `recordings/desktop/` — put new recordings there too.
 2. Add `{ slug, file, at }` to `CLIPS` in `tools/video-atlas.mjs`; `at` is the loop's first frame.
    The loop plays 7.5 s of source at 1.5× (`speed: 1` for an intro that should keep its own pace).
